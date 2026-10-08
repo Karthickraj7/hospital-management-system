@@ -1,0 +1,106 @@
+ 
+.img_section {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 50px;
+  margin-left: 10%;
+  margin-top: 20px;
+}
+ 
+.img_1 {
+  padding: 0px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2px;
+  cursor: pointer;
+}
+ 
+.patient_profile_pic {
+  position: relative;
+  width: 30px;
+  height: 30px; /* Set dimensions for the container */
+}
+ 
+.patient_profile_pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+ 
+.patient_profile_pic input {
+  display: none; /* Hidden input */
+}
+ 
+ 
+.img_1 input {
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+}
+ 
+.img_2 {
+  height: 200px;
+  width: 200px;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+ 
+.img_2 img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+.ImgBtn {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  /* background-color: rgba(0, 0, 0, 0.5); */
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 10px !important;
+  width: 100px;
+  text-align: center;
+  display: block;
+}
+.inp_1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-basis: calc(33.33% - 15px);
+  margin-bottom: 15px;
+  border-bottom: 1px solid var(--ProjectColor);
+  width: 280px;
+}
+ 
+.inp_1 input {
+ 
+  outline: none;
+  border: none;
+  background-color: transparent;
+  padding: 10px 5px;
+  color: var(--labelcolor);
+}
+.inp_1 label {
+  color: var(--labelcolor);
+  width: 120px;
+ 
+}
+.inp_1 input::placeholder {
+  color: rgb(151,150,150);
+  padding: 12px 5px;
+}
+@media (max-width: 768px)  {
+  .img_section {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+  }
+}

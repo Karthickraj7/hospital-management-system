@@ -1,0 +1,78 @@
+.venkat2000-container {
+  padding: 20px;
+  background: #f9f9f9;
+}
+
+.venkat2000-header {
+  margin-bottom: 20px;
+  /* background-color: grey; */
+}
+
+.venkat2000-button {
+  padding: 8px 16px;
+  background: #f5f6f74f;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+
+.venkat2000-label {
+  font-weight: bold;
+  display: block;
+  margin: 10px 0 5px;
+}
+
+.venkat2000-input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.venkat2000-file {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.venkat2000-icon {
+  cursor: pointer;
+  background: #efefef;
+  padding: 6px;
+  border-radius: 4px;
+  display: inline-flex;
+}
+
+.venkat2000-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.venkat2000-modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.venkat2000-form {
+  margin-top: 20px;
+}
+
+.venkat2000-grid {
+  margin-top: 0px;
+}
+
+
+.venkat2000-label span{
+    color: red;
+}

@@ -1,0 +1,429 @@
+.dashboard-container-Revenue {
+    display: flex;
+    /* flex-direction: column; */
+    background-color: #ffffff;
+    ;
+    color: white;
+    font-family: Arial, sans-serif;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  
+  .dashboard-top-row {
+    display: flex;
+    width: 100%;
+    height: 150px;
+    margin-bottom: 10px;
+    gap: 5px;
+  }
+  
+  .revenue-box {
+    background-color: #3d3d3d;
+
+    width: 200px;
+    padding: 10px;
+    border-top: 3px solid #00b3b3;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .revenue-title {
+    color: #00b3b3;
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  
+  .revenue-amount {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 15px;
+  }
+  
+  .revenue-chart-small {
+    height: 50px;
+    margin-top: auto;
+  }
+  
+  .growth-box {
+    background-color: #7689b1;
+
+    width: 180px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .growth-title {
+    color: white;
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  
+  .growth-subtitle {
+    font-size: 12px;
+    color: white;
+    margin-bottom: 10px;
+  }
+  
+  .growth-arrow {
+    color: green;
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 5px;
+  }
+  
+  .growth-percentage {
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .growth-label {
+    font-size: 12px;
+    color: white;
+    align-self: flex-end;
+    margin-top: auto;
+  }
+  
+  .date-metrics-container {
+    display: flex;
+    background-color: #0a6767;
+
+    flex: 1;
+    padding: 10px;
+  }
+  
+  .date-metric {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .date-separator {
+    width: 1px;
+    background-color: rgba(255, 255, 255, 0.3);
+    margin: 0 15px;
+  }
+  
+  .date-title {
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    margin-bottom: 5px;
+  }
+  
+  .date-amount {
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    margin-bottom: 5px;
+  }
+  
+  .date-label {
+    font-size: 12px;
+    color: #ccc;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .trend-line {
+    height: 30px;
+  }
+  
+  .filters-box {
+    background-color: #101010;
+    ;
+    width: 280px;
+    padding: 10px;
+    overflow: auto;
+  }
+  
+  .filters-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: center;
+  }
+  
+  .filters-text {
+    font-size: 12px;
+    color: #ccc;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .filters-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+  
+  .filter-btn {
+    background-color: #333;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .filter-btn:hover {
+    background-color: #444;
+  }
+  
+  .clear-btn {
+    flex: 2;
+    margin: 0 5px;
+  }
+  
+  .filter-options {
+    height: calc(100% - 80px);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .filter-section {
+    margin-bottom: 5px;
+    position: relative;
+  }
+  
+  .filter-header {
+    font-weight: bold;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #444;
+    padding-bottom: 2px;
+  }
+  
+  .filter-checkboxes {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 12px;
+  }
+  
+  .filter-option {
+    margin-right: 10px;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .filter-option input {
+    cursor: pointer;
+    margin-right: 4px;
+  }
+  
+  .month-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .location-list {
+    max-height: 120px;
+    overflow-y: auto;
+    display: block;
+  }
+  
+  .search-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  /* Middle Section Styling */
+  .dashboard-middle-row {
+    background-color: #d1db7e;
+    ;
+    height: 250px;
+    margin-bottom: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .middle-header {
+    display: flex
+    ;
+        justify-content: center;
+        padding: 5px 0;
+        border-bottom: 1px solid #444;
+        margin-bottom: 10px;
+        gap: 50px;
+  }
+  
+  .header-left, .header-right {
+    font-size: 16px;
+    color: black;
+    border-radius: 5px;
+    font-weight: bold;
+    padding: 5px 10px;
+    border: 1px solid
+  }
+  
+  .trend-chart {
+    flex: 1;
+    width: 100%;
+    height: calc(100% - 50px);
+  }
+  
+  .chart-legend {
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
+    margin-top: 5px;
+  }
+  
+  .legend-item {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    font-size: 12px;
+  }
+  
+  .legend-color {
+    width: 14px;
+    height: 14px;
+    margin-right: 5px;
+    border-radius: 2px;
+  }
+  
+  .cyan { background-color: #00b3b3; }
+  .blue { background-color: #0066ff; }
+  .purple { background-color: #9900cc; }
+  .green { background-color: #00cc00; }
+  .light-green { background-color: #99cc00; }
+  
+  .month-year-toggle {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    background-color: #333;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  
+  .month-toggle, .year-toggle {
+    padding: 5px 10px;
+    font-size: 12px;
+    cursor: pointer;
+  }
+  
+  .month-toggle:hover, .year-toggle:hover {
+    background-color: #3a3a3a;
+  }
+  
+  .active {
+    background-color: #444;
+    color: #00b3b3;
+  }
+  
+  /* Bottom Section Styling */
+  .dashboard-bottom-row {
+    display: flex;
+    height: 250px;
+    gap: 10px;
+  }
+  
+  .department-section, .location-section {
+    flex: 1;
+    background-color: #a7d59f;
+    ;
+    padding: 10px;
+  }
+  
+  .section-header {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    color: black;
+    border-bottom: 1px solid #444;
+  }
+  
+  .department-chart {
+    display: flex;
+    height: 200px;
+  }
+  
+  .department-legend {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+  }
+  
+  .legend-text {
+    margin-right: 10px;
+    color: black;
+  }
+  
+  .legend-value {
+    margin-left: auto;
+    color: #ccc;
+  }
+  
+  .location-bars {
+    height: calc(100% - 30px);
+  }
+  
+  /* Tooltip styling */
+  .recharts-tooltip-wrapper {
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 5px;
+    padding: 5px;
+    color: white;
+    font-size: 12px;
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #333;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #666;
+  }
+  
+  /* Additional styles to match the image */
+  .states-container {
+    margin-top: 10px;
+  }
+  
+  .state-header {
+    font-weight: bold;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #444;
+    padding-bottom: 2px;
+  }
+  
+  .specialty-container {
+    margin-top: 10px;
+  }
+  
+  .specialty-header {
+    font-weight: bold;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #444;
+    padding-bottom:2px;
+  }
+  

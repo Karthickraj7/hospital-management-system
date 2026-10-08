@@ -1,0 +1,111 @@
+  .form-container-venki {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #fdfdfd;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .form-title-venki {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    color: #333;
+  }
+  
+  .section-title-venki {
+    margin-top: 25px;
+    font-size: 20px;
+    font-weight: 500;
+    color: #444;
+    border-left: 5px solid #0077cc;
+    padding-left: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .medical-error-form-venki {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-row-venki {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .form-input-venki {
+    flex: 1;
+    min-width: 250px;
+    padding: 10px 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+  }
+  
+  .form-input-venki:focus {
+    border-color: #0077cc;
+    outline: none;
+  }
+  
+  .form-textarea-venki {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    resize: vertical;
+    transition: border-color 0.3s;
+    margin-bottom: 20px;
+  }
+  
+  .form-textarea-venki:focus {
+    border-color: #0077cc;
+    outline: none;
+  }
+  
+  .form-label-venki {
+    font-weight: 500;
+    margin-bottom: 8px;
+    display: block;
+    color: #555;
+  }
+  
+  .form-button-group-venki {
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  .form-button-venki {
+    padding: 12px 30px;
+    font-size: 16px;
+    background-color: #0077cc;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .form-button-venki:hover {
+    background-color: #005fa3;
+  }
+  
+  
+  
+  .form-input-venki  select{
+    font-size: 14px;
+    padding: 10px;
+    margin-bottom: 50px;
+  }
+  .form-input-venki  select {
+    color: #000 !important;
+    background-color: #fff !important;
+  } 
+  
+ 

@@ -1,0 +1,317 @@
+/* DoctorDashboard.css */
+
+.doctor-dashboard {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.doctor_table_das {
+  margin-top: 20px;
+}
+
+.doctor_table_das table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.doctor_table_das th, .doctor_table_das td {
+  border: 1px solid #8c8c8c;
+  padding: 5px;
+  text-align: left;
+  vertical-align: top;
+}
+
+
+.doctor_table_das  th {
+  background-color: #dfe2f5;
+  color: #333;
+  text-align: center !important;
+  font-size: 12px;
+  padding: 20px 5px;
+}
+
+.doctor_table_das  td{
+  width: 200px;
+  padding: 0px !important;
+}
+
+.doctor_table_das  ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  /* row-gap: 10px; */
+  /* margin-top: 11px; */
+}
+
+.doctor_table_das  li {
+border-bottom: 1px solid #a1a1a1;
+padding: 5px;
+
+
+}
+
+.iuyr444r{
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+  transition: background-color 0.3s ease;
+  padding: 12px 5px
+}
+
+.dsewx{
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dsewx select{
+  border-radius: 3px;
+  width: 100px;
+  height: 19px;
+  font-size: 11px;
+  padding: 0px;
+  background-color: #ececec;
+}
+
+.kjs26 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.dsewx p{
+  width: 50px;
+  font-size: 11px;
+  background-color: #ececec;
+  padding: 3px 2px;
+  border-radius: 2px;
+  text-align: center;
+}
+
+.iuyr444r h5{
+  text-align: center;
+  font-size: 12px;
+  background-color: #eff1ff;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.frwr_icom8{
+  cursor: pointer;
+}
+
+
+.iuyr444r.consultingtime {
+  background-color: rgb(206, 159, 40);
+}
+
+.iuyr444r.registered {
+  background-color: #ffd1a8;
+}
+
+.iuyr444r.completed {
+  background-color: lightgreen;
+}
+
+
+
+.table_container_docdas {
+   max-height: 100%; 
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+.table_container_docdas table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table_container_docdas th,.table_container_docdas td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #a1a1a1;
+
+}
+
+/* Styling for scrollbar */
+.table_container_docdas::-webkit-scrollbar {
+  width: 12px; /* Width of vertical scrollbar */
+  height: 6px;
+}
+
+.table_container_docdas::-webkit-scrollbar-track {
+  background: transparent; /* Track color */
+}
+
+.table_container_docdas::-webkit-scrollbar-thumb {
+  background-color: var(--ProjectColor); /* Thumb color */
+  border-radius: 6px; /* Rounded corners */
+  border: 3px solid transparent; /* Border color */
+}
+
+.table_container_docdas::-webkit-scrollbar-thumb:hover {
+  background-color: var(--ProjectColorhover); 
+}
+
+
+/* bharathi */
+
+.context-menu {
+  position: absolute;
+  z-index: 1000;
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.context-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 5px 0;
+}
+
+.context-menu li {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.context-menu li:hover {
+  background-color: #eee;
+}
+
+/* --------------------------------------mugesh----------------------------------------- */
+/* Main container */
+.mugesh-dctr_info_up_head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  max-width: 1000px;
+  margin: 20px auto;
+}
+
+/* Flex container for content */
+.mugesh_flexxxx {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 15px; /* Space between image and data */
+}
+
+/* Image styling */
+.mugesh-dctr_info_up_head22 {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Container for image */
+.mugesh-RegisFormcon {
+  flex: 0 0 auto;
+}
+
+/* Container for patient details */
+.mugesh-RegisFormcon_1 {
+  flex: 1;
+  min-width: 200px;
+}
+
+/* Row for all details */
+.mugesh-details-row {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Increased gap between name, first column, and second column */
+}
+
+/* Patient Name styling */
+.mugesh-patient-name {
+  font-size: 30px;
+  color: black;
+  font-weight: bold;
+}
+
+/* Column for grouped details (Patient ID/Age-Gender and Doctor/Allergy) */
+.mugesh-details-column {
+  display: flex;
+  flex-direction: column;
+  gap: 5px; /* Space between items within each column */
+  padding: 0 5px; /* Padding inside the column for better spacing */
+}
+
+/* Other details styling */
+.mugesh-patient-details {
+  font-size: 16px;
+  color: #333;
+  font-weight: 400;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .mugesh-dctr_info_up_head {
+    padding: 8px;
+  }
+
+  .mugesh-dctr_info_up_head22 {
+    width: 40px;
+    height: 40px;
+  }
+
+  .mugesh-patient-name {
+    font-size: 20px;
+  }
+
+  .mugesh-patient-details {
+    font-size: 14px;
+  }
+
+  .mugesh-details-row {
+    flex-wrap: wrap;
+    gap: 15px; /* Slightly reduced gap for tablet */
+  }
+
+  .mugesh-details-column {
+    gap: 4px;
+    padding: 0 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mugesh-dctr_info_up_head22 {
+    width: 35px;
+    height: 35px;
+  }
+
+  .mugesh-patient-name {
+    font-size: 18px;
+  }
+
+  .mugesh-patient-details {
+    font-size: 12px;
+  }
+
+  .mugesh_flexxxx {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .mugesh-details-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .mugesh-details-column {
+    gap: 3px;
+    padding: 0 3px;
+  }
+}

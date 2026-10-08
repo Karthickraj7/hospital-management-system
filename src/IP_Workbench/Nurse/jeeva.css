@@ -1,0 +1,675 @@
+    
+    
+/* .RegisForm_text{
+    width: 412px ;
+    border: 1px solid #ccc;
+    outline: 0px;
+    display: flex;
+    padding: 0px 5px;
+    border-radius: 5px;
+    height: 50px;
+    cursor: pointer;
+}    
+  */
+
+  .MainDash{
+    /* padding-top: 1rem; */
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-evenly; */
+    width: 100%;
+    padding: 10px;
+    overflow: auto;
+    background-color: antiquewhite;
+    height: 100vh;
+}
+
+.mlc_btn button {
+    outline: none;
+    border: none;
+    padding: 20px 16px;
+    border-radius: 5px;
+    background-color: rgb(247, 112, 112);
+    color: #fff;
+    /* animation: blink-background 1.5s infinite; */
+    width: 115px;
+    
+}
+
+.RegisForm_text{
+    /* width: 412px ;  */
+    /* width: 295px; */
+    /* height:auto; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+   
+    
+}    
+
+.RegisForm_text label{
+    width: 120px;
+    display: flex;
+    font-size: var(--fontsize);
+    font-weight: bold;
+    justify-content: space-between;
+    text-align: start;
+    align-items: center;
+    gap: 10px;
+    color: var(--labelcolor);
+}
+
+.RegisForm_text textarea {
+    width: 480px;
+    border: 1px solid #ccc;
+    outline: 0px;
+    display: flex;
+    padding: 0px 5px;
+    border-radius: 5px;
+    height: 60px;
+    cursor: pointer;
+}
+
+ .textarea_1{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    
+   
+}
+
+.textarea_1 label{
+    width: 120px;
+    display: flex;
+    font-size: var(--fontsize);
+    font-weight: bold;
+    justify-content: space-between;
+    text-align: start;
+    align-items: center;
+    gap: 10px;
+    color: var(--labelcolor);
+}
+
+
+.textarea_1 textarea {
+    width: 800px;
+    border: 1px solid #ccc;
+    outline: 0px;
+    display: flex;
+    padding: 0px 5px;
+    border-radius: 5px;
+    height: 60px;
+    cursor: pointer;
+}
+ 
+
+.radio_1{
+    width:295px; 
+}
+
+
+/* /  old code css / */
+
+
+
+.RegisFormcon_consent_consent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    
+    /* row-gap: 5px; */
+}
+
+.RegisForm_1_consent_consent{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 7px;
+    width: 100%;
+    
+}
+
+
+.RegisForm_1_consent_consent label{
+    width: 260px;
+    display: flex;
+    justify-content: space-between;
+    color: var(--labelcolor);
+    font-weight: bold;
+    font-size: var(--fontsize);
+    text-align: start;
+    align-items: center;
+}
+
+.RegisForm_1_consent_consent input{
+    width: 350px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid var(--ProjectColor);
+    padding: 5px;
+
+
+}
+
+.RegisForm_1_consent_consent_radiooo{
+    display: flex;
+    gap: 0px;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center; 
+    width: 60px; 
+}
+
+.RegisForm_1_consent_consent_radiooo label{
+    font-size: var(--fontsize);
+    font-weight: bold;
+    width: 20px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 5px;
+    align-items: center;
+    text-align: center;
+
+    
+}
+
+.transgender98{
+    width: 30px !important;
+}
+
+
+.consent_consent_radiooo_inputt{
+
+    width: 30px !important;
+    height: 13px;
+}
+
+.RegisForm_1_consent_consent textarea{
+    width: 350px;
+    padding: 5px;
+    height: 50px;
+
+}
+
+.RegisForm_1_consent_consent_p{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    row-gap: 14px;
+}
+
+.RegisForm_1_consent_consent_p p{
+    display: flex;
+    font-size: var(--fontsize);
+
+    font-weight: bold;
+    color: var(--labelcolor);
+    width: 100% ;
+    flex-direction: column;
+    justify-content: center;
+    text-align: start;
+    align-items: center;
+}
+.sigCanvas2_head11{
+    display: flex;
+    justify-content: center;
+}
+.sigCanvas2_head{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-left: 50%;
+}
+
+.sigCanvas2{
+    border: 1px solid var(--ProjectColor);
+}
+.RegisForm_1_consent_consent_radiooo_head35r{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    width: 360px;
+
+}
+
+.transgender98{
+    width: 75px !important;
+}
+
+.female4eed{
+    width: 75px;
+}
+
+.female4d{
+    width: 60px;
+}
+
+
+.case_sheet_consent{
+    margin: 0 auto; 
+    width: 50%;
+    /* height: 100%; */
+  }
+
+  
+@media print {
+
+    /* .appointment {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+
+    } */
+
+    /* body * {
+        visibility: hidden;
+      }
+      #reactprintcontent, #reactprintcontent * {
+        visibility: visible;
+      }
+      #reactprintcontent {
+        position: absolute;
+        left: 0;
+        top: 0;
+      } */
+
+     
+    /* .no-print {
+    display: none !important;
+    } */
+
+    @page {
+      size: A4;
+      margin: 0;
+      padding: 0;
+      top: 20mm;
+      left: 20mm;
+    }
+
+    body {
+        margin: 0; /* Ensure no margin on the body */
+      }
+    .header_container_sidebar{
+        display: none !important;
+    }
+    .printgr5 {
+      display: none !important;
+    }
+
+    .case_sheet_consent{
+        width: 100% !important;
+        margin-top: 0px !important;
+        /* margin-right: 40px !important; */
+        margin-left: -40px !important;
+        page-break-inside: avoid;
+    }
+
+    .RegisForm_1_consent_consent_p p{
+        width: 80% !important;
+    }
+
+    .RegisterForm_1_btns{
+        display: none;
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    .RegisForm_1_consent_consent
+    {
+        width: 300px;
+    }
+
+.RegisForm_1_consent_consent_radiooo{
+    width: 70px;
+    gap: 3px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.transgender98{
+    width:70px !important;
+}
+.female4d{
+    width: 50px !important;
+    gap: 5px;
+}
+
+.female4eed{
+    width: 80px;
+    gap: 5px;
+}
+
+    .RegisForm_1_consent_consent label{
+        width: 120px;
+    }
+
+    .case_sheet h4{
+        width: 100% !important;
+    }
+
+    .sigCanvas2_head{
+        margin-left: 0px;
+    }
+
+    .RegisForm_1_consent_consent_p p{
+        width: 275px;
+    }
+}
+
+
+
+
+.case_sheet_consent {
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    max-width: 800px;
+    background-color: #f9f9f9;
+  }
+  
+  .case_sheet_consent h1,
+  .case_sheet_consent h3 {
+    text-align: center;
+  }
+  
+  .case_sheet_consent .jee1 {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 10px 0;
+  }
+  
+  .case_sheet_consent .jee1 label {
+    width: 180px;
+    font-weight: bold;
+  }
+  
+  .case_sheet_consent .jee1 input,
+  .case_sheet_consent .jee1 textarea {
+    width: calc(100% - 200px);
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .case_sheet_consent .RegisForm_1_consent_consent_radiooo_head35r {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .case_sheet_consent .RegisForm_1_consent_consent_radiooo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* .case_sheet_consent .consent_consent_radiooo_inputt {
+    gap: 20px;
+  }
+   */
+  .case_sheet_consent .RegisForm_1_consent_consent_radiooo label {
+    margin: 0;
+  }
+  
+  .case_sheet_consent .summadiv {
+    margin: 20px 0;
+  }
+  
+
+
+
+.jjj p{
+    display: flex;
+    justify-content: flex-start;
+
+}
+
+    
+
+.jjdiv{
+    display: flex;
+    justify-content: space-between;
+    width: 650px;
+}
+.edwuedy47y{
+    display: flex;
+    width: 355px!important;
+    height: 50px;
+    padding: 5px;
+}
+.summadiv1{
+    display: flex;
+    justify-content: space-between !important;
+    width: 650px !important;
+}
+.eeiuujeuwu39 input{
+    width: 120px;
+    padding: 5px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid var(--ProjectColor);
+}
+
+.summadiv{
+    display: flex;
+    justify-content: flex-start ;
+}
+.RegisForm_1_consent_consent_ppp {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: start;
+    margin: 0; /* remove default margin */
+}
+
+.RegisForm_1_consent_consent_ppp input {
+    margin-right: 5px; /* Adjust spacing between inputs and text */
+}
+
+
+
+
+
+.edewdce{
+    border: 1px solid var(--ProjectColor);
+    border-radius: 5px;
+    padding: 5px;
+    /* width: 500px; */
+    /* margin-left: 65px; */
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; */
+
+}
+
+.jwhyw66w4{
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    }
+
+.sdsdsxds{
+    display: flex;
+    justify-content: space-around;
+}
+
+.jee1 {
+    display: flex;
+    justify-content: flex-start; /* Aligns items to the left */
+    align-items: center;
+    text-align: left; /* Aligns text to the left */
+    gap: 50px;
+    margin: 10px;
+}
+
+.jee1 label{
+    width: 100px;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    align-items: center;
+    font-size: var(--fontsize);
+    font-weight: bold;
+
+}
+
+.jee1 input, .jee1 textarea{
+    width: 420px;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    outline: none;
+    }
+
+
+    .jee1 .RegisForm_1_consent_consent_radiooo_head35r {
+        display: flex;
+        gap: 40px;
+    }
+    
+    .jee1 .RegisForm_1_consent_consent_radiooo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .jee1 .consent_consent_radiooo_inputt {
+        width: auto; /* Radio buttons don't need a fixed width */
+    }
+    
+    .jee1 .RegisForm_1_consent_consent_radiooo label {
+        font-weight: normal;
+        font-size: var(--fontsize);
+    }
+
+
+.shdywy656230{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    margin: 10px;
+}
+
+.shdywy656230 label{
+    width: 100px;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    align-items: center;
+    font-size: var(--fontsize);
+    font-weight: bold;
+
+}
+
+.kkkk input{
+    width: 20px;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    outline: none;
+    }
+
+.kkkk {
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    margin: 10px;
+}
+
+.kkkk label{
+    width: 100px;
+    display: flex;
+    justify-content: space-between;
+   
+    font-size: var(--fontsize);
+    font-weight: bold;
+
+}
+
+.shdywy656230 input{
+width: 120px;
+border: none;
+padding: 5px;
+border-radius: 5px;
+outline: none;
+}
+
+@media print {
+    .RegisForm_1_consent_consent_ppp{
+        margin-left: 50px;
+        width: 85%;
+    }
+
+    .Main_container_app {
+        display: block; /* Ensure the main container is displayed */
+    }
+    /* Hide any elements you don’t want printed */
+    .no-print {
+        display: none;
+    }
+
+    .wiiue876{
+        margin-left: 72px;
+        width: 50% !important;
+    }
+
+    .uwytywe6262309{
+        display: flex;
+        gap: 30px;
+    }
+
+    .edewdce{
+        border: 1px solid var(--ProjectColor);
+        border-radius: 5px;
+        padding: 5px;
+        /* width: 500px; */
+        margin-left: 50px;
+        /* display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column; */
+    
+    }
+    .dssxxsssa{
+        margin-top: 50px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

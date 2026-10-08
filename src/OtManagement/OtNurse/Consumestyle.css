@@ -1,0 +1,100 @@
+.Consume_con{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+.Consume_form{
+    height: auto;
+    /* width: 250px; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: grey;
+    gap: 5px;
+}
+.Consume_form label{
+    /* width: 120px;  */
+    display: flex;
+    font-size: var(--fontsize);
+    font-weight: bold;
+    justify-content: space-between;
+    text-align: start;
+    align-items: center;
+    gap: 10px;
+    color: var(--labelcolor);
+}
+.Consume_form select{
+    border: 0px;
+    outline: 0px;
+    height: 30px;
+    display: flex;
+    padding: 0px 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: var(--selectbackgroundcolor);
+}
+.Consume_form input{
+    width: 60px;
+    background-color: transparent;
+    border: 0px;
+    outline: 0px;
+    height: 30px;
+    border: 1px solid var(--ProjectColor);
+    padding: 0px 5px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+/* Table Styling */
+.consum_tbl {
+    width: 100%;
+    margin-top: 30px;
+    border-collapse: collapse;
+    text-align: left;
+    border-radius: 10px;
+  }
+  
+  .consum_tbl th,
+  .consum_tbl td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    text-align: center;
+  }
+  
+  .consum_tbl th {
+    background-color: #a19e9ec9;
+    color: white;
+  }
+  
+  .consum_tbl tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .consum_tbl tr:hover {
+    background-color: #ddd;
+  }
+  
+  .consum_tbl input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+  }
+  
+  /* Input fields for Used and Unused */
+  .consum_tbl input[type="number"] {
+    width: 80px;
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+  }
+  
+  .consum_tbl input[type="number"]:focus {
+    border-color: #4CAF50;
+  }
+  @media screen and (max-width:860px) {
+    .Consume_con{
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: 70%;
+        gap: 30px;
+    }
+  }

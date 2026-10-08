@@ -1,0 +1,30 @@
+.cardModel {
+    height: 80%;
+    width: 90%;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: auto;
+    padding: 10px;
+    display: flex
+;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    box-sizing: border-box;
+    row-gap: 10px;
+}
+.cardModelBill {
+    height: 20%;
+    width: 40%;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: auto;
+    padding: 10px;
+    display: flex
+;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    box-sizing: border-box;
+    row-gap: 10px;
+}

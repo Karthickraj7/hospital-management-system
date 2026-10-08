@@ -1,0 +1,78 @@
+@media screen {
+  .lab_Test_Reprot {
+    display: none;
+  }
+}
+
+@media print {
+  @page {
+    size: A4;
+  }
+
+  html,
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+   .count-container {
+    width: 794px;
+    margin: 0 auto;
+    padding: 30px;
+    background: white;
+    page-break-after: always;
+    /* padding-top: 155px;
+    padding-bottom: 90px; */
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+
+  .count-container .count-thead {
+    display: table-header-group !important;
+  }
+
+
+  .thalaipu {
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .count-dabba .count-thead {
+    text-align: center;
+  }
+
+  .count-dabba .count-th,
+  .count-td {
+    padding: 4px;
+    text-align: start;
+  }
+
+  .count-dabba .count-th {
+    font-size: 18px;
+  }
+
+  .parusu {
+    min-width: 90px;
+  }
+
+  .count-dabba .count-thead tr {
+    border-bottom: 1px solid black;
+  }
+
+  .padda_potti {
+    display: flex;
+    gap: 30px;
+    border-bottom: 2px solid black;
+  }
+
+  .paddam {
+    width: 60px;
+    height: 60px;
+  }
+
+  .paruu {
+    padding: 10px;
+  }
+}
+
+/* } */

@@ -1,0 +1,23 @@
+.grid_12{
+    width: auto;
+    overflow-x: scroll;
+}
+.formsubmit1{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.formsubmit1 button{
+    width: 90px;
+    height: 30px;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--ProjectColor);
+    color: var(--labelcolor);
+    cursor: pointer;
+}
+.formsubmit1 button:hover{
+    background-color: var(--ProjectColorhover);
+    color: var(--projectwhite);
+}

@@ -1,0 +1,794 @@
+.Th_book_head {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding: 0px 10px;
+    border-radius: 5px;
+    color: var(--labelcolor);
+    background-color: var(--ProjectColor);
+}
+
+.Theatre_booking_con {
+
+    padding: 20px;
+    background-color: var(--selectbackgroundcolor);
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+
+.Theatre_booking_con_1 {
+    width:100%;
+    height: auto;
+}
+
+.Theatre_booking_form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.Theatre_booking_form_row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 70px;
+}
+
+.Theatre_booking_form_row_div input {
+    width: 150px;
+    height: 20px;
+    padding: 5px 10px;
+    font-size: 14x;
+    border: 1px solid var(--ProjectColor);
+    border-radius: 5px;
+    outline: 0px;
+}
+
+.Theatre_booking_form_row_div select {
+    width: 170px;
+    padding: 5px 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: 0px;
+}
+
+.Theatre_booking_form_row_div {
+    width: 300px;
+    padding: 0px 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.Theatre_booking_form_row_div label {
+    display: flex;
+    gap: 15px;
+    justify-content: space-between;
+    width: 130px;
+    align-items: center;
+    text-align: start;
+    font-size: 15px;
+    font-weight: bold;
+    color: var(--labelcolor);
+}
+
+.Theatre_booking_remarks {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Theatre_booking_remarks_box {
+    background-color: rgba(177, 175, 175, 0.374) !important;
+
+}
+
+
+.with_add_dctr_thrtebook{
+    width: 125px !important;
+}
+
+.Theatre_booking_panels {
+    width: calc(100% - 305px) !important;
+    height: 355px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    overflow-x: auto;
+    position: absolute;
+    left: 292px;
+    margin-top: 2px;
+    box-sizing: border-box;
+}
+.Theatre_booking_panels .css-19kzrtu{
+    padding: 10px 5px !important;
+}
+.Theatre_booking_panels::-webkit-scrollbar {
+    display: none;
+}
+
+.selected_tab {
+    color: var(--labelcolor) !important;
+}
+
+.css-10d9dml-MuiTabs-indicator {
+    background-color: var(--ProjectColor) !important;
+}
+
+.css-1iqhli-MuiTabs-root,.css-35zqo5-MuiTabs-root  {
+    width: 280px !important;
+}
+
+.css-1ehaqqx-MuiButtonBase-root-MuiTabScrollButton-root {
+    display: none !important;
+}
+
+
+/* ------------------------------------------------------------------ */
+
+.Theatre_booking_panels_inside{
+    width:100%;
+    height: auto;
+}
+
+.theatre_Hosp_detaile_Top_container{
+    width:100%;
+}
+
+.theatre_Hosp_detaile_container
+{
+    width:100%;
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.Theatre_Hos_Row_width{
+    width:33%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+}
+
+.theatre_Hosp_detaile_container div label {
+    color: var(--labelcolor);
+}
+.splittwobox{
+    display: flex;
+    width:50%;
+}
+.single_small_box{
+    width:50%;
+}
+
+.Small_input_box
+{
+    width: 50px;
+    height: 20px;
+    padding: 5px 10px;
+    font-size: 13px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: 0px;
+    margin-left:20px;
+}
+.Start_time_box
+{
+    width: 100px;
+    height: 20px;
+    padding: 5px 10px;
+    font-size: 13px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: 0px;
+    margin-left:20px;
+}
+
+
+.Big_input_box
+{
+    width: 180px;
+    height: 27px;
+    padding: 5px 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: 0px;
+    margin-left:20px;
+}
+
+.Durationletter{
+    font-size:12px;
+}
+
+.One_Cat_detailes
+{
+    display: flex;
+    width:400px;
+    margin-bottom:20px;
+    margin-left: 10px;
+}
+
+.One_Cat_detailes label{
+    color: var(--labelcolor);
+    width: 100px;
+}
+
+.Addnamebtn2222
+{
+    
+    background-color: var(--ProjectColor);
+    border: none;
+    font-weight: bold;
+    font-size: 15px;
+    display: flex;
+    height: 18px;
+    width: 18px;
+    color: var(--labelcolor);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 3px;
+}
+
+.Doc_detaile_Tables_place{
+    width:100%;
+    display:flex;
+}
+
+.Doc_names_table{
+    width:45%;
+    text-align: center;
+    overflow-x: auto;
+    margin-right:100px;
+    padding-bottom:10px;
+}
+
+.Doc_names_table table{
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white; /* Set the background color for the table */
+}
+
+.Doc_names_table th,
+.Doc_names_table td{
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd; /* Add a light gray border for table rows */
+    text-align: center;
+}
+
+.Doc_names_table thead tr{
+    border-radius: 10px;
+}
+
+.Doc_names_table th{
+    background-color: var(--ProjectColor); /* Set the header background color */
+    color: white; /* Set the text color for header cells */
+    position: sticky; /* Make the header sticky */
+    top: 0; /* Stick the header to the top of the container */
+    z-index: 1; /* Ensure the header is above the table content */
+}
+
+.Table_edit_btn{
+background-color: transparent;
+border: none;
+outline: none;
+font-size: 16px !important;
+color: var(--labelcolor)  !important;
+
+}
+
+.togglebutton_container{
+    padding:20px;
+}
+
+.Patiant_condition_full_page{
+    width:100%;
+    height:auto;
+}
+
+.Patiant_condition_check_btn{
+    text-align: center;
+}
+
+.Pre_Post_Op_detaile_palce div{
+padding-top:5px;
+}
+.Pre_Post_Op_detaile_palce div textarea{
+border:1px solid var(--ProjectColor);
+outline:none;
+width:99%;
+height:150px;
+padding: 5px;
+border-radius: 5px;
+}
+.Theatre_booking_form_row_div{
+    position: relative;
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    text-align:center;
+}
+.Ip_No_searchicon{
+    position: absolute;
+    left:285px;    
+    top:5px;
+    cursor: pointer;
+}
+
+.Anaesthetist_Requirement_des{
+    display: flex;
+    width:100%;
+    height: auto;
+    justify-content: center;
+}
+
+.Anaesthetist_Requirement_des div{
+    margin-left:20px;
+}
+
+.Anaesthetist_Requirement_des div label{
+    color:var(--labelcolor);
+}
+
+.Anaesthetist_Requirement_des_div{
+width: auto;
+}
+.Anaesthetist_Select_tag{
+    width: 169px;
+    height: 30px;
+    text-align: start;
+    font-size: 14px;
+    margin-left: 10px;
+    outline: none;
+    border: 1px solid var(--ProjectColor);
+    border-radius: 5px;
+}
+
+.Big_input_box_anasthetist
+{
+    width: 180px;
+    height: 20px;
+    padding: 5px 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: 0px;
+    margin-left:10px;
+}
+.Dose_input_anasthetist{
+    width: 100px;
+    height: 20px;
+    padding: 5px 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: 0px;
+    margin-left:10px;
+}
+
+.Addnamebtn_anasthetist
+{
+    background-color:var(--ProjectColor);
+    border: none;
+    color:white;
+    padding: 7px;
+    margin-top:1px;
+}
+
+.Anaesthetist_detaile_table_place{
+    padding-top:20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.Anaesthetist_detaile_table{
+    width: 65%;
+    text-align: center;
+    overflow-x: auto;
+}
+
+.Anaesthetist_detaile_table table{
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white; /* Set the background color for the table */
+}
+
+.Anaesthetist_detaile_table th,
+.Anaesthetist_detaile_table td{
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd; /* Add a light gray border for table rows */
+    text-align: center;
+}
+
+.Anaesthetist_detaile_table tr{
+    border-radius: 10px;
+}
+
+.Anaesthetist_detaile_table th{
+    background-color: var(--ProjectColor); /* Set the header background color */
+    color: white; /* Set the text color for header cells */
+    position: sticky; /* Make the header sticky */
+    top: 0; /* Stick the header to the top of the container */
+    z-index: 1; /* Ensure the header is above the table content */
+}
+.Theater_Doctor_det_submit_div{
+text-align: center;
+width:400px;
+}
+.Theater_Doctor_det_submit{
+    padding:8px 18px;
+    background-color: var(--ProjectColor);
+    border: none;
+    border-radius:5px;
+    font-size:16px;
+    cursor: pointer;
+    color: white;
+    justify-content: center;
+}
+.OT_notes_place textarea{
+    width:99%;
+    height:150px;
+    border: 1px solid var(--ProjectColor);
+    outline:none;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.Theatre_Hos_Row_width label{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 11px;
+    justify-content: space-between;
+    width: 130px;
+    align-items: center;
+    text-align: start;
+    font-size: 15px;
+    font-weight: bold;
+    color: var(--labelcolor);
+
+}
+.Theatre_Hos_Row_width input{
+width: 150px;
+height: 20px;
+padding: 5px 10px;
+font-size: 14px;
+border: 1px solid var(--ProjectColor);
+border-radius: 5px;
+outline: 0px;
+}
+
+.wew21{
+    width: 86px !important;
+}
+
+
+
+@media screen and (max-width:1225px){
+    .theatre_Hosp_detaile_container
+    {
+        width:100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+        /* margin-bottom: 20px; */
+    }
+    .Theatre_Hos_Row_width{
+        width:100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+   
+}
+@media screen and (max-width: 1024px){
+
+.Theatre_booking_con_1 {
+        width:auto;
+    }
+.Theatre_booking_form_row {
+        width: 500px;
+        gap: 10px;
+    }
+
+.Theatre_booking_form_row_div label{
+    font-size:15px;
+}
+.Theatre_booking_form_row_div input {
+        width: 120px;
+        height: 20px;
+        padding: 5px 10px;
+        
+    }
+  .Ip_No_searchicon{
+            left:260px;    
+            top:5px;
+        }
+.Theatre_Hos_Row_width label{
+    
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0px;
+        justify-content: space-between;
+        width: 130px;
+        align-items: center;
+        text-align: start;
+        font-size: 15px;
+        font-weight: bold;
+        color: var(--labelcolor);
+    
+    
+
+}
+.theatre_Hosp_detaile_container div label{
+    font-size: 14px;
+}
+.Big_input_box{
+    width:100px;
+    font-size: 12px;
+}
+.Theatre_Hos_Row_width{
+    width:40%;
+}
+.splittwobox{
+    width:60%;
+}
+.Start_time_box
+{
+    width: 70px;
+    height: 20px;
+    font-size: 12px;
+}
+.Durationletter{
+    font-size:10px;
+}
+
+.Doc_detaile_Tables_place{
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Doc_names_table{
+    width:70%;
+    text-align: center;
+}
+.Anaesthetist_Requirement_des {
+    flex-wrap: wrap;
+}
+.Anaesthetist_Requirement_des_div{
+    margin-top: 20px;
+}
+
+.theatre_Hosp_detaile_container
+{
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+    /* margin-bottom: 20px; */
+}
+.Theatre_Hos_Row_width{
+    width:35%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+} .theatre_Hosp_detaile_container
+{
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+    /* margin-bottom: 20px; */
+}
+.Theatre_Hos_Row_width{
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.wew21{
+    width: 93px !important;
+}
+
+}
+
+@media screen and (max-width:768px){
+
+    .Theatre_booking_con_1 {
+            width:auto;
+        }
+    .Theatre_booking_form_row {
+            flex-direction: column;
+            width:360px;
+            gap: 10px;
+        }
+    .Ip_No_searchicon{
+            left:340px;    
+            top:5px;
+        }
+
+        .theatre_Hosp_detaile_container
+        {
+            width:100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            gap: 20px;
+            /* margin-bottom: 20px; */
+        }
+        .Theatre_Hos_Row_width{
+            width:100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        
+   
+    
+    }
+
+    @media screen and (max-width:425px){
+        .Theatre_booking_form_row_div{
+            position: relative;
+            display: flex;
+            gap: 10px;
+            width:80%;
+            justify-content: space-between;
+            align-items: center;
+            text-align:center;
+        }
+
+        .Ip_No_searchicon{
+            left:265px;    
+            top:5px;
+        }
+        
+        .theatre_Hosp_detaile_container
+        {
+            width:100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            gap: 20px;
+            /* margin-bottom: 20px; */
+        }
+        .Theatre_Hos_Row_width{
+            width:100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .Theatre_Hos_Row_width input{
+            width: 112px;
+            height: 20px;
+            padding: 5px 10px;
+            font-size: 13px;
+            border: 1px solid var(--ProjectColor);
+            border-radius: 5px;
+            outline: 0px;
+            }
+
+            .Anaesthetist_Select_tag{
+                width: 140px;
+                height: 30px;
+                text-align: start;
+                font-size: 14px;
+                margin-left: 10px;
+                outline: none;
+                border: 1px solid var(--ProjectColor);
+                border-radius: 5px;
+            }
+
+            .wew21{
+                width: 53px !important;
+            }
+
+            .Addnamebtn2222
+{
+      
+    background-color: var(--ProjectColor);
+    border: none;
+    color: white;
+    /* padding: 5px; */
+    display: flex;
+    height: 15px;
+    width: 15px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.Big_input_box {
+    margin-left: 5px;
+}
+    }
+
+
+/* ======== new CSS file for booking theater ========= */
+
+.book_containv{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    text-align: center;
+    flex-wrap: wrap;
+    row-gap: 20px;
+    column-gap: 40px;
+    /* padding: 0px 30px; */
+    box-sizing: border-box
+}
+.Main_container_app h4{
+    width: 100%;
+    margin: 10px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 7px;
+    box-sizing: border-box;
+    font-size: clamp(14px, 1.3vw, 24px);
+    background-color: var(--ProjectColor);
+    border-radius: 4px;
+}
+.cal_icon{
+    font-size: 22px;
+    padding-left: 18px;
+}
+.table_v_con{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+.Surgigal_v_table{
+    width: 44%;
+}
+@media screen and (max-width:768px){
+    .table_v_con{
+                
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            row-gap: 22px;
+            margin-bottom: 5px;
+          
+            padding: 15px 5px;
+           
+ }
+}

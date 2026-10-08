@@ -1,0 +1,44 @@
+.RegisFormcon_payviewwer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.RegisForm_1_payviewwer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.RegisForm_1_payviewwer label{
+   
+    display: flex;
+    gap: 5px;
+    justify-content: space-between;
+    font-size: 13px;
+    padding: 10px;
+    color: var(--labelcolor);
+    font-weight: bold;
+    align-items: center;
+    text-align: center;
+    width: 130px;
+}
+
+
+.head_payviw_sxd3{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+}
+
+@media screen and (max-width:450px){
+    .RegisFormcon_payviewwer{
+        flex-direction: column;
+    }
+}

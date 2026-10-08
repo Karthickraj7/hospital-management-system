@@ -1,0 +1,172 @@
+/* worddoc.css */
+
+/* Document preview container */
+.docx-preview-container {
+    padding: 20px;
+    background-color: white;
+    max-height: 75vh;
+    overflow-y: auto;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Modal styling */
+  .sideopen_showcamera_profile {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .docx-modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 850px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .docx-modal-title {
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.5rem;
+    color: #333;
+  }
+  
+  /* Enhanced docx-preview styling */
+  .docx-preview-enhanced {
+    font-family: "Times New Roman", Times, serif !important;
+  }
+  
+  /* Target specific elements to ensure proper alignment */
+  .docx-preview-enhanced .document-container {
+    margin: 0 auto;
+    width: 100% !important;
+    max-width: 800px; /* Similar to A4 width */
+  }
+  
+  .docx-preview-enhanced .document-container .page {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 0 !important;
+  }
+  
+  /* Improve text alignment and spacing */
+  .docx-preview-enhanced p {
+    margin: 8px 0;
+    line-height: 1.5;
+    text-align: left;
+  }
+  
+  /* Key-value pair formatting similar to MS Word */
+  .docx-preview-enhanced p span {
+    display: inline-block;
+  }
+  
+  /* Improve text column alignment */
+  .docx-preview-enhanced table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  /* Fix for specific report formatting issues */
+  .docx-preview-enhanced .colon-alignment {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 3px 0;
+  }
+  
+  .docx-preview-enhanced .label {
+    font-weight: bold;
+    display: inline-block;
+    min-width: 200px;
+  }
+  
+  .docx-preview-enhanced .value {
+    text-align: left;
+    display: inline-block;
+  }
+  
+  /* Headings */
+  .docx-preview-enhanced h1,
+  .docx-preview-enhanced h2,
+  .docx-preview-enhanced h3 {
+    text-align: center;
+    margin: 15px 0;
+  }
+  
+  /* Override default docx-preview styles that might affect alignment */
+  .docx-preview-enhanced div[style*="text-align: center"] {
+    text-align: center !important;
+  }
+  
+  .docx-preview-enhanced div[style*="text-align: right"] {
+    text-align: right !important;
+  }
+  
+  /* Fix for colons and values alignment in medical reports */
+  .docx-preview-enhanced span.colon {
+    display: inline-block;
+    width: 10px;
+    text-align: center;
+  }
+  
+  /* Ensure proper positioning of fields with colons */
+  .docx-preview-enhanced .field-row {
+    display: flex;
+  }
+  
+  .docx-preview-enhanced .field-name {
+    font-weight: bold;
+    flex: 0 0 40%;
+  }
+  
+  .docx-preview-enhanced .field-value {
+    flex: 0 0 60%;
+  }
+
+
+  /* worddoc.css */
+.sideopen_showcamera_profile {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .docx-modal-content {
+    background: white;
+    padding: 20px;
+    max-width: 800px;
+    width: 100%;
+    overflow-y: auto;
+  }
+  
+  .docx-modal-title {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+
+
+  

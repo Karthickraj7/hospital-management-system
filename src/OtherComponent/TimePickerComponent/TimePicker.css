@@ -1,0 +1,132 @@
+/* TimePicker Main Container */
+.timepicker-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Input & Button Container */
+  .timepicker-input-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  /* Input Field */
+  .timepicker-input {
+    width: 130px !important;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+  }
+
+
+  .timepicker-input::placeholder {
+   font-size: 12px;
+  }
+  
+  
+  /* Button */
+  .timepicker-button {
+    padding: 6px 10px;
+    font-size: 16px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .timepicker-button:hover {
+    background: #0056b3;
+  }
+  
+  /* Time Picker Popup */
+  .timepicker-popup {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    width: 170px !important;
+    height: 45px !important;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+  }
+  
+  /* Time Input Fields */
+  .timepicker-field {
+    width: 35px !important;
+    height: 25px !important;
+    padding: 5px !important;
+    font-size: 14px !important;
+    border: 1px solid #ccc !important;
+    border-radius: 4px !important;
+    text-align: center !important;
+  }
+  
+  /* Separator */
+  .timepicker-separator {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  /* AM/PM Select */
+  .timepicker-popup select {
+    width: 55px;
+    height: 25px;
+    padding: 5px;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* Set Button */
+  .timepicker-set-button {
+    /* width: 100%; */
+    background: var(--opacityColor);
+    padding: 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    height: 25px;
+  }
+  
+  .timepicker-set-button:hover {
+    /* background: #218838; */
+  }
+  
+  /* Responsive */
+  @media (max-width: 480px) {
+    .timepicker-input {
+      width: 80px;
+      font-size: 14px;
+    }
+  
+    .timepicker-popup {
+      width: 140px;
+    }
+  
+    .timepicker-field {
+      width: 25px;
+      font-size: 12px;
+    }
+  
+    .timepicker-popup select {
+      font-size: 12px;
+    }
+  
+    .timepicker-set-button {
+      font-size: 12px;
+    }
+  }
+  

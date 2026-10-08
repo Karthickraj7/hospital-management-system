@@ -1,0 +1,226 @@
+/* =========================
+   ROOT CONTAINER
+========================= */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f7f9fb;
+}
+ 
+/* =========================
+   A4 PAGE LAYOUT
+========================= */
+.a4-page {
+  width: 210mm;
+  min-height: 297mm;
+  background: #ffffff;
+  border: 1px solid #cfd8dc;
+  border-radius: 8px;
+  padding: 18px;
+  box-sizing: border-box;
+}
+ 
+/* =========================
+   SECTION COMMON
+========================= */
+.section {
+  border: 1.5px solid #00a6c7;
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 14px;
+}
+ 
+.section-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #008aa3;
+  margin-bottom: 8px;
+}
+ 
+/* =========================
+   POCUS SECTION
+========================= */
+.field-row {
+  display: flex;
+  gap: 14px;
+}
+ 
+.field-row textarea {
+  flex: 1;
+  min-height: 110px;
+}
+ 
+.pocus-right {
+  width: 180px;
+  border: 1px solid #00a6c7;
+  border-radius: 8px;
+  padding: 10px;
+  background: #f8fdff;
+}
+ 
+.pocus-right p {
+  font-size: 13px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+ 
+.pocus-right input {
+  width: 100%;
+  padding: 4px 6px;
+  border-radius: 6px;
+  border: 1px solid #b0dbe6;
+  font-size: 12px;
+}
+ 
+/* =========================
+   TEXTAREA GLOBAL
+========================= */
+/* /* === Textareas (GLOBAL FIX) === */
+textarea {
+  width: 100%;
+  border: 1.2px solid #9ecbd4;
+  border-radius: 8px;
+  padding: 8px;
+  font-size: 12px;
+  resize: none;
+  outline: none;
+ 
+  /* FORCE WRAP */
+  white-space: pre-wrap !important;
+  word-wrap: break-word !important;
+  overflow-wrap: anywhere !important;
+ 
+  /* NO SCROLLBAR */
+  overflow: hidden !important;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+ 
+textarea::-webkit-scrollbar {
+  display: none !important;
+}
+ 
+/* === Large Textarea === */
+textarea.large-textarea {
+  height: 180px;
+}
+/* =========================
+   LOCAL EXAMINATION
+========================= */
+.exam-center.single {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+ 
+.body-container.single {
+  position: relative;
+}
+ 
+.body-image {
+  width: 300px;
+  max-width: 100%;
+  display: block;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+ 
+.draw-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: crosshair;
+}
+ 
+/* =========================
+   FRONT / BACK
+========================= */
+.past-and-general {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+ 
+.section-mini-title {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #333;
+}
+ 
+/* =========================
+   BUTTONS
+========================= */
+/* .Main_container_Btn {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 14px 0;
+}
+ 
+.Main_container_Btn button {
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background: #00a6c7;
+  color: #ffffff;
+  transition: background 0.2s ease;
+}
+ 
+.Main_container_Btn button:hover {
+  background: #007c94;
+}
+ 
+.Main_container_Btn button:disabled {
+  background: #9ccfdc;
+  cursor: not-allowed;
+} */
+ 
+/* =========================
+   GRID BUTTONS
+========================= */
+/* .view-btn,
+.edit-btn {
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  cursor: pointer;
+} */
+ 
+/* =========================
+   PRINT SUPPORT
+========================= */
+/* @media print {
+  body {
+    background: #ffffff !important;
+  }
+ 
+  .form-container {
+    margin: 0;
+  }
+ 
+  .a4-page {
+    border: none;
+    border-radius: 0;
+    padding: 10mm;
+  }
+ 
+  textarea {
+    overflow: visible !important;
+  }
+ 
+  button,
+  .Main_container_Btn,
+  .view-btn,
+  .edit-btn {
+    display: none !important;
+  }
+} */
+ 

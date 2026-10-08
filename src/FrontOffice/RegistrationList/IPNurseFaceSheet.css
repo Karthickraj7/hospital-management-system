@@ -1,0 +1,218 @@
+.face-sheet-container {
+    font-family: Arial, sans-serif;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  
+  .header_FaceSheet {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+    padding-bottom: 2px;
+  }
+  
+  .title_FaceSheet {
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 1px solid #000;
+
+    margin: 0;
+  }
+  
+  .logo_FaceSheet {
+    text-align: right;
+  }
+  
+  .logo_FaceSheet img {
+    height: 50px;
+  }
+  
+  .registration-table_FaceSheet {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+  }
+  
+  .registration-table_FaceSheet,
+  .patient-details-table_FaceSheet,
+  .emergency-contact-table,
+  .doctor-info-table,
+  .medico-legal-table,
+  .officer-table {
+    /* border: 1px solid #000; */
+    border-collapse: collapse;
+  }
+  
+  .registration-table_FaceSheet td,
+  .patient-details-table_FaceSheet td,
+  .emergency-contact-table td,
+  .doctor-info-table td,
+  .medico-legal-table td {
+    padding: 3px 5px;
+    border: 1px solid #000;
+    /* border-right: 1px solid #000; */
+    font-size: 12px;
+  }
+
+  .doctor-info-table th{
+    border: 1px solid #000;
+  }
+
+  .face-sheet-container h3{
+    display: flex;
+    justify-content: center;
+    font-size: 13px;
+
+  }
+  
+  .label_FaceSheet {
+    font-weight: normal;
+    width: 23%;
+    text-align: left;
+    font-size: 12px !important;
+  }
+  
+  .colon_FaceSheet {
+    width: 0.5%;
+    text-align: center;
+    vertical-align: top;
+    padding: 0px 3px !important;
+  }
+  
+  .value_FaceSheet {
+    width: 30%;
+    padding-left: 5px;
+    vertical-align: top;
+  }
+  
+  .section-title-FaceSheet {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 5px 0 5px 0;
+    text-transform: uppercase;
+  }
+  
+  .patient-details-table_FaceSheet tr:last-child td,
+  .emergency-contact-table tr:last-child td,
+  .doctor-info-table tr:last-child td,
+  .medico-legal-table tr:last-child td {
+    /* border-bottom: none; */
+  }
+  
+  /* Emergency contact styles */
+  .emergency-contact-table {
+    margin-top: 5px;
+  }
+  
+  /* Consent text styles */
+  .consent-text {
+    border: 1px solid #000;
+    padding: 10px;
+    margin-bottom: 8px;
+    font-size: 12px;
+  }
+
+  .consent-text strong{
+    padding: 2px 10px;
+    text-decoration: underline;
+  }
+  
+  .non-english-text {
+    margin-top: 10px;
+  }
+  
+  /* Signature section styles */
+  .signature-section {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 15px;
+  }
+  
+  .signature-block {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  
+  .signature-line {
+    margin-top: 30px;
+    border-top: 1px solid #000;
+    padding-top: 5px;
+    text-align: start;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+
+    font-size: 12px;
+  }
+  
+  .contact-line {
+    margin-top: 10px;
+    font-size: 12px;
+  }
+  
+
+  .officer-table {
+    border: 1px solid #000;
+  }
+  
+  .officer-table td {
+    padding: 5px;
+    border: 1px solid #000;
+    width: 50%;
+  }
+  
+  .section-heading {
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .form-field {
+    height: 30px;
+  }
+  
+  .medico-legal-table {
+    margin-top: 5px;
+  }
+  
+
+
+  @media print {
+    .face-sheet-container {
+      padding: 0;
+      max-width: none;
+      width: 100%;
+    }
+    
+   
+    
+    .registration-table_FaceSheet,
+    .patient-details-table_FaceSheet,
+    .emergency-contact-table,
+    .doctor-info-table,
+    .medico-legal-table,
+    .officer-table {
+      page-break-inside: avoid;
+    }
+    
+    .consent-text {
+      page-break-inside: avoid;
+    }
+    
+    .signature-section {
+      page-break-inside: avoid;
+      page-break-after: avoid;
+    }
+
+    .doctor-info-table th{
+      border: 1px solid #000;
+      font-size: 13px;
+    }
+  
+  }

@@ -1,0 +1,206 @@
+.AMC_CMC_INS {
+    width: 100%;
+    margin: 20px auto;
+    padding: 15px;
+    background: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.AMC_CMC_INS ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.AMC_CMC_INS li {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    font-size: 16px;
+}
+
+.AMC_CMC_INS li:last-child {
+    border-bottom: none;
+}
+
+.AMC_CMC_INS li strong {
+    margin-right: 10px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.action-buttons button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.action-buttons button:first-child {
+    background: #4CAF50;
+    color: white;
+}
+
+.action-buttons button:first-child:hover {
+    background: #45a049;
+}
+
+.action-buttons button:last-child {
+    background: #f44336;
+    color: white;
+}
+
+.action-buttons button:last-child:hover {
+    background: #d32f2f;
+}
+
+/* -------------------------------------------------------------- */
+.checklist-container {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.checklist-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.checklist-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    width: 300px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.checklist-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.checklist-input {
+    width: 100%;
+    padding: 5px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+/* ------------------------------------------------------------- */
+.container-mugesh {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 18px;
+    user-select: none;
+    color: white;
+    border-radius: 5px;
+}
+
+.container-mugesh input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark-mugesh {
+    position: absolute;
+    top: 2px;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.container-mugesh:hover input~.checkmark-mugesh {
+    background-color: #ccc;
+}
+
+.container-mugesh input:checked~.checkmark-mugesh {
+    background-color: #2196F3;
+}
+
+.checkmark-mugesh:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.container-mugesh input:checked~.checkmark-mugesh:after {
+    display: block;
+}
+
+.container-mugesh .checkmark-mugesh:after {
+    left: 7px;
+    top: 4px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+}
+
+.maintenance_card_Mugesh {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 15px;
+    width: 250px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.maintenance_card_Mugesh:hover {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    background-color: #f0f0f0;
+    transform: scale(1.03);
+}
+
+
+/* ------------------------------------------------------------------- */
+
+@media (max-width: 600px) {
+    .AMC_CMC_INS li {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .action-buttons {
+        justify-content: flex-start;
+    }
+}
+
+
+.nearby-expiry-row {
+    background-color: #a33243 !important;
+}
+
+.edited-row {
+    background-color: #e3f2fd !important;
+
+}

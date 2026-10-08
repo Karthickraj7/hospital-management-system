@@ -1,0 +1,18 @@
+
+
+input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+
+.test-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between items */
+}
+
+.test-item {
+    display: flex;
+    align-items: center;
+    width: 50%; /* This makes two items per row */
+}

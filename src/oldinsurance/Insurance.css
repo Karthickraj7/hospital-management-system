@@ -1,0 +1,1494 @@
+
+
+.serch_dash_insur input{
+  display: flex;
+  width: 100%;
+  height: 30px;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  outline: none;
+  padding: 5px;
+  border-bottom: 2px solid
+
+}
+
+.serch_dash_insur p{
+  font-size: 16px;
+  background-color: var(--ProjectColor);
+  outline: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  padding-bottom: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add_new_auth_wuith {
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 3px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  background-color: var(--ProjectColor);
+  color: var(--labelcolor);
+  cursor: pointer;
+
+}
+
+.YEs_N0_div2{
+  display: flex;
+  width: 100%;
+
+}
+
+.ewj_i87_head{
+  display: flex;
+  gap: 10px;
+  margin-left: 10px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  /* gap: 10px; */
+}
+.ewj_i87{
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+}
+
+.ewj_i87 label{
+  width: 30px;
+}
+
+.ewj_i87 input{
+  width: 15px;
+  height: 15px;
+  border-radius: 80px !important;
+}
+
+.h_heade34{
+  width: 100%;
+  background-color: var(--ProjectColor);
+  display: flex;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.Spl_backcolr_09{
+
+  border: none;
+  
+  /* background-color: var(--selectbackgroundcolor); */
+  border-radius: 5px;
+}
+
+.Spl_backcolr_09_bottom{
+  border-bottom: none !important;
+  background-color: var(--selectbackgroundcolor);
+  border-radius: 5px;
+}
+
+.txtars3_wit_hdj{
+  width: 100%;
+  display: flex;
+  gap:10px ;
+  font-size: 15px;
+  font-weight: bold;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: start;
+}
+
+.txtars3_wit_hdj label{
+  width: 50%;
+  display: flex;
+  justify-content: flex-start;
+  text-align: start;
+}
+.txtars3_wit_hdj textarea{
+  width: 50%;
+  height: 60px;
+  padding: 5px;
+  border-radius:5px;
+}
+
+.spac_betwn_hstychronc{
+  /* width: 80%; */
+  font-size: 14px;
+  font-weight: bold;
+  display: flex;
+
+  justify-content: space-evenly;
+ 
+}
+
+.spac_betwn_hstychronc_label{
+  width: 150px;
+  display: flex;
+  justify-content: space-between;
+  text-align: start;
+}
+
+.HistoryOfChronicIllness{
+  width:auto;
+}
+
+.wiejdwi8{
+  width: 200px;
+}
+
+.duration_90{
+  width: 90%;
+  display: flex;
+  justify-content: flex-start;
+  text-align: center;
+  align-items: center;
+  height: 20px;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid var(--ProjectColor);
+}
+
+.medication_90{
+  width: 90%;
+  /* height: 20px; */
+  justify-content: flex-start;
+  text-align: center;
+  align-items: center;
+  padding: 5px;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid var(--ProjectColor);
+}
+
+
+._hide_hover_table tbody tr:nth-child(even){
+  background-color: transparent;
+} 
+
+._hide_hover_table tbody tr:hover {
+  background-color: transparent;
+}
+.gap_diagnsis_6{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+
+}
+
+.Provisional_Diagnosis{
+  width: 400px !important;
+  border: none;
+  outline: none;
+  text-align: center;
+  border-bottom: 1px solid var(--ProjectColor);
+
+}
+
+.department_tretmt{
+  width: 200px !important;
+  border: none;
+  outline: none;
+}
+.department_tretmt_with{
+  width: 260px !important;
+  border: none;
+  outline: none;
+}
+.ICD_Code{
+  width: 200px !important;
+  text-align: center;
+  border: none;
+  outline: none;
+  padding: 10px;
+  border-bottom: 1px solid var(--ProjectColor);
+}
+.gap_diagnsis_6 span{
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  background-color: var(--ProjectColor);
+}
+.Type_code{
+  width: 200px;
+}
+
+.add32_Code{
+width: 25px;
+height: 25px;
+color: var(--projectwhite) !important;
+
+}
+.add32_Code span{
+  display: flex;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 25px;
+  height: 25px;
+  font-size: 20px;
+  background-color: var(--ProjectColor);
+  color: var(--projectwhite) !important;
+}
+
+.tremt_chkbox_info{
+  width: 100%;
+  display: flex !important;
+  font-size: 15px;
+  justify-content: space-around;
+  border: none;
+  outline: none;
+  padding-right: 0px ;
+}
+
+.tremt_chkbox_info label{
+  font-size: 15px;
+  font-weight: bold;
+  margin-left: 60px;
+} 
+
+
+.ddcewe23{
+display: flex;
+justify-content: space-between !important;
+align-items: center;
+text-align: center;
+gap: 10px;
+}
+.surgical_flex_srtgt{
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: start;
+}
+
+
+.SUGCL_AD_PO0{
+display: flex;
+gap: 20px;
+
+justify-content: center;
+align-items: center;
+text-align: center;
+}
+
+.add32_Code_POK8{
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: center;
+background-color: var(--ProjectColor);
+padding: 2px 20px;
+border-radius: 5px;
+
+
+}
+
+
+.surgical_flex_srtgt_div{
+  display: flex;
+  height: 100px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-bottom: none;
+  /* margin-bottom: 20px; */
+}
+
+.surgical_flex_srtgt_div label{
+  background-color: var(--ProjectColor);
+  padding: 5px;
+  border-radius: 5px;
+  justify-content: center;
+  width: 190px;
+}
+
+.display_felx_chexk_9{
+  display: flex;
+}
+.dwcw3wd{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.jkdll_piss_head{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+}
+
+.ewj_i87_secd label{
+  width: 90px;
+}
+
+.duration_input_with_clr{
+  border-bottom: 1px solid var(--ProjectColor) !important;
+  text-align: center;
+}
+
+
+.date_backgclr6{
+  background-color: var(--selectbackgroundcolor) !important;
+  padding: 5px;
+  border-radius: 5px;
+  height: 20px !important;
+  width: 190px !important;
+}
+.bilng_itm_colum8{
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+
+.fe_l5f{
+  width: 200px !important;
+}
+
+.column_regisFormcon_forinsurance{
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 0px;
+}
+
+.column_RegisForm_1_forinsurance{
+
+  height: 40px;
+  /* border-bottom: 1px solid var(--ProjectColor); */
+
+
+
+}
+
+.surgical_flex_srtgt_div{
+  height: 100px;
+  border: none;
+}
+
+.efws{
+  height: 30px;
+  border: none;
+}
+
+/* src/PreAuth.css */
+.dashboard34 {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.card {
+  border: 1px solid var(--ProjectColor);
+  padding: 5px;
+  margin: 5px;
+}
+
+.profile-card {
+  background-color: var(--selectbackgroundcolor);
+  width: 20%;
+  height: 50%;
+  z-index: 2;
+}
+
+.content-card {
+  background-color: #f0f0f0;
+  width: 60%;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-header button {
+  padding: 8px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.profile-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.profile-info-auth {
+  margin-top: 20px;
+}
+
+.input-group-grp2 {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-group-grp2 label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 15px;
+  font-weight: bold;
+  color: var(--labelcolor);
+}
+
+.input-group-grp2 input {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid var(--ProjectColor);
+  box-sizing: border-box;
+  border-radius: 5px;
+  outline: none;
+  text-align: center;
+}
+
+/* .amount-section {
+  margin-top: 20px;
+} */
+
+.amount-section{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+align-items: center;
+text-align: center;  }
+
+.amount-section h4 {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  padding: 5px;
+}
+
+.amount-inputs {
+  display: flex;
+  justify-content: space-between;
+  
+}
+
+.input-group-amount {
+   display: flex;
+   gap: 5px;
+align-items: center;
+text-align: center;
+   justify-content: space-between;
+
+ 
+ 
+
+}
+
+.input-group-amount label {
+  display: flex;
+  text-align: start;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: bold;
+  color: var(--labelcolor);
+  margin-bottom: 5px;
+  width: 90px;
+}
+
+.input-group-amount input {
+  width: 90px;
+  padding: 5px;
+  border: 1px solid var(--ProjectColor);
+  box-sizing: border-box;
+  border-radius: 5px;
+
+}
+
+.Tab-card{
+  width: 20%;
+  height: 620px;
+  z-index: 9999;
+}
+
+.Tab-Claim{
+  height: 700px;
+}
+
+
+.ITEM_ONE_INSU{
+font-size: 12px !important;
+display: flex;
+justify-content: flex-start;
+width: 100% !important;
+}
+
+.ITEM_ONE_INSU_head{
+  font-size: 12px !important;
+  width: 90px !important;
+  padding: 0px !important;
+}
+
+.aproved_div_pro{
+  display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+text-align: center;
+padding: 8px 0px;
+background-color: var(--ProjectColor);
+border-radius: 5px;
+
+}
+
+.Type_of_Anesthesia label{
+  height: 30px !important;
+}
+
+.profile_name_insu{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  font-weight: bold;
+}
+
+.launch_toggle_isu{
+  display: none;
+}
+
+.toggle_head_insuran{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.file-inputx {
+  position: relative;
+  display: flex;
+  cursor: pointer;
+}
+
+
+.file-labelx {
+  position: relative;
+  display: inline-block;
+  overflow: visible;
+  cursor: pointer;
+}
+
+.file-inputx {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 1;
+}
+
+
+
+.file-buttonx {
+  display: inline-block;
+  padding: 6px 12px;
+  background-color: var(--ProjectColor);
+  color: var(--labelcolor);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.file-buttonx:hover {
+  background-color: var(--ProjectColorhover);
+  color: var(--projectwhite);
+}
+
+.file-buttonx:active {
+  background-color: var(--ProjectColorhover);
+}
+/* InsuranceDashboard */
+
+.Insurance_Dashboard_head {
+  margin-top: 10px;
+  padding: 10px; /* Increased padding for better spacing */
+  box-sizing: border-box; /* Ensures padding is included in the element's total width and height */
+  width: calc(100% - 10px); /* Adjusting width to accommodate margins */
+}
+
+.Insurancenew-navigation {
+  display: flex;
+  margin-top: 10px;
+  width: 98%;
+  /* overflow-x: auto; */
+  /* padding: 10px; */
+  /* background-color: var(--ProjectColor); */
+  border-radius: 5px;
+  /* height: 30px; */
+
+}
+
+.Insurancenew-navigation h2{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  /* padding: 0px 10px; */
+  font-size: 16px;
+
+}
+
+.Insurancenew-navigation h2 button {
+  outline: none;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  /* border-radius: 3px; */
+
+}
+
+/* .Insurancenew-navigation h2 button:hover{
+  background-color: var(--ProjectColorhover);
+  color: var(--projectwhite);
+} */
+
+
+.Insurance_dash_hending{
+  width: 98%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  background-color: var(--ProjectColor);
+  border-radius: 5px;
+}
+
+.serch_dash_insur{
+display: flex;
+justify-content: space-between;
+gap: 10px;
+background-color: #f0f0f0;
+padding: 8px;
+width: 99%;
+
+}
+.serch_dash_insur input{
+  display: flex;
+  width: 100%;
+  height: 30px;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  outline: none;
+  padding: 5px;
+  border-bottom: 2px solid var(--ProjectColor);
+}
+
+.serch_dash_insur p{
+font-size: 16px;
+background-color: var(--ProjectColor);
+outline: none;
+border: none;
+display: flex;
+align-items: center;
+padding: 5px;
+padding-bottom: 5px;
+border-radius: 5px;
+cursor: pointer;
+}
+.SearchIcon_insu_d{
+  color: var(--labelcolor);
+}
+
+.serch_dash_insur p:hover{
+  color: var(--projectwhite) !important;
+  background-color: var(--ProjectColorhover);
+}
+
+.insur_box_chnge6 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border: 1px solid var(--ProjectColor);
+  width: 215px;
+  border-radius: 3px;
+  cursor: pointer;
+  margin: 6px; /* Added margin for spacing between boxes */
+}
+
+/* Tablet and smaller desktop screens */
+@media (max-width: 1024px) {
+  .insur_box_chnge6 {
+    width: 120px; /* Reduced width for medium screens */
+    margin: 8px;
+  }
+}
+
+/* Mobile devices */
+@media (max-width: 768px) {
+  .insur_box_chnge6 {
+    width: 100%; /* Full width on mobile */
+    max-width: 300px; /* Maximum width cap */
+    margin: 5px 0; /* Vertical stacking with minimal horizontal margin */
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .insur_box_chnge6 {
+    width: 100%;
+    max-width: 250px;
+    font-size: 14px; /* Slightly smaller text */
+  }
+  
+  .insur_box_chnge6 button {
+    padding: 15px; /* Reduced padding for buttons */
+    font-size: 14px;
+  }
+  
+  .insur_box_chnge6 p {
+    padding: 5px;
+    font-size: 12px;
+  }
+}
+
+.insur_box_chnge6 p{
+  padding: 10px ;
+  padding-bottom: 10px;
+  width: 100%;
+
+}
+
+.Insurancenew-navigation-pendings {
+  display: flex;
+  overflow-x: auto; /* Enable horizontal scrolling */
+  gap: 10px;
+  padding: 10px;
+}
+
+.Insurancenew-navigation-pendings h2{
+  width: 99%;
+  display: flex;
+  padding: 10px;
+  border-radius: 5px;
+  justify-content: flex-start;
+  gap: 30px;
+  height: 20px;
+  align-items: center;
+  text-align: center;
+  background-color: var(--selectbackgroundcolor);
+}
+
+.Insurancenew-navigation-pendings button{
+  border: none;
+  outline: none;
+  padding: 10px;
+  background-color: transparent;
+}
+
+.ITEM_with9u{
+  width: 150px !important;
+  /* padding: 30px !important; */
+}
+
+.insu_submit_btn{
+
+  display: flex;
+  gap: 30px;
+
+}
+
+.insu_submit_btn2{
+
+  width: 100px !important;
+  padding: 10px;
+}
+
+.add_new_auth_wuith{
+
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 3px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  background-color: var(--ProjectColor);
+  color: var(--labelcolor);
+  cursor: pointer;
+ 
+}
+
+.serch_dash_insur input ::placeholder{
+  color: gray;
+}
+
+.submitted_grid_with{
+  display: flex;
+  width: 98%;
+  background-color: var(--selectbackgroundcolor);
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+
+.flx_recn_pay_settld{
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  align-items: flex-start;
+  text-align: center;
+}
+
+.flx_recn_pay_settld2{
+  display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+text-align: center;
+gap: 18.5px;
+}
+
+.settmt_div_alg_ff{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+}
+
+.settmt_div_alg_ff label{
+  display: flex;
+  justify-content: space-between;
+  text-align: start;
+  align-items: center;
+  color: var(--labelcolor);
+  font-weight: bold;
+  width: 250px;
+}
+
+.settmt_div_alg_ff input{
+  width: 120px;
+  display: flex;
+  align-items: center;
+  text-align: start;
+  border: 1px solid var(--ProjectColor);
+  padding: 5px;
+  border-radius: 5px;
+  margin-left: 5px;
+  outline: none;
+}
+
+.bdr_flx_tpa{
+  display: flex;
+  gap: 15px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border: 1px solid var(--ProjectColor);
+  padding: 10px;
+  border-radius: 5px;
+
+}
+
+.bdr_flx_tpa label{
+  display: flex;
+  font-size: 15px;
+  font-weight: bold;
+
+}
+
+.dwwxsw{
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+align-items: center;
+text-align:center;
+gap: 15px;
+}
+
+.dwwxsw label{
+  font-size: 15px;
+  font-weight: bold;
+
+
+
+}
+
+.dwwxsw textarea{
+  width: 95%;
+  height: 60px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.amountTransaction_reconc0{
+  width: 100px !important;
+}
+
+._reconc0{
+  width: 60px !important;
+}
+
+.disputed_flex_6{
+display: flex;
+gap: 10px;
+justify-content: center;
+align-items: center;
+text-align: center;
+
+
+}
+
+
+.newwProfiles_Reconciliation {
+  background-color: #fff;
+  width:80%;
+  height: 75%;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  overflow: auto;
+  position: relative;
+  z-index: 10000;
+}
+
+.medication_43{
+  width: 315px !important;
+}
+
+@media (max-width: 1345px){
+  .surgical_flex_srtgt{
+
+      display: flex;
+      flex-direction: column;
+    justify-content: center;
+  /* gap: 40px; */
+  /* margin-top: 35px; */
+     }
+
+     .date_backgclr6{
+      background-color: var(--selectbackgroundcolor) !important;
+      padding: 6px 5px;
+      border-radius: 5px;
+  
+      width: 190px !important;
+  }
+
+  .flx_recn_pay_settld{
+      display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+text-align: center;
+  }
+
+}
+@media (max-width: 1100px){
+
+  .surgical_flex_srtgt_div{
+      display: flex;
+      height: 100px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      border-bottom: none;
+      /* margin-bottom: 20px; */
+  }
+  .surgical_flex_srtgt{
+
+      display: flex;
+      flex-direction: column;
+    justify-content: center;
+  gap: 40px;
+  margin-top: 35px;
+     }
+
+     .column_RegisForm_1_forinsurance{
+width: 345px;
+      height: 40px;
+      /* border-bottom: 1px solid var(--ProjectColor); */
+  
+  
+  
+  }
+
+  .Type_of_Anesthesia label{
+      height: 30px  !important;
+  }
+  .date_backgclr6{
+      background-color: var(--selectbackgroundcolor) !important;
+      padding: 15px 5px;
+      border-radius: 5px;
+  
+      width: 190px !important;
+  }
+
+  .input-group-amount {
+      display: flex;
+      flex-direction: column;
+   align-items: center;
+   text-align: center;
+      justify-content: space-between;
+ 
+    
+    
+ 
+   }
+   .amount-inputs {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      justify-content: space-between;
+      
+    }
+
+ 
+
+}
+
+
+@media (max-width: 768px){
+  .spac_betwn_hstychronc_label{
+      width: 130px;
+      display: flex;
+      justify-content: space-between;
+      text-align: start;
+  }
+
+
+.fe_l5f{
+  width: 180px;
+}
+
+.surgical_flex_srtgt{
+
+  display: flex;
+  flex-direction: column;
+justify-content: center;
+gap: 40px;
+margin-top: 35px;
+ }
+ .surgical_flex_srtgt_div{
+  display: flex;
+  height: 50px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-bottom: none;
+  /* margin-bottom: 20px; */
+}
+
+.date_backgclr6{
+  background-color: var(--selectbackgroundcolor) !important;
+  padding: 15px 5px;
+  border-radius: 5px;
+
+  width: 190px !important;
+}
+
+.serch_dash_insur{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  
+ 
+  
+    }
+
+.serch_dash_insur input::placeholder{
+
+      content: "Search By: Patient Name" !important;
+ 
+    }
+
+
+}
+
+
+
+
+@media (max-width: 600px){
+.tremt_chkbox_info{
+      width: 100%;
+      display: flex !important;
+      gap: 10px;
+      flex-direction: column;
+      font-size: 15px;
+      justify-content: space-around;
+      align-items: center;
+      text-align: start;
+      border: none;
+      outline: none;
+  }
+
+  .tremt_chkbox_info label{
+      width: 51%;
+  }
+  .fe_l5f{
+      width: 140px !important;
+  
+  }
+  .Spl_backcolr_09_bottom{
+      height: 50px;
+  }
+
+  .txtars3_wit_hdj textarea{
+      width: 80%;
+  }
+
+  .settmt_div_alg_ff input{
+      width: 65px;
+  }
+
+  .settmt_div_alg_ff label{
+      width: 150px;
+      font-size: 14px;
+  }
+  .bdr_flx_tpa{
+      width: 50%;
+  }
+
+
+}
+
+
+/* Initially hide the card on screens less than 950px */
+
+
+@media screen and (max-width: 950px) {
+  .card.collapsed {
+    display: none; /* Hide the card when collapsed */
+  }
+
+  .launch_toggle_isu {
+    display: flex;
+    height: 30px;
+    margin: 10px;
+    margin-top: 10px;
+    color: var(--ProjectColor) !important;
+    border: none;
+    outline: none;
+    background-color: var(--ProjectColor);
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    align-items: center;
+  }
+
+      .launch_toggle_isu:hover {
+          color: var(--projectwhite);
+      }
+
+      
+  /* Hide profile card when toggle button is visible */
+  .launch_toggle_isu:focus-visible + .card {
+    display: none;
+  }
+
+  /* Show profile card when toggle button is not visible */
+  .launch_toggle_isu:not(:focus-visible) + .card {
+    display: block;
+  }
+
+  .content-card{
+      width: 100%;
+  }
+
+  .card{
+      padding: 0px;
+  }
+}
+
+
+
+
+
+
+.dashboard34 {
+  position: relative;
+}
+
+.content-card {
+  margin-left: 0; /* Initially, no margin */
+  /* width: 100%; Initially, full width */
+  background-color: #f0f0f0; /* Example background color */
+  position: relative; /* Ensure content card appears behind profile card */
+  z-index: 1; /* Set lower z-index to make it appear behind */
+}
+
+
+
+@media screen and (max-width: 950px) {
+  .profile-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 55%;
+    background-color: white; /* Ensure profile card appears on top */
+    z-index: 2; /* Set higher z-index to make it appear in front */
+    transition: left 0.3s ease;
+    display: block; /* Show profile card */
+    margin-top: 15px;
+    margin-left: 10px;
+    padding: 10px;
+    box-shadow:0 0 10px rgba(0, 0, 0, 2); 
+  }
+
+  .Tab-card {
+      position: absolute;
+      top: 0;
+      left: 40%;
+      width: 50%;
+      height: 55%;
+      background-color: white; /* Ensure profile card appears on top */
+      z-index: 2; /* Set higher z-index to make it appear in front */
+      transition: left 0.3s ease;
+      display: block;
+      margin-top: 15px;
+      margin-left:0px;
+      padding: 10px;
+      box-shadow:0 0 10px rgba(0, 0, 0, 2); 
+    }
+
+  .content-card {
+  
+    width: 100%;
+ 
+  }
+
+ 
+  
+  
+}
+
+
+/* -------------------------- */
+.submit_button_prev_next{
+  display: flex;
+  height: 60px;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+.submit_button_prev_next button {
+  
+  height: 30px;
+  width: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  border-radius: 5px;
+  outline: 0px;
+  border: 0px;
+  cursor: pointer;
+  background-color: var(--ProjectColor);
+  transition: transform 1.5s ease;
+}
+
+@keyframes shakeAnimation {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.submit_button_prev_next button:hover {
+  background-color: var(--ProjectColorhover);
+}
+.submit_button_prev_next button:active {
+  animation: shakeAnimation 0.4s ease;
+}
+
+
+/* ------- */
+
+.serch_dash_insur_update_info{
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  text-align: center;
+}
+
+.serch_dash_insur_update_info button{
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 10px;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  background-color: var(--ProjectColor);
+  cursor: pointer;
+}
+
+
+.dcsewde2{
+  height: 45% !important;
+}
+
+
+.Supplier_Master_Container {
+  padding: 10px;
+}
+
+.Selected-table-container {
+  margin-bottom: 20px;
+}
+
+.diagnosis-section {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.diagnosis-row {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.diagnosis-row:last-child {
+  border-bottom: none;
+}
+
+.diagnosis-input,
+.icd-code-input,
+.type-select,
+.action-icon {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.diagnosis-input input,
+.icd-code-input input {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.type-select select {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.action-icon {
+  flex: 0 0 auto;
+}
+
+.action-icon span {
+  cursor: pointer;
+}
+
+.submit_button_prev_next {
+  text-align: center;
+}
+
+.submit_button_prev_next button {
+  padding: 10px 20px;
+  background-color: #ccc;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.cardModel {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  /* max-width: 400px; */
+  width: 100%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.cardModel h3 {
+  margin: 0 0 10px;
+  font-size: 1.2em;
+}
+
+.cardModel textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}

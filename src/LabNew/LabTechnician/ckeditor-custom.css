@@ -1,0 +1,432 @@
+/* report capture notes */
+
+.Notesforinform{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px;
+  gap: 4px;
+  color: rgb(43, 129, 241);
+  margin-bottom: 10px;
+}
+
+.Notesforinform span{
+  color: rgb(216, 58, 58);
+
+}
+
+.wertyyyy{
+  font-size: 16px;
+  font-weight: 700;
+}
+
+
+
+
+.editor_life {
+  text-align: center;
+  max-width: 210mm; /* A4 width */
+  padding: 10mm;
+  margin: 0 auto;
+  box-sizing: border-box;
+  overflow: visible;
+}
+
+.editor_life p,
+.editor_life div,
+.editor_life table,
+.editor_life img {
+  page-break-inside: avoid;
+  margin: 0;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Handle page breaks for large content elements */
+.editor_life .page-break {
+  page-break-before: always;
+}
+
+.organism_add{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+
+
+
+
+.editor_lkkife{
+  width: 80%;
+  /* margin: 30px 100px; */
+}
+
+
+.Histo_new_css_div_head_po90{
+  width: 100%;
+}
+
+
+.Histo_new_css_div {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+  align-items: flex-start;
+  /* justify-content: space-between; */
+  margin-bottom: 12px !important;
+  font-size: 15px !important;
+    font-family: 'calibri' !important;
+}
+
+.Histo_new_css_div label {
+  font-weight: bold;
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* margin-bottom: 5px; */
+}
+
+.Histo_new_css_div textarea {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc !important;
+  box-shadow: none !important;
+  border-radius: 4px;
+}
+
+.editor_lkkife {
+  text-align: center;
+  max-width: 210mm; /* A4 width */  
+  padding: 10mm;
+  margin: 0 auto;
+  box-sizing: border-box;
+  overflow: visible;
+}
+
+.hewty_8j{
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.hewty_8j h4{
+
+display: flex;
+width: 80px;
+justify-content: space-between;
+align-items: center;
+
+}
+
+
+.hewty_8j select{
+  width: 300px;
+}
+
+.Histo_new_css_div.first-four textarea {
+  width: 100%; /* Adjust the width for the first four textareas */
+}
+
+.hytt_9u76{
+  display: flex;
+  gap: 25px;
+  align-items: center;
+}
+
+.Histo_new_css_div_uh6 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0; /* Add margin for spacing */
+}
+
+.Histo_new_css_div_uh6 label {
+  width: 100%; /* Make label full width */
+  font-weight: bold;
+  font-size: 13px;
+  margin-bottom: 5px; /* Space between label and input */
+}
+
+.Histo_new_css_div_uh6 {
+  margin-bottom: 15px; /* Add some spacing between fields */
+}
+
+.Histo_new_css_div_uHHHFH input[type="file"] {
+  display: none; /* Hide default file input */
+}
+
+.Histo_new_css_div_uHHHFH .custom-file-upload {
+  display: inline-block;
+  padding: 3px 12px;  /* Adjust padding for a more clickable area */
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8; /* Light background */
+  color: #333; /* Dark text */
+  background-color: rgb(219, 219, 219);
+  font-size: 12px; /* Adjust font size for readability */
+  transition: background-color 0.3s ease; /* Smooth transition */
+  text-align: center; /* Center text within button */
+}
+
+.Histo_new_css_div_uHHHFH .custom-file-upload:hover {
+  background-color: #e0e0e0; /* Darker on hover */
+}
+
+.Histo_new_css_div_uh6 img {
+  margin-top: 10px; /* Space above the preview image */
+  max-width: 100px; /* Limit width of preview */
+  border-radius: 4px; /* Match the border radius */
+}
+
+
+.report_table_oju7 {
+  /* margin: 20px 0;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff; */
+  padding: 20px;
+}
+
+.report_table_inner_p {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+
+.report_table_inner_p tr td strong{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 175px;
+}
+
+.report_table_inner_p tr td p{
+  width: 100%;
+  font-size: 17px;
+}
+
+
+
+
+.report_table_oju7 {
+  margin: 20px 0;
+  border-radius: 10px;
+  background-color: #fff;
+  padding: 20px;
+  /* overflow-x: auto; */
+  width: 100%;
+}
+
+
+
+.report_table_inner_p {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed; 
+}
+
+.report_table_inner_p td {
+  padding: 3px;
+  font-size: 14px !important;
+  color: #333;
+  word-wrap: break-word; 
+  font-family: 'Calibri';
+
+  white-space: normal;
+  overflow: hidden; 
+  text-overflow: ellipsis;
+}
+
+
+.report_table_inner_p td p {
+  margin: 0;
+  padding: 0;
+}
+
+.ewhgdew_o{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 2px;
+}
+
+.yudsd_4rdf{
+  width: 80% !important;
+  display: flex;
+    flex-wrap: wrap;
+}
+
+/* @media (max-width: 768px) {
+  .report_table_inner_p td {
+    display: block;
+    width: 100%;
+    padding: 8px 10px;
+  }
+
+  .report_table_inner_p td:first-child {
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+
+  .report_table_inner_p td p {
+    font-size: 14px;
+  }
+
+  .report_table_inner_p {
+    border: none;
+  }
+
+  .report_table_oju7 {
+    padding: 10px;
+    box-shadow: none;
+  }
+} */
+
+/* Enhance crop selection visibility */
+.ReactCrop__crop-selection {
+  border: 2px solid #3498db !important; /* Solid border with bright blue color */
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.85) !important; /* White outline for contrast */
+}
+
+/* Add corner handles with enhanced visibility */
+.ReactCrop__drag-handle {
+  width: 10px !important;
+  height: 10px !important;
+  background-color: white !important;
+  border: 1px solid #3498db !important;
+  opacity: 1 !important;
+}
+
+/* Make sure the crop lines are visible on dark backgrounds */
+.ReactCrop__crop-selection::before {
+  border: 1px dashed white !important;
+  top: -1px !important;
+  bottom: -1px !important;
+  left: -1px !important;
+  right: -1px !important;
+  opacity: 0.8 !important;
+  pointer-events: none !important;
+}
+
+/* Increase visibility of the ReactCrop component */
+.ReactCrop {
+  background: transparent !important;
+  position: relative;
+  display: inline-block;
+  cursor: crosshair;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+/* Remove dimming effect from non-selected areas */
+.ReactCrop__child-wrapper {
+  position: relative;
+}
+
+.ReactCrop__child-wrapper::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.1) !important; /* Very light dimming for contrast */
+  pointer-events: none;
+}
+
+
+.remarks-row td {
+  padding: 12px;
+  background-color: #f9f9f9;
+  border-top: 1px solid #ddd;
+}
+
+.remarks-label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 15px;
+  color: #333;
+}
+
+.remarks-textarea {
+  width: 100%;
+  min-height: 120px; /* Enough for paragraph typing */
+  padding: 12px;
+  font-size: 15px;
+  line-height: 1.5;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  resize: vertical; /* allow user to expand if needed */
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+.remarks-textarea:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+}
+
+
+.horizontal-field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  font-family: Calibri, sans-serif;
+  font-size: 15px;
+}
+
+.field-label {
+  width: 180px; /* adjust as needed */
+  font-weight: bold;
+}
+
+.field-input {
+    width: 150px;
+    padding: 5px;
+    font-size: 14px;
+    height: 27px;
+    border-radius: 5px;
+}
+
+
+@media screen and (max-width:768px) {
+  /* .Histo_new_css_div{
+    flex-direction: column;
+    justify-content: center;
+  } */
+
+  .hytt_9u76{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    align-items: center;
+  }
+
+  .Histo_new_css_div.first-four textarea{
+
+    width: 100%;
+  }
+
+  .hysdttsd_hy67{
+    width: 75% !important;
+    overflow: auto;
+    overflow-x: auto;
+  }
+
+  .report_table_inner_p tr td strong{
+    font-size: 20px !important;
+  }
+
+}

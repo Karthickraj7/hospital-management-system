@@ -1,0 +1,220 @@
+/* Container styles */
+.appointment {
+    padding: 10px;
+  }
+  
+  /* Header styles */
+  .h_head {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding: 0px 10px;
+    border-radius: 5px;
+    color: var(--labelcolor);
+    background-color: var(--ProjectColor);
+  }
+  
+  /* Form container styles */
+  .con_1 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    padding: 20px 0px;
+    margin: 10px 0px;
+  }
+  
+  /* CSS for the parent container */
+  .grid_1 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Input styles */
+  .inp_1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-basis: calc(33.33% - 15px);
+    margin-bottom: 15px;
+    gap: 1rem;
+    border-bottom: 1px solid var(--ProjectColor);
+    width: 280px;
+  }
+  
+  .inp_1 input {
+  
+    outline: none;
+    border: none;
+    background-color: transparent;
+    padding: 10px 5px;
+    color: var(--labelcolor);
+  }
+  
+  .inp_1 input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    display: none;
+  }
+  
+  .inp_1 input::placeholder {
+    color: rgb(151, 150, 150);
+  }
+  
+  .inp_1 label {
+    color: var(--labelcolor);
+    width: 100px;
+  }
+  
+  /* Label animation for input focus */
+  .inp_1 input:focus+label,
+  .inp_1 input:not(:placeholder-shown)+label {
+    top: -12px;
+    font-size: 12px;
+    color: #333;
+  }
+  
+  /* Search button styles */
+  .btn_1 {
+    border: none;
+    background-color: var(--ProjectColor);
+    color: var(--labelcolor);
+    cursor: pointer;
+    width: 100px;
+    border-radius: 25px;
+    height: 35px;
+  }
+  .btn_1 :hover{
+    background-color: var(--ProjectColorhover);
+    color: var(--projectwhite) !important;
+  }
+  
+  .cell_btn {
+    font-size: 12px !important;
+    color: var(--labelcolor) !important;
+  }
+  
+  /* Data grid styles */
+  .data_grid {
+    border: none;
+    width: 100%;
+    overflow-x: auto;
+  }
+  
+  /* Pagination styles */
+  .grid_foot {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .grid_foot button {
+    margin: 0px 10px;
+    background-color: var(--ProjectColor);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 15px;
+    cursor: pointer;
+  }
+  
+  /* Data grid styles */
+  .MuiDataGrid-root {
+    width: 90%;
+    max-width: max-content;
+  
+  }
+  
+  /* Hide scrollbars */
+  .data_grid::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .data_grid {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+  }
+  
+  .totalslot_width {
+    width: 300px !important;
+  
+  }
+  
+  .totalslot_width label{
+    width: 150px !important;
+  
+  }
+  
+  .tempt_edit{
+    position: relative;
+    left: 160px;
+    color:var(--labelcolor) ;
+  
+  }
+  
+  .doctr_select2{
+    border: none;
+    outline: none;
+    height: auto;
+    width: 150px;
+    padding: 10px;
+  }
+  
+  .tempt_edit{
+    color:var(--labelcolor) !important ;
+  }
+  
+  .deprtsele{
+  
+    margin-left: 5px;
+    padding: 5px;
+    height: 27px;
+    outline: none;
+    border: none;
+  }
+  
+  
+  /* .css-i4bv87-MuiSvgIcon-root{
+    color: var(--ProjectColor);
+  } */
+  
+  /* Responsive media query */
+  @media (max-width: 768px) {
+    .con_1 {
+      flex-direction: column;
+      align-items: center;
+    }
+    .h_head h3{
+      font-size: 15px;
+    }
+    .inp_1,.inp_1 input::placeholder,.MuiDataGrid-cell,.MuiDataGrid-columnHeader{
+      font-size: 12px;
+    }
+    
+    .MuiDataGrid-root {
+      width: 80%;
+  
+    }
+  
+    .data_grid {
+      overflow-x: hidden;
+    }
+    .modal_11{
+      width: 300px !important;
+    }
+  
+  }
+  @media (min-width:769px) and (max-width:1024px) {
+   
+    .MuiDataGrid-root {
+      width: 90%;
+  
+    }
+    .data_grid {
+      overflow-x: hidden;
+    }
+  }

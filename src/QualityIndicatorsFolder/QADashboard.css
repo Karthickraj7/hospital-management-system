@@ -1,0 +1,158 @@
+/* QADashboard.css */
+.dashboard-container01 {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 12px;
+  box-sizing: border-box;
+  background-color: white;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.85rem;
+}
+
+.dashboard-title01 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 16px;
+  font-size: 1.5rem;
+}
+
+/* Modified grid for 3 compact charts per row */
+.dashboard-grid01 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  justify-content: center;
+}
+
+/* Card Styles with unique class names - more compact */
+.dashboard-card01, .dashboard-card02, .dashboard-card03, .dashboard-card04,
+.dashboard-card05, .dashboard-card06, .dashboard-card07, .dashboard-card08 {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  padding: 10px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.dashboard-card01:hover, .dashboard-card02:hover, .dashboard-card03:hover, .dashboard-card04:hover,
+.dashboard-card05:hover, .dashboard-card06:hover, .dashboard-card07:hover, .dashboard-card08:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+}
+
+/* Card Title Styles - smaller */
+.card-title001, .card-title002, .card-title003, .card-title004,
+.card-title005, .card-title006, .card-title007, .card-title008 {
+  margin-top: 0;
+  margin-bottom: 6px;
+  font-size: 17px;
+  color: #333;
+  text-align: center;
+  font-weight: 600;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+/* Chart Container Styles - significantly reduced height */
+.chart-container01, .chart-container02, .chart-container03, .chart-container04,
+.chart-container05, .chart-container06, .chart-container07, .chart-container08 {
+  height: 180px;
+  width: 100%;
+}
+
+/* Individual Card Theme Colors - thinner borders */
+.dashboard-card01 {
+  border-top: 3px solid #8884d8;
+}
+
+.dashboard-card02 {
+  border-top: 3px solid #0088FE;
+}
+
+.dashboard-card03 {
+  border-top: 3px solid #00C49F;
+}
+
+.dashboard-card04 {
+  border-top: 3px solid #ffc658;
+}
+
+.dashboard-card05 {
+  border-top: 3px solid #FF8042;
+}
+
+.dashboard-card06 {
+  border-top: 3px solid #a4de6c;
+}
+
+.dashboard-card07 {
+  border-top: 3px solid #d0ed57;
+}
+
+.dashboard-card08 {
+  border-top: 3px solid #ff6b6b;
+}
+
+/* Global style to make recharts labels and text smaller */
+.recharts-text {
+  font-size: 0.7rem !important;
+}
+
+.recharts-legend-item-text {
+  font-size: 0.7rem !important;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+  .dashboard-grid01 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  .dashboard-grid01 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .chart-container01, .chart-container02, .chart-container03, .chart-container04,
+  .chart-container05, .chart-container06, .chart-container07, .chart-container08 {
+    height: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-grid01 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .dashboard-title01 {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .dashboard-grid01 {
+    grid-template-columns: 1fr;
+  }
+  
+  .dashboard-title01 {
+    font-size: 1.2rem;
+  }
+  
+  .dashboard-container01 {
+    padding: 8px;
+  }
+  
+  .dashboard-card01, .dashboard-card02, .dashboard-card03, .dashboard-card04,
+  .dashboard-card05, .dashboard-card06, .dashboard-card07, .dashboard-card08 {
+    padding: 8px;
+  }
+  
+  .chart-container01, .chart-container02, .chart-container03, .chart-container04,
+  .chart-container05, .chart-container06, .chart-container07, .chart-container08 {
+    height: 220px;
+  }
+}

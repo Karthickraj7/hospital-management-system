@@ -1,0 +1,7022 @@
+import React, { useEffect, useRef, useState, useMemo } from "react";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import PrintIcon from "@mui/icons-material/Print";
+import { useReactToPrint } from "react-to-print";
+import Button from "@mui/material/Button";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import GroupIcon from "@mui/icons-material/Group";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditNoteIcon from "@mui/icons-material/EditNote";
+import ToastAlert from "../../OtherComponent/ToastContainer/ToastAlert";
+import ModelContainer from "../../OtherComponent/ModelContainer/ModelContainer";
+import { NumberToWords } from "../../OtherComponent/OtherFunctions";
+
+const NewIPPharmacyBilling = () => {
+  const UrlLink = useSelector((state) => state.userRecord?.UrlLink);
+  const UserData = useSelector((state) => state.userRecord?.UserData);
+  const dispatchvalue = useDispatch();
+  const navigate = useNavigate();
+  const componentRef = useRef();
+  const ClinicDetails = useSelector((state) => state.userRecord?.ClinicDetails);
+  const toast = useSelector((state) => state.userRecord?.toast);
+
+  const Selected_Patient_Pharmacy = useSelector(
+    (state) => state.userRecord?.Selected_Patient_Pharmacy
+  );
+
+  const [viewType, setViewType] = useState("IPPharmacy");
+  const [isEdit, setIsEdit] = useState(null);
+  const [billAmount, setBillAmount] = useState([]);
+  const [totalPaidAmount, settotalPaidAmount] = useState(0);
+  const [Remarks, setRemarks] = useState('');
+  const [Billing_date, setBilling_date] = useState(new Date());
+  const [isPrintButtonVisible, setIsPrintButtonVisible] = useState(true);
+  const [PostInvoice, setPostInvoice] = useState(null);
+  const [ReceiptNo, setReceiptNo] = useState(null);
+  const [Reimbursable, setReimbursable] = useState(false);
+  const [PatientCategory, setPatientCategory] = useState('');
+
+  const [SelectedPatient_list, setSelectedPatient_list] = useState({
+    Doctor_Id: "",
+    Doctor_name: "",
+    PatientId: "",
+    PatientName: "",
+    PatientAge: "",
+    PatientAddress: "",
+    PhoneNumber: "",
+    PatientType: "",
+    RegistrationId: Selected_Patient_Pharmacy?.RegistrationId || '',
+    InvoiceId: "",
+    Speciality: ""
+  });
+
+  const [Patientarr, setPatientarr] = useState([]);
+  const [Itemarr, setItemarr] = useState([]);
+  const [Billing_itemtable, setBilling_itemtable] = useState([]);
+  const [getStockid_Name, setgetStockid_Name] = useState([]);
+
+  const [ItemSearch, setItemSearch] = useState({
+    SearchItemName: "",
+    SearchItemCode: "",
+  });
+
+  const [Single_row_data, setSingle_row_data] = useState({
+    ItemId: "",
+    ItemName: "",
+    Generic: "",
+    BatchNo: "",
+    Exp_Date: "",
+    Original_AvailableQuantity: "",
+    AvailableQuantity: "",
+    Billing_Quantity: "",
+    Unit_Price: "",
+    Amount: "",
+    CD_Method: "",
+    CD_Type: "",
+    Cash_Discount: "",
+    GST: "",
+    Original_total: "",
+    Total: "",
+    GSTAmount: "",
+    HSNCode: "",
+    BoxName: "",
+    Drugsegment: [],
+  });
+
+  const [shelfview, setshelfview] = useState({
+    RackName: "",
+    ShelfName: "",
+    TrayName: "",
+  });
+
+  const [summary, setSummary] = useState({
+    totalItems: 0,
+    totalQty: 0,
+    totalBase: 0,
+    Discount_method: "",
+    Discount_type: "",
+    Discount: 0,
+    Amount: 0,
+    GSTAmount: 0,
+    totalAmount: 0,
+    Roundoff: 0,
+    totalAmountt: 0,
+    BalanceAmount: 0,
+    PaidAmount: 0,
+  });
+
+  const [NetAmount_CDmethod, setNetAmount_CDmethod] = useState({
+    Method: "",
+    Type: "",
+    Amount: "",
+  });
+
+  const [PaymentMode, setPaymentMode] = useState([]);
+  const [Paytype, setPaytype] = useState({
+    isCash: "Yes",
+    isCredit: "No",
+  });
+
+  const [formAmount, setFormAmount] = useState({
+    Billpay_method: "Cash",
+    CardType: "",
+    BankName: "",
+    ChequeNo: "",
+    paidamount: "",
+    Additionalamount: "",
+    transactionFee: "",
+  });
+
+  const [ClinicDetials, setClinicDetials] = useState({
+    ClinicLogo: null,
+    ClinicName: "",
+    ClinicGST: "",
+    ClinicAddress: "",
+    ClinicCity: "",
+    ClinicState: "",
+    ClinicCode: "",
+    ClinicMobileNo: "",
+    DrugLicenseNumber: "",
+    ClinicMailID: "",
+  });
+
+  // Format date function
+  const formatDate = (date) => {
+    const d = new Date(date);
+    const month = (d.getMonth() + 1).toString().padStart(2, "0");
+    const day = d.getDate().toString().padStart(2, "0");
+    const year = d.getFullYear();
+    return `${year}-${month}-${day}`;
+  };
+
+  // Fetch patient list
+  useEffect(() => {
+    console.log("get pppppppppppppppppp");
+
+    const postdata = {
+      PatientId: SelectedPatient_list?.PatientId,
+      PhoneNo: SelectedPatient_list?.PhoneNo,
+      FirstName: SelectedPatient_list?.PatientName,
+      DoctorId: SelectedPatient_list?.Doctor_Id,
+      patientsearch: '',
+    };
+
+    console.log("PosttttDDDD", postdata);
+
+    axios
+      .get(`${UrlLink}Frontoffice/Filter_IP_or_All_Patients`, {
+        params: postdata,
+      })
+      .then((res) => {
+        const data = res.data;
+        console.log("08642", data);
+        setPatientarr(data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, [UrlLink, SelectedPatient_list]);
+
+  // Fetch doctor details
+  const fetchDoctorDetails = async (patientId) => {
+    if (!patientId) return;
+
+    try {
+      const response = await axios.get(
+        `${UrlLink}Frontoffice/get_registered_patient_details_forQuickbilling_forPharmacy?PatientId=${patientId}&Type=${Selected_Patient_Pharmacy.type}`
+      );
+
+      if (response.data) {
+        const patientData = response.data;
+        console.log(patientData, "patientDataaaaa");
+
+        let patcategory = "";
+
+        if (patientData.PatientCategory === "Insurance") {
+          patcategory = patientData?.PatientCategoryName;
+        } else {
+          patcategory = patientData.PatientCategory;
+        }
+
+        setPatientCategory(patcategory);
+
+        console.log(
+          patcategory,
+          "patcategorypatcategorypatcategorypatcategorypatcategorypatcategory"
+        );
+
+        setSelectedPatient_list((prev) => ({
+          ...prev,
+          Doctor_name: patientData.Doctor_ShortName || "",
+          Doctor_Id: patientData.DoctorId || "",
+          PatientCategory: patcategory || "",
+          RegistrationId: patientData?.RegistrationId || "",
+          Speciality: patientData?.Speciality || ""
+        }));
+      }
+    } catch (error) {
+      console.error("Error fetching doctor details:", error);
+    }
+  };
+
+  // Handle patient selection
+  const HandlePatient = (e) => {
+    const { name, value } = e.target;
+    if (name === "PatientName") {
+      let fil_cos;
+      if (Selected_Patient_Pharmacy?.type === "OP") {
+        fil_cos = Patientarr.find((ele) => ele.PatientName === value);
+      } else {
+        fil_cos = Patientarr.find((ele) => ele.FirstName === value);
+      }
+      if (fil_cos && Object.keys(fil_cos !== 0)) {
+        setSelectedPatient_list((prev) => ({
+          ...prev,
+          PatientId: fil_cos.PatientId || "",
+          PatientName: value,
+          PhoneNumber: fil_cos.PhoneNo || "",
+          PatientAge: fil_cos.PatientAge || "",
+          PatientAddress: fil_cos.PatientAddress || "",
+          PatientType: fil_cos.PatientType || "",
+        }));
+
+        // Fetch doctor details when patient is selected by name
+        if (fil_cos.PatientId) {
+          fetchDoctorDetails(fil_cos.PatientId);
+        }
+      } else {
+        setSelectedPatient_list((prev) => ({
+          ...prev,
+          PatientId: "",
+          PatientName: value,
+          PatientAge: "",
+          PatientAddress: "",
+          PatientType: "",
+          PhoneNumber: "",
+          Doctor_name: "", // Clear doctor name
+          Doctor_Id: ""
+        }));
+      }
+    } else if (name === "PatientId") {
+      let fil_cos = Patientarr.find((ele) => ele.PatientId === value);
+      if (fil_cos && Object.keys(fil_cos !== 0)) {
+        setSelectedPatient_list((prev) => ({
+          ...prev,
+          PatientId: value,
+          PatientName: fil_cos.PatientName || fil_cos.FirstName,
+          PhoneNumber: fil_cos.PhoneNo || "",
+          PatientAge: fil_cos.PatientAge || "",
+          PatientAddress: fil_cos.PatientAddress || "",
+          PatientType: fil_cos.PatientType || "",
+        }));
+
+        // Fetch doctor details when patient is selected by ID
+        fetchDoctorDetails(value);
+      } else {
+        setSelectedPatient_list((prev) => ({
+          ...prev,
+          PatientId: value,
+          PatientName: "",
+          PatientAge: "",
+          PatientAddress: "",
+          PatientType: "",
+          PhoneNumber: "",
+          Doctor_name: "", // Clear doctor name
+          Doctor_Id: ""
+        }));
+      }
+    } else if (name === "PhoneNumber") {
+      if (value.length <= 10) {
+        let fil_cos = Patientarr.find((ele) => +ele.PhoneNo === +value);
+        if (fil_cos && Object.keys(fil_cos).length !== 0) {
+          setSelectedPatient_list((prev) => ({
+            ...prev,
+            PatientId: fil_cos.PatientId || "",
+            PatientName: fil_cos.PatientName || fil_cos.FirstName || "",
+            PhoneNumber: value,
+            PatientAge: fil_cos.PatientAge || "",
+            PatientAddress: fil_cos.PatientAddress || "",
+            PatientType: fil_cos.PatientType || "",
+          }));
+
+          // Fetch doctor details when patient is selected by phone
+          if (fil_cos.PatientId) {
+            fetchDoctorDetails(fil_cos.PatientId);
+          }
+        } else {
+          setSelectedPatient_list((prev) => ({
+            ...prev,
+            PatientAddress: "",
+            PhoneNumber: value,
+            Doctor_name: "", // Clear doctor name
+            Doctor_Id: ""
+          }));
+        }
+      } else {
+        const tdata = {
+          message: "Enter the 10 digit Number",
+          type: "warn",
+        };
+        dispatchvalue({ type: "toast", value: tdata });
+      }
+    } else {
+      setSelectedPatient_list((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
+  };
+
+  // Item search handler
+  const set_handleSearch = (e) => {
+    const { name, value } = e.target;
+
+    if (value.includes("|")) {
+      let Iname = value.split(" | ")[0];
+      let ItemCode = value.split(" | ")[1];
+
+      setItemSearch((prev) => ({
+        ...prev,
+        [name]: Iname,
+        SearchItemCode: ItemCode,
+      }));
+      Clearitemforbill();
+    } else {
+      setItemSearch((prev) => ({
+        ...prev,
+        [name]: value,
+        SearchItemCode: "",
+      }));
+      Clearitemforbill();
+    }
+  };
+
+  // Clear item for bill
+  const Clearitemforbill = () => {
+    setshelfview({
+      RackName: "",
+      ShelfName: "",
+      TrayName: "",
+    });
+    setSingle_row_data({
+      ItemId: "",
+      ItemName: "",
+      Generic: "",
+      BatchNo: "",
+      Exp_Date: "",
+      Original_AvailableQuantity: "",
+      AvailableQuantity: "",
+      Billing_Quantity: "",
+      Billing_Total_Quantity: "",
+      TotalQuantity: "",
+      Unit_Price: "",
+      Amount: "",
+      CD_Type: "",
+      Cash_Discount: "",
+      GST: "",
+      Original_total: "",
+      Total: "",
+      GSTAmount: "",
+      HSNCode: "",
+      BoxName:"",
+      Drugsegment: [],
+    });
+  };
+
+  // Fetch items
+  useEffect(() => {
+    if (ItemSearch.SearchItemName.trim() !== "") {
+      axios
+        .get(`${UrlLink}Frontoffice/Item_Names_All_Data_Link`, {
+          params: {
+            SearchItemName: ItemSearch.SearchItemName,
+            SearchItemCode: ItemSearch.SearchItemCode,
+            Department: 3,
+          },
+        })
+        .then((res) => {
+          let Itemgetdata = res.data;
+
+          if (Array.isArray(Itemgetdata) && Itemgetdata.length > 0) {
+            setItemarr(Itemgetdata);
+          } else if (Itemgetdata && Object.keys(Itemgetdata).length !== 0) {
+            setSingle_row_data((prev) => ({
+              ...prev,
+              ItemId: Itemgetdata.ItemCode,
+              ItemName: Itemgetdata.ItemName,
+              Generic: Itemgetdata.GenericName,
+              HSNCode: Itemgetdata.HSNCode,
+              BoxName: Itemgetdata.BoxName,
+              CGST: Itemgetdata.CGST || 0,
+              SGST: Itemgetdata.SGST || 0,
+              GST_Type: Itemgetdata.GST_Type || "",
+              GST_Value: Itemgetdata.GST_Value || 0,
+              CompanyShort: Itemgetdata.CompanyShort || '',
+            }));
+          }
+        })
+        .catch((err) => {
+          console.error("API Error:", err);
+        });
+    }
+  }, [ItemSearch.SearchItemName, ItemSearch.SearchItemCode]);
+
+  // Fetch stock details
+  useEffect(() => {
+    if (
+      UrlLink &&
+      Single_row_data.ItemId !== "" &&
+      Single_row_data.ItemName !== "" 
+    ) {
+      const senddata = {
+        SearchItemName: Single_row_data.ItemName,
+        SearchItemCode: Single_row_data.ItemId,
+        StoreId: 3,
+      };
+
+      axios
+        .get(`${UrlLink}Frontoffice/get_Tray_Names_For_Product`, {
+          params: senddata,
+        })
+        .then((res) => {
+          if (res?.data && res?.data?.Rack_Name) {
+            setshelfview({
+              RackName: res?.data?.Rack_Name,
+              ShelfName: res?.data?.Shelf_Name,
+            });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+
+      axios
+        .get(`${UrlLink}Frontoffice/Batchno_Item_Names_All_Link1`, {
+          params: senddata,
+        })
+        .then((response) => {
+          let Itemgetdata = response.data;
+          if (
+            Itemgetdata &&
+            Array.isArray(Itemgetdata) &&
+            Itemgetdata.length !== 0
+          ) {
+            setgetStockid_Name(Itemgetdata);
+          } else {
+            setgetStockid_Name([]);
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    } else {
+      setgetStockid_Name([]);
+    }
+  }, [UrlLink, Single_row_data.ItemId, Single_row_data.ItemName, Single_row_data.BatchNo, viewType]);
+
+  // Fetch batch details
+  useEffect(() => {
+    if (
+      UrlLink &&
+      ItemSearch.SearchItemName !== "" &&
+      ItemSearch.SearchItemCode !== "" &&
+      Single_row_data?.BatchNo !== ""
+    ) {
+      let checkBatchNo = Billing_itemtable.find(
+        (ele) =>
+          "" + ele.ItemId === "" + Single_row_data.ItemId &&
+          ele.BatchNo === Single_row_data.BatchNo
+      );
+
+      if (!Single_row_data?.S_No && checkBatchNo) {
+        setSingle_row_data((prevData) => ({
+          ...prevData,
+          BatchNo: "",
+        }));
+
+        const tdata = {
+          message: `This Item: ${Single_row_data.ItemName} and Batch No: ${Single_row_data.BatchNo} already selected`,
+          type: "warn",
+        };
+        dispatchvalue({ type: "toast", value: tdata });
+      } else {
+        const senddata = {
+          ...ItemSearch,
+          SearchBatchNo: Single_row_data?.BatchNo,
+          StoreLocation: 3, // IP Store
+        };
+
+        axios
+          .get(`${UrlLink}Frontoffice/Nurse_Item_Names_All_Link`, {
+            params: senddata,
+          })
+          .then((response) => {
+            let Itemgetdata = response.data;
+            if (Itemgetdata && Object.keys(Itemgetdata).length !== 0) {
+              setSingle_row_data((prev) => ({
+                ...prev,
+                Exp_Date: Itemgetdata.Expiry_Date,
+                Original_AvailableQuantity: Itemgetdata.AvailableQuantity,
+                Unit_Price: Itemgetdata.MRP,
+                Unit_Price: Itemgetdata.MRP,
+                GST: Itemgetdata.GST,
+                BoxName:Itemgetdata.BoxName,
+                CGST: Itemgetdata.CGST || 0,
+                SGST: Itemgetdata.SGST || 0,
+                GST_Type: Itemgetdata.GST_Type || "",
+                GST_Value: Itemgetdata.GST_Value || 0,
+              
+              }));
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
+    } else {
+      setgetStockid_Name([]);
+    }
+  }, [UrlLink, ItemSearch, Single_row_data.BatchNo, Single_row_data.ItemId, Single_row_data.ItemName, Single_row_data?.S_No, Billing_itemtable, dispatchvalue]);
+
+  // Calculate item totals
+  useEffect(() => {
+    let Billing_TotalQuantity = Single_row_data.Billing_Quantity || 0;
+    let FreeTotalQuantiy = Single_row_data.FOCQuantiy || 0;
+    let TotalQty = Billing_TotalQuantity;
+
+    let AvailQty = Single_row_data.Original_AvailableQuantity !== ""
+      ? +Single_row_data.Original_AvailableQuantity || 0
+      : 0;
+    let balaceAvalQty = AvailQty > 0 ? AvailQty - TotalQty : 0;
+
+    let Unit_Price = parseFloat(Single_row_data.Unit_Price) || 0;
+    let CD_Type = Single_row_data.CD_Type || 0;
+    let CD_Amount = +Single_row_data.Cash_Discount || 0;
+    let GST = Single_row_data.GST || 0;
+
+    let Amount = (Unit_Price * Billing_TotalQuantity) || 0;
+
+    let SingleUnitTaxAmount = Unit_Price + (Unit_Price * GST) / 100;
+    let GSTAmount = parseFloat((Amount * GST) / 100).toFixed(2)
+    let TotalTaxAmount = Billing_TotalQuantity * SingleUnitTaxAmount;
+    let Total = 0;
+    if (CD_Type === "Percentage" && CD_Amount !== 0) {
+      Total = TotalTaxAmount - (TotalTaxAmount * CD_Amount) / 100;
+    } else if (CD_Type === "Cash" && CD_Amount !== 0) {
+      Total = TotalTaxAmount - CD_Amount;
+    } else {
+      Total = TotalTaxAmount;
+    }
+
+    setSingle_row_data((prevData) => ({
+      ...prevData,
+      AvailableQuantity: balaceAvalQty,
+      TotalQuantity: TotalQty,
+      Amount: parseFloat(Amount).toFixed(2),
+      Original_total: parseFloat(TotalTaxAmount).toFixed(2),
+      Total: parseFloat(Total).toFixed(2),
+      GSTAmount: GSTAmount,
+    }));
+  }, [
+    Single_row_data.Billing_Quantity,
+    Single_row_data.Unit_Price,
+    Single_row_data.CD_Type,
+    Single_row_data.Cash_Discount,
+    Single_row_data.GST,
+    Single_row_data.Original_AvailableQuantity
+  ]);
+
+  // Calculate summary
+  useEffect(() => {
+    if (Billing_itemtable.length !== 0) {
+      let totalItems = Billing_itemtable.length;
+      let totalQty = 0;
+      let totalBase = 0;
+      let totalOriginal = 0;
+      let totalDiscount = 0;
+      let totalAmount = 0;
+      let GSTAmount = 0;
+
+      Billing_itemtable.forEach((item) => {
+        let itemDiscount = 0;
+
+        if (item.CD_Type === "Percentage") {
+          itemDiscount = (parseFloat(item.Amount) * parseFloat(item.Cash_Discount)) / 100 || 0;
+        } else {
+          itemDiscount = parseFloat(item.Cash_Discount) || 0;
+        }
+
+        totalQty += +item.Billing_Quantity;
+        totalDiscount += itemDiscount;
+        totalBase += parseFloat(item.Amount) || 0;
+        totalOriginal += parseFloat(item.Original_total) || 0;
+        totalAmount += parseFloat(item.Total) || 0;
+        GSTAmount += parseFloat(item.GSTAmount) || 0;
+      });
+
+      let updatedDiscount = 0;
+      if (NetAmount_CDmethod.Type === "Cash") {
+        updatedDiscount = +NetAmount_CDmethod.Amount || 0;
+      } else if (NetAmount_CDmethod.Type === "Percentage") {
+        updatedDiscount = (totalAmount * (+NetAmount_CDmethod.Amount || 0)) / 100;
+      }
+
+      const totalWithGst = totalAmount - updatedDiscount;
+      let roundedAmount = Math.round(totalWithGst);
+      let difference = roundedAmount - totalWithGst;
+
+      setSummary((prev) => ({
+        ...prev,
+        totalItems: totalItems,
+        totalQty: totalQty,
+        totalBase: totalBase,
+        Discount: updatedDiscount.toFixed(2),
+        Amount: totalOriginal.toFixed(2),
+        GSTAmount: GSTAmount.toFixed(2),
+        totalAmount: totalWithGst.toFixed(2),
+        Roundoff: difference.toFixed(2),
+        totalAmountt: roundedAmount.toFixed(2),
+        BalanceAmount: roundedAmount.toFixed(2),
+      }));
+    }
+  }, [Billing_itemtable, NetAmount_CDmethod]);
+
+  // Handle input changes for single row data
+  const set_handleInputChange = (event) => {
+    const { name, value } = event.target;
+ if (name === "BatchNo") {
+    const selectedBatch = getStockid_Name.find(
+      (item) => item.Batch_No === value
+    );
+
+    if (selectedBatch) {
+      const { daysLeft } = getExpiryInfo(selectedBatch.Expiry_Date);
+
+      if (daysLeft <= 30) {
+        const confirmUse = window.confirm(
+          `⚠️ This batch expires in ${daysLeft} days.\nDo you want to continue?`
+        );
+
+        if (!confirmUse) return; // STOP if user cancels
+      }
+    }
+
+    // ✅ IMPORTANT: update state AFTER confirmation
+    setSingle_row_data((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+
+    return; // stop further execution
+  }
+    if (name === "CD_Type") {
+      setSingle_row_data((prevData) => ({
+        ...prevData,
+        [name]: value,
+        Cash_Discount: "",
+      }));
+    } else if (name === "Billing_Quantity") {
+      let AvailQty = Single_row_data.Original_AvailableQuantity;
+      let LeastSellableUnitONE = 1;
+
+      if (LeastSellableUnitONE === 1) {
+        if (AvailQty < value) {
+          alert(`Available Quantity is ${AvailQty}`);
+        } else {
+          setSingle_row_data((prevData) => ({
+            ...prevData,
+            [name]: value,
+          }));
+        }
+      }
+    } else {
+      setSingle_row_data((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
+  };
+
+  // Add item to bill
+  const Additemforbill = (No) => {
+    let requiredfields = ["Billing_Quantity"];
+
+    if (Single_row_data.CD_Type !== "" && Single_row_data.Cash_Discount === "") {
+      requiredfields.push("Cash_Discount");
+    }
+
+    if (!Single_row_data.BatchNo || Single_row_data.BatchNo.trim() === "" || Single_row_data.BatchNo.trim() === "Nill") {
+      const tdata = {
+        message: `Batch Number is required.`,
+        type: "warn",
+      };
+      dispatchvalue({ type: "toast", value: tdata });
+      return;
+    }
+
+    let missingfield = requiredfields.filter((field) => !Single_row_data[field]);
+    if (missingfield.length !== 0) {
+      const tdata = {
+        message: `Please fill out all required fields: ${missingfield.join(", ")}`,
+        type: "warn",
+      };
+      dispatchvalue({ type: "toast", value: tdata });
+    } else {
+      const Samedata = Billing_itemtable.findIndex((repeat) => repeat.S_No === No);
+
+      if (Samedata !== -1) {
+        let updatedData = Billing_itemtable.map((item, index) =>
+          index === Samedata
+            ? { ...item, S_No: No, PrescriptionID: item.PrescriptionID, ...Single_row_data }
+            : item
+        );
+
+        setBilling_itemtable(updatedData);
+        Clearitemforbill();
+        setItemSearch((prev) => ({
+          ...prev,
+          SearchItemName: "",
+          SearchItemCode: "",
+        }));
+      } else {
+        let existingItem = Billing_itemtable.find(
+          (p) => "" + p.ItemId === "" + Single_row_data.ItemId && p.BatchNo === Single_row_data.BatchNo
+        );
+
+        if (existingItem) {
+          const tdata = {
+            message: `The Item Name already exists`,
+            type: "warn",
+          };
+          dispatchvalue({ type: "toast", value: tdata });
+        } else {
+          const S_No = Billing_itemtable.length + 1;
+
+          let newItem = {
+            S_No,
+            ...Single_row_data,
+            isReimbursable: existingItem ? existingItem.isReimbursable : "No",
+          };
+
+          setBilling_itemtable((prevBillingItemTable) => [...prevBillingItemTable, newItem]);
+
+          Clearitemforbill();
+          setItemSearch((prev) => ({
+            ...prev,
+            SearchItemName: "",
+            SearchItemCode: "",
+          }));
+        }
+      }
+    }
+  };
+
+  // Delete billing item
+  const deletebillingitem = (S_No) => {
+    let Temp_delarr = Billing_itemtable.filter((ele) => ele.S_No !== S_No);
+    setBilling_itemtable(
+      Temp_delarr.map((item, index) => ({ ...item, S_No: index + 1 }))
+    );
+  };
+
+  // Edit billing item
+  const Editbillingitem = (single_Edit_data) => {
+    setItemSearch((prev) => ({
+      ...prev,
+      SearchItemName: single_Edit_data.ItemName,
+      SearchItemCode: single_Edit_data?.ItemId,
+    }));
+
+    setSingle_row_data((prevData) => ({
+      ...prevData,
+      ItemId: single_Edit_data?.ItemId || "",
+      ItemName: single_Edit_data?.ItemName || "",
+      Original_AvailableQuantity: single_Edit_data?.Original_AvailableQuantity || "",
+      AvailableQuantity: single_Edit_data?.AvailableQuantity || "",
+      Generic: single_Edit_data?.Generic || "",
+      HSNCode: single_Edit_data?.HSNCode || "",
+      BatchNo: "",
+      BoxName:single_Edit_data?.BoxName || "",
+      Exp_Date: single_Edit_data?.Exp_Date || "",
+      Billing_Quantity: single_Edit_data?.Billing_Quantity || "",
+      Unit_Price: single_Edit_data?.Unit_Price || "",
+      Amount: single_Edit_data?.Amount || "",
+      CD_Type: single_Edit_data?.CD_Type || "",
+      Cash_Discount: single_Edit_data?.Cash_Discount || "",
+      GST: single_Edit_data?.GST || "",
+      BoxName: single_Edit_data?.BoxName || "",
+      Original_total: single_Edit_data?.Original_total || "",
+      Total: single_Edit_data?.Total || "",
+      GSTAmount: single_Edit_data?.GSTAmount || "",
+      S_No: single_Edit_data?.S_No,
+    }));
+  };
+
+  // Handle payment type
+  const handlePayType = (e) => {
+    const { name } = e.target;
+    setPaytype((prev) => {
+      if (name === "isCash") {
+        return { isCash: "Yes", isCredit: "No" };
+      } else if (name === "isCredit") {
+        return { isCash: "No", isCredit: "Yes" };
+      }
+      return prev;
+    });
+
+    setFormAmount({
+      Billpay_method: "",
+      CardType: "",
+      CardNo: "",
+      upiid: "",
+      TransactionId: "",
+      ChequeNo: "",
+      BankName: "",
+      paidamount: "",
+      Additionalamount: "",
+      transactionFee: "",
+    });
+
+    setBillAmount([]);
+  };
+
+  // Block invalid characters
+  const blockInvalidChar = (e) =>
+    ["e", "E", "+", "-"].includes(e.key) && e.preventDefault();
+
+  // Handle form amount changes
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    let total_netamount = summary.totalAmount;
+
+    if (+totalPaidAmount !== +total_netamount) {
+      if (name === "Billpay_method") {
+        setFormAmount((prevState) => ({
+          ...prevState,
+          [name]: value,
+        }));
+      } else if (name === "paidamount") {
+        if (billAmount.length > 0) {
+          const amttt = parseFloat(total_netamount) - +totalPaidAmount;
+          if (+amttt >= +value) {
+            setFormAmount((prevState) => ({
+              ...prevState,
+              [name]: value,
+            }));
+          } else {
+            dispatchvalue({
+              type: "toast",
+              value: {
+                message: `Enter a valid value below the Net Amount: ${amttt}`,
+                type: "warn",
+              },
+            });
+            setFormAmount((prevState) => ({
+              ...prevState,
+              [name]: "",
+            }));
+          }
+        } else {
+          if (+total_netamount >= +value) {
+            setFormAmount((prevState) => ({
+              ...prevState,
+              [name]: value,
+            }));
+          } else {
+            dispatchvalue({
+              type: "toast",
+              value: {
+                message: `Enter a valid value below the Net Amount: ${total_netamount}`,
+                type: "warn",
+              },
+            });
+            setFormAmount((prevState) => ({
+              ...prevState,
+              [name]: "",
+            }));
+          }
+        }
+      } else {
+        setFormAmount((prev) => ({
+          ...prev,
+          [name]: value,
+        }));
+      }
+    } else {
+      dispatchvalue({
+        type: "toast",
+        value: { message: "No Balance Amount", type: "warn" },
+      });
+    }
+  };
+
+  // Handle add payment
+  const handleAdd = () => {
+    let req = [];
+    if (formAmount.Billpay_method === "Card") {
+      req = ["Billpay_method", "CardType", "paidamount"];
+    } else if (formAmount.Billpay_method === "Cheque") {
+      req = ["Billpay_method", "ChequeNo", "BankName", "paidamount"];
+    } else if (formAmount.Billpay_method === "OnlinePayment") {
+      req = ["Billpay_method", "paidamount"];
+    } else {
+      req = ["Billpay_method", "paidamount"];
+    }
+    const missing = req.filter((row) => !formAmount[row]);
+    if (missing.length === 0) {
+      const exist = billAmount.find(
+        (p) => p.Billpay_method === formAmount.Billpay_method
+      );
+      if (!exist) {
+        setBillAmount((prev) => [...prev, formAmount]);
+        setFormAmount({
+          Billpay_method: "",
+          CardType: "",
+          BankName: "",
+          ChequeNo: "",
+          paidamount: "",
+          Additionalamount: "",
+          transactionFee: "",
+        });
+      } else {
+        dispatchvalue({
+          type: "toast",
+          value: {
+            message: `The Payment Method already exist`,
+            type: "warn",
+          },
+        });
+      }
+    } else {
+      dispatchvalue({
+        type: "toast",
+        value: {
+          message: `Enter the required fields: ${missing.join(", ")}`,
+          type: "warn",
+        },
+      });
+    }
+  };
+
+  // Handle edit payment
+  const handleEdit = (index) => {
+    setIsEdit(index);
+    const item = billAmount[index];
+    setFormAmount({
+      ...item,
+    });
+  };
+
+  // Handle update payment
+  const handleUpdate = () => {
+    let req = [];
+    if (formAmount.Billpay_method === "Card") {
+      req = ["Billpay_method", "CardType", "paidamount"];
+    } else if (formAmount.Billpay_method === "Cheque") {
+      req = ["Billpay_method", "ChequeNo", "BankName", "paidamount"];
+    } else if (formAmount.Billpay_method === "OnlinePayment") {
+      req = ["Billpay_method", "paidamount"];
+    } else {
+      req = ["Billpay_method", "paidamount"];
+    }
+    const missing = req.filter((row) => !formAmount[row]);
+    if (missing.length === 0) {
+      const data = [...billAmount];
+      data[isEdit] = formAmount;
+
+      setBillAmount(data);
+      setFormAmount({
+        Billpay_method: "",
+        CardType: "",
+        BankName: "",
+        ChequeNo: "",
+        paidamount: "",
+        Additionalamount: "",
+        transactionFee: "",
+      });
+      setIsEdit(null);
+    } else {
+      dispatchvalue({
+        type: "toast",
+        value: {
+          message: `Enter the required fields: ${missing.join(", ")}`,
+          type: "warn",
+        },
+      });
+    }
+  };
+
+  // Calculate paid amount
+  useEffect(() => {
+    const totalPaidAmount = billAmount
+      .filter((_, indx) => indx !== isEdit)
+      .reduce((total, ele) => +total + +ele.paidamount, 0);
+
+    const totalPaidAddAmount = billAmount
+      .filter((_, indx) => indx !== isEdit)
+      .reduce(
+        (total, ele) => +total + +ele.paidamount + (+ele.Additionalamount || 0),
+        0
+      );
+
+    const totalAdditionalAmount = billAmount
+      .filter((_, indx) => indx !== isEdit)
+      .reduce((total, ele) => +total + +ele.Additionalamount, 0);
+
+    const totalTransactionFee = billAmount
+      .filter((_, indx) => indx !== isEdit)
+      .reduce((total, ele) => +total + +ele.transactionFee || 0, 0);
+
+    const totalTransactionAmount = billAmount
+      .filter((_, indx) => indx !== isEdit)
+      .reduce(
+        (total, ele) =>
+          total +
+          ((+ele.paidamount + +ele.Additionalamount) *
+            (+ele.transactionFee || 0)) /
+          100,
+        0
+      );
+
+    const totalAmmm = totalPaidAddAmount + totalTransactionAmount;
+
+    settotalPaidAmount(totalPaidAmount);
+
+    setSummary((prev) => ({
+      ...prev,
+      totalAmountt: totalAmmm.toFixed(2),
+      BalanceAmount: (
+        parseFloat(prev.totalAmount) - parseFloat(totalPaidAmount)
+      ).toFixed(2),
+      PaidAmount: totalAmmm.toFixed(2),
+      Additionalamount: totalAdditionalAmount.toFixed(2),
+      transactionfee: `${totalTransactionFee}%`,
+    }));
+  }, [billAmount, billAmount.length, isEdit]);
+
+  // Set paid amount to balance amount
+  useEffect(() => {
+  const balance = parseFloat(summary?.BalanceAmount) || 0;
+
+  setFormAmount((prev) => ({
+    ...prev,
+    paidamount: Math.round(parseFloat(summary?.BalanceAmount) || 0)
+
+  }));
+}, [summary.BalanceAmount]);
+
+  // Fetch payment modes
+  useEffect(() => {
+    axios.get(`${UrlLink}Masters/PaymentMode_Master_link`)
+      .then((res) => {
+        const ress = res.data
+        setPaymentMode(ress)
+      })
+      .catch((e) => {
+        console.log(e);
+      })
+  }, [UrlLink]);
+
+
+  const [Doctordata, setDoctordata] = useState([]);
+  const [Chosendocname, setchosendocname] = useState([]);
+    const [Chosendocid, setchosendocid] = useState([]);
+
+   console.log(Chosendocid,'Chosendocid')
+
+
+useEffect(() => {
+  axios
+    .get(`${UrlLink}Masters/get_All_doctor_Name_Detials`)
+    .then((res) => {
+      const ress = res.data;
+      setDoctordata(ress);
+    })
+    .catch((e) => {
+      console.error(e);
+    });
+}, [UrlLink]);
+
+const Handledoc = (e) => {
+  const { value } = e.target;
+
+  // Split value by "|"
+  const [idPart, namePart] = value.split("|").map((v) => v.trim());
+
+  // If ID and name exist
+  if (idPart && namePart) {
+    setchosendocid(idPart);
+    setchosendocname(namePart);
+  } else {
+    // If user just typed manually (no split)
+    setchosendocname(value);
+    setchosendocid("");
+  }
+};
+
+
+
+  // Fetch clinic details
+  useEffect(() => {
+    axios
+      .get(`${UrlLink}Masters/Clinic_Detials_link`)
+      .then((response) => {
+        const clinicData = response.data[0];
+        if (clinicData) {
+          const addressComponents = [clinicData.DoorNo, clinicData.Area].filter(
+            (component) => component
+          );
+
+          setClinicDetials((prev) => ({
+            ...prev,
+            ClinicAddress: addressComponents.join(", "),
+            ClinicGST: clinicData.GSTNo || prev.ClinicGST,
+            ClinicCity: clinicData.City || prev.ClinicCity,
+            ClinicState: clinicData.State || prev.ClinicState,
+            ClinicCode: clinicData.Pincode || prev.ClinicCode,
+            ClinicMobileNo: clinicData.PhoneNo || prev.ClinicMobileNo,
+            DrugLicenseNumber: clinicData.DrugLicenseNumber || prev.DrugLicenseNumber,
+            ClinicMailID: clinicData.Mail || prev.ClinicMailID,
+          }));
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [UserData?.location, UrlLink]);
+
+  // Handle reimbursable change
+  const handleReimbursableChange = (event, index) => {
+    const updatedList = Billing_itemtable.map((item, i) =>
+      i === index
+        ? { ...item, isReimbursable: event.target.checked ? "Yes" : "No" }
+        : item
+    );
+
+    const anyReimbursable = updatedList.some(
+      (item) => item.isReimbursable === "Yes"
+    );
+
+    setBilling_itemtable(updatedList);
+    setReimbursable(anyReimbursable);
+  };
+
+
+  const [systemName, setSystemName] = useState("");
+   useEffect(() => {
+      // Fetch system name from Flask server
+      const fetchSystemName = async () => {
+        try {
+          const response = await axios.get("http://localhost:5000/system-info");
+          setSystemName(response.data.system_name);
+        } catch (error) {
+          console.error("Error fetching system name:", error);
+        }
+      };
+   
+      fetchSystemName();
+    }, []);
+
+      const localPrint = async (texts) => {
+    try {
+      const Sdata = {
+        print: "Op_Main_Reprint",
+        billText: texts,
+      }
+
+      const response = await fetch("http://localhost:5000/print-job", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(Sdata),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        console.log("Print job sent successfully:", data);
+        return { success: true, data };
+      } else {
+        console.error("Print job failed:", data);
+        return { success: false, error: data.message || "Unknown error" };
+      }
+    } catch (error) {
+      console.error("Error sending print job:", error);
+    }
+  };
+
+   
+  
+
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const abortControllerRef = useRef(null);
+
+const Submitalldata = async () => {
+  if (isSubmitting) {
+    console.warn("Billing submission already in progress.");
+    return;
+  }
+
+  setIsSubmitting(true);
+  const controller = new AbortController();
+  const { signal } = controller;
+
+  try {
+    // ✅ Validation
+    if (billAmount.length === 0 && Paytype.isCash === "Yes") {
+      dispatchvalue({
+        type: "toast",
+        value: { message: "Enter Bill Payment Details", type: "warn" },
+      });
+      return;
+    }
+
+    const total_netamount = billAmount.reduce(
+      (total, ele) => +total + +ele.paidamount,
+      0
+    );
+
+   if (
+  Paytype.isCredit === "No" &&
+  Math.round(Number(total_netamount)) !== Math.round(Number(summary.totalAmount))
+) {
+  dispatchvalue({
+    type: "toast",
+    value: {
+      message: `Mismatch: Entered ₹${total_netamount} ≠ Bill ₹${summary.totalAmount}. Please verify.`,
+      type: "warn",
+    },
+  });
+  return;
+}
+
+    const hasInvalidAmount = Billing_itemtable.some(
+      (item) =>
+        !("Total" in item) ||
+        !("Amount" in item) ||
+        Number(item.Total) === 0 ||
+        Number(item.Amount) === 0
+    );
+
+    if (hasInvalidAmount) {
+      dispatchvalue({
+        type: "toast",
+        value: {
+          message:
+            "Some items have Total or Amount as 0. Please check your billing details.",
+          type: "warn",
+        },
+      });
+      return;
+    }
+
+    // ✅ Format date/time
+    const billingDateObj = new Date(Billing_date);
+    const formattedDate = billingDateObj.toISOString().slice(0, 10);
+    const formattedTime = billingDateObj.toTimeString().slice(0, 8);
+
+    
+    const billingItemTable = Billing_itemtable.map((item) => ({
+        ItemId: item.ItemId || 0,
+        ItemName: item.ItemName || "",
+        Billing_Quantity: item.Billing_Quantity || 0,
+        BatchNo: item.BatchNo || "",
+        Exp_Date: item.Exp_Date || "",
+        Unit_Price: item.Unit_Price || 0,
+        BoxName: item.BoxName || "",
+        Amount: item.Amount || 0,
+        Total: item.Total || 0,
+        Reimbursable: item.isReimbursable || false,
+
+        // ✅ include GST fields for saving and printing
+        GST: item.GST || 0,
+        CGST: item.CGST || 0,
+        SGST: item.SGST || 0,
+        GST_Type: item.GST_Type || "",
+        GST_Value: item.GST_Value || 0,
+            CompanyShort: item.CompanyShort || "",
+      }));
+
+
+    // ✅ Clone objects (avoid proxies)
+    const cleanSelectedPatient = JSON.parse(
+      JSON.stringify(SelectedPatient_list || {})
+    );
+    const cleanSummary = JSON.parse(JSON.stringify(summary || {}));
+    const cleanBillAmount = JSON.parse(JSON.stringify(billAmount || []));
+
+    // ✅ Build payload
+    const sendData = {
+      systemName,
+      SelectedPatient_list: cleanSelectedPatient,
+      Billing_date: formattedDate,
+      Billing_time: formattedTime,
+      Billpay_method: cleanBillAmount,
+      Bill_Items: cleanSummary,
+      User_Name: UserData.username,
+      location: UserData.location,
+      Billing_itemtable: billingItemTable,
+      Paytype: Paytype.isCash === "Yes" ? "Cash" : "Credit",
+      StoreLocation: 3, // IP store
+      Remarks: Remarks || "",
+      viewType : viewType,
+    };
+
+    console.log("📤 Sending data to backend:", sendData);
+
+    // ✅ Send data
+    const res = await axios.post(
+      `${UrlLink}DrugAdminstrations/New_IP_Pharmacy_Billing_link`,
+      JSON.stringify(sendData),
+      {
+        headers: { "Content-Type": "application/json" },
+        signal,
+        timeout: 30000,
+      }
+    );
+
+    console.log("✅ Backend response:", res.data);
+
+    if (res.data.status === "success") {
+      const { InvoiceNo, ReceiptNo } = res.data;
+
+      setPostInvoice(InvoiceNo);
+      setReceiptNo(ReceiptNo);
+      setIsPrintButtonVisible(false);
+
+      dispatchvalue({
+        type: "toast",
+        value: { message: "IP Billing saved successfully!", type: "success" },
+      });
+
+      // ✅ Prepare print data
+      const printData = {
+        ...sendData,
+        InvoiceNo,
+        ReceiptNo,
+        Hospital_Name: "KARUNA MEDICAL COLLEGE HOSPITAL",
+        Clinic_DoorNo: ClinicDetials?.Clinic_DoorNo || "23",
+        Clinic_Street: ClinicDetials?.Clinic_Street || "Vilayodi",
+        Clinic_Area: ClinicDetials?.Clinic_Area || "Chittur",
+        Clinic_City: ClinicDetials?.Clinic_City || "Palakkad",
+        Clinic_State: ClinicDetials?.Clinic_State || "Kerala, 678103",
+        Clinic_LandlineNo: ClinicDetials?.Clinic_LandlineNo || "04923-221791",
+        Clinic_PhoneNo: ClinicDetials?.Clinic_PhoneNo || "8348397848",
+        DrugLicenseNoOne: ClinicDetials?.DrugLicenseNoOne || "",
+        print: "IP_print",
+      };
+
+      // ✅ Print to local server
+      try {
+        const printResponse = await fetch("http://localhost:5000/print-job", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(printData),
+        });
+
+        let printResult;
+        try {
+          printResult = await printResponse.json();
+        } catch {
+          printResult = await printResponse.text();
+        }
+
+        if (printResponse.ok) {
+          console.log("✅ Print job success:", printResult);
+        } else {
+          console.error("❌ Print job failed:", printResult);
+          dispatchvalue({
+            type: "toast",
+            value: { message: "Print job failed!", type: "warn" },
+          });
+        }
+      } catch (printErr) {
+        console.error("🖨️ Local print error:", printErr);
+        dispatchvalue({
+          type: "toast",
+          value: { message: "Local printer not reachable", type: "warn" },
+        });
+      }
+
+      navigate("/Home/Pharmacy");
+    } else {
+      dispatchvalue({
+        type: "toast",
+        value: {
+          message: res.data.message || "Error saving IP billing data",
+          type: "error",
+        },
+      });
+    }
+  } catch (error) {
+    if (axios.isCancel(error)) {
+      console.warn("Request aborted:", error.message);
+    } else if (error.code === "ECONNABORTED") {
+      dispatchvalue({
+        type: "toast",
+        value: { message: "Request timed out. Please try again.", type: "warn" },
+      });
+    } else {
+      console.error("❌ IP Billing API error:", error);
+      dispatchvalue({
+        type: "toast",
+        value: { message: "Failed to save IP billing data", type: "error" },
+      });
+    }
+  } finally {
+    setIsSubmitting(false);
+  }
+
+  // ✅ Return cleanup function (optional if used in useEffect)
+  return () => controller.abort();
+};
+
+
+
+
+const SubmitSavealldata = () => {
+  const controller = new AbortController();
+  const { signal } = controller;
+
+  const summafunc = async () => {
+    if (billAmount.length === 0 && Paytype.isCash === "Yes") {
+      dispatchvalue({
+        type: "toast",
+        value: { message: "Enter Bill Payment Details", type: "warn" },
+      });
+      return;
+    }
+
+    try {
+      const sendData = {
+        SelectedPatient_list,
+        Billing_date: Billing_date.toISOString().split("T")[0],
+        Billpay_method: billAmount,
+        Bill_Items: summary,
+        User_Name: UserData.username,
+        location: UserData.location,
+        viewType: viewType,
+        Billing_itemtable: Billing_itemtable.map((item) => ({
+          ItemId: item.ItemId,
+          ItemName: item.ItemName,
+          Billing_Quantity: item.Billing_Quantity,
+          BatchNo: item.BatchNo || "",
+          Exp_Date: item.Exp_Date || "",
+          Unit_Price: item.Unit_Price || 0,
+          Amount: item.Amount || 0,
+          Total: item.Total || 0,
+          Reimbursable: item.isReimbursable,
+        })),
+        Paytype: Paytype.isCash === "Yes" ? "Cash" : "Credit",
+        StoreLocation: 3,
+        Remarks: Remarks || "",
+      };
+
+      const res = await axios.post(
+        `${UrlLink}DrugAdminstrations/New_IP_Pharmacy_Billing_link`,
+        sendData,
+        { headers: { "Content-Type": "application/json" }, signal }
+      );
+
+     if (res.data.status === 'success') {
+            setPostInvoice(res.data.InvoiceNo);
+            setReceiptNo(res.data.ReceiptNo);
+            dispatchvalue({
+              type: "toast",
+              value: { message: "Billing saved successfully!", type: "success" },
+            });
+            navigate("/Home/Pharmacy");
+            dispatchvalue({ type: "HrFolder", value: "IPPharm" });
+            dispatchvalue({ type: "setPreviousFolder", value: 'NewIPPharmacyBilling' });
+            dispatchvalue({ type: "showMenu", value: true });
+          }
+    } catch (err) {
+      if (!axios.isCancel(err)) {
+        dispatchvalue({
+          type: "toast",
+          value: { message: "Failed to save billing data", type: "error" },
+        });
+      }
+    }
+  };
+
+  summafunc();
+};
+
+
+
+
+const WalkinSubmitalldata = async () => {
+  // Prevent multiple submissions
+  if (isSubmitting) {
+    dispatchvalue({
+      type: "toast",
+      value: { message: "Submission in progress...", type: "warn" },
+    });
+    return;
+  }
+
+  if (billAmount.length === 0 && Paytype.isCash === "Yes") {
+    dispatchvalue({
+      type: "toast",
+      value: { message: "Enter Bill Payment Details", type: "warn" },
+    });
+    return;
+  }
+
+  if (!SelectedPatient_list.PatientName) {
+    dispatchvalue({
+      type: "toast",
+      value: { message: "Enter Patient Name", type: "warn" },
+    });
+    return;
+  }
+
+  // Create new AbortController for this request
+  abortControllerRef.current = new AbortController();
+  setIsSubmitting(true);
+
+  try {
+    const billingDateObj = new Date(Billing_date);
+    const formattedDate = billingDateObj.toISOString().slice(0, 10);
+    const formattedTime = billingDateObj.toTimeString().slice(0, 8);
+
+    const billingItemTable = Billing_itemtable.map((item) => ({
+        ItemId: item.ItemId || 0,
+        ItemName: item.ItemName || "",
+        Billing_Quantity: item.Billing_Quantity || 0,
+        BatchNo: item.BatchNo || "",
+        Exp_Date: item.Exp_Date || "",
+        Unit_Price: item.Unit_Price || 0,
+        BoxName: item.BoxName || "",
+        Amount: item.Amount || 0,
+        Total: item.Total || 0,
+        Reimbursable: item.isReimbursable || false,
+
+        // ✅ include GST fields for saving and printing
+        GST: item.GST || 0,
+        CGST: item.CGST || 0,
+        SGST: item.SGST || 0,
+        GST_Type: item.GST_Type || "",
+        GST_Value: item.GST_Value || 0,
+           CompanyShort: item.CompanyShort || "",
+      }));
+
+    const sendData = {
+      systemName,
+      SelectedPatient_list,
+      Billing_date: formattedDate,
+      Billing_time: formattedTime,
+      Billpay_method: billAmount,
+      Bill_Items: summary,
+      User_Name: UserData.username,
+      location: UserData.location,
+      viewType,
+      Billing_itemtable: billingItemTable,
+      Paytype: Paytype.isCash === "Yes" ? "Cash" : "Credit",
+      StoreLocation: 3, // IP Store
+      Remarks: Remarks || "",
+      Chosendocid: Chosendocid,
+      viewType : viewType
+    };
+
+    console.log("📤 Sending Walk-In IP billing data:", sendData);
+
+    const response = await axios.post(
+      `${UrlLink}DrugAdminstrations/New_IP_Walkin_Billing_link`,
+      sendData,
+      {
+        headers: { "Content-Type": "application/json" },
+        signal: abortControllerRef.current.signal,
+      }
+    );
+
+    console.log("✅ Walk-in IP Billing response:", response.data);
+
+    if (response.data.status === "success") {
+      const { InvoiceNo, ReceiptNo } = response.data;
+      setPostInvoice(InvoiceNo);
+      setReceiptNo(ReceiptNo);
+      setIsPrintButtonVisible(false);
+
+      dispatchvalue({
+        type: "toast",
+        value: { message: "Walk-in Billing saved successfully!", type: "success" },
+      });
+
+      // ✅ Prepare data for local print
+      const printData = {
+        ...sendData,
+        InvoiceNo,
+        ReceiptNo,
+        Hospital_Name: "KARUNA MEDICAL COLLEGE HOSPITAL",
+        Clinic_DoorNo: ClinicDetials?.Clinic_DoorNo || "23",
+        Clinic_Street: ClinicDetials?.Clinic_Street || "Vilayodi",
+        Clinic_Area: ClinicDetials?.Clinic_Area || "Chittur",
+        Clinic_City: ClinicDetials?.Clinic_City || "Palakkad",
+        Clinic_State: ClinicDetials?.Clinic_State || "Kerala, 678103",
+        Clinic_LandlineNo: ClinicDetials?.Clinic_LandlineNo || "04923-221791",
+        Clinic_PhoneNo: ClinicDetials?.Clinic_PhoneNo || "8348397848",
+        DrugLicenseNoOne: ClinicDetials?.DrugLicenseNoOne || "",
+        print: "IP_Walkin_print",
+      };
+
+      console.log("🖨️ Sending Walk-in IP print job:", printData);
+
+      try {
+        const printResponse = await fetch("http://localhost:5000/print-job", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(printData),
+        });
+
+        const printResult = await printResponse.json();
+
+        if (printResponse.ok) {
+          console.log("✅ Walk-in IP Print job sent successfully:", printResult);
+        } else {
+          console.error("❌ Walk-in IP Print job failed:", printResult);
+          dispatchvalue({
+            type: "toast",
+            value: { message: "Print job failed!", type: "warn" },
+          });
+        }
+      } catch (printErr) {
+        console.error("🖨️ Local print error:", printErr);
+        dispatchvalue({
+          type: "toast",
+          value: { message: "Local printer not reachable", type: "warn" },
+        });
+      }
+    } else {
+      dispatchvalue({
+        type: "toast",
+        value: {
+          message: response.data.message || "Error saving Walk-in billing data",
+          type: "error",
+        },
+      });
+    }
+  } catch (error) {
+    if (axios.isCancel(error)) {
+      console.log("Request canceled:", error.message);
+    } else {
+      console.error("❌ Walk-in Billing error:", error);
+      dispatchvalue({
+        type: "toast",
+        value: { message: "Failed to save Walk-in billing data", type: "error" },
+      });
+    }
+  } finally {
+    setIsSubmitting(false);
+    abortControllerRef.current = null;
+  }
+};
+
+const WalkinSavealldata = async () => {
+  // Prevent multiple submissions
+  if (isSubmitting) {
+    dispatchvalue({
+      type: "toast",
+      value: { message: "Submission in progress...", type: "warn" },
+    });
+    return;
+  }
+
+  if (billAmount.length === 0 && Paytype.isCash === "Yes") {
+    dispatchvalue({
+      type: "toast",
+      value: { message: "Enter Bill Payment Details", type: "warn" },
+    });
+    return;
+  }
+
+  if (!SelectedPatient_list?.PatientName) {
+    dispatchvalue({
+      type: "toast",
+      value: { message: "Enter Patient Name", type: "warn" },
+    });
+    return;
+  }
+
+  // Create new AbortController for this request
+  abortControllerRef.current = new AbortController();
+  setIsSubmitting(true);
+
+  try {
+    const billingDateObj = new Date(Billing_date);
+    const formattedDate = billingDateObj.toISOString().slice(0, 10);
+    const formattedTime = billingDateObj.toTimeString().slice(0, 8);
+
+    const billingItemTable = Billing_itemtable.map((item) => ({
+      ItemId: item.ItemId || 0,
+      ItemName: item.ItemName || "",
+      Billing_Quantity: item.Billing_Quantity || 0,
+      BatchNo: item.BatchNo || "",
+      Exp_Date: item.Exp_Date || "",
+      Unit_Price: item.Unit_Price || 0,
+      BoxName: item.BoxName || "",
+      Amount: item.Amount || 0,
+      Total: item.Total || 0,
+      Reimbursable: item.isReimbursable || false,
+      GST: item.GST || 0,
+      CGST: item.CGST || 0,
+      SGST: item.SGST || 0,
+      GST_Type: item.GST_Type || "",
+      GST_Value: item.GST_Value || 0,
+         CompanyShort: item.CompanyShort || "",
+    }));
+
+    const sendData = {
+      systemName,
+      SelectedPatient_list,
+      Billing_date: formattedDate,
+      Billing_time: formattedTime,
+      Billpay_method: billAmount,
+      Bill_Items: summary,
+      User_Name: UserData.username,
+      location: UserData.location,
+      viewType,
+      Billing_itemtable: billingItemTable,
+      Paytype: Paytype.isCash === "Yes" ? "Cash" : "Credit",
+      StoreLocation: 3,
+      Remarks: Remarks || "",
+      Chosendocid,
+    };
+
+    console.log("📤 Sending Walk-In IP billing data:", sendData);
+
+    const response = await axios.post(
+      `${UrlLink}DrugAdminstrations/New_IP_Walkin_Billing_link`,
+      sendData,
+      {
+        headers: { "Content-Type": "application/json" },
+        signal: abortControllerRef.current.signal,
+      }
+    );
+
+    console.log("✅ Walk-in IP Billing response:", response.data);
+
+    if (response.data.status === "success") {
+      const { InvoiceNo, ReceiptNo } = response.data;
+      setPostInvoice(InvoiceNo);
+      setReceiptNo(ReceiptNo);
+      setIsPrintButtonVisible(false);
+
+      dispatchvalue({
+        type: "toast",
+        value: { message: "Walk-in Billing saved successfully!", type: "success" },
+      });
+
+      // Prepare local print data here if needed
+    }
+  } catch (error) {
+    if (axios.isCancel(error)) {
+      console.log("⚠ Request aborted:", error.message);
+    } else {
+      console.log("❌ Error saving Walk-in billing:", error);
+      dispatchvalue({
+        type: "toast",
+        value: { message: "Failed to save billing!", type: "error" },
+      });
+    }
+  } finally {
+    setIsSubmitting(false);
+    abortControllerRef.current = null;
+  }
+};
+
+
+
+
+
+const parseYYYYMMDD = (dateStr) => {
+  if (!dateStr) return null;
+
+  const [year, month, day] = dateStr.split("-").map(Number);
+  return new Date(year, month - 1, day); // month starts from 0
+};
+
+
+
+
+
+
+const getExpiryInfo = (expDateStr) => {
+  const expiryDate = parseYYYYMMDD(expDateStr);
+  if (!expiryDate) return { daysLeft: null, color: "" };
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0); // remove time
+
+  const diffTime = expiryDate.getTime() - today.getTime();
+  const daysLeft = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+  let color = "green";
+
+  if (daysLeft <= 30) color = "red";
+  else if (daysLeft <= 60) color = "orange";
+  else if (daysLeft <= 90) color = "yellow";
+
+  return { daysLeft, color };
+};
+
+
+
+ 
+  // Print handler
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+    onBeforePrint: () => console.log("Printing started..."),
+    onAfterPrint: async () => {
+      navigate("/Home/Pharmacy");
+      dispatchvalue({ type: "HrFolder", value: "IPPharm" });
+      dispatchvalue({ type: "setPreviousFolder", value: 'NewIPPharmacyBilling' });
+      dispatchvalue({ type: "showMenu", value: true });
+    },
+  });
+
+  const handlePrintClose = () => {
+    navigate("/Home/Pharmacy");
+    dispatchvalue({ type: "HrFolder", value: "IPPharm" });
+    dispatchvalue({ type: "setPreviousFolder", value: 'NewIPPharmacyBilling' });
+    dispatchvalue({ type: "showMenu", value: true });
+  }
+
+  const [totalGst, setTotalGST] = useState(0);
+  // console(setTotalGST,"gstttttttt")
+   useEffect(() => {
+      if (Billing_itemtable && Billing_itemtable.length > 0) {
+        // sum up all GST_Value fields safely
+        const gstSum = Billing_itemtable.reduce((acc, item) => {
+          const value = parseFloat(item.GST_Value) || 0;
+          return acc + value;
+        }, 0);
+        setTotalGST(gstSum);
+      } else {
+        setTotalGST(0);
+      }
+    }, [Billing_itemtable]);
+
+
+
+
+
+      const selectedBatchInfo = getStockid_Name.find(
+    (item) => item.Batch_No === Single_row_data.BatchNo
+  );
+
+  const selectedExpiry = selectedBatchInfo
+    ? getExpiryInfo(selectedBatchInfo.Expiry_Date)
+    : null;
+
+  // Print component
+  // const ForPrintData = () => {
+  //   const formatDateTime = (date) => {
+  //     return date.toISOString().slice(0, 19).replace("T", " ");
+  //   };
+
+  //   return (
+  //     <div className="dotmatrix-container">
+  //       <div ref={componentRef} className="dotmatrix-wrapper">
+  //         <table className="dotmatrix-table">
+  //           <thead>
+  //             <tr>
+  //               <div className="jsfgfdsdfs">
+  //                 <td colSpan="10" className="dotmatrix-header">
+  //                   <div className="dotmatrix-header-content">
+  //                     <div className="dotmatrix-clinic-info">
+  //                       <span>{ClinicDetails?.Cname}</span>
+  //                     </div>
+  //                   </div>
+  //                 </td>
+
+  //                 <td colSpan="10" className="dotmatrix-header">
+  //                   <div className="dotmatrix-clinic-info">
+  //                     <span>
+  //                       {[ClinicDetials.ClinicAddress]
+  //                         .filter((detail) => detail)
+  //                         .join(", ")}
+  //                       ,{" "}
+  //                       {[
+  //                         ClinicDetials.ClinicCity,
+  //                         ClinicDetials.ClinicState,
+  //                         ClinicDetials.ClinicCode,
+  //                       ]
+  //                         .filter((detail) => detail)
+  //                         .join(", ")}
+  //                     </span>
+  //                   </div>
+  //                 </td>
+  //               </div>
+  //             </tr>
+
+  //             <tr>
+  //               <td colSpan="20" className="dotmatrix-bill-title">
+  //                 IP Pharmacy Billing - {Paytype.isCash === "Yes" ? "Cash Bill" : "Credit Bill"}
+  //               </td>
+  //             </tr>
+
+  //             <table className="info-table">
+  //               <tbody>
+  //                 <tr>
+  //                   <td className="label">Patient Name</td>
+  //                   <td className="value">
+  //                     : {SelectedPatient_list.PatientName}
+  //                   </td>
+  //                   <td className="label-Right">PatientCategory</td>
+  //                   <td className="value-Right">: {SelectedPatient_list?.PatientCategory}</td>
+  //                 </tr>
+  //                 <tr>
+  //                   <td className="label">Patient ID</td>
+  //                   <td className="value">
+  //                     : {SelectedPatient_list.PatientId}
+  //                   </td>
+  //                   {Paytype.isCash === "Yes" ? (
+  //                     <>
+  //                       <td className="label-Right">Receipt No</td>
+  //                       <td className="value-Right">: {ReceiptNo}</td>
+  //                     </>
+  //                   ) : (
+  //                     <>
+  //                       <td className="label-Right">Invoice No</td>
+  //                       <td className="value-Right">: {PostInvoice}</td>
+  //                     </>
+  //                   )}
+  //                 </tr>
+  //                 <tr>
+  //                   <td className="label">Register ID</td>
+  //                   <td className="value">
+  //                     : {SelectedPatient_list.RegistrationId}
+  //                   </td>
+  //                   <td className="label-Right">Date</td>
+  //                   <td className="value-Right">
+  //                     : {formatDateTime(Billing_date)}
+  //                   </td>
+  //                 </tr>
+
+  //                 <tr>
+  //                   <td className="label">Age / Gender</td>
+  //                   <td className="value">
+  //                     : {SelectedPatient_list.PatientAge}
+  //                   </td>
+  //                   <td className="label-Right">Drug Lisence No</td>
+  //                   <td className="value-Right">: KLK-PKD-09/055 | KL-PKD-09/056</td>
+  //                 </tr>
+  //                 <tr>
+  //                   <td className="label">Doctor Name</td>
+  //                   <td className="value">
+  //                     : {SelectedPatient_list.Doctor_name}
+  //                   </td>
+  //                   <td className="label-Right">GST No</td>
+  //                   <td className="value-Right">
+  //                     : 32AABTS4963R2ZT
+  //                   </td>
+  //                 </tr>
+  //                 <tr>
+  //                   <>
+  //                     <td className="label">Invoice No</td>
+  //                     <td className="value">: {PostInvoice}</td>
+  //                   </>
+  //                 </tr>
+  //               </tbody>
+  //             </table>
+  //           </thead>
+
+  //           <tbody>
+  //             <tr>
+  //               <td colSpan="10">
+  //                 <div className="dotmatrix-separator" />
+  //                 <table className="dotmatrix-inner-table">
+  //                   <thead>
+  //                     <tr className="item-header">
+  //                       <th>S.No</th>
+  //                       <tr className="item-header-left">
+  //                         <th>Item</th>
+  //                       </tr>
+  //                       <th>Batch</th>
+  //                       <th>Box Name</th>
+  //                       <th>Exp</th>
+  //                       <th>Qty</th>
+  //                       <th>GST</th>
+  //                       <th style={{ textAlign: "center" }}>MRP</th>
+  //                       <th style={{ textAlign: "center" }}>Rate</th>                        
+  //                       <th style={{ textAlign: "center" }}>Total</th>
+  //                     </tr>
+  //                   </thead>
+  //                   <tbody>
+  //                     {Billing_itemtable.map((med, index) => (
+  //                       <tr key={index}>
+  //                         <td>{med.S_No}</td>
+  //                         <tr className="item-header-left">
+  //                           <td>{med.ItemName}</td>
+  //                         </tr>
+  //                         <td>{med.BatchNo}</td>
+  //                         <td>{med.BoxName}</td>
+  //                         <td>{med.Exp_Date}</td>
+  //                         <td>{med.Billing_Quantity}</td>
+  //                         <td>{med.GST_Value}</td>
+  //                         <td style={{ textAlign: "right" }}>{med.Unit_Price.toFixed(2)}</td>
+  //                         <td style={{ textAlign: "right" }}>{med.Amount}</td>
+  //                         <td className="dotmatrix-align-right" style={{ textAlign: "right" }}>{med.Total}</td>
+  //                       </tr>
+  //                     ))}
+  //                   </tbody>
+  //                 </table>
+  //                 <div className="dotmatrix-separator" />
+  //               </td>
+  //             </tr>
+  //           </tbody>
+
+  //           <tfoot>
+  //             <tr>
+  //               <td colSpan="10">
+  //                 <table className="totals-table">
+  //                   <tbody>
+  //                     <tr>
+  //                       <td className="pharm-label">Amount In Words</td>
+  //                       <td className="pharm-value">
+  //                         : {NumberToWords(+summary.totalAmount)}
+  //                       </td>
+  //                       <td className="pharm-label-right">GST</td>
+  //                       <td className="pharm-value-right">
+  //                         : {totalGst || "0.00"}
+  //                       </td>
+  //                     </tr>
+  //                     <tr>
+  //                       <td className="pharm-label">Billed By</td>
+  //                       <td className="pharm-value">
+  //                         : {UserData?.Employeename}
+  //                       </td>
+  //                       <td className="pharm-label-right">Gross Amount</td>
+  //                       <td className="pharm-value-right">: {summary.Amount}</td>
+  //                     </tr>
+  //                     <tr>
+  //                       <td></td>
+  //                       <td></td>
+  //                       <td className="pharm-label-right">Net Amount</td>
+  //                       <td className="pharm-value-right">: {summary.totalAmount}</td>
+  //                     </tr>
+  //                     <tr>
+  //                       <td></td>
+  //                       <td></td>
+  //                       <td className="pharm-label-right">Paid Amount</td>
+  //                       <td className="pharm-value-right">: {summary.PaidAmount}</td>
+  //                     </tr>
+  //                   </tbody>
+  //                 </table>
+
+  //                 <div className="dotmatrix-separator" />
+  //                 <div className="dotmatrix-footer-note">
+  //                   Medicine refund is possible within 7 days of its original bill.
+  //                 </div>
+  //                 <div className="dotmatrix-footer-note">
+  //                   Medicines/injections needs cold storage, once sold cannot be taken back.
+  //                 </div>
+  //               </td>
+  //             </tr>
+  //           </tfoot>
+  //         </table>
+  //       </div>
+
+  //       <div className="dotmatrix-buttons">
+  //         <button onClick={handlePrint}>Print</button>
+  //         <button onClick={handlePrintClose}>Close</button>
+  //       </div>
+  //     </div>
+  //   );
+  // };
+
+
+  // const ForPrintData = () => {
+
+  //   console.log('Billing_itemtable--',Billing_itemtable);
+    
+  //   const formatDateTime = (date) => {
+  //     if (!date) return "";
+  //     const d = new Date(date);
+  //     return d.toISOString().slice(0, 19).replace("T", " ");
+  //   };
+  
+  //   const formatDate = (date) => {
+  //     if (!date) return "";
+  //     const d = new Date(date);
+  //     return d.toISOString().slice(2, 10).replace(/-/g, "-"); // YY-MM-DD format
+  //   };
+  
+  //   const formatTime = (date) => {
+  //     if (!date) return "";
+  //     const d = new Date(date);
+  //     return d.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: false });
+  //   };
+  
+  //   // Safe number formatting function
+  //   const formatNumber = (value, defaultValue = "0.00") => {
+  //     if (value === null || value === undefined || value === "") return defaultValue;
+      
+  //     // Convert to number
+  //     const num = parseFloat(value);
+  //     if (isNaN(num)) return defaultValue;
+      
+  //     return num.toFixed(2);
+  //   };
+  
+  //   // Safe parse float function
+  //   const safeParseFloat = (value) => {
+  //     if (value === null || value === undefined || value === "") return 0;
+  //     const num = parseFloat(value);
+  //     return isNaN(num) ? 0 : num;
+  //   };
+  
+  //   // Calculate totals
+  //   const calculateTotals = () => {
+  //     let taxable = 0;
+  //     let totalGST = 0;
+  //     let totalCGST = 0;
+  //     let totalSGST = 0;
+  //     let grossAmount = 0;
+  
+  //     Billing_itemtable.forEach(item => {
+  //       const total = safeParseFloat(item.Total);
+  //       const gstPercent = safeParseFloat(item.GST_Value);
+        
+  //       // Calculate taxable amount
+  //       const itemTaxable = gstPercent > 0 ? total / (1 + gstPercent / 100) : total;
+  //       const itemGST = total - itemTaxable;
+        
+  //       taxable += itemTaxable;
+  //       totalGST += itemGST;
+  //       totalCGST += itemGST / 2;
+  //       totalSGST += itemGST / 2;
+  //       grossAmount += total;
+  //     });
+  
+  //     return {
+  //       taxable: formatNumber(taxable),
+  //       totalGST: formatNumber(totalGST),
+  //       totalCGST: formatNumber(totalCGST),
+  //       totalSGST: formatNumber(totalSGST),
+  //       grossAmount: formatNumber(grossAmount)
+  //     };
+  //   };
+  
+  //   const totals = calculateTotals();
+  
+  //   // Get summary values safely
+  //   const summaryAmount = safeParseFloat(summary?.Amount);
+  //   const summaryTotalAmount = safeParseFloat(summary?.totalAmount);
+  //   const summaryPaidAmount = safeParseFloat(summary?.PaidAmount);
+  
+  //   return (
+  //     <div className="dotmatrix-container">
+  //       <style>
+  //         {`
+  //         /* DOT MATRIX PRINTER OPTIMIZATION */
+  //         @media print {
+  //           * {
+  //             -webkit-print-color-adjust: exact !important;
+  //             color-adjust: exact !important;
+  //             print-color-adjust: exact !important;
+  //           }
+            
+  //           body {
+  //             margin: 0 !important;
+  //             padding: 0 !important;
+  //             background: white !important;
+  //             font-size: 10pt !important;
+  //             font-family: 'Courier New', monospace !important;
+  //             line-height: 1.1 !important;
+  //             width: 190mm !important;
+  //             height: auto !important;
+  //           }
+            
+  //           html, body {
+  //             height: auto !important;
+  //             min-height: auto !important;
+  //           }
+            
+  //           .dotmatrix-container {
+  //             width: 190mm !important;
+  //             min-height: auto !important;
+  //             height: auto !important;
+  //             margin: 0 !important;
+  //             padding: 0 !important;
+  //             page-break-inside: avoid !important;
+  //           }
+            
+  //           .dotmatrix-wrapper {
+  //             position: relative !important;
+  //             width: 100% !important;
+  //             max-width: 100% !important;
+  //             margin: 0 auto !important;
+  //             padding: 2mm !important;
+  //             background: white !important;
+  //             page-break-inside: avoid !important;
+  //             border: none !important;
+  //             box-shadow: none !important;
+  //             height: auto !important;
+  //             min-height: auto !important;
+  //           }
+            
+  //           .dotmatrix-buttons {
+  //             display: none !important;
+  //           }
+            
+  //           /* Remove any page breaks */
+  //           * {
+  //             page-break-before: avoid !important;
+  //             page-break-after: avoid !important;
+  //             page-break-inside: avoid !important;
+  //           }
+            
+  //           /* Ensure all text prints */
+  //           * {
+  //             color: black !important;
+  //             -webkit-text-stroke: 0.1px black !important;
+  //             text-shadow: 0.1px 0 black !important;
+  //           }
+            
+  //           /* Thin borders for tables */
+  //           table, tr, td, th {
+  //             border-color: black !important;
+  //             border-width: 0.3pt !important;
+  //           }
+            
+  //           /* Prevent text from being cut off */
+  //           td, th {
+  //             overflow: visible !important;
+  //             white-space: normal !important;
+  //           }
+  //         }
+          
+  //         /* Screen display - Wider paper */
+  //         .dotmatrix-container {
+  //           font-family: 'Courier New', monospace;
+  //           font-size: 9pt;
+  //           line-height: 1.1;
+  //           width: 190mm; /* Wider paper */
+  //           height: auto;
+  //           min-height: auto;
+  //           margin: 0 auto;
+  //           background: white;
+  //           color: black;
+  //           padding: 0;
+  //         }
+          
+  //         .dotmatrix-wrapper {
+  //           width: 100%;
+  //           padding: 2mm;
+  //           box-sizing: border-box;
+  //           height: auto;
+  //         }
+          
+  //         /* Clinic Header */
+  //         .clinic-header {
+  //           text-align: center;
+  //           margin-bottom: 1mm;
+  //           line-height: 1.1;
+  //         }
+          
+  //         .clinic-name {
+  //           font-weight: bold;
+  //           font-size: 11pt;
+  //           margin-bottom: 0.3mm;
+  //           padding: 0.3mm 0;
+  //           letter-spacing: 0.05em;
+  //         }
+          
+  //         .clinic-address {
+  //           font-size: 8pt;
+  //           margin-bottom: 0.3mm;
+  //           line-height: 1.1;
+  //           padding: 0.3mm 0;
+  //         }
+          
+  //         .clinic-contact {
+  //           font-size: 8pt;
+  //           margin-bottom: 0.5mm;
+  //           line-height: 1.1;
+  //           padding: 0.3mm 0;
+  //         }
+          
+  //         /* Bill Title */
+  //         .bill-title {
+  //           text-align: center;
+  //           font-weight: bold;
+  //           font-size: 10pt;
+  //           padding: 0.5mm 0;
+  //           border-bottom: 0.5pt solid #000;
+  //           border-top: 0.5pt solid #000;
+  //           margin: 1.5mm 0;
+  //         }
+          
+  //         /* Patient Info Table */
+  //         .patient-info-table {
+  //           width: 100%;
+  //           border-collapse: collapse;
+  //           margin-bottom: 1.5mm;
+  //           font-size: 8pt;
+  //         }
+          
+  //         .patient-info-table td {
+  //           padding: 0.5mm 1mm;
+  //           vertical-align: baseline;
+  //           line-height: 1.1;
+  //         }
+          
+  //         .label-left {
+  //           width: 15%;
+  //           text-align: left;
+  //           white-space: nowrap;
+  //           font-weight: bold;
+  //         }
+          
+  //         .value-left {
+  //           width: 35%;
+  //           text-align: left;
+  //           padding-right: 1mm;
+  //         }
+          
+  //         .label-right {
+  //           width: 15%;
+  //           text-align: left;
+  //           white-space: nowrap;
+  //           font-weight: bold;
+  //         }
+          
+  //         .value-right {
+  //           width: 35%;
+  //           text-align: left;
+  //         }
+          
+  //         /* Items Table - THIN BORDERS */
+  //         .items-table-container {
+  //           margin: 1.5mm 0;
+  //           overflow: visible;
+  //         }
+          
+  //         .items-table {
+  //           width: 100%;
+  //           border-collapse: collapse;
+  //           border: 0.3pt solid #000;
+  //           font-size: 8pt;
+  //           table-layout: fixed;
+  //         }
+          
+  //         .items-table th {
+  //           text-align: left;
+  //           padding: 0.8mm;
+  //           font-weight: bold;
+  //           border: 0.3pt solid #000;
+  //           background-color: #f8f8f8;
+  //           white-space: nowrap;
+  //         }
+          
+  //         .items-table td {
+  //           padding: 0.8mm;
+  //           border: 0.3pt solid #000;
+  //           vertical-align: top;
+  //           word-wrap: break-word;
+  //           overflow: visible;
+  //         }
+          
+  //         /* Optimized column widths for wider paper */
+  //         .col-sno { width: 3%; }
+  //         .col-item { width: 28%; }
+  //         .col-batch { width: 10%; }
+  //         .col-box { width: 4%; }
+  //         .col-exp { width: 5%; }
+  //         .col-qty { width: 4%; }
+  //         .col-rate { width: 7%; }
+  //         .col-mrp { width: 7%; }
+  //         .col-gst { width: 5%; }
+  //         .col-total { width: 7%; }
+          
+  //         .align-right {
+  //           text-align: right;
+  //           padding-right: 1mm !important;
+  //         }
+          
+  //         .align-center {
+  //           text-align: center;
+  //         }
+          
+  //         /* Amount in Words */
+  //         .amount-words-section {
+  //           margin: 1.5mm 0;
+  //           padding: 1mm;
+  //           border: 0.3pt solid #000;
+  //           font-size: 8pt;
+  //           line-height: 1.1;
+  //           background-color: #fafafa;
+  //           word-break: break-word;
+  //         }
+          
+  //         .amount-words-label {
+  //           font-weight: bold;
+  //           display: inline;
+  //           margin-right: 1mm;
+  //           white-space: nowrap;
+  //         }
+          
+  //         .amount-words-value {
+  //           font-style: italic;
+  //           display: inline;
+  //         }
+          
+  //         /* Summary Table - THIN BORDERS */
+  //         .summary-table-container {
+  //           margin: 1.5mm 0;
+  //         }
+          
+  //         .summary-table {
+  //           width: 100%;
+  //           border-collapse: collapse;
+  //           border: 0.3pt solid #000;
+  //           font-size: 8pt;
+  //           table-layout: fixed;
+  //         }
+          
+  //         .summary-table th {
+  //           text-align: left;
+  //           padding: 0.8mm;
+  //           font-weight: bold;
+  //           border: 0.3pt solid #000;
+  //           background-color: #f8f8f8;
+  //         }
+          
+  //         .summary-table td {
+  //           padding: 0.8mm;
+  //           border: 0.3pt solid #000;
+  //           vertical-align: top;
+  //         }
+          
+  //         .summary-col-label { width: 30%; }
+  //         .summary-col-value { width: 20%; }
+  //         .summary-col-label-right { width: 25%; }
+  //         .summary-col-value-right { width: 25%; text-align: right; padding-right: 1mm !important; }
+          
+  //         /* Grand Total */
+  //         .grand-total-container {
+  //           margin: 1.5mm 0;
+  //           text-align: center;
+  //           padding: 1mm;
+  //           border: 0.3pt solid #000;
+  //           font-weight: bold;
+  //           font-size: 10pt;
+  //           background-color: #f0f0f0;
+  //         }
+          
+  //         /* Footer Notes */
+  //         .footer-notes {
+  //           margin-top: 2mm;
+  //           font-size: 7pt;
+  //           text-align: center;
+  //           padding-top: 1mm;
+  //           border-top: 0.3pt solid #000;
+  //           line-height: 1.1;
+  //         }
+          
+  //         /* Buttons - Screen only */
+  //         .dotmatrix-buttons {
+  //           margin-top: 5mm;
+  //           display: flex;
+  //           gap: 5mm;
+  //           justify-content: center;
+  //         }
+          
+  //         .dotmatrix-buttons button {
+  //           padding: 2mm 4mm;
+  //           background: black;
+  //           color: white;
+  //           border: none;
+  //           border-radius: 1mm;
+  //           cursor: pointer;
+  //           font-family: inherit;
+  //           font-size: 9pt;
+  //           min-width: 20mm;
+  //         }
+          
+  //         /* Text visibility enhancements */
+  //         * {
+  //           -webkit-text-stroke: 0.1px;
+  //           text-rendering: optimizeLegibility;
+  //         }
+          
+  //         /* Ensure text doesn't get cut off */
+  //         td, th {
+  //           overflow: visible !important;
+  //           max-height: none !important;
+  //         }
+          
+  //         /* Screen preview */
+  //         @media screen {
+  //           .dotmatrix-container {
+  //             border: 0.3pt solid #ccc;
+  //             box-shadow: 0 0 2mm rgba(0,0,0,0.1);
+  //             margin-bottom: 10mm;
+  //           }
+  //         }
+  //         `}
+  //       </style>
+  
+  //       <div ref={componentRef} className="dotmatrix-wrapper">
+  //         {/* Clinic Header */}
+  //         <div className="clinic-header">
+  //           <div className="clinic-name">
+  //             {ClinicDetails?.Cname || "KARUNA MEDICAL COLLEGE HOSPITAL"}
+  //           </div>
+  //           <div className="clinic-address">
+  //             {[ClinicDetials?.ClinicAddress, ClinicDetials?.ClinicCity, 
+  //               ClinicDetials?.ClinicState, ClinicDetials?.ClinicCode]
+  //               .filter(Boolean)
+  //               .join(", ")}
+  //           </div>
+  //           <div className="clinic-contact">
+  //             {ClinicDetials?.ClinicPhoneNo || "04923-221791"} | {ClinicDetials?.ClinicMobileNo || "8348397848"} | 9496972555
+  //           </div>
+  //         </div>
+  
+  //         {/* Bill Title */}
+  //         <div className="bill-title">
+  //           OP PHARMACY BILL
+  //         </div>
+  
+  //         {/* Patient Information */}
+  //         <table className="patient-info-table">
+  //           <tbody>
+  //             <tr>
+  //               <td className="label-left">PATIENT:</td>
+  //               <td className="value-left" style={{fontWeight: 'bold'}}>
+  //                 {SelectedPatient_list?.PatientName || ""}
+  //               </td>
+  //               <td className="label-right">INVOICE:</td>
+  //               <td className="value-right" style={{fontWeight: 'bold'}}>
+  //                 {PostInvoice || ""}
+  //               </td>
+  //             </tr>
+  //             <tr>
+  //               <td className="label-left">ID:</td>
+  //               <td className="value-left">{SelectedPatient_list?.PatientId || ""}</td>
+  //               <td className="label-right">RECEIPT:</td>
+  //               <td className="value-right">{ReceiptNo || ""}</td>
+  //             </tr>
+  //             <tr>
+  //               <td className="label-left">AGE/GENDER:</td>
+  //               <td className="value-left">
+  //                 {SelectedPatient_list?.PatientAge || ""}/{SelectedPatient_list?.PatientGender || ""}
+  //               </td>
+  //               <td className="label-right">DATE/TIME:</td>
+  //               <td className="value-right">{formatDate(Billing_date)} {formatTime(Billing_date)}</td>
+  //             </tr>
+  //             <tr>
+  //               <td className="label-left">DOCTOR:</td>
+  //               <td className="value-left">{SelectedPatient_list?.Doctor_name || ""}</td>
+  //               <td className="label-right">PHONE:</td>
+  //               <td className="value-right">{SelectedPatient_list?.PhoneNumber || ""}</td>
+  //             </tr>
+  //             <tr>
+  //               <td className="label-left">DRUG LIC:</td>
+  //               <td className="value-left" style={{fontSize: '7pt'}}>
+  //                 KLK-PKD-09/055 | KL-PKD-09/056
+  //               </td>
+  //               <td className="label-right">GST NO:</td>
+  //               <td className="value-right" style={{fontSize: '7pt'}}>
+  //                 32AABTS4963R2ZT
+  //               </td>
+  //             </tr>
+  //           </tbody>
+  //         </table>
+  
+  //         {/* Items Table */}
+  //         <div className="items-table-container">
+  //           <table className="items-table">
+  //             <thead>
+  //               <tr>
+  //                 <th className="col-sno align-center">SN</th>
+  //                 <th className="col-item">ITEMS</th>
+  //                 <th className="col-batch">MFD</th>
+  //                 <th className="col-batch">BATCH</th>
+  //                 <th className="col-box align-center">BOX</th>
+  //                 <th className="col-exp align-center">EXP</th>
+  //                 <th className="col-qty align-center">QTY</th>
+  //                 <th className="col-rate align-right">RATE</th>
+  //                 <th className="col-mrp align-right">MRP</th>
+  //                 <th className="col-gst align-center">GST%</th>
+  //                 <th className="col-total align-right">TOTAL</th>
+  //               </tr>
+  //             </thead>
+  //             <tbody>
+  //               {Billing_itemtable.map((med, index) => {
+  //                 // Format expiry date
+  //                 const expDate = med.Exp_Date || "";
+  //                 const formattedExp = expDate && expDate.length >= 7 
+  //                   ? `${expDate.slice(2, 4)}/${expDate.slice(5, 7)}` 
+  //                   : "";
+                  
+  //                 // Item name - full display with wrapping
+  //                 const itemName = med.ItemName || "";
+                  
+  //                 return (
+  //                   <tr key={index}>
+  //                     <td className="align-center">{index + 1}</td>
+  //                     <td style={{lineHeight: '1.1', wordBreak: 'break-word'}}>{itemName}</td>
+  //                     <td >{med.CompanyShort || ""}</td>
+  //                     <td>{med.BatchNo || ""}</td>
+  //                     <td className="align-center">{med.BoxName || ""}</td>
+  //                     <td className="align-center">{formattedExp}</td>
+  //                     <td className="align-center">{med.Billing_Quantity || 0}</td>
+  //                     <td className="align-right">{formatNumber(med.Unit_Price)}</td>
+  //                     <td className="align-right">{formatNumber(med.Amount)}</td>
+  //                     <td className="align-center">{med.GST_Value || 0}%</td>
+  //                     <td className="align-right">{formatNumber(med.Total)}</td>
+  //                   </tr>
+  //                 );
+  //               })}
+  //             </tbody>
+  //           </table>
+  //         </div>
+  
+  //         {/* Amount in Words */}
+  //         <div className="amount-words-section">
+  //           <span className="amount-words-label">AMOUNT IN WORDS:</span>
+  //           <span className="amount-words-value">
+  //             {NumberToWords ? NumberToWords(summaryTotalAmount) : "Zero Rupees Only"}
+  //           </span>
+  //         </div>
+  
+  //         {/* Summary Table */}
+  //         <div className="summary-table-container">
+  //           <table className="summary-table">
+  //             <thead>
+  //               <tr>
+  //                 <th colSpan="4" style={{ textAlign: 'center', fontSize: '9pt' }}>
+  //                    AMOUNT SUMMARY
+  //                 </th>
+  //               </tr>
+  //             </thead>
+  //             <tbody>
+  //               <tr>
+  //                 <td className="summary-col-label">TAXABLE AMOUNT</td>
+  //                 <td className="summary-col-value">{totals.taxable}</td>
+  //                 <td className="summary-col-label-right">TOTAL GST</td>
+  //                 <td className="summary-col-value-right">{totals.totalGST}</td>
+  //               </tr>
+  //               <tr>
+  //                 <td className="summary-col-label">CGST AMOUNT</td>
+  //                 <td className="summary-col-value">{totals.totalCGST}</td>
+  //                 <td className="summary-col-label-right">GROSS AMOUNT</td>
+  //                 <td className="summary-col-value-right">{formatNumber(summaryAmount)}</td>
+  //               </tr>
+  //               <tr>
+  //                 <td className="summary-col-label">SGST AMOUNT</td>
+  //                 <td className="summary-col-value">{totals.totalSGST}</td>
+  //                 <td className="summary-col-label-right">NET AMOUNT</td>
+  //                 <td className="summary-col-value-right">{formatNumber(summaryTotalAmount)}</td>
+  //               </tr>
+  //               <tr>
+  //                 <td className="summary-col-label">BILLED BY</td>
+  //                 <td className="summary-col-value">{UserData?.Employeename || ""}</td>
+  //                 <td className="summary-col-label-right">PAID AMOUNT</td>
+  //                 <td className="summary-col-value-right">{formatNumber(summaryPaidAmount)}</td>
+  //               </tr>
+  //             </tbody>
+  //           </table>
+  //         </div>
+  
+  //         {/* Grand Total */}
+  //         <div className="grand-total-container">
+  //           GRAND TOTAL : {formatNumber(summaryTotalAmount)}
+  //         </div>
+  
+  //         {/* Footer Notes */}
+  //         <div className="footer-notes">
+  //           <div>** MEDICINE REFUND POSSIBLE WITHIN 7 DAYS OF ORIGINAL BILL **</div>
+  //           <div>** COLD STORAGE MEDICINES CANNOT BE RETURNED **</div>
+  //           <div style={{ marginTop: '1mm', fontWeight: 'bold', fontSize: '8pt' }}>
+  //             PHARMACIST SIGNATURE: _________________________
+  //           </div>
+  //         </div>
+  //       </div>
+  
+  //       <div className="dotmatrix-buttons">
+  //         <button onClick={handlePrint}>PRINT</button>
+  //         <button onClick={handlePrintClose}>CLOSE</button>
+  //       </div>
+  //     </div>
+  //   );
+  // };
+const ForPrintData = () => {
+  const formatDateTime = (date) => {
+    if (!date) return "";
+    const d = new Date(date);
+    return d.toISOString().slice(0, 19).replace("T", " ");
+  };
+
+  const formatDate = (date) => {
+    if (!date) return "";
+    const d = new Date(date);
+    return d.toISOString().slice(2, 10).replace(/-/g, "-"); // YY-MM-DD format
+  };
+
+  const formatTime = (date) => {
+    if (!date) return "";
+    const d = new Date(date);
+    return d.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: false });
+  };
+
+  // Safe number formatting function
+  const formatNumber = (value, defaultValue = "0.00") => {
+    if (value === null || value === undefined || value === "") return defaultValue;
+    
+    // Convert to number
+    const num = parseFloat(value);
+    if (isNaN(num)) return defaultValue;
+    
+    return num.toFixed(2);
+  };
+
+  // Safe parse float function
+  const safeParseFloat = (value) => {
+    if (value === null || value === undefined || value === "") return 0;
+    const num = parseFloat(value);
+    return isNaN(num) ? 0 : num;
+  };
+
+  // Calculate totals
+  const calculateTotals = () => {
+    let taxable = 0;
+    let totalGST = 0;
+    let totalCGST = 0;
+    let totalSGST = 0;
+    let grossAmount = 0;
+
+    Billing_itemtable.forEach(item => {
+      const total = safeParseFloat(item.Total);
+      const gstPercent = safeParseFloat(item.GST_Value);
+      
+      // Calculate taxable amount
+      const itemTaxable = gstPercent > 0 ? total / (1 + gstPercent / 100) : total;
+      const itemGST = total - itemTaxable;
+      
+      taxable += itemTaxable;
+      totalGST += itemGST;
+      totalCGST += itemGST / 2;
+      totalSGST += itemGST / 2;
+      grossAmount += total;
+    });
+
+    return {
+      taxable: formatNumber(taxable),
+      totalGST: formatNumber(totalGST),
+      totalCGST: formatNumber(totalCGST),
+      totalSGST: formatNumber(totalSGST),
+      grossAmount: formatNumber(grossAmount)
+    };
+  };
+
+  const totals = calculateTotals();
+
+  // Get summary values safely
+  const summaryAmount = safeParseFloat(summary?.Amount);
+  const summaryTotalAmount = safeParseFloat(summary?.totalAmount);
+  const summaryPaidAmount = safeParseFloat(summary?.PaidAmount);
+
+  return (
+    <div className="dotmatrix-container">
+      <style>
+        {`
+        /* DIMENSIONS */
+        /* Paper: 21cm width, Content: 20cm with 0.5cm margins */
+        
+        /* DOT MATRIX PRINTER OPTIMIZATION */
+        @media print {
+          * {
+            -webkit-print-color-adjust: exact !important;
+            color-adjust: exact !important;
+            print-color-adjust: exact !important;
+          }
+          
+          body {
+            margin: 0 !important;
+            padding: 0 !important;
+            background: white !important;
+            font-size: 10pt !important;
+            font-family: 'Courier New', monospace !important;
+            line-height: 1.1 !important;
+            width: 210mm !important; /* 21cm */
+            height: auto !important;
+          }
+          
+          html, body {
+            height: auto !important;
+            min-height: auto !important;
+          }
+          
+          .dotmatrix-container {
+            width: 210mm !important; /* 21cm paper width */
+            min-height: auto !important;
+            height: auto !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            page-break-inside: avoid !important;
+          }
+          
+          .dotmatrix-wrapper {
+            position: relative !important;
+            width: 200mm !important; /* 20cm content width */
+            max-width: 200mm !important;
+            margin: 0 auto !important;
+            padding: 2mm 5mm !important; /* 0.5cm left/right margins */
+            background: white !important;
+            page-break-inside: avoid !important;
+            border: none !important;
+            box-shadow: none !important;
+            height: auto !important;
+            min-height: 297mm !important; /* Fixed A4 height */
+          }
+          
+          /* Main bill box container */
+          .bill-box-container {
+            border: 1.5pt solid #000 !important;
+            min-height: 280mm !important;
+            height: auto !important;
+            padding: 3mm !important;
+            position: relative !important;
+            margin: 0 !important;
+            background: white !important;
+          }
+          
+          .main-content {
+            min-height: calc(280mm - 65mm) !important; /* Total box height minus footer */
+            margin-bottom: 1mm !important;
+          }
+          
+          .fixed-footer {
+            position: absolute !important;
+            bottom: 3mm !important;
+            left: 3mm !important;
+            right: 3mm !important;
+            width: calc(100% - 6mm) !important;
+            background: white !important;
+            page-break-inside: avoid !important;
+          }
+          
+          .dotmatrix-buttons {
+            display: none !important;
+          }
+          
+          /* Remove any page breaks */
+          * {
+            page-break-before: avoid !important;
+            page-break-after: avoid !important;
+            page-break-inside: avoid !important;
+          }
+          
+          /* Ensure all text prints */
+          * {
+            color: black !important;
+            -webkit-text-stroke: 0.1px black !important;
+            text-shadow: 0.1px 0 black !important;
+          }
+          
+          /* Thin borders for tables */
+          table, tr, td, th {
+            border-color: black !important;
+            border-width: 0.3pt !important;
+          }
+          
+          /* Prevent text from being cut off */
+          td, th {
+            overflow: visible !important;
+            white-space: normal !important;
+          }
+        }
+        
+        /* Screen display - 21cm width */
+        .dotmatrix-container {
+          font-family: 'Courier New', monospace;
+          font-size: 9pt;
+          line-height: 1.1;
+          width: 210mm; /* 21cm paper width */
+          height: auto;
+          min-height: auto;
+          margin: 0 auto;
+          background: white;
+          color: black;
+          padding: 0;
+          position: relative;
+        }
+        
+        .dotmatrix-wrapper {
+          width: 200mm; /* 20cm content width */
+          padding: 2mm 5mm; /* 0.5cm left/right margins */
+          box-sizing: border-box;
+          height: auto;
+          min-height: 297mm; /* A4 height */
+          margin: 0 auto;
+          position: relative;
+        }
+        
+        /* Main bill box container */
+        .bill-box-container {
+          border: 1.5pt solid #000;
+          min-height: 280mm;
+          height: auto;
+          padding: 3mm;
+          position: relative;
+          margin: 0;
+          background: white;
+        }
+        
+        .main-content {
+          min-height: calc(280mm - 65mm); /* Total box height minus footer */
+          margin-bottom: 1mm;
+        }
+        
+        .fixed-footer {
+          position: absolute;
+          bottom: 3mm;
+          left: 3mm;
+          right: 3mm;
+          width: calc(100% - 6mm);
+          background: white;
+        }
+        
+        /* Clinic Header - Compact */
+        .clinic-header {
+          text-align: center;
+          margin-bottom: 1mm;
+          line-height: 1.1;
+        }
+        
+        .clinic-name {
+          font-weight: bold;
+          font-size: 10pt;
+          margin-bottom: 0.2mm;
+          padding: 0.2mm 0;
+          letter-spacing: 0.05em;
+        }
+        
+        .clinic-address {
+          font-size: 7pt;
+          margin-bottom: 0.2mm;
+          line-height: 1.1;
+          padding: 0.2mm 0;
+        }
+        
+        .clinic-contact {
+          font-size: 7pt;
+          margin-bottom: 0.3mm;
+          line-height: 1.1;
+          padding: 0.2mm 0;
+        }
+        
+        /* Bill Title */
+        .bill-title {
+          text-align: center;
+          font-weight: bold;
+          font-size: 9pt;
+          padding: 0.4mm 0;
+          border-bottom: 0.5pt solid #000;
+          border-top: 0.5pt solid #000;
+          margin: 1mm 0;
+        }
+        
+        /* Patient Info Table - Optimized for 20cm */
+        .patient-info-table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-bottom: 1mm;
+          font-size: 7pt;
+        }
+        
+        .patient-info-table td {
+          padding: 0.3mm 0.5mm;
+          vertical-align: baseline;
+          line-height: 1.1;
+        }
+        
+        .label-left {
+          width: 14%;
+          text-align: left;
+          white-space: nowrap;
+          font-weight: bold;
+        }
+        
+        .value-left {
+          width: 36%;
+          text-align: left;
+          padding-right: 0.5mm;
+        }
+        
+        .label-right {
+          width: 14%;
+          text-align: left;
+          white-space: nowrap;
+          font-weight: bold;
+        }
+        
+        .value-right {
+          width: 36%;
+          text-align: right;
+        }
+        
+        /* Items Table - THIN BORDERS - Optimized column widths */
+        .items-table-container {
+          margin: 1mm 0;
+          overflow: visible;
+          max-height: calc(190mm - 50mm); /* Limit height for scrolling */
+          overflow-y: auto;
+        }
+        
+        .items-table {
+          width: 100%;
+          border-collapse: collapse;
+          border: 0.3pt solid #000;
+          font-size: 7pt;
+          table-layout: fixed;
+        }
+        
+        .items-table th {
+          text-align: left;
+          padding: 0.5mm;
+          font-weight: bold;
+          border: 0.3pt solid #000;
+          background-color: #f8f8f8;
+          white-space: nowrap;
+        }
+        
+        .items-table td {
+          padding: 0.5mm;
+          border: 0.3pt solid #000;
+          vertical-align: top;
+          word-wrap: break-word;
+          overflow: visible;
+        }
+        
+        /* Optimized column widths for 20cm width */
+        .col-sno { width: 3%; }
+        .col-item { width: 27%; }
+        .col-batch { width: 9%; }
+        .col-box { width: 4%; }
+        .col-exp { width: 5%; }
+        .col-qty { width: 4%; }
+        .col-rate { width: 7%; }
+        .col-mrp { width: 7%; }
+        .col-gst { width: 5%; }
+        .col-total { width: 7%; }
+        
+        .align-right {
+          text-align: right;
+          padding-right: 0.5mm !important;
+        }
+        
+        .align-center {
+          text-align: center;
+        }
+        
+        /* Amount in Words */
+        .amount-words-section {
+          margin: 1mm 0;
+          padding: 0.5mm;
+          border: 0.3pt solid #000;
+          font-size: 7pt;
+          line-height: 1.1;
+          background-color: #fafafa;
+          word-break: break-word;
+        }
+        
+        .amount-words-label {
+          font-weight: bold;
+          display: inline;
+          margin-right: 0.5mm;
+          white-space: nowrap;
+        }
+        
+        .amount-words-value {
+          font-style: italic;
+          display: inline;
+        }
+        
+        /* Summary Table - THIN BORDERS */
+        .summary-table-container {
+          margin: 1mm 0;
+        }
+        
+        .summary-table {
+          width: 100%;
+          border-collapse: collapse;
+          border: 0.3pt solid #000;
+          font-size: 7pt;
+          table-layout: fixed;
+        }
+        
+        .summary-table th {
+          text-align: left;
+          padding: 0.5mm;
+          font-weight: bold;
+          border: 0.3pt solid #000;
+          background-color: #f8f8f8;
+        }
+        
+        .summary-table td {
+          padding: 0.5mm;
+          border: 0.3pt solid #000;
+          vertical-align: top;
+        }
+        
+        .summary-col-label { width: 28%; }
+        .summary-col-value { width: 22%; }
+        .summary-col-label-right { width: 28%; }
+        .summary-col-value-right { width: 22%; text-align: right; padding-right: 0.5mm !important; }
+        
+        /* Grand Total */
+        .grand-total-container {
+          margin: 1mm 0;
+          text-align: center;
+          padding: 0.5mm;
+          border: 0.3pt solid #000;
+          font-weight: bold;
+          font-size: 9pt;
+          background-color: #f0f0f0;
+        }
+        
+        /* Footer Notes */
+        .footer-notes {
+          margin-top: 1mm;
+          font-size: 6pt;
+          text-align: center;
+          padding-top: 0.5mm;
+          border-top: 0.3pt solid #000;
+          line-height: 1.1;
+        }
+        
+        /* Buttons - Screen only */
+        .dotmatrix-buttons {
+          margin-top: 5mm;
+          display: flex;
+          gap: 5mm;
+          justify-content: center;
+        }
+        
+        .dotmatrix-buttons button {
+          padding: 2mm 4mm;
+          background: black;
+          color: white;
+          border: none;
+          border-radius: 1mm;
+          cursor: pointer;
+          font-family: inherit;
+          font-size: 9pt;
+          min-width: 20mm;
+        }
+        
+        /* Text visibility enhancements */
+        * {
+          -webkit-text-stroke: 0.1px;
+          text-rendering: optimizeLegibility;
+        }
+        
+        /* Ensure text doesn't get cut off */
+        td, th {
+          overflow: visible !important;
+          max-height: none !important;
+        }
+        
+        /* Screen preview */
+        @media screen {
+          .dotmatrix-container {
+            border: 0.3pt solid #ccc;
+            box-shadow: 0 0 2mm rgba(0,0,0,0.1);
+            margin-bottom: 10mm;
+          }
+          
+          .bill-box-container {
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+          }
+        }
+        `}
+      </style>
+
+      <div ref={componentRef} className="dotmatrix-wrapper">
+        {/* Main Bill Box Container - This creates the box border */}
+        <div className="bill-box-container">
+          {/* Main Content Area - This will expand with items */}
+          <div className="main-content">
+            {/* Clinic Header */}
+            <div className="clinic-header">
+              <div className="clinic-name">
+                {ClinicDetails?.Cname || "KARUNA MEDICAL COLLEGE HOSPITAL"}
+              </div>
+              <div className="clinic-address">
+                {[ClinicDetials?.ClinicAddress, ClinicDetials?.ClinicCity, 
+                  ClinicDetials?.ClinicState, ClinicDetials?.ClinicCode]
+                  .filter(Boolean)
+                  .join(", ")}
+              </div>
+              <div className="clinic-contact">
+                {ClinicDetials?.ClinicPhoneNo || "04923-221791"} | {ClinicDetials?.ClinicMobileNo || "8348397848"} | 9496972555
+              </div>
+            </div>
+
+            {/* Bill Title */}
+            <div className="bill-title">
+              IP PHARMACY BILL
+            </div>
+
+            {/* Patient Information */}
+            <table className="patient-info-table">
+              <tbody>
+                <tr>
+                  <td className="label-left">PATIENT:</td>
+                  <td className="value-left" style={{fontWeight: 'bold'}}>
+                    {SelectedPatient_list?.PatientName || ""}
+                  </td>
+                  <td className="label-right">INVOICE:</td>
+                  <td className="value-right" style={{fontWeight: 'bold'}}>
+                    {PostInvoice || ""}
+                  </td>
+                </tr>
+                <tr>
+                  <td className="label-left">ID:</td>
+                  <td className="value-left">{SelectedPatient_list?.PatientId || ""}</td>
+                  <td className="label-right">RECEIPT:</td>
+                  <td className="value-right">{ReceiptNo || ""}</td>
+                </tr>
+                <tr>
+                  <td className="label-left">AGE/GENDER:</td>
+                  <td className="value-left">
+                    {SelectedPatient_list?.PatientAge || ""}/{SelectedPatient_list?.PatientGender || ""}
+                  </td>
+                  <td className="label-right">DATE/TIME:</td>
+                  <td className="value-right">{formatDate(Billing_date)} {formatTime(Billing_date)}</td>
+                </tr>
+                <tr>
+                  <td className="label-left">DOCTOR:</td>
+                  <td className="value-left">{SelectedPatient_list?.Doctor_name || ""}</td>
+                  <td className="label-right">PHONE:</td>
+                  <td className="value-right">{SelectedPatient_list?.PhoneNumber || ""}</td>
+                </tr>
+                <tr>
+                  <td className="label-left">DRUG LIC:</td>
+                  <td className="value-left" style={{fontSize: '6.5pt'}}>
+                    KLK-PKD-09/055 | KL-PKD-09/056
+                  </td>
+                  <td className="label-right">GST NO:</td>
+                  <td className="value-right" style={{fontSize: '6.5pt'}}>
+                    32AABTS4963R2ZT
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            {/* Items Table */}
+            <div className="items-table-container">
+              <table className="items-table">
+                <thead>
+                  <tr>
+                    <th className="col-sno align-center">SN</th>
+                    <th className="col-item" style={{ textAlign: "center" }}>ITEMS</th>
+                    <th className="col-batch">MFD</th>
+                    <th className="col-batch">BATCH</th>
+                    <th className="col-box align-center">BOX</th>
+                    <th className="col-exp align-center">EXP</th>
+                    <th className="col-qty align-center">QTY</th>
+                    <th className="col-rate align-right">RATE</th>
+                    <th className="col-mrp align-right">MRP</th>
+                    <th className="col-gst align-center">GST%</th>
+                    <th className="col-total align-right">TOTAL</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {Billing_itemtable.map((med, index) => {
+                    // Format expiry date
+                    const expDate = med.Exp_Date || "";
+                    const formattedExp = expDate && expDate.length >= 7 
+                      ? `${expDate.slice(2, 4)}/${expDate.slice(5, 7)}` 
+                      : "";
+                    
+                    // Item name - full display with wrapping
+                    const itemName = med.ItemName || "";
+                    
+                    return (
+                      <tr key={index}>
+                        <td className="align-center">{index + 1}</td>
+                        <td style={{lineHeight: '1.1', wordBreak: 'break-word'}}>{itemName}</td>
+                        <td >{med.CompanyShort || ""}</td>
+                        <td>{med.BatchNo || ""}</td>
+                        <td className="align-center">{med.BoxName || ""}</td>
+                        <td className="align-center">{formattedExp}</td>
+                        <td className="align-center">{med.Billing_Quantity || 0}</td>
+                        <td className="align-right">{formatNumber(med.Unit_Price)}</td>
+                        <td className="align-right">{formatNumber(med.Amount)}</td>
+                        <td className="align-center">{med.GST_Value || 0}%</td>
+                        <td className="align-right">{formatNumber(med.Total)}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* Fixed Footer - Always at bottom of the box */}
+          <div className="fixed-footer">
+            {/* Amount in Words */}
+            <div className="amount-words-section">
+              <span className="amount-words-label">AMOUNT IN WORDS:</span>
+              <span className="amount-words-value">
+                {NumberToWords ? NumberToWords(summaryTotalAmount) : "Zero Rupees Only"}
+              </span>
+            </div>
+
+            {/* Summary Table */}
+            <div className="summary-table-container">
+              <table className="summary-table">
+                <thead>
+                  <tr>
+                    <th colSpan="4" style={{ textAlign: 'center', fontSize: '8pt' }}>
+                       AMOUNT SUMMARY
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className="summary-col-label">TAXABLE AMOUNT</td>
+                    <td className="summary-col-value">{totals.taxable}</td>
+                    <td className="summary-col-label-right">TOTAL GST</td>
+                    <td className="summary-col-value-right">{totals.totalGST}</td>
+                  </tr>
+                  <tr>
+                    <td className="summary-col-label">CGST AMOUNT</td>
+                    <td className="summary-col-value">{totals.totalCGST}</td>
+                    <td className="summary-col-label-right">GROSS AMOUNT</td>
+                    <td className="summary-col-value-right">{formatNumber(summaryAmount)}</td>
+                  </tr>
+                  <tr>
+                    <td className="summary-col-label">SGST AMOUNT</td>
+                    <td className="summary-col-value">{totals.totalSGST}</td>
+                    <td className="summary-col-label-right">NET AMOUNT</td>
+                    <td className="summary-col-value-right">{formatNumber(summaryTotalAmount)}</td>
+                  </tr>
+                  <tr>
+                    <td className="summary-col-label">BILLED BY</td>
+                    <td className="summary-col-value">{UserData?.Employeename || ""}</td>
+                    <td className="summary-col-label-right">PAID AMOUNT</td>
+                    <td className="summary-col-value-right">{formatNumber(summaryPaidAmount)}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            {/* Grand Total */}
+            <div className="grand-total-container">
+              GRAND TOTAL : {formatNumber(summaryPaidAmount)}
+            </div>
+
+            {/* Footer Notes */}
+            <div className="footer-notes" style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
+              <div style={{ textAlign: "left", fontSize: "7pt" }}>
+                <div>MEDICINE REFUND POSSIBLE WITHIN 7 DAYS OF ORIGINAL BILL</div>
+                <div>COLD STORAGE MEDICINES CANNOT BE RETURNED</div>
+              </div>
+
+              <div style={{ textAlign: "right", fontWeight: "bold", fontSize: "7pt" }}>
+                PHARMACIST SIGNATURE: _________________________
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="dotmatrix-buttons">
+        <button onClick={handlePrint}>PRINT</button>
+        <button onClick={handlePrintClose}>CLOSE</button>
+      </div>
+    </div>
+  );
+};
+
+// const ForPrintDataWalkin = () => {
+//   const formatDateTime = (date) => {
+//     if (!date) return "";
+//     const d = new Date(date);
+//     return d.toISOString().slice(0, 19).replace("T", " ");
+//   };
+
+//   const formatDate = (date) => {
+//     if (!date) return "";
+//     const d = new Date(date);
+//     return d.toISOString().slice(2, 10).replace(/-/g, "-"); // YY-MM-DD format
+//   };
+
+//   const formatTime = (date) => {
+//     if (!date) return "";
+//     const d = new Date(date);
+//     return d.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: false });
+//   };
+
+//   // Safe number formatting function
+//   const formatNumber = (value, defaultValue = "0.00") => {
+//     if (value === null || value === undefined || value === "") return defaultValue;
+    
+//     // Convert to number
+//     const num = parseFloat(value);
+//     if (isNaN(num)) return defaultValue;
+    
+//     return num.toFixed(2);
+//   };
+
+//   // Safe parse float function
+//   const safeParseFloat = (value) => {
+//     if (value === null || value === undefined || value === "") return 0;
+//     const num = parseFloat(value);
+//     return isNaN(num) ? 0 : num;
+//   };
+
+//   // Calculate totals
+//   const calculateTotals = () => {
+//     let taxable = 0;
+//     let totalGST = 0;
+//     let totalCGST = 0;
+//     let totalSGST = 0;
+//     let grossAmount = 0;
+
+//     Billing_itemtable.forEach(item => {
+//       const total = safeParseFloat(item.Total);
+//       const gstPercent = safeParseFloat(item.GST_Value);
+      
+//       // Calculate taxable amount
+//       const itemTaxable = gstPercent > 0 ? total / (1 + gstPercent / 100) : total;
+//       const itemGST = total - itemTaxable;
+      
+//       taxable += itemTaxable;
+//       totalGST += itemGST;
+//       totalCGST += itemGST / 2;
+//       totalSGST += itemGST / 2;
+//       grossAmount += total;
+//     });
+
+//     return {
+//       taxable: formatNumber(taxable),
+//       totalGST: formatNumber(totalGST),
+//       totalCGST: formatNumber(totalCGST),
+//       totalSGST: formatNumber(totalSGST),
+//       grossAmount: formatNumber(grossAmount)
+//     };
+//   };
+
+//   const totals = calculateTotals();
+
+//   // Get summary values safely
+//   const summaryAmount = safeParseFloat(summary?.Amount);
+//   const summaryTotalAmount = safeParseFloat(summary?.totalAmount);
+//   const summaryPaidAmount = safeParseFloat(summary?.PaidAmount);
+
+//   return (
+//     <div className="dotmatrix-container">
+//       <style>
+//         {`
+//         /* DOT MATRIX PRINTER OPTIMIZATION */
+//         @media print {
+//           * {
+//             -webkit-print-color-adjust: exact !important;
+//             color-adjust: exact !important;
+//             print-color-adjust: exact !important;
+//           }
+          
+//           body {
+//             margin: 0 !important;
+//             padding: 0 !important;
+//             background: white !important;
+//             font-size: 10pt !important;
+//             font-family: 'Courier New', monospace !important;
+//             line-height: 1.1 !important;
+//             width: 190mm !important;
+//             height: auto !important;
+//           }
+          
+//           html, body {
+//             height: auto !important;
+//             min-height: auto !important;
+//           }
+          
+//           .dotmatrix-container {
+//             width: 190mm !important;
+//             min-height: auto !important;
+//             height: auto !important;
+//             margin: 0 !important;
+//             padding: 0 !important;
+//             page-break-inside: avoid !important;
+//           }
+          
+//           .dotmatrix-wrapper {
+//             position: relative !important;
+//             width: 100% !important;
+//             max-width: 100% !important;
+//             margin: 0 auto !important;
+//             padding: 2mm !important;
+//             background: white !important;
+//             page-break-inside: avoid !important;
+//             border: none !important;
+//             box-shadow: none !important;
+//             height: auto !important;
+//             min-height: auto !important;
+//           }
+          
+//           .dotmatrix-buttons {
+//             display: none !important;
+//           }
+          
+//           /* Remove any page breaks */
+//           * {
+//             page-break-before: avoid !important;
+//             page-break-after: avoid !important;
+//             page-break-inside: avoid !important;
+//           }
+          
+//           /* Ensure all text prints */
+//           * {
+//             color: black !important;
+//             -webkit-text-stroke: 0.1px black !important;
+//             text-shadow: 0.1px 0 black !important;
+//           }
+          
+//           /* Thin borders for tables */
+//           table, tr, td, th {
+//             border-color: black !important;
+//             border-width: 0.3pt !important;
+//           }
+          
+//           /* Prevent text from being cut off */
+//           td, th {
+//             overflow: visible !important;
+//             white-space: normal !important;
+//           }
+//         }
+        
+//         /* Screen display - Wider paper */
+//         .dotmatrix-container {
+//           font-family: 'Courier New', monospace;
+//           font-size: 9pt;
+//           line-height: 1.1;
+//           width: 190mm; /* Wider paper */
+//           height: auto;
+//           min-height: auto;
+//           margin: 0 auto;
+//           background: white;
+//           color: black;
+//           padding: 0;
+//         }
+        
+//         .dotmatrix-wrapper {
+//           width: 100%;
+//           padding: 2mm;
+//           box-sizing: border-box;
+//           height: auto;
+//         }
+        
+//         /* Clinic Header */
+//         .clinic-header {
+//           text-align: center;
+//           margin-bottom: 1mm;
+//           line-height: 1.1;
+//         }
+        
+//         .clinic-name {
+//           font-weight: bold;
+//           font-size: 11pt;
+//           margin-bottom: 0.3mm;
+//           padding: 0.3mm 0;
+//           letter-spacing: 0.05em;
+//         }
+        
+//         .clinic-address {
+//           font-size: 8pt;
+//           margin-bottom: 0.3mm;
+//           line-height: 1.1;
+//           padding: 0.3mm 0;
+//         }
+        
+//         .clinic-contact {
+//           font-size: 8pt;
+//           margin-bottom: 0.5mm;
+//           line-height: 1.1;
+//           padding: 0.3mm 0;
+//         }
+        
+//         /* Bill Title */
+//         .bill-title {
+//           text-align: center;
+//           font-weight: bold;
+//           font-size: 10pt;
+//           padding: 0.5mm 0;
+//           border-bottom: 0.5pt solid #000;
+//           border-top: 0.5pt solid #000;
+//           margin: 1.5mm 0;
+//         }
+        
+//         /* Patient Info Table */
+//         .patient-info-table {
+//           width: 100%;
+//           border-collapse: collapse;
+//           margin-bottom: 1.5mm;
+//           font-size: 8pt;
+//         }
+        
+//         .patient-info-table td {
+//           padding: 0.5mm 1mm;
+//           vertical-align: baseline;
+//           line-height: 1.1;
+//         }
+        
+//         .label-left {
+//           width: 15%;
+//           text-align: left;
+//           white-space: nowrap;
+//           font-weight: bold;
+//         }
+        
+//         .value-left {
+//           width: 35%;
+//           text-align: left;
+//           padding-right: 1mm;
+//         }
+        
+//         .label-right {
+//           width: 15%;
+//           text-align: left;
+//           white-space: nowrap;
+//           font-weight: bold;
+//         }
+        
+//         .value-right {
+//           width: 35%;
+//           text-align: left;
+//         }
+        
+//         /* Items Table - THIN BORDERS */
+//         .items-table-container {
+//           margin: 1.5mm 0;
+//           overflow: visible;
+//         }
+        
+//         .items-table {
+//           width: 100%;
+//           border-collapse: collapse;
+//           border: 0.3pt solid #000;
+//           font-size: 8pt;
+//           table-layout: fixed;
+//         }
+        
+//         .items-table th {
+//           text-align: left;
+//           padding: 0.8mm;
+//           font-weight: bold;
+//           border: 0.3pt solid #000;
+//           background-color: #f8f8f8;
+//           white-space: nowrap;
+//         }
+        
+//         .items-table td {
+//           padding: 0.8mm;
+//           border: 0.3pt solid #000;
+//           vertical-align: top;
+//           word-wrap: break-word;
+//           overflow: visible;
+//         }
+        
+//         /* Optimized column widths for wider paper */
+//         .col-sno { width: 3%; }
+//         .col-item { width: 28%; }
+//         .col-batch { width: 10%; }
+//         .col-box { width: 4%; }
+//         .col-exp { width: 5%; }
+//         .col-qty { width: 4%; }
+//         .col-rate { width: 7%; }
+//         .col-mrp { width: 7%; }
+//         .col-gst { width: 5%; }
+//         .col-total { width: 7%; }
+        
+//         .align-right {
+//           text-align: right;
+//           padding-right: 1mm !important;
+//         }
+        
+//         .align-center {
+//           text-align: center;
+//         }
+        
+//         /* Amount in Words */
+//         .amount-words-section {
+//           margin: 1.5mm 0;
+//           padding: 1mm;
+//           border: 0.3pt solid #000;
+//           font-size: 8pt;
+//           line-height: 1.1;
+//           background-color: #fafafa;
+//           word-break: break-word;
+//         }
+        
+//         .amount-words-label {
+//           font-weight: bold;
+//           display: inline;
+//           margin-right: 1mm;
+//           white-space: nowrap;
+//         }
+        
+//         .amount-words-value {
+//           font-style: italic;
+//           display: inline;
+//         }
+        
+//         /* Summary Table - THIN BORDERS */
+//         .summary-table-container {
+//           margin: 1.5mm 0;
+//         }
+        
+//         .summary-table {
+//           width: 100%;
+//           border-collapse: collapse;
+//           border: 0.3pt solid #000;
+//           font-size: 8pt;
+//           table-layout: fixed;
+//         }
+        
+//         .summary-table th {
+//           text-align: left;
+//           padding: 0.8mm;
+//           font-weight: bold;
+//           border: 0.3pt solid #000;
+//           background-color: #f8f8f8;
+//         }
+        
+//         .summary-table td {
+//           padding: 0.8mm;
+//           border: 0.3pt solid #000;
+//           vertical-align: top;
+//         }
+        
+//         .summary-col-label { width: 30%; }
+//         .summary-col-value { width: 20%; }
+//         .summary-col-label-right { width: 25%; }
+//         .summary-col-value-right { width: 25%; text-align: right; padding-right: 1mm !important; }
+        
+//         /* Grand Total */
+//         .grand-total-container {
+//           margin: 1.5mm 0;
+//           text-align: center;
+//           padding: 1mm;
+//           border: 0.3pt solid #000;
+//           font-weight: bold;
+//           font-size: 10pt;
+//           background-color: #f0f0f0;
+//         }
+        
+//         /* Footer Notes */
+//         .footer-notes {
+//           margin-top: 2mm;
+//           font-size: 7pt;
+//           text-align: center;
+//           padding-top: 1mm;
+//           border-top: 0.3pt solid #000;
+//           line-height: 1.1;
+//         }
+        
+//         /* Buttons - Screen only */
+//         .dotmatrix-buttons {
+//           margin-top: 5mm;
+//           display: flex;
+//           gap: 5mm;
+//           justify-content: center;
+//         }
+        
+//         .dotmatrix-buttons button {
+//           padding: 2mm 4mm;
+//           background: black;
+//           color: white;
+//           border: none;
+//           border-radius: 1mm;
+//           cursor: pointer;
+//           font-family: inherit;
+//           font-size: 9pt;
+//           min-width: 20mm;
+//         }
+        
+//         /* Text visibility enhancements */
+//         * {
+//           -webkit-text-stroke: 0.1px;
+//           text-rendering: optimizeLegibility;
+//         }
+        
+//         /* Ensure text doesn't get cut off */
+//         td, th {
+//           overflow: visible !important;
+//           max-height: none !important;
+//         }
+        
+//         /* Screen preview */
+//         @media screen {
+//           .dotmatrix-container {
+//             border: 0.3pt solid #ccc;
+//             box-shadow: 0 0 2mm rgba(0,0,0,0.1);
+//             margin-bottom: 10mm;
+//           }
+//         }
+//         `}
+//       </style>
+
+//       <div ref={componentRef} className="dotmatrix-wrapper">
+//         {/* Clinic Header */}
+//         <div className="clinic-header">
+//           <div className="clinic-name">
+//             {ClinicDetails?.Cname || "KARUNA MEDICAL COLLEGE HOSPITAL"}
+//           </div>
+//           <div className="clinic-address">
+//             {[ClinicDetials?.ClinicAddress, ClinicDetials?.ClinicCity, 
+//               ClinicDetials?.ClinicState, ClinicDetials?.ClinicCode]
+//               .filter(Boolean)
+//               .join(", ")}
+//           </div>
+//           <div className="clinic-contact">
+//             {ClinicDetials?.ClinicPhoneNo || "04923-221791"} | {ClinicDetials?.ClinicMobileNo || "8348397848"}
+//           </div>
+//         </div>
+
+//         {/* Bill Title */}
+//         <div className="bill-title">
+//           OP PHARMACY BILL
+//         </div>
+
+//         {/* Patient Information */}
+//         <table className="patient-info-table">
+//           <tbody>
+//             <tr>
+//               <td className="label-left">PATIENT:</td>
+//               <td className="value-left" style={{fontWeight: 'bold'}}>
+//                 {SelectedPatient_list?.PatientName || ""}
+//               </td>
+//               <td className="label-right">INVOICE:</td>
+//               <td className="value-right" style={{fontWeight: 'bold'}}>
+//                 {PostInvoice || ""}
+//               </td>
+//             </tr>
+//             <tr>
+//               <td className="label-left">ID:</td>
+//               <td className="value-left">{SelectedPatient_list?.PatientId || ""}</td>
+//               <td className="label-right">RECEIPT:</td>
+//               <td className="value-right">{ReceiptNo || ""}</td>
+//             </tr>
+//             <tr>
+//               <td className="label-left">AGE/GENDER:</td>
+//               <td className="value-left">
+//                 {SelectedPatient_list?.PatientAge || ""}/{SelectedPatient_list?.PatientGender || ""}
+//               </td>
+//               <td className="label-right">DATE/TIME:</td>
+//               <td className="value-right">{formatDate(Billing_date)} {formatTime(Billing_date)}</td>
+//             </tr>
+//             <tr>
+//               <td className="label-left">DOCTOR:</td>
+//               <td className="value-left">{SelectedPatient_list?.Doctor_name || ""}</td>
+//               <td className="label-right">PHONE:</td>
+//               <td className="value-right">{SelectedPatient_list?.PhoneNumber || ""}</td>
+//             </tr>
+//             <tr>
+//               <td className="label-left">DRUG LIC:</td>
+//               <td className="value-left" style={{fontSize: '7pt'}}>
+//                 KLK-PKD-09/055 | KL-PKD-09/056
+//               </td>
+//               <td className="label-right">GST NO:</td>
+//               <td className="value-right" style={{fontSize: '7pt'}}>
+//                 32AABTS4963R2ZT
+//               </td>
+//             </tr>
+//           </tbody>
+//         </table>
+
+//         {/* Items Table */}
+//         <div className="items-table-container">
+//           <table className="items-table">
+//             <thead>
+//               <tr>
+//                 <th className="col-sno align-center">SN</th>
+//                 <th className="col-item">ITEMS</th>
+//                 <th className="col-batch">MFD</th>
+//                 <th className="col-batch">BATCH</th>
+//                 <th className="col-box align-center">BOX</th>
+//                 <th className="col-exp align-center">EXP</th>
+//                 <th className="col-qty align-center">QTY</th>
+//                 <th className="col-rate align-right">RATE</th>
+//                 <th className="col-mrp align-right">MRP</th>
+//                 <th className="col-gst align-center">GST%</th>
+//                 <th className="col-total align-right">TOTAL</th>
+//               </tr>
+//             </thead>
+//             <tbody>
+//               {Billing_itemtable.map((med, index) => {
+//                 // Format expiry date
+//                 const expDate = med.Exp_Date || "";
+//                 const formattedExp = expDate && expDate.length >= 7 
+//                   ? `${expDate.slice(2, 4)}/${expDate.slice(5, 7)}` 
+//                   : "";
+                
+//                 // Item name - full display with wrapping
+//                 const itemName = med.ItemName || "";
+                
+//                 return (
+//                   <tr key={index}>
+//                     <td className="align-center">{index + 1}</td>
+//                     <td style={{lineHeight: '1.1', wordBreak: 'break-word'}}>{itemName}</td>
+//                     <td >{med.CompanyShort || ""}</td>
+//                     <td>{med.BatchNo || ""}</td>
+//                     <td className="align-center">{med.BoxName || ""}</td>
+//                     <td className="align-center">{formattedExp}</td>
+//                     <td className="align-center">{med.Billing_Quantity || 0}</td>
+//                     <td className="align-right">{formatNumber(med.Unit_Price)}</td>
+//                     <td className="align-right">{formatNumber(med.Amount)}</td>
+//                     <td className="align-center">{med.GST_Value || 0}%</td>
+//                     <td className="align-right">{formatNumber(med.Total)}</td>
+//                   </tr>
+//                 );
+//               })}
+//             </tbody>
+//           </table>
+//         </div>
+
+//         {/* Amount in Words */}
+//         <div className="amount-words-section">
+//           <span className="amount-words-label">AMOUNT IN WORDS:</span>
+//           <span className="amount-words-value">
+//             {NumberToWords ? NumberToWords(summaryTotalAmount) : "Zero Rupees Only"}
+//           </span>
+//         </div>
+
+//         {/* Summary Table */}
+//         <div className="summary-table-container">
+//           <table className="summary-table">
+//             <thead>
+//               <tr>
+//                 <th colSpan="4" style={{ textAlign: 'center', fontSize: '9pt' }}>
+//                    AMOUNT SUMMARY
+//                 </th>
+//               </tr>
+//             </thead>
+//             <tbody>
+//               <tr>
+//                 <td className="summary-col-label">TAXABLE AMOUNT</td>
+//                 <td className="summary-col-value">{totals.taxable}</td>
+//                 <td className="summary-col-label-right">TOTAL GST</td>
+//                 <td className="summary-col-value-right">{totals.totalGST}</td>
+//               </tr>
+//               <tr>
+//                 <td className="summary-col-label">CGST AMOUNT</td>
+//                 <td className="summary-col-value">{totals.totalCGST}</td>
+//                 <td className="summary-col-label-right">GROSS AMOUNT</td>
+//                 <td className="summary-col-value-right">{formatNumber(summaryAmount)}</td>
+//               </tr>
+//               <tr>
+//                 <td className="summary-col-label">SGST AMOUNT</td>
+//                 <td className="summary-col-value">{totals.totalSGST}</td>
+//                 <td className="summary-col-label-right">NET AMOUNT</td>
+//                 <td className="summary-col-value-right">{formatNumber(summaryTotalAmount)}</td>
+//               </tr>
+//               <tr>
+//                 <td className="summary-col-label">BILLED BY</td>
+//                 <td className="summary-col-value">{UserData?.Employeename || ""}</td>
+//                 <td className="summary-col-label-right">PAID AMOUNT</td>
+//                 <td className="summary-col-value-right">{formatNumber(summaryPaidAmount)}</td>
+//               </tr>
+//             </tbody>
+//           </table>
+//         </div>
+
+//         {/* Grand Total */}
+//         <div className="grand-total-container">
+//           GRAND TOTAL : {formatNumber(summaryTotalAmount)}
+//         </div>
+
+//         {/* Footer Notes */}
+//         <div className="footer-notes">
+//           <div>** MEDICINE REFUND POSSIBLE WITHIN 7 DAYS OF ORIGINAL BILL **</div>
+//           <div>** COLD STORAGE MEDICINES CANNOT BE RETURNED **</div>
+//           <div style={{ marginTop: '1mm', fontWeight: 'bold', fontSize: '8pt' }}>
+//             PHARMACIST SIGNATURE: _________________________
+//           </div>
+//         </div>
+//       </div>
+
+//       <div className="dotmatrix-buttons">
+//         <button onClick={handlePrint}>PRINT</button>
+//         <button onClick={handlePrintClose}>CLOSE</button>
+//       </div>
+//     </div>
+//   );
+// };
+
+
+  // Item Types for display
+ 
+ 
+ const ForPrintDataWalkin = () => {
+  const formatDateTime = (date) => {
+    if (!date) return "";
+    const d = new Date(date);
+    return d.toISOString().slice(0, 19).replace("T", " ");
+  };
+
+  const formatDate = (date) => {
+    if (!date) return "";
+    const d = new Date(date);
+    return d.toISOString().slice(2, 10).replace(/-/g, "-"); // YY-MM-DD format
+  };
+
+  const formatTime = (date) => {
+    if (!date) return "";
+    const d = new Date(date);
+    return d.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: false });
+  };
+
+  // Safe number formatting function
+  const formatNumber = (value, defaultValue = "0.00") => {
+    if (value === null || value === undefined || value === "") return defaultValue;
+    
+    // Convert to number
+    const num = parseFloat(value);
+    if (isNaN(num)) return defaultValue;
+    
+    return num.toFixed(2);
+  };
+
+  // Safe parse float function
+  const safeParseFloat = (value) => {
+    if (value === null || value === undefined || value === "") return 0;
+    const num = parseFloat(value);
+    return isNaN(num) ? 0 : num;
+  };
+
+  // Calculate totals
+  const calculateTotals = () => {
+    let taxable = 0;
+    let totalGST = 0;
+    let totalCGST = 0;
+    let totalSGST = 0;
+    let grossAmount = 0;
+
+    Billing_itemtable.forEach(item => {
+      const total = safeParseFloat(item.Total);
+      const gstPercent = safeParseFloat(item.GST_Value);
+      
+      // Calculate taxable amount
+      const itemTaxable = gstPercent > 0 ? total / (1 + gstPercent / 100) : total;
+      const itemGST = total - itemTaxable;
+      
+      taxable += itemTaxable;
+      totalGST += itemGST;
+      totalCGST += itemGST / 2;
+      totalSGST += itemGST / 2;
+      grossAmount += total;
+    });
+
+    return {
+      taxable: formatNumber(taxable),
+      totalGST: formatNumber(totalGST),
+      totalCGST: formatNumber(totalCGST),
+      totalSGST: formatNumber(totalSGST),
+      grossAmount: formatNumber(grossAmount)
+    };
+  };
+
+  const totals = calculateTotals();
+
+  // Get summary values safely
+  const summaryAmount = safeParseFloat(summary?.Amount);
+  const summaryTotalAmount = safeParseFloat(summary?.totalAmount);
+  const summaryPaidAmount = safeParseFloat(summary?.PaidAmount);
+
+  return (
+    <div className="dotmatrix-container">
+      <style>
+        {`
+        /* DIMENSIONS */
+        /* Paper: 21cm width, Content: 20cm with 0.5cm margins */
+        
+        /* DOT MATRIX PRINTER OPTIMIZATION */
+        @media print {
+          * {
+            -webkit-print-color-adjust: exact !important;
+            color-adjust: exact !important;
+            print-color-adjust: exact !important;
+          }
+          
+          body {
+            margin: 0 !important;
+            padding: 0 !important;
+            background: white !important;
+            font-size: 10pt !important;
+            font-family: 'Courier New', monospace !important;
+            line-height: 1.1 !important;
+            width: 210mm !important; /* 21cm */
+            height: auto !important;
+          }
+          
+          html, body {
+            height: auto !important;
+            min-height: auto !important;
+          }
+          
+          .dotmatrix-container {
+            width: 210mm !important; /* 21cm paper width */
+            min-height: auto !important;
+            height: auto !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            page-break-inside: avoid !important;
+          }
+          
+          .dotmatrix-wrapper {
+            position: relative !important;
+            width: 200mm !important; /* 20cm content width */
+            max-width: 200mm !important;
+            margin: 0 auto !important;
+            padding: 2mm 5mm !important; /* 0.5cm left/right margins */
+            background: white !important;
+            page-break-inside: avoid !important;
+            border: none !important;
+            box-shadow: none !important;
+            height: auto !important;
+            min-height: 297mm !important; /* Fixed A4 height */
+          }
+          
+          /* Main bill box container */
+          .bill-box-container {
+            border: 1.5pt solid #000 !important;
+            min-height: 280mm !important;
+            height: auto !important;
+            padding: 3mm !important;
+            position: relative !important;
+            margin: 0 !important;
+            background: white !important;
+          }
+          
+          .main-content {
+            min-height: calc(280mm - 65mm) !important; /* Total box height minus footer */
+            margin-bottom: 1mm !important;
+          }
+          
+          .fixed-footer {
+            position: absolute !important;
+            bottom: 3mm !important;
+            left: 3mm !important;
+            right: 3mm !important;
+            width: calc(100% - 6mm) !important;
+            background: white !important;
+            page-break-inside: avoid !important;
+          }
+          
+          .dotmatrix-buttons {
+            display: none !important;
+          }
+          
+          /* Remove any page breaks */
+          * {
+            page-break-before: avoid !important;
+            page-break-after: avoid !important;
+            page-break-inside: avoid !important;
+          }
+          
+          /* Ensure all text prints */
+          * {
+            color: black !important;
+            -webkit-text-stroke: 0.1px black !important;
+            text-shadow: 0.1px 0 black !important;
+          }
+          
+          /* Thin borders for tables */
+          table, tr, td, th {
+            border-color: black !important;
+            border-width: 0.3pt !important;
+          }
+          
+          /* Prevent text from being cut off */
+          td, th {
+            overflow: visible !important;
+            white-space: normal !important;
+          }
+        }
+        
+        /* Screen display - 21cm width */
+        .dotmatrix-container {
+          font-family: 'Courier New', monospace;
+          font-size: 9pt;
+          line-height: 1.1;
+          width: 210mm; /* 21cm paper width */
+          height: auto;
+          min-height: auto;
+          margin: 0 auto;
+          background: white;
+          color: black;
+          padding: 0;
+          position: relative;
+        }
+        
+        .dotmatrix-wrapper {
+          width: 200mm; /* 20cm content width */
+          padding: 2mm 5mm; /* 0.5cm left/right margins */
+          box-sizing: border-box;
+          height: auto;
+          min-height: 297mm; /* A4 height */
+          margin: 0 auto;
+          position: relative;
+        }
+        
+        /* Main bill box container */
+        .bill-box-container {
+          border: 1.5pt solid #000;
+          min-height: 280mm;
+          height: auto;
+          padding: 3mm;
+          position: relative;
+          margin: 0;
+          background: white;
+        }
+        
+        .main-content {
+          min-height: calc(280mm - 65mm); /* Total box height minus footer */
+          margin-bottom: 1mm;
+        }
+        
+        .fixed-footer {
+          position: absolute;
+          bottom: 3mm;
+          left: 3mm;
+          right: 3mm;
+          width: calc(100% - 6mm);
+          background: white;
+        }
+        
+        /* Clinic Header - Compact */
+        .clinic-header {
+          text-align: center;
+          margin-bottom: 1mm;
+          line-height: 1.1;
+        }
+        
+        .clinic-name {
+          font-weight: bold;
+          font-size: 10pt;
+          margin-bottom: 0.2mm;
+          padding: 0.2mm 0;
+          letter-spacing: 0.05em;
+        }
+        
+        .clinic-address {
+          font-size: 7pt;
+          margin-bottom: 0.2mm;
+          line-height: 1.1;
+          padding: 0.2mm 0;
+        }
+        
+        .clinic-contact {
+          font-size: 7pt;
+          margin-bottom: 0.3mm;
+          line-height: 1.1;
+          padding: 0.2mm 0;
+        }
+        
+        /* Bill Title */
+        .bill-title {
+          text-align: center;
+          font-weight: bold;
+          font-size: 9pt;
+          padding: 0.4mm 0;
+          border-bottom: 0.5pt solid #000;
+          border-top: 0.5pt solid #000;
+          margin: 1mm 0;
+        }
+        
+        /* Patient Info Table - Optimized for 20cm */
+        .patient-info-table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-bottom: 1mm;
+          font-size: 7pt;
+        }
+        
+        .patient-info-table td {
+          padding: 0.3mm 0.5mm;
+          vertical-align: baseline;
+          line-height: 1.1;
+        }
+        
+        .label-left {
+          width: 14%;
+          text-align: left;
+          white-space: nowrap;
+          font-weight: bold;
+        }
+        
+        .value-left {
+          width: 36%;
+          text-align: left;
+          padding-right: 0.5mm;
+        }
+        
+        .label-right {
+          width: 14%;
+          text-align: left;
+          white-space: nowrap;
+          font-weight: bold;
+        }
+        
+        .value-right {
+          width: 36%;
+          text-align: right;
+        }
+        
+        /* Items Table - THIN BORDERS - Optimized column widths */
+        .items-table-container {
+          margin: 1mm 0;
+          overflow: visible;
+          max-height: calc(190mm - 50mm); /* Limit height for scrolling */
+          overflow-y: auto;
+        }
+        
+        .items-table {
+          width: 100%;
+          border-collapse: collapse;
+          border: 0.3pt solid #000;
+          font-size: 7pt;
+          table-layout: fixed;
+        }
+        
+        .items-table th {
+          text-align: left;
+          padding: 0.5mm;
+          font-weight: bold;
+          border: 0.3pt solid #000;
+          background-color: #f8f8f8;
+          white-space: nowrap;
+        }
+        
+        .items-table td {
+          padding: 0.5mm;
+          border: 0.3pt solid #000;
+          vertical-align: top;
+          word-wrap: break-word;
+          overflow: visible;
+        }
+        
+        /* Optimized column widths for 20cm width */
+        .col-sno { width: 3%; }
+        .col-item { width: 27%; }
+        .col-batch { width: 9%; }
+        .col-box { width: 4%; }
+        .col-exp { width: 5%; }
+        .col-qty { width: 4%; }
+        .col-rate { width: 7%; }
+        .col-mrp { width: 7%; }
+        .col-gst { width: 5%; }
+        .col-total { width: 7%; }
+        
+        .align-right {
+          text-align: right;
+          padding-right: 0.5mm !important;
+        }
+        
+        .align-center {
+          text-align: center;
+        }
+        
+        /* Amount in Words */
+        .amount-words-section {
+          margin: 1mm 0;
+          padding: 0.5mm;
+          border: 0.3pt solid #000;
+          font-size: 7pt;
+          line-height: 1.1;
+          background-color: #fafafa;
+          word-break: break-word;
+        }
+        
+        .amount-words-label {
+          font-weight: bold;
+          display: inline;
+          margin-right: 0.5mm;
+          white-space: nowrap;
+        }
+        
+        .amount-words-value {
+          font-style: italic;
+          display: inline;
+        }
+        
+        /* Summary Table - THIN BORDERS */
+        .summary-table-container {
+          margin: 1mm 0;
+        }
+        
+        .summary-table {
+          width: 100%;
+          border-collapse: collapse;
+          border: 0.3pt solid #000;
+          font-size: 7pt;
+          table-layout: fixed;
+        }
+        
+        .summary-table th {
+          text-align: left;
+          padding: 0.5mm;
+          font-weight: bold;
+          border: 0.3pt solid #000;
+          background-color: #f8f8f8;
+        }
+        
+        .summary-table td {
+          padding: 0.5mm;
+          border: 0.3pt solid #000;
+          vertical-align: top;
+        }
+        
+        .summary-col-label { width: 28%; }
+        .summary-col-value { width: 22%; }
+        .summary-col-label-right { width: 28%; }
+        .summary-col-value-right { width: 22%; text-align: right; padding-right: 0.5mm !important; }
+        
+        /* Grand Total */
+        .grand-total-container {
+          margin: 1mm 0;
+          text-align: center;
+          padding: 0.5mm;
+          border: 0.3pt solid #000;
+          font-weight: bold;
+          font-size: 9pt;
+          background-color: #f0f0f0;
+        }
+        
+        /* Footer Notes */
+        .footer-notes {
+          margin-top: 1mm;
+          font-size: 6pt;
+          text-align: center;
+          padding-top: 0.5mm;
+          border-top: 0.3pt solid #000;
+          line-height: 1.1;
+        }
+        
+        /* Buttons - Screen only */
+        .dotmatrix-buttons {
+          margin-top: 5mm;
+          display: flex;
+          gap: 5mm;
+          justify-content: center;
+        }
+        
+        .dotmatrix-buttons button {
+          padding: 2mm 4mm;
+          background: black;
+          color: white;
+          border: none;
+          border-radius: 1mm;
+          cursor: pointer;
+          font-family: inherit;
+          font-size: 9pt;
+          min-width: 20mm;
+        }
+        
+        /* Text visibility enhancements */
+        * {
+          -webkit-text-stroke: 0.1px;
+          text-rendering: optimizeLegibility;
+        }
+        
+        /* Ensure text doesn't get cut off */
+        td, th {
+          overflow: visible !important;
+          max-height: none !important;
+        }
+        
+        /* Screen preview */
+        @media screen {
+          .dotmatrix-container {
+            border: 0.3pt solid #ccc;
+            box-shadow: 0 0 2mm rgba(0,0,0,0.1);
+            margin-bottom: 10mm;
+          }
+          
+          .bill-box-container {
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+          }
+        }
+        `}
+      </style>
+
+      <div ref={componentRef} className="dotmatrix-wrapper">
+        {/* Main Bill Box Container - This creates the box border */}
+        <div className="bill-box-container">
+          {/* Main Content Area - This will expand with items */}
+          <div className="main-content">
+            {/* Clinic Header */}
+            <div className="clinic-header">
+              <div className="clinic-name">
+                {ClinicDetails?.Cname || "KARUNA MEDICAL COLLEGE HOSPITAL"}
+              </div>
+              <div className="clinic-address">
+                {[ClinicDetials?.ClinicAddress, ClinicDetials?.ClinicCity, 
+                  ClinicDetials?.ClinicState, ClinicDetials?.ClinicCode]
+                  .filter(Boolean)
+                  .join(", ")}
+              </div>
+              <div className="clinic-contact">
+                {ClinicDetials?.ClinicPhoneNo || "04923-221791"} | {ClinicDetials?.ClinicMobileNo || "8348397848"} | 9496972555
+              </div>
+            </div>
+
+            {/* Bill Title */}
+            <div className="bill-title">
+              IP PHARMACY WALKIN BILL
+            </div>
+
+            {/* Patient Information */}
+            <table className="patient-info-table">
+              <tbody>
+                <tr>
+                  <td className="label-left">PATIENT:</td>
+                  <td className="value-left" style={{fontWeight: 'bold'}}>
+                    {SelectedPatient_list?.PatientName || ""}
+                  </td>
+                  <td className="label-right">INVOICE:</td>
+                  <td className="value-right" style={{fontWeight: 'bold'}}>
+                    {PostInvoice || ""}
+                  </td>
+                </tr>
+                <tr>
+                  <td className="label-left">ID:</td>
+                  <td className="value-left">{SelectedPatient_list?.PatientId || ""}</td>
+                  <td className="label-right">RECEIPT:</td>
+                  <td className="value-right">{ReceiptNo || ""}</td>
+                </tr>
+                <tr>
+                  <td className="label-left">AGE/GENDER:</td>
+                  <td className="value-left">
+                    {SelectedPatient_list?.PatientAge || ""}/{SelectedPatient_list?.PatientGender || ""}
+                  </td>
+                  <td className="label-right">DATE/TIME:</td>
+                  <td className="value-right">{formatDate(Billing_date)} {formatTime(Billing_date)}</td>
+                </tr>
+                <tr>
+                  <td className="label-left">DOCTOR:</td>
+                  <td className="value-left">{SelectedPatient_list?.Doctor_name || ""}</td>
+                  <td className="label-right">PHONE:</td>
+                  <td className="value-right">{SelectedPatient_list?.PhoneNumber || ""}</td>
+                </tr>
+                <tr>
+                  <td className="label-left">DRUG LIC:</td>
+                  <td className="value-left" style={{fontSize: '6.5pt'}}>
+                    KLK-PKD-09/055 | KL-PKD-09/056
+                  </td>
+                  <td className="label-right">GST NO:</td>
+                  <td className="value-right" style={{fontSize: '6.5pt'}}>
+                    32AABTS4963R2ZT
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            {/* Items Table */}
+            <div className="items-table-container">
+              <table className="items-table">
+                <thead>
+                  <tr>
+                    <th className="col-sno align-center">SN</th>
+                    <th className="col-item" style={{ textAlign: "center" }}>ITEMS</th>
+                    <th className="col-batch">MFD</th>
+                    <th className="col-batch">BATCH</th>
+                    <th className="col-box align-center">BOX</th>
+                    <th className="col-exp align-center">EXP</th>
+                    <th className="col-qty align-center">QTY</th>
+                    <th className="col-rate align-right">RATE</th>
+                    <th className="col-mrp align-right">MRP</th>
+                    <th className="col-gst align-center">GST%</th>
+                    <th className="col-total align-right">TOTAL</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {Billing_itemtable.map((med, index) => {
+                    // Format expiry date
+                    const expDate = med.Exp_Date || "";
+                    const formattedExp = expDate && expDate.length >= 7 
+                      ? `${expDate.slice(2, 4)}/${expDate.slice(5, 7)}` 
+                      : "";
+                    
+                    // Item name - full display with wrapping
+                    const itemName = med.ItemName || "";
+                    
+                    return (
+                      <tr key={index}>
+                        <td className="align-center">{index + 1}</td>
+                        <td style={{lineHeight: '1.1', wordBreak: 'break-word'}}>{itemName}</td>
+                        <td >{med.CompanyShort || ""}</td>
+                        <td>{med.BatchNo || ""}</td>
+                        <td className="align-center">{med.BoxName || ""}</td>
+                        <td className="align-center">{formattedExp}</td>
+                        <td className="align-center">{med.Billing_Quantity || 0}</td>
+                        <td className="align-right">{formatNumber(med.Unit_Price)}</td>
+                        <td className="align-right">{formatNumber(med.Amount)}</td>
+                        <td className="align-center">{med.GST_Value || 0}%</td>
+                        <td className="align-right">{formatNumber(med.Total)}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* Fixed Footer - Always at bottom of the box */}
+          <div className="fixed-footer">
+            {/* Amount in Words */}
+            <div className="amount-words-section">
+              <span className="amount-words-label">AMOUNT IN WORDS:</span>
+              <span className="amount-words-value">
+                {NumberToWords ? NumberToWords(summaryTotalAmount) : "Zero Rupees Only"}
+              </span>
+            </div>
+
+            {/* Summary Table */}
+            <div className="summary-table-container">
+              <table className="summary-table">
+                <thead>
+                  <tr>
+                    <th colSpan="4" style={{ textAlign: 'center', fontSize: '8pt' }}>
+                       AMOUNT SUMMARY
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className="summary-col-label">TAXABLE AMOUNT</td>
+                    <td className="summary-col-value">{totals.taxable}</td>
+                    <td className="summary-col-label-right">TOTAL GST</td>
+                    <td className="summary-col-value-right">{totals.totalGST}</td>
+                  </tr>
+                  <tr>
+                    <td className="summary-col-label">CGST AMOUNT</td>
+                    <td className="summary-col-value">{totals.totalCGST}</td>
+                    <td className="summary-col-label-right">GROSS AMOUNT</td>
+                    <td className="summary-col-value-right">{formatNumber(summaryAmount)}</td>
+                  </tr>
+                  <tr>
+                    <td className="summary-col-label">SGST AMOUNT</td>
+                    <td className="summary-col-value">{totals.totalSGST}</td>
+                    <td className="summary-col-label-right">NET AMOUNT</td>
+                    <td className="summary-col-value-right">{formatNumber(summaryTotalAmount)}</td>
+                  </tr>
+                  <tr>
+                    <td className="summary-col-label">BILLED BY</td>
+                    <td className="summary-col-value">{UserData?.Employeename || ""}</td>
+                    <td className="summary-col-label-right">PAID AMOUNT</td>
+                    <td className="summary-col-value-right">{formatNumber(summaryPaidAmount)}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            {/* Grand Total */}
+            <div className="grand-total-container">
+              GRAND TOTAL : {formatNumber(summaryPaidAmount)}
+            </div>
+
+            {/* Footer Notes */}
+            <div className="footer-notes" style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
+              <div style={{ textAlign: "left", fontSize: "7pt" }}>
+                <div>MEDICINE REFUND POSSIBLE WITHIN 7 DAYS OF ORIGINAL BILL</div>
+                <div>COLD STORAGE MEDICINES CANNOT BE RETURNED</div>
+              </div>
+
+              <div style={{ textAlign: "right", fontWeight: "bold", fontSize: "7pt" }}>
+                PHARMACIST SIGNATURE: _________________________
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="dotmatrix-buttons">
+        <button onClick={handlePrint}>PRINT</button>
+        <button onClick={handlePrintClose}>CLOSE</button>
+      </div>
+    </div>
+  );
+};
+  const [ItemTypes] = useState(["Notified", "Narcotic", "High Risk", "Schedule-H"]);
+  const colors = ["#FFDDC1", "#FFABAB", "#FFC3A0", "#D5AAFF"];
+
+
+
+
+  const itemNameRef = useRef(null);
+  const batchNoRef = useRef(null);
+  const billingQtyRef = useRef(null);
+
+const handleItemNameKeyDown = (e) => {
+  if (e.key === 'Enter' || e.key === 'Tab') {
+    e.preventDefault();
+    
+    // Wait for state updates
+    setTimeout(() => {
+      // Check if BatchNo select exists
+      const batchSelect = document.querySelector('select[name="BatchNo"]');
+      if (batchSelect) {
+        batchSelect.focus();
+      }
+    }, 100);
+  }
+};
+
+
+  // Handle Tab key press in BatchNo select
+const handleBatchNoKeyDown = (e) => {
+  if (e.key === 'Tab' || e.key === 'Enter') {
+    e.preventDefault();
+    setTimeout(() => {
+      const billingQty = document.querySelector('input[name="Billing_Quantity"]');
+      if (billingQty) {
+        billingQty.focus();
+      }
+    }, 100);
+  }
+};
+
+  // Handle Enter key press in BatchNo select
+  const handleBatchNoEnter = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      if (billingQtyRef.current) {
+        billingQtyRef.current.focus();
+      }
+    }
+  };
+
+  // Handle Enter key press in Billing Quantity
+const handleBillingQtyKeyDown = (e) => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    // Call the Add function
+    Additemforbill(Single_row_data.S_No);
+    // Then focus back to Item Name
+    setTimeout(() => {
+      const itemNameInput = document.querySelector('input[name="SearchItemName"]');
+      if (itemNameInput) {
+        itemNameInput.focus();
+        // Clear the Item Name input for new entry
+        setItemSearch((prev) => ({
+          ...prev,
+          SearchItemName: "",
+          SearchItemCode: "",
+        }));
+      }
+    }, 100);
+  }
+};
+  // Modified Add function to handle focus (optional - if you want focus after button click too)
+  const handleAddItem = () => {
+    Additemforbill(Single_row_data.S_No);
+    // Focus back to Item Name after adding
+    setTimeout(() => {
+      if (itemNameRef.current) {
+        itemNameRef.current.focus();
+      }
+    }, 100);
+  };
+
+
+  
+
+
+  return (
+    <>
+      {isPrintButtonVisible ? (
+        <div className="Main_container_app">
+          <h3>Pharmacy Billing</h3>
+
+          <div className="RegisterTypecon">
+            <div className="RegisterType">
+              {["IPPharmacy", "WalkinPharmacy"].map((p, ind) => (
+                <div className="registertypeval" key={ind + "key"}>
+                  <input
+                    type="radio"
+                    id={p}
+                    name="view_type"
+                    checked={viewType === p}
+                    onChange={() => setViewType(p)}
+                    value={p}
+                  />
+                  <label htmlFor={p}>
+                    {
+                      {
+                        IPPharmacy: "IPPharmacy",
+                        WalkinPharmacy: "WalkinPharmacy",
+                      }[p] || p
+                    }
+                  </label>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <br />
+           <div
+  style={{
+    marginTop: "6px",
+    fontSize: "11px",
+    display: "flex",
+    gap: "10px",
+    alignItems: "center",
+    flexWrap: "wrap",
+  }}
+>
+  <span>
+    <span
+      style={{
+        display: "inline-block",
+        width: "10px",
+        height: "10px",
+        backgroundColor: "#28a745",
+        marginRight: "4px",
+      }}
+    ></span>
+    Green: 90 days above
+  </span>
+
+  <span>
+    <span
+      style={{
+        display: "inline-block",
+        width: "10px",
+        height: "10px",
+        backgroundColor: "#ffc107",
+        marginRight: "4px",
+      }}
+    ></span>
+    Yellow: 90 days & below
+  </span>
+
+  <span>
+    <span
+      style={{
+        display: "inline-block",
+        width: "10px",
+        height: "10px",
+        backgroundColor: "#fd7e14",
+        marginRight: "4px",
+      }}
+    ></span>
+    Orange: 60 days & below
+  </span>
+
+  <span>
+    <span
+      style={{
+        display: "inline-block",
+        width: "10px",
+        height: "10px",
+        backgroundColor: "#dc3545",
+        marginRight: "4px",
+      }}
+    ></span>
+    Red: 30 days below (confirmation required)
+  </span>
+</div>
+
+          <br />
+
+          {viewType === 'IPPharmacy' && (
+            <>
+              <div className="new-patient-registration-form">
+                <div className="QuickStock_container_header">
+                  <h3>
+                    <ShoppingCartIcon />
+                    IP Pharmacy Billing
+                  </h3>
+                </div>
+
+                {/* Patient Details Section */}
+                <div className="mannual-header-with uiwe_uywg66">
+                  <div className="jkewdkx70_866">
+                    <br />
+                    <div className="invoice_firstpart added_ivce_fistprt">
+                      <div className="RegisFormcon">
+                        <div className="added_regisFrm1">
+                          <label htmlFor="itemCode">
+                            Patient ID <span>:</span>
+                          </label>
+                          <input
+                            type="text"
+                            value={SelectedPatient_list.PatientId}
+                            name="PatientId"
+                            list="PatientList"
+                            onChange={HandlePatient}
+                            disabled={Selected_Patient_Pharmacy.Edit}
+                          />
+
+                          <datalist id="PatientList">
+                            {Patientarr.length > 0 &&
+                              Patientarr.map((item, index) => (
+                                <option
+                                  key={index}
+                                  value={item.PatientId || ""}
+                                > {item.PatientName || item.RegistrationId || ""} {item.PhoneNo || ""}</option>
+                              ))}
+                          </datalist>
+                        </div>
+
+                        <div className="added_regisFrm1">
+                          <label htmlFor="itemCode">
+                            Patient Name <span>:</span>
+                          </label>
+                          <input
+                            type="text"
+                            name="PatientName"
+                            value={SelectedPatient_list?.PatientName || ""}
+                            onChange={HandlePatient}
+                            list="CustomerName"
+                            disabled={Selected_Patient_Pharmacy?.Edit}
+                            autoComplete="new-patient-name"
+                          />
+                          <datalist id="CustomerName">
+                            {Array.isArray(Patientarr) &&
+                              Patientarr.map((item, index) => (
+                                <option
+                                  key={index}
+                                  value={item.PatientName || item.FirstName || ""}
+                                >
+                                  {`${item.PatientId || ""} ${item.PatientName || item.RegistrationId || ""} ${item.PhoneNo || ""}`}
+                                </option>
+                              ))}
+                          </datalist>
+                        </div>
+
+                        <div className="added_regisFrm1">
+                          <label htmlFor="PhoneNumber">
+                            Phone Number <span>:</span>
+                          </label>
+                          <input
+                            type="number"
+                            value={SelectedPatient_list.PhoneNumber}
+                            name="PhoneNumber"
+                            onChange={HandlePatient}
+                            list="PhoneNumber"
+                            disabled={Selected_Patient_Pharmacy.Edit}
+                          />
+                          <datalist id="PhoneNumber">
+                            {Patientarr.length !== 0 &&
+                              Patientarr.map((item, index) => (
+                                <option
+                                  key={index}
+                                  value={`${item.PhoneNo || ""}`}
+                                ></option>
+                              ))}
+                          </datalist>
+                        </div>
+
+                        <div className="added_regisFrm1">
+                          <label>
+                            Age / Gender <span>:</span>
+                          </label>
+                          <input
+                            type="text"
+                            value={SelectedPatient_list.PatientAge}
+                            name="PatientAge"
+                            onChange={HandlePatient}
+                            disabled={Selected_Patient_Pharmacy.Edit}
+                          />
+                        </div>
+
+                        <div className="added_regisFrm1">
+                          <label>
+                            PatientCategory<span>:</span>
+                          </label>
+                          <input
+                            type="text"
+                            value={SelectedPatient_list.PatientCategory}
+                            name="PatientCategory"
+                            onChange={HandlePatient}
+                            disabled={Selected_Patient_Pharmacy.Edit}
+                          />
+                        </div>
+                      </div>
+                      <br />
+                      <div className="RegisFormcon">
+                        <div className="added_regisFrm1">
+                          <label htmlFor="itemCode">
+                            Date<span>:</span>
+                          </label>
+                          <input
+                            type="Date"
+                            name="Billing_date"
+                            value={Billing_date.toISOString().split("T")[0]}
+                            onChange={(e) =>
+                              setBilling_date(new Date(e.target.value))
+                            }
+                          />
+                        </div>
+
+                        <div className="added_regisFrm1">
+                          <label htmlFor="itemCode">
+                            Physician Name <span>:</span>
+                          </label>
+                          <input
+                            name="Doctor_name"
+                            value={SelectedPatient_list.Doctor_name}
+                            onChange={HandlePatient}
+                            disabled={Selected_Patient_Pharmacy.Edit}
+                          />
+                        </div>
+
+                        <div className="added_regisFrm1">
+                          <label htmlFor="itemCode">
+                            Speciality<span>:</span>
+                          </label>
+                          <input
+                            name="Speciality"
+                            value={SelectedPatient_list.Speciality}
+                            onChange={HandlePatient}
+                            disabled={Selected_Patient_Pharmacy.Edit}
+                          />
+                        </div>
+
+                        <div className="added_regisFrm1">
+                          <label htmlFor="CustomerAddress">
+                            Address <span>:</span>
+                          </label>
+                          <textarea
+                            disabled={Selected_Patient_Pharmacy.Edit}
+                            type="text"
+                            value={SelectedPatient_list.PatientAddress}
+                            name="PatientAddress"
+                            onChange={HandlePatient}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                <div className="jkewdkx70_866" style={{ marginTop: "15px" }}>
+        <div className="added_ivce_hed">
+          <h3>SEARCH PRODUCT DETAILS</h3>
+        </div>
+        <div className="RegisFormcon" style={{ marginTop: "10px" }}>
+          <div className="added_regisFrm1">
+            <label htmlFor="SearchItemName">
+              Item Name<span className="requirreg12">*</span>
+            </label>
+
+            <input
+              ref={itemNameRef}
+              list="itemList"
+              name="SearchItemName"
+              id="SearchItemName"
+              value={ItemSearch.SearchItemName}
+              onChange={set_handleSearch}
+              onKeyDown={handleItemNameKeyDown}
+              autoComplete="off"
+            />
+
+            <datalist id="itemList">
+              {Itemarr &&
+                Itemarr.length > 0 &&
+                Itemarr.map((item, index) =>
+                  item.BatchDetails && item.BatchDetails.length > 0 ? (
+                    item.BatchDetails.map((batch, bIndex) => (
+                      <option
+                        key={`${index}-${bIndex}`}
+                        value={`${item.ItemName} | ${item.ItemCode} | Batch: ${batch.Batch_No} | Qty: ${batch.AvailableQuantity}`}
+                        data-code={item.ItemCode}
+                        data-batch={batch.Batch_No}
+                        data-qty={batch.Available_Qty}
+                      />
+                    ))
+                  ) : (
+                    <option
+                      key={index}
+                      value={`${item.ItemName} | ${item.ItemCode} | No Batch`}
+                      data-code={item.ItemCode}
+                    />
+                  )
+                )}
+            </datalist>
+          </div>
+          {shelfview.ShelfName && (
+            <>
+              <div className="RegisFormcon">
+                <div className="added_regisFrm1">
+                  <label htmlFor="ShelfName">
+                    Rack Name <span>:</span>{" "}
+                  </label>
+                  <input value={shelfview.RackName} disabled />
+                </div>
+              </div>
+
+              <div className="RegisFormcon">
+                <div className="added_regisFrm1">
+                  <label htmlFor="ShelfName">
+                    Shelf Name <span>:</span>{" "}
+                  </label>
+                  <input value={shelfview.ShelfName} disabled />
+                </div>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+
+      {/* Item Details Section */}
+      {Single_row_data.ItemId !== '' && (
+        <div className="jkewdkx70_866">
+          <div className="Add_items_Purchase_Master added_ivce_hed">
+            <h4>ITEM DETAILES</h4>
+          </div>
+
+          <div className="RegisFormcon">
+
+            <div className="added_regisFrm1" >
+              <label htmlFor="browser">Item Name<span>:</span></label>
+              <input
+                name="ItemName"
+                value={Single_row_data.ItemName}
+                onChange={set_handleInputChange}
+                autoComplete="off"
+                disabled
+              />
+            </div>
+
+            <div className="added_regisFrm1">
+              <label htmlFor="Generic">Generic Name<span>:</span></label>
+              <input
+                name="Generic"
+                id="Generic"
+                list="Genericss"
+                value={Single_row_data.Generic}
+                onChange={set_handleInputChange}
+                disabled
+              />
+            </div>
+
+            {/* <div className="added_regisFrm1 added_regisFrm1_frselect">
+              <label htmlFor="BatchNo">BatchNo<span className="requirreg12">*</span></label>
+              <select
+                ref={batchNoRef}
+                name="BatchNo"
+                id="BatchNo"
+                value={Single_row_data.BatchNo}
+                onChange={set_handleInputChange}
+                onKeyDown={(e) => {
+                  if (e.key === 'Tab') {
+                    handleBatchNoKeyDown(e);
+                  } else if (e.key === 'Enter') {
+                    handleBatchNoEnter(e);
+                  }
+                }}
+              >
+                <option value="" disabled>Select Batch</option>
+                {getStockid_Name.map((item, index) => (
+                  <option
+                    key={index}
+                    value={item.Batch_No}
+                    style={index === 0 ? { backgroundColor: 'yellow' } : {}}
+                  >
+                    {`${item.Batch_No} | Ava.Qty: ${item.AvailableQuantity} | MRP: ${parseFloat(item.MRP).toFixed(2)}`}
+                  </option>
+                ))}
+              </select>
+            </div> */}
+
+                                    <div className="added_regisFrm1 added_regisFrm1_frselect">
+                           <label htmlFor="BatchNo">BatchNo<span className="requirreg12">*</span></label>
+<select
+  ref={batchNoRef}
+  name="BatchNo"
+  id="BatchNo"
+  value={Single_row_data.BatchNo}
+  onChange={set_handleInputChange}
+  
+    onKeyDown={(e) => {
+                  if (e.key === 'Tab') {
+                    handleBatchNoKeyDown(e);
+                  } else if (e.key === 'Enter') {
+                    handleBatchNoEnter(e);
+                  }
+                }}
+  style={{
+    backgroundColor:
+      selectedExpiry?.color === "green"
+        ? "#3fa73fff"
+        : selectedExpiry?.color === "yellow"
+        ? "#f0bc10ff"
+        : selectedExpiry?.color === "orange"
+        ? "#f09711ff"
+        : selectedExpiry?.color === "red"
+        ? "#e42434ff"
+        : "white",
+    color: "#000",
+    fontWeight: "600",
+  }}
+>
+
+  <option value="" >Select Batch</option>
+
+  {getStockid_Name.map((item, index) => {
+    const { daysLeft, color } = getExpiryInfo(item.Expiry_Date);
+
+    return (
+      <option
+        key={index}
+        value={item.Batch_No}
+        style={{
+          backgroundColor:
+            color === "green"
+              ? "#19ec19ff"
+              : color === "yellow"
+              ? "#f0bd16ff"
+              : color === "orange"
+              ? "#f19509ff"
+              : "#e61c2dff",
+        }}
+      >
+        {item.Batch_No} | Qty: {item.AvailableQuantity} | MRP: {Number(item.MRP).toFixed(2)} | Exp: {daysLeft} days
+      </option>
+    );
+  })}
+</select>
+</div>
+
+            <div className="added_regisFrm1">
+              <label htmlFor="Exp_Date">Expiry Date</label>
+              <input
+                name="Exp_Date"
+                id="Exp_Date"
+                value={Single_row_data.Exp_Date}
+                onChange={set_handleInputChange}
+                disabled
+              />
+            </div>
+            <div className="added_regisFrm1">
+              <label htmlFor="AvailableQuantity">Available Quantity<span>:</span></label>
+              <input
+                name="AvailableQuantity"
+                id="AvailableQuantity"
+                value={Single_row_data.AvailableQuantity || 0}
+                onChange={set_handleInputChange}
+                readOnly
+                  disabled
+              />
+            </div>
+            <div className="added_regisFrm1" >
+              <label htmlFor="Billing_Quantity">Billing Quantity<span className="requirreg12">* </span></label>
+              <input
+                ref={billingQtyRef}
+                name="Billing_Quantity"
+                id="Billing_Quantity"
+                value={Single_row_data.Billing_Quantity}
+                onChange={set_handleInputChange}
+                onKeyDown={handleBillingQtyKeyDown}
+              />
+            </div>
+
+            {/* Rest of your form fields */}
+            <div className="added_regisFrm1" >
+              <label htmlFor="Unit_Price">Unit Price<span>:</span></label>
+              <input
+                name="Unit_Price"
+                id="Unit_Price"
+                value={Single_row_data.Unit_Price}
+                onChange={set_handleInputChange}
+                readOnly
+              />
+            </div>
+            <div className="added_regisFrm1">
+              <label htmlFor="Amount">Amount<span>:</span></label>
+              <input
+                name="Amount"
+                id="Amount"
+                value={Single_row_data.Amount}
+                onChange={set_handleInputChange}
+                readOnly
+              />
+            </div>
+            <div className="added_regisFrm1" >
+              <label htmlFor="GST">GST%<span>:</span></label>
+              <input
+                name="GST"
+                id="GST"
+                value={Single_row_data.GST}
+                onChange={set_handleInputChange}
+                readOnly
+              />
+            </div>
+            <div className="added_regisFrm1" >
+              <label htmlFor="BoxName">BoxName<span>:</span></label>
+              <input
+                name="BoxName"
+                id="BoxName"
+                value={Single_row_data.BoxName}
+                onChange={set_handleInputChange}
+                readOnly
+              />
+            </div>
+            <div className="added_regisFrm1">
+              <label htmlFor="Original_total">Final Amount<span>:</span></label>
+              <input
+                name="Original_total"
+                id="Original_total"
+                value={Single_row_data.Original_total}
+                onChange={set_handleInputChange}
+                readOnly
+              />
+            </div>
+
+            <div className="added_regisFrm1 added_regisFrm1_frselect" >
+              <label htmlFor="CD_Type">Discount Type<span className="requirreg12">*</span></label>
+              <select
+                name="CD_Type"
+                value={Single_row_data.CD_Type}
+                onChange={set_handleInputChange}
+              >
+                <option value="">Select</option>
+                <option value="Cash">Cash</option>
+                <option value="Percentage">Percentage</option>
+              </select>
+            </div>
+            <div className="added_regisFrm1" >
+              <label htmlFor="Cash_Discount">Discount<span className="requirreg12">*</span></label>
+              <input
+                name="Cash_Discount"
+                id="Cash_Discount"
+                value={Single_row_data.Cash_Discount}
+                onChange={set_handleInputChange}
+                disabled={Single_row_data.CD_Type === ''}
+              />
+            </div>
+
+            <div className="added_regisFrm1" >
+              <label htmlFor="Total">Total<span>:</span></label>
+              <input
+                name="Total"
+                id="Total"
+                value={Single_row_data.Total}
+                onChange={set_handleInputChange}
+                readOnly
+              />
+            </div>
+          </div>
+
+          <div className="Register_btn_con added_Register_btn_con" style={{ marginTop: '15px' }}>
+            <button
+              className="RegisterForm_1_btns added_RegisterForm_1_btns"
+              onClick={handleAddItem}
+            >
+              {Single_row_data.S_No ? 'Update' : 'Add'}
+            </button>
+            <button
+              className="RegisterForm_1_btns added_RegisterForm_1_btns"
+              onClick={() => Clearitemforbill(Single_row_data.S_No)}
+            >
+              Clear
+            </button>
+          </div>
+        </div>
+      )}
+
+
+
+                </div>
+
+                {/* Selected Medicine Table */}
+                <br></br>
+                <div className="for33">
+                  <div className="Add_items_Purchase_Master added_ivce_hed hjgyh">
+                    <h3 className="ejdhw_p20">
+                      <p> Selected Medicine</p>
+                      <p>
+                        {ItemTypes.map((type, index) => (
+                          <span
+                            key={type}
+                            style={{
+                              backgroundColor: colors[index % colors.length],
+                              padding: "0px 5px",
+                              borderRadius: "5px",
+                              marginRight: "10px",
+                              fontSize: "12px",
+                              color: "black",
+                            }}
+                          >
+                            {type}
+                          </span>
+                        ))}
+                      </p>
+                    </h3>
+                  </div>
+                </div>
+                <div
+                  className="Selected-table-container444 DEWSDXWED"
+                  style={{ marginTop: "10px" }}
+                >
+                  <table className="selected-medicine-table222 EDWEDE">
+                    <thead>
+                      <tr>
+                        <th>S.No</th>
+                        {(SelectedPatient_list.PatientCategory === 'Insurance' || SelectedPatient_list.PatientCategory === 'Client') && (
+                          <th>isReimbursable</th>
+                        )}
+                        <th>Item Name</th>
+                        <th>Batch/HSN No</th>
+                        <th>Box Name</th>
+                        <th>Exp Date</th>
+                        <th>Quantity</th>
+                        <th>Unit Price</th>
+                        <th>GST %</th>
+                        <th>Amount</th>
+                        <th>Tax Amount</th>
+                        <th>Discount</th>
+                        <th>Total</th>
+                        <th className="hideDataForPrint">Action</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      {Billing_itemtable.map((medicineInfo, index) => {
+                        return (
+                          <tr key={index}>
+                            <td>{medicineInfo.S_No}</td>
+                            {(SelectedPatient_list.PatientCategory === 'Insurance' || SelectedPatient_list.PatientCategory === 'Client') && (
+                              <td>
+                                <input
+                                  type="checkbox"
+                                  checked={medicineInfo.isReimbursable === "Yes"}
+                                  onChange={(e) => handleReimbursableChange(e, index)}
+                                />
+                              </td>
+                            )}
+                                                   <td
+  style={{
+    fontWeight: "600",
+    backgroundColor:
+      getExpiryInfo(medicineInfo.Exp_Date).color === "green"
+        ? "#28a745"
+        : getExpiryInfo(medicineInfo.Exp_Date).color === "yellow"
+        ? "#ffc107"
+        : getExpiryInfo(medicineInfo.Exp_Date).color === "orange"
+        ? "#fd7e14"
+        : "#dc3545",
+  }}
+>
+  {medicineInfo.ItemName}
+</td>
+                            <td>
+                              {medicineInfo.BatchNo && medicineInfo.HSNCode ? (
+                                <>
+                                  {medicineInfo.BatchNo}/<br />
+                                  {medicineInfo.HSNCode}
+                                </>
+                              ) : medicineInfo.BatchNo ? (
+                                medicineInfo.BatchNo
+                              ) : medicineInfo.HSNCode ? (
+                                medicineInfo.HSNCode
+                              ) : (
+                                ""
+                              )}
+                            </td>
+                            <td>{medicineInfo.BoxName || ""}</td>
+                            <td>{medicineInfo.Exp_Date || ""}</td>
+                            <td>{medicineInfo.Billing_Quantity}</td>
+                            <td>{medicineInfo.Unit_Price || 0}</td>
+                            <td>{medicineInfo.GST}%</td>
+                            <td>{medicineInfo.Amount || 0}</td>
+                            <td>{medicineInfo.Original_total || 0}</td>
+                            {medicineInfo.CD_Type === "Percentage" ? (
+                              <td>{medicineInfo.Cash_Discount} % </td>
+                            ) : medicineInfo.CD_Type === "Cash" ? (
+                              <td> Rs. {medicineInfo.Cash_Discount}</td>
+                            ) : (
+                              <td>No Discount</td>
+                            )}
+                            <td>{medicineInfo.Total || 0}</td>
+                            <td>
+                              <div className="Action_btns">
+                                <button
+                                  className="delnamebtn"
+                                  onClick={() => {
+                                    Editbillingitem(medicineInfo);
+                                  }}
+                                >
+                                  <EditIcon />
+                                </button>
+                                <button
+                                  className="delnamebtn"
+                                  onClick={() => {
+                                    deletebillingitem(medicineInfo.S_No);
+                                  }}
+                                >
+                                  <DeleteIcon />
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+
+                {/* Summary and Payment Section */}
+                <div className="summary-container addded_sumry_contre">
+                  <div className="RegisFormcon" style={{ justifyContent: "center", gap: "10px" }}>
+                    <div className="added_regisFrm1">
+                      <label htmlFor="">
+                        Discount Method<span>:</span>{" "}
+                      </label>
+                      <select
+                        name="CDMethod"
+                        value={NetAmount_CDmethod.Type}
+                        onChange={(e) => {
+                          setNetAmount_CDmethod((prev) => ({
+                            ...prev,
+                            Type: e.target.value,
+                          }));
+                        }}
+                      >
+                        <option value="">Select</option>
+                        <option value="Cash">Cash</option>
+                        <option value="Percentage">Percentage</option>
+                      </select>
+                    </div>
+                    <div className="added_regisFrm1">
+                      <label htmlFor="">
+                        Cash Discount<span>:</span>
+                      </label>
+                      <input
+                        type="number"
+                        onKeyDown={blockInvalidChar}
+                        name="CashDiscount"
+                        value={NetAmount_CDmethod.Amount}
+                        onChange={(e) => {
+                          if (NetAmount_CDmethod.Type !== "") {
+                            setNetAmount_CDmethod((prev) => ({
+                              ...prev,
+                              Amount: e.target.value,
+                            }));
+                          } else {
+                            alert("Please Choose a Discount Method");
+                          }
+                        }}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="summary-container addded_sumry_contre">
+                  <div className="edcwjkediu87ccc">
+                    <div className="ewscjusd_s89i8i">
+                      <div className="edcwjkediu87_mmmm">
+                        <div>
+                          <div className="sriii_shvdjsd">
+                            <label>
+                              <input
+                                type="checkbox"
+                                name="isCash"
+                                checked={Paytype.isCash === "Yes"}
+                                onChange={handlePayType}
+                              />
+                              Cash
+                            </label>
+                            <label>
+                              <input
+                                type="checkbox"
+                                name="isCredit"
+                                checked={Paytype.isCredit === "Yes"}
+                                onChange={handlePayType}
+                              />
+                              Credit
+                            </label>
+                          </div>
+
+                          {Paytype.isCash === "Yes" && (
+                            <>
+                              <div
+                                className="EWDWDWDWDCC_0"
+                                style={{
+                                  justifyContent: "center",
+                                  marginTop: "5px",
+                                }}
+                              >
+                                <div className="clm-itm-stl">
+                                  <label>
+                                    Payment Method <span>:</span>
+                                  </label>
+                                  <select
+                                    name="Billpay_method"
+                                    value={formAmount.Billpay_method}
+                                    onChange={handleChange}
+                                  >
+                                    <option value=''>Select</option>
+                                    {Array.isArray(PaymentMode) && PaymentMode.filter((p) => p.status === 'Active').map((row, ind) => (
+                                      <option key={ind} value={row.GradeName}>{row.GradeName}</option>
+                                    ))}
+                                  </select>
+                                </div>
+                                {formAmount.Billpay_method === "Card" && (
+                                  <>
+                                    <div className="clm-itm-stl">
+                                      <label>
+                                        Card Type <span>:</span>
+                                      </label>
+                                      <select
+                                        name="CardType"
+                                        value={formAmount.CardType}
+                                        onChange={handleChange}
+                                      >
+                                        <option value="">Select</option>
+                                        {["Debit", "Credit"].map((p, indx) => (
+                                          <option key={indx} value={p}>
+                                            {p}
+                                          </option>
+                                        ))}
+                                      </select>
+                                    </div>
+                                    <div className="clm-itm-stl">
+                                      <label>
+                                        Card No <span>:</span>
+                                      </label>
+                                      <input
+                                        type="number"
+                                        onKeyDown={blockInvalidChar}
+                                        name="CardNo"
+                                        value={formAmount.CardNo}
+                                        onChange={handleChange}
+                                      />
+                                    </div>
+                                    <div className="clm-itm-stl">
+                                      <label>
+                                        Transaction Id <span>:</span>
+                                      </label>
+                                      <input
+                                        type="text"
+                                        onKeyDown={blockInvalidChar}
+                                        name="TransactionId"
+                                        value={formAmount.TransactionId}
+                                        onChange={handleChange}
+                                      />
+                                    </div>
+                                  </>
+                                )}
+                                {formAmount.Billpay_method === "Cheque" && (
+                                  <>
+                                    <div className="clm-itm-stl">
+                                      <label>
+                                        Cheque No <span>:</span>
+                                      </label>
+                                      <input
+                                        type="number"
+                                        onKeyDown={blockInvalidChar}
+                                        name="ChequeNo"
+                                        value={formAmount.ChequeNo}
+                                        onChange={handleChange}
+                                      />
+                                    </div>
+                                    <div className="clm-itm-stl">
+                                      <label>
+                                        Bank Name <span>:</span>
+                                      </label>
+                                      <input
+                                        type="text"
+                                        name="BankName"
+                                        value={formAmount.BankName}
+                                        onChange={handleChange}
+                                      />
+                                    </div>
+                                  </>
+                                )}
+                                {formAmount.Billpay_method === "Card" && (
+                                  <>
+                                    <div className="clm-itm-stl">
+                                      <label>
+                                        Transaction Fee <span>:</span>
+                                      </label>
+                                      <input
+                                        type="number"
+                                        name="transactionFee"
+                                        value={formAmount.transactionFee || ""}
+                                        onChange={handleChange}
+                                        onKeyDown={blockInvalidChar}
+                                      />
+                                    </div>
+                                  </>
+                                )}
+                                {formAmount.Billpay_method === "OnlinePayment" && (
+                                  <>
+                                    <div className="clm-itm-stl">
+                                      <label>
+                                        UPI Id <span>:</span>
+                                      </label>
+                                      <input
+                                        type="text"
+                                        onKeyDown={blockInvalidChar}
+                                        name="upiid"
+                                        value={formAmount.upiid}
+                                        onChange={handleChange}
+                                      />
+                                    </div>
+                                    <div className="clm-itm-stl">
+                                      <label>
+                                        Transaction Id <span>:</span>
+                                      </label>
+                                      <input
+                                        type="text"
+                                        onKeyDown={blockInvalidChar}
+                                        name="TransactionId"
+                                        value={formAmount.TransactionId}
+                                        onChange={handleChange}
+                                      />
+                                    </div>
+                                  </>
+                                )}
+                                <div className="clm-itm-stl">
+                                  <label>
+                                    Amount <span>:</span>
+                                  </label>
+                                  <input
+                                    onKeyDown={blockInvalidChar}
+                                    type="number"
+                                    name="paidamount"
+                                    value={formAmount.paidamount}
+                                    onChange={handleChange}
+                                  />
+                                </div>
+                                <div className="clm-itm-stl">
+                                  <label>
+                                    AdditionalAmount <span>:</span>
+                                  </label>
+                                  <input
+                                    onKeyDown={blockInvalidChar}
+                                    type="number"
+                                    name="Additionalamount"
+                                    value={formAmount.Additionalamount}
+                                    onChange={handleChange}
+                                  />
+                                </div>
+                              </div>
+
+                              <div className="Register_btn_con added_Register_btn_con">
+                                <button
+                                  className="RegisterForm_1_btns added_RegisterForm_1_btns"
+                                  onClick={isEdit !== null ? handleUpdate : handleAdd}
+                                >
+                                  {isEdit !== null ? "Update" : "Add"}
+                                </button>
+                              </div>
+
+                              <div className="edwqw_c2">
+                                <label>Amount in Words : </label>
+                                <span
+                                  style={{
+                                    color: "#808080b5",
+                                    padding: "0px 0px 0px 5px",
+                                  }}
+                                >
+                                  {NumberToWords(+summary.totalAmount || 0)}
+                                </span>
+                              </div>
+                            </>
+                          )}
+
+                          <br />
+                          <br />
+
+                          <div className="edwqw_c2">
+                            <label>Narration</label>
+                            <textarea
+                              id="Remarks"
+                              name="Remarks"
+                              rows="2"
+                              value={Remarks}
+                              onChange={(e) => setRemarks(e.target.value)}
+                            ></textarea>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <div className="ewscjusd_s89i8">
+                        <div
+                          className="RegisFormconBill"
+                          style={{
+                            justifyContent: "center",
+                            rowGap: "8px",
+                            paddingTop: "5px",
+                          }}
+                        >
+                          <div className="clm-itm-stl">
+                            <label>Gross Amount :</label>
+                            <input value={summary.totalBase} readOnly />
+                          </div>
+                          <div className="clm-itm-stl">
+                            <label>GST :</label>
+                            <input value={summary.GSTAmount} readOnly />
+                          </div>
+                          <div className="clm-itm-stl">
+                            <label>Discount :</label>
+                            <input value={summary.Discount} readOnly />
+                          </div>
+
+                          <div className="clm-itm-stl">
+                            <label>Item Amount :</label>
+                            <input
+                              style={{ backgroundColor: "yellow" }}
+                              value={summary.totalAmount}
+                              readOnly
+                            />
+                          </div>
+
+                          <div className="clm-itm-stl">
+                            <label>Round-Off :</label>
+                            <input value={summary.Roundoff} readOnly />
+                          </div>
+
+                          <div className="clm-itm-stl">
+                            <label>Net Amount :</label>
+                            <input
+                              style={{ backgroundColor: "yellow" }}
+                              value={summary.totalAmountt}
+                              readOnly
+                            />
+                          </div>
+
+                          <div className="clm-itm-stl">
+                            <label>Paid Amount :</label>
+                            <input value={summary.PaidAmount} readOnly />
+                          </div>
+                          <div className="clm-itm-stl">
+                            <label>Balance Amount :</label>
+                            <input value={summary.BalanceAmount} readOnly />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <br />
+
+                  <div>
+                    {billAmount.length !== 0 && (
+                      <div className="Selected-table-container444 DEWSDXWED">
+                        <table className="selected-medicine-table222 EDWEDE">
+                          <thead>
+                            <tr>
+                              <th>S.No</th>
+                              <th>Payment Type</th>
+                              <th>Card Type</th>
+                              <th>Cheque No</th>
+                              <th>Bank Name</th>
+                              <th>Amount</th>
+                              <th>Action </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {billAmount.map((row, index) => (
+                              <tr key={index}>
+                                <td>{index + 1}</td>
+                                <td>{row.Billpay_method}</td>
+                                <td>{row.CardType || "-"}</td>
+                                <td>{row.ChequeNo || "-"}</td>
+                                <td>{row.BankName || "-"}</td>
+                                <td>{row.paidamount}</td>
+                                <td>
+                                  <button
+                                    className="delnamebtn"
+                                    onClick={() => handleEdit(index)}
+                                  >
+                                    <EditNoteIcon />
+                                  </button>
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {isPrintButtonVisible && (
+                  <div className="Register_btn_con added_Register_btn_con">
+                    <button
+                      className="RegisterForm_1_btns added_RegisterForm_1_btns"
+                      onClick={SubmitSavealldata}
+                      disabled={isSubmitting}
+                    >
+                       {isSubmitting ? "Saving..." : "Save"}
+                    </button>
+                    
+                    <button
+                      className="RegisterForm_1_btns added_RegisterForm_1_btns"
+                      onClick={Submitalldata}
+                      disabled={isSubmitting}
+
+                    >
+                      {isSubmitting ? "Printing..." : "Print"}
+                    </button>
+                  </div>
+                )}
+              </div>
+            </>
+          )}
+
+          {viewType === 'WalkinPharmacy' && (
+            <>
+              <div className="new-patient-registration-form">
+                <div className="QuickStock_container_header">
+                  <h3>
+                    <ShoppingCartIcon />
+                    Walkin Pharmacy Billing
+                  </h3>
+                </div>
+
+                {/* Patient Details Section */}
+                <div className="mannual-header-with uiwe_uywg66">
+                  <div className="jkewdkx70_866">
+                    <br />
+                    <div className="invoice_firstpart added_ivce_fistprt">
+                      <div className="RegisFormcon">
+                        {/* <div className="added_regisFrm1">
+                          <label htmlFor="itemCode">
+                            Patient ID <span>:</span>
+                          </label>
+                          <input
+                            type="text"
+                            value={SelectedPatient_list.PatientId}
+                            name="PatientId"
+                            list="PatientList"
+                            onChange={HandlePatient}
+                            disabled={Selected_Patient_Pharmacy.Edit}
+                          />
+
+                          <datalist id="PatientList">
+                            {Patientarr.length > 0 &&
+                              Patientarr.map((item, index) => (
+                                <option
+                                  key={index}
+                                  value={item.PatientId || ""}
+                                > {item.PatientName || item.RegistrationId || ""} {item.PhoneNo || ""}</option>
+                              ))}
+                          </datalist>
+                        </div> */}
+
+                        <div className="added_regisFrm1">
+                          <label htmlFor="itemCode">
+                            Patient Name <span>:</span>
+                          </label>
+                          <input
+                            type="text"
+                            name="PatientName"
+                            value={SelectedPatient_list?.PatientName || ""}
+                            onChange={HandlePatient}
+                            list="CustomerName"
+                            disabled={Selected_Patient_Pharmacy?.Edit}
+                            autoComplete="new-patient-name"
+                          />
+                          {/* <datalist id="CustomerName">
+                            {Array.isArray(Patientarr) &&
+                              Patientarr.map((item, index) => (
+                                <option
+                                  key={index}
+                                  value={item.PatientName || item.FirstName || ""}
+                                >
+                                  {`${item.PatientId || ""} ${item.PatientName || item.RegistrationId || ""} ${item.PhoneNo || ""}`}
+                                </option>
+                              ))}
+                          </datalist> */}
+                        </div>
+
+                        <div className="added_regisFrm1">
+                          <label htmlFor="PhoneNumber">
+                            Phone Number <span>:</span>
+                          </label>
+                          <input
+                            type="number"
+                            value={SelectedPatient_list.PhoneNumber}
+                            name="PhoneNumber"
+                            onChange={HandlePatient}
+                            list="PhoneNumber"
+                            disabled={Selected_Patient_Pharmacy.Edit}
+                          />
+                          <datalist id="PhoneNumber">
+                            {Patientarr.length !== 0 &&
+                              Patientarr.map((item, index) => (
+                                <option
+                                  key={index}
+                                  value={`${item.PhoneNo || ""}`}
+                                ></option>
+                              ))}
+                          </datalist>
+                        </div>
+
+                        <div className="added_regisFrm1">
+                          <label>
+                            Age / Gender <span>:</span>
+                          </label>
+                          <input
+                            type="text"
+                            value={SelectedPatient_list.PatientAge}
+                            name="PatientAge"
+                            onChange={HandlePatient}
+                            disabled={Selected_Patient_Pharmacy.Edit}
+                          />
+                        </div>
+
+                        <div className="added_regisFrm1">
+                          <label>
+                            PatientCategory<span>:</span>
+                          </label>
+                          <input
+                            type="text"
+                            value={SelectedPatient_list.PatientCategory}
+                            name="PatientCategory"
+                            onChange={HandlePatient}
+                            disabled={Selected_Patient_Pharmacy.Edit}
+                          />
+                        </div>
+                      </div>
+                      <br />
+                      <div className="RegisFormcon">
+                        <div className="added_regisFrm1">
+                          <label htmlFor="itemCode">
+                            Date<span>:</span>
+                          </label>
+                          <input
+                            type="Date"
+                            name="Billing_date"
+                            value={Billing_date.toISOString().split("T")[0]}
+                            onChange={(e) =>
+                              setBilling_date(new Date(e.target.value))
+                            }
+                          />
+                        </div>
+
+                        <div className="added_regisFrm1">
+                            <label htmlFor="Doctor_name">
+                                Physician Name <span>:</span>
+                            </label>
+                            <input
+                                type="text"
+                                name="Doctor_name"
+                                value={Chosendocname || ""}
+                                onChange={Handledoc}
+                                list="DoctorList"
+                                disabled={Selected_Patient_Pharmacy?.Edit}
+                                autoComplete="new-doctor-name"
+                            />
+                            <datalist id="DoctorList">
+                                {Array.isArray(Doctordata) &&
+                                Doctordata.map((doc, index) => (
+                                    <option
+                                    key={index}
+                                    value={`${doc.id}|${doc.Name}`}
+                                    >
+                                    {doc.id} | {doc.Name}
+                                    </option>
+                                ))}
+                            </datalist>
+                        </div>
+
+
+                        <div className="added_regisFrm1">
+                          <label htmlFor="itemCode">
+                            Speciality<span>:</span>
+                          </label>
+                          <input
+                            name="Speciality"
+                            value={SelectedPatient_list.Speciality}
+                            onChange={HandlePatient}
+                            disabled={Selected_Patient_Pharmacy.Edit}
+                          />
+                        </div>
+
+                        <div className="added_regisFrm1">
+                          <label htmlFor="CustomerAddress">
+                            Address <span>:</span>
+                          </label>
+                          <textarea
+                            disabled={Selected_Patient_Pharmacy.Edit}
+                            type="text"
+                            value={SelectedPatient_list.PatientAddress}
+                            name="PatientAddress"
+                            onChange={HandlePatient}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Search Product Details Section */}
+                   <div className="jkewdkx70_866" style={{ marginTop: "15px" }}>
+        <div className="added_ivce_hed">
+          <h3>SEARCH PRODUCT DETAILS</h3>
+        </div>
+        <div className="RegisFormcon" style={{ marginTop: "10px" }}>
+          <div className="added_regisFrm1">
+            <label htmlFor="SearchItemName">
+              Item Name<span className="requirreg12">*</span>
+            </label>
+
+            <input
+              ref={itemNameRef}
+              list="itemList"
+              name="SearchItemName"
+              id="SearchItemName"
+              value={ItemSearch.SearchItemName}
+              
+              onChange={set_handleSearch}
+              onKeyDown={handleItemNameKeyDown}
+              autoComplete="off"
+            />
+
+            <datalist id="itemList">
+              {Itemarr &&
+                Itemarr.length > 0 &&
+                Itemarr.map((item, index) =>
+                  item.BatchDetails && item.BatchDetails.length > 0 ? (
+                    item.BatchDetails.map((batch, bIndex) => (
+                      <option
+                        key={`${index}-${bIndex}`}
+                        value={`${item.ItemName} | ${item.ItemCode} | Batch: ${batch.Batch_No} | Qty: ${batch.AvailableQuantity}`}
+                        data-code={item.ItemCode}
+                        data-batch={batch.Batch_No}
+                        data-qty={batch.Available_Qty}
+                      />
+                    ))
+                  ) : (
+                    <option
+                      key={index}
+                      value={`${item.ItemName} | ${item.ItemCode} | No Batch`}
+                      data-code={item.ItemCode}
+                    />
+                  )
+                )}
+            </datalist>
+          </div>
+          {shelfview.ShelfName && (
+            <>
+              <div className="RegisFormcon">
+                <div className="added_regisFrm1">
+                  <label htmlFor="ShelfName">
+                    Rack Name <span>:</span>{" "}
+                  </label>
+                  <input value={shelfview.RackName} disabled />
+                </div>
+              </div>
+
+              <div className="RegisFormcon">
+                <div className="added_regisFrm1">
+                  <label htmlFor="ShelfName">
+                    Shelf Name <span>:</span>{" "}
+                  </label>
+                  <input value={shelfview.ShelfName} disabled />
+                </div>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+
+      {/* Item Details Section */}
+      {Single_row_data.ItemId !== '' && (
+        <div className="jkewdkx70_866">
+          <div className="Add_items_Purchase_Master added_ivce_hed">
+            <h4>ITEM DETAILES</h4>
+          </div>
+
+          <div className="RegisFormcon">
+
+            <div className="added_regisFrm1" >
+              <label htmlFor="browser">Item Name<span>:</span></label>
+              <input
+                name="ItemName"
+                value={Single_row_data.ItemName}
+                onChange={set_handleInputChange}
+                autoComplete="off"
+                disabled
+              />
+            </div>
+
+            <div className="added_regisFrm1">
+              <label htmlFor="Generic">Generic Name<span>:</span></label>
+              <input
+                name="Generic"
+                id="Generic"
+                list="Genericss"
+                value={Single_row_data.Generic}
+                onChange={set_handleInputChange}
+                disabled
+              />
+            </div>
+
+            {/* <div className="added_regisFrm1 added_regisFrm1_frselect">
+              <label htmlFor="BatchNo">BatchNo<span className="requirreg12">*</span></label>
+              <select
+                ref={batchNoRef}
+                name="BatchNo"
+                id="BatchNo"
+                value={Single_row_data.BatchNo}
+                onChange={set_handleInputChange}
+                onKeyDown={(e) => {
+                  if (e.key === 'Tab') {
+                    handleBatchNoKeyDown(e);
+                  } else if (e.key === 'Enter') {
+                    handleBatchNoEnter(e);
+                  }
+                }}
+              >
+                <option value="" disabled>Select Batch</option>
+                {getStockid_Name.map((item, index) => (
+                  <option
+                    key={index}
+                    value={item.Batch_No}
+                    style={index === 0 ? { backgroundColor: 'yellow' } : {}}
+                  >
+                    {`${item.Batch_No} | Ava.Qty: ${item.AvailableQuantity} | MRP: ${parseFloat(item.MRP).toFixed(2)}`}
+                  </option>
+                ))}
+              </select>
+            </div> */}
+                                    <div className="added_regisFrm1 added_regisFrm1_frselect">
+                           <label htmlFor="BatchNo">BatchNo<span className="requirreg12">*</span></label>
+<select
+  ref={batchNoRef}
+  name="BatchNo"
+  id="BatchNo"
+  value={Single_row_data.BatchNo}
+  onChange={set_handleInputChange}
+  
+   onKeyDown={(e) => {
+                              if (e.key === 'Tab') {
+                                handleBatchNoKeyDown(e);
+                              } else if (e.key === 'Enter') {
+                                handleBatchNoEnter(e);
+                              }
+                            }}
+  style={{
+    backgroundColor:
+      selectedExpiry?.color === "green"
+        ? "#0bf30bff"
+        : selectedExpiry?.color === "yellow"
+        ? "#f7c110ff"
+        : selectedExpiry?.color === "orange"
+        ? "#f79b12ff"
+        : selectedExpiry?.color === "red"
+        ? "#f8d7da"
+        : "white",
+    color: "#000",
+    fontWeight: "600",
+  }}
+>
+
+  <option value="" disabled>Select Batch</option>
+
+  {getStockid_Name.map((item, index) => {
+    const { daysLeft, color } = getExpiryInfo(item.Expiry_Date);
+
+    return (
+      <option
+        key={index}
+        value={item.Batch_No}
+        style={{
+          backgroundColor:
+            color === "green"
+              ? "#0de70dff"
+              : color === "yellow"
+              ? "#e4b20eff"
+              : color === "orange"
+              ? "#fa9805ff"
+              : "#f30c20ff",
+        }}
+      >
+        {item.Batch_No} | Qty: {item.AvailableQuantity} | MRP: {Number(item.MRP).toFixed(2)} | Exp: {daysLeft} days
+      </option>
+    );
+  })}
+</select>
+</div>
+
+            <div className="added_regisFrm1">
+              <label htmlFor="Exp_Date">Expiry Date</label>
+              <input
+                name="Exp_Date"
+                id="Exp_Date"
+                value={Single_row_data.Exp_Date}
+                onChange={set_handleInputChange}
+                disabled
+              />
+            </div>
+            <div className="added_regisFrm1">
+              <label htmlFor="AvailableQuantity">Available Quantity<span>:</span></label>
+              <input
+                name="AvailableQuantity"
+                id="AvailableQuantity"
+                value={Single_row_data.AvailableQuantity || 0}
+                onChange={set_handleInputChange}
+                readOnly
+              />
+            </div>
+            <div className="added_regisFrm1" >
+              <label htmlFor="Billing_Quantity">Billing Quantity<span className="requirreg12">* </span></label>
+              <input
+                ref={billingQtyRef}
+                name="Billing_Quantity"
+                id="Billing_Quantity"
+                value={Single_row_data.Billing_Quantity}
+                onChange={set_handleInputChange}
+                onKeyDown={handleBillingQtyKeyDown}
+              />
+            </div>
+
+            {/* Rest of your form fields */}
+            <div className="added_regisFrm1" >
+              <label htmlFor="Unit_Price">Unit Price<span>:</span></label>
+              <input
+                name="Unit_Price"
+                id="Unit_Price"
+                value={Single_row_data.Unit_Price}
+                onChange={set_handleInputChange}
+                readOnly
+              />
+            </div>
+            <div className="added_regisFrm1">
+              <label htmlFor="Amount">Amount<span>:</span></label>
+              <input
+                name="Amount"
+                id="Amount"
+                value={Single_row_data.Amount}
+                onChange={set_handleInputChange}
+                readOnly
+              />
+            </div>
+            <div className="added_regisFrm1" >
+              <label htmlFor="GST">Tax%<span>:</span></label>
+              <input
+                name="GST"
+                id="GST"
+                value={Single_row_data.GST}
+                onChange={set_handleInputChange}
+                readOnly
+              />
+            </div>
+            <div className="added_regisFrm1" >
+              <label htmlFor="BoxName">BoxName<span>:</span></label>
+              <input
+                name="BoxName"
+                id="BoxName"
+                value={Single_row_data.BoxName}
+                onChange={set_handleInputChange}
+                readOnly
+              />
+            </div>
+            <div className="added_regisFrm1">
+              <label htmlFor="Original_total">Final Amount<span>:</span></label>
+              <input
+                name="Original_total"
+                id="Original_total"
+                value={Single_row_data.Original_total}
+                onChange={set_handleInputChange}
+                readOnly
+              />
+            </div>
+
+            <div className="added_regisFrm1 added_regisFrm1_frselect" >
+              <label htmlFor="CD_Type">Discount Type<span className="requirreg12">*</span></label>
+              <select
+                name="CD_Type"
+                value={Single_row_data.CD_Type}
+                onChange={set_handleInputChange}
+              >
+                <option value="">Select</option>
+                <option value="Cash">Cash</option>
+                <option value="Percentage">Percentage</option>
+              </select>
+            </div>
+            <div className="added_regisFrm1" >
+              <label htmlFor="Cash_Discount">Discount<span className="requirreg12">*</span></label>
+              <input
+                name="Cash_Discount"
+                id="Cash_Discount"
+                value={Single_row_data.Cash_Discount}
+                onChange={set_handleInputChange}
+                disabled={Single_row_data.CD_Type === ''}
+              />
+            </div>
+
+            <div className="added_regisFrm1" >
+              <label htmlFor="Total">Total<span>:</span></label>
+              <input
+                name="Total"
+                id="Total"
+                value={Single_row_data.Total}
+                onChange={set_handleInputChange}
+                readOnly
+              />
+            </div>
+          </div>
+
+          <div className="Register_btn_con added_Register_btn_con" style={{ marginTop: '15px' }}>
+            <button
+              className="RegisterForm_1_btns added_RegisterForm_1_btns"
+              onClick={handleAddItem}
+            >
+              {Single_row_data.S_No ? 'Update' : 'Add'}
+            </button>
+            <button
+              className="RegisterForm_1_btns added_RegisterForm_1_btns"
+              onClick={() => Clearitemforbill(Single_row_data.S_No)}
+            >
+              Clear
+            </button>
+          </div>
+        </div>
+      )}
+
+
+                  
+                </div>
+
+                {/* Selected Medicine Table */}
+                <br></br>
+                <div className="for33">
+                  <div className="Add_items_Purchase_Master added_ivce_hed hjgyh">
+                    <h3 className="ejdhw_p20">
+                      <p> Selected Medicine</p>
+                      <p>
+                        {ItemTypes.map((type, index) => (
+                          <span
+                            key={type}
+                            style={{
+                              backgroundColor: colors[index % colors.length],
+                              padding: "0px 5px",
+                              borderRadius: "5px",
+                              marginRight: "10px",
+                              fontSize: "12px",
+                              color: "black",
+                            }}
+                          >
+                            {type}
+                          </span>
+                        ))}
+                      </p>
+                    </h3>
+                  </div>
+                </div>
+                <div
+                  className="Selected-table-container444 DEWSDXWED"
+                  style={{ marginTop: "10px" }}
+                >
+                  <table className="selected-medicine-table222 EDWEDE">
+                    <thead>
+                      <tr>
+                        <th>S.No</th>
+                        {(SelectedPatient_list.PatientCategory === 'Insurance' || SelectedPatient_list.PatientCategory === 'Client') && (
+                          <th>isReimbursable</th>
+                        )}
+                        <th>Item Name</th>
+                        <th>Batch/HSN No</th>
+                        <th>BoxName</th>
+                        <th>Exp Date</th>
+                        <th>Quantity</th>
+                        <th>Unit Price</th>
+                        <th>Tax %</th>
+                        <th>Amount</th>
+                        <th>Tax Amount</th>
+                        <th>Discount</th>
+                        <th>Total</th>
+                        <th className="hideDataForPrint">Action</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      {Billing_itemtable.map((medicineInfo, index) => {
+                        return (
+                          <tr key={index}>
+                            <td>{medicineInfo.S_No}</td>
+                            {(SelectedPatient_list.PatientCategory === 'Insurance' || SelectedPatient_list.PatientCategory === 'Client') && (
+                              <td>
+                                <input
+                                  type="checkbox"
+                                  checked={medicineInfo.isReimbursable === "Yes"}
+                                  onChange={(e) => handleReimbursableChange(e, index)}
+                                />
+                              </td>
+                            )}
+                                                    <td
+  style={{
+    fontWeight: "600",
+    backgroundColor:
+      getExpiryInfo(medicineInfo.Exp_Date).color === "green"
+        ? "#28a745"
+        : getExpiryInfo(medicineInfo.Exp_Date).color === "yellow"
+        ? "#ffc107"
+        : getExpiryInfo(medicineInfo.Exp_Date).color === "orange"
+        ? "#fd7e14"
+        : "#dc3545",
+  }}
+>
+  {medicineInfo.ItemName}
+</td>
+                            <td>
+                              {medicineInfo.BatchNo && medicineInfo.HSNCode ? (
+                                <>
+                                  {medicineInfo.BatchNo}/<br />
+                                  {medicineInfo.HSNCode}
+                                </>
+                              ) : medicineInfo.BatchNo ? (
+                                medicineInfo.BatchNo
+                              ) : medicineInfo.HSNCode ? (
+                                medicineInfo.HSNCode
+                              ) : (
+                                ""
+                              )}
+                            </td>
+                            <td>{medicineInfo.BoxName || ""}</td>
+                            <td>{medicineInfo.Exp_Date || ""}</td>
+                            <td>{medicineInfo.Billing_Quantity}</td>
+                            <td>{medicineInfo.Unit_Price || 0}</td>
+                            <td>{medicineInfo.GST}%</td>
+                            <td>{medicineInfo.Amount || 0}</td>
+                            <td>{medicineInfo.Original_total || 0}</td>
+                            {medicineInfo.CD_Type === "Percentage" ? (
+                              <td>{medicineInfo.Cash_Discount} % </td>
+                            ) : medicineInfo.CD_Type === "Cash" ? (
+                              <td> Rs. {medicineInfo.Cash_Discount}</td>
+                            ) : (
+                              <td>No Discount</td>
+                            )}
+                            <td>{medicineInfo.Total || 0}</td>
+                            <td>
+                              <div className="Action_btns">
+                                <button
+                                  className="delnamebtn"
+                                  onClick={() => {
+                                    Editbillingitem(medicineInfo);
+                                  }}
+                                >
+                                  <EditIcon />
+                                </button>
+                                <button
+                                  className="delnamebtn"
+                                  onClick={() => {
+                                    deletebillingitem(medicineInfo.S_No);
+                                  }}
+                                >
+                                  <DeleteIcon />
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+
+                {/* Summary and Payment Section */}
+                <div className="summary-container addded_sumry_contre">
+                  <div className="RegisFormcon" style={{ justifyContent: "center", gap: "10px" }}>
+                    <div className="added_regisFrm1">
+                      <label htmlFor="">
+                        Discount Method<span>:</span>{" "}
+                      </label>
+                      <select
+                        name="CDMethod"
+                        value={NetAmount_CDmethod.Type}
+                        onChange={(e) => {
+                          setNetAmount_CDmethod((prev) => ({
+                            ...prev,
+                            Type: e.target.value,
+                          }));
+                        }}
+                      >
+                        <option value="">Select</option>
+                        <option value="Cash">Cash</option>
+                        <option value="Percentage">Percentage</option>
+                      </select>
+                    </div>
+                    <div className="added_regisFrm1">
+                      <label htmlFor="">
+                        Cash Discount<span>:</span>
+                      </label>
+                      <input
+                        type="number"
+                        onKeyDown={blockInvalidChar}
+                        name="CashDiscount"
+                        value={NetAmount_CDmethod.Amount}
+                        onChange={(e) => {
+                          if (NetAmount_CDmethod.Type !== "") {
+                            setNetAmount_CDmethod((prev) => ({
+                              ...prev,
+                              Amount: e.target.value,
+                            }));
+                          } else {
+                            alert("Please Choose a Discount Method");
+                          }
+                        }}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="summary-container addded_sumry_contre">
+                  <div className="edcwjkediu87ccc">
+                    <div className="ewscjusd_s89i8i">
+                      <div className="edcwjkediu87_mmmm">
+                        <div>
+                          <div className="sriii_shvdjsd">
+                            <label>
+                              <input
+                                type="checkbox"
+                                name="isCash"
+                                checked={Paytype.isCash === "Yes"}
+                                onChange={handlePayType}
+                              />
+                              Cash
+                            </label>
+                            <label>
+                              <input
+                                type="checkbox"
+                                name="isCredit"
+                                checked={Paytype.isCredit === "Yes"}
+                                onChange={handlePayType}
+                              />
+                              Credit
+                            </label>
+                          </div>
+
+                          {Paytype.isCash === "Yes" && (
+                            <>
+                              <div
+                                className="EWDWDWDWDCC_0"
+                                style={{
+                                  justifyContent: "center",
+                                  marginTop: "5px",
+                                }}
+                              >
+                                <div className="clm-itm-stl">
+                                  <label>
+                                    Payment Method <span>:</span>
+                                  </label>
+                                  <select
+                                    name="Billpay_method"
+                                    value={formAmount.Billpay_method}
+                                    onChange={handleChange}
+                                  >
+                                    <option value=''>Select</option>
+                                    {Array.isArray(PaymentMode) && PaymentMode.filter((p) => p.status === 'Active').map((row, ind) => (
+                                      <option key={ind} value={row.GradeName}>{row.GradeName}</option>
+                                    ))}
+                                  </select>
+                                </div>
+                                {formAmount.Billpay_method === "Card" && (
+                                  <>
+                                    <div className="clm-itm-stl">
+                                      <label>
+                                        Card Type <span>:</span>
+                                      </label>
+                                      <select
+                                        name="CardType"
+                                        value={formAmount.CardType}
+                                        onChange={handleChange}
+                                      >
+                                        <option value="">Select</option>
+                                        {["Debit", "Credit"].map((p, indx) => (
+                                          <option key={indx} value={p}>
+                                            {p}
+                                          </option>
+                                        ))}
+                                      </select>
+                                    </div>
+                                    <div className="clm-itm-stl">
+                                      <label>
+                                        Card No <span>:</span>
+                                      </label>
+                                      <input
+                                        type="number"
+                                        onKeyDown={blockInvalidChar}
+                                        name="CardNo"
+                                        value={formAmount.CardNo}
+                                        onChange={handleChange}
+                                      />
+                                    </div>
+                                    <div className="clm-itm-stl">
+                                      <label>
+                                        Transaction Id <span>:</span>
+                                      </label>
+                                      <input
+                                        type="text"
+                                        onKeyDown={blockInvalidChar}
+                                        name="TransactionId"
+                                        value={formAmount.TransactionId}
+                                        onChange={handleChange}
+                                      />
+                                    </div>
+                                  </>
+                                )}
+                                {formAmount.Billpay_method === "Cheque" && (
+                                  <>
+                                    <div className="clm-itm-stl">
+                                      <label>
+                                        Cheque No <span>:</span>
+                                      </label>
+                                      <input
+                                        type="number"
+                                        onKeyDown={blockInvalidChar}
+                                        name="ChequeNo"
+                                        value={formAmount.ChequeNo}
+                                        onChange={handleChange}
+                                      />
+                                    </div>
+                                    <div className="clm-itm-stl">
+                                      <label>
+                                        Bank Name <span>:</span>
+                                      </label>
+                                      <input
+                                        type="text"
+                                        name="BankName"
+                                        value={formAmount.BankName}
+                                        onChange={handleChange}
+                                      />
+                                    </div>
+                                  </>
+                                )}
+                                {formAmount.Billpay_method === "Card" && (
+                                  <>
+                                    <div className="clm-itm-stl">
+                                      <label>
+                                        Transaction Fee <span>:</span>
+                                      </label>
+                                      <input
+                                        type="number"
+                                        name="transactionFee"
+                                        value={formAmount.transactionFee || ""}
+                                        onChange={handleChange}
+                                        onKeyDown={blockInvalidChar}
+                                      />
+                                    </div>
+                                  </>
+                                )}
+                                {formAmount.Billpay_method === "OnlinePayment" && (
+                                  <>
+                                    <div className="clm-itm-stl">
+                                      <label>
+                                        UPI Id <span>:</span>
+                                      </label>
+                                      <input
+                                        type="text"
+                                        onKeyDown={blockInvalidChar}
+                                        name="upiid"
+                                        value={formAmount.upiid}
+                                        onChange={handleChange}
+                                      />
+                                    </div>
+                                    <div className="clm-itm-stl">
+                                      <label>
+                                        Transaction Id <span>:</span>
+                                      </label>
+                                      <input
+                                        type="text"
+                                        onKeyDown={blockInvalidChar}
+                                        name="TransactionId"
+                                        value={formAmount.TransactionId}
+                                        onChange={handleChange}
+                                      />
+                                    </div>
+                                  </>
+                                )}
+                                <div className="clm-itm-stl">
+                                  <label>
+                                    Amount <span>:</span>
+                                  </label>
+                                  <input
+                                    onKeyDown={blockInvalidChar}
+                                    type="number"
+                                    name="paidamount"
+                                    value={formAmount.paidamount}
+                                    onChange={handleChange}
+                                  />
+                                </div>
+                                <div className="clm-itm-stl">
+                                  <label>
+                                    AdditionalAmount <span>:</span>
+                                  </label>
+                                  <input
+                                    onKeyDown={blockInvalidChar}
+                                    type="number"
+                                    name="Additionalamount"
+                                    value={formAmount.Additionalamount}
+                                    onChange={handleChange}
+                                  />
+                                </div>
+                              </div>
+
+                              <div className="Register_btn_con added_Register_btn_con">
+                                <button
+                                  className="RegisterForm_1_btns added_RegisterForm_1_btns"
+                                  onClick={isEdit !== null ? handleUpdate : handleAdd}
+                                >
+                                  {isEdit !== null ? "Update" : "Add"}
+                                </button>
+                              </div>
+
+                              <div className="edwqw_c2">
+                                <label>Amount in Words : </label>
+                                <span
+                                  style={{
+                                    color: "#808080b5",
+                                    padding: "0px 0px 0px 5px",
+                                  }}
+                                >
+                                  {NumberToWords(+summary.totalAmount || 0)}
+                                </span>
+                              </div>
+                            </>
+                          )}
+
+                          <br />
+                          <br />
+
+                          <div className="edwqw_c2">
+                            <label>Narration</label>
+                            <textarea
+                              id="Remarks"
+                              name="Remarks"
+                              rows="2"
+                              value={Remarks}
+                              onChange={(e) => setRemarks(e.target.value)}
+                            ></textarea>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <div className="ewscjusd_s89i8">
+                        <div
+                          className="RegisFormconBill"
+                          style={{
+                            justifyContent: "center",
+                            rowGap: "8px",
+                            paddingTop: "5px",
+                          }}
+                        >
+                          <div className="clm-itm-stl">
+                            <label>Gross Amount :</label>
+                            <input value={summary.totalBase} readOnly />
+                          </div>
+                          <div className="clm-itm-stl">
+                            <label>GST :</label>
+                            <input value={summary.GSTAmount} readOnly />
+                          </div>
+                          <div className="clm-itm-stl">
+                            <label>Discount :</label>
+                            <input value={summary.Discount} readOnly />
+                          </div>
+
+                          <div className="clm-itm-stl">
+                            <label>Item Amount :</label>
+                            <input
+                              style={{ backgroundColor: "yellow" }}
+                              value={summary.totalAmount}
+                              readOnly
+                            />
+                          </div>
+
+                          <div className="clm-itm-stl">
+                            <label>Round-Off :</label>
+                            <input value={summary.Roundoff} readOnly />
+                          </div>
+
+                          <div className="clm-itm-stl">
+                            <label>Net Amount :</label>
+                            <input
+                              style={{ backgroundColor: "yellow" }}
+                              value={summary.totalAmountt}
+                              readOnly
+                            />
+                          </div>
+
+                          <div className="clm-itm-stl">
+                            <label>Paid Amount :</label>
+                            <input value={summary.PaidAmount} readOnly />
+                          </div>
+                          <div className="clm-itm-stl">
+                            <label>Balance Amount :</label>
+                            <input value={summary.BalanceAmount} readOnly />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <br />
+
+                  <div>
+                    {billAmount.length !== 0 && (
+                      <div className="Selected-table-container444 DEWSDXWED">
+                        <table className="selected-medicine-table222 EDWEDE">
+                          <thead>
+                            <tr>
+                              <th>S.No</th>
+                              <th>Payment Type</th>
+                              <th>Card Type</th>
+                              <th>Cheque No</th>
+                              <th>Bank Name</th>
+                              <th>Amount</th>
+                              <th>Action </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {billAmount.map((row, index) => (
+                              <tr key={index}>
+                                <td>{index + 1}</td>
+                                <td>{row.Billpay_method}</td>
+                                <td>{row.CardType || "-"}</td>
+                                <td>{row.ChequeNo || "-"}</td>
+                                <td>{row.BankName || "-"}</td>
+                                <td>{row.paidamount}</td>
+                                <td>
+                                  <button
+                                    className="delnamebtn"
+                                    onClick={() => handleEdit(index)}
+                                  >
+                                    <EditNoteIcon />
+                                  </button>
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+
+        
+                  
+               
+
+                {isPrintButtonVisible && (
+
+                  <>
+                     
+                  <div className="Register_btn_con added_Register_btn_con">
+                    <button
+                      className="RegisterForm_1_btns added_RegisterForm_1_btns"
+                      onClick={WalkinSavealldata}
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? "Saving..." : "Save"}
+                    </button>
+                    <button
+                      className="RegisterForm_1_btns added_RegisterForm_1_btns"
+                      onClick={WalkinSubmitalldata}
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? "Printing..." : "Print"}
+                    </button>
+                  </div>
+
+                  </>
+
+                 
+                )}
+              </div>
+            </>
+          )}
+        </div>
+      ) :
+        viewType === 'WalkinPharmacy' ? (
+            <ForPrintDataWalkin />
+        ) : viewType === 'IPPharmacy' ? (
+            <ForPrintData />
+        ) : null
+        }
+
+
+      <ModelContainer />
+      <ToastAlert Message={toast.message} Type={toast.type} />
+    </>
+  );
+};
+
+export default NewIPPharmacyBilling;
+

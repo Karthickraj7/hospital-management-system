@@ -1,0 +1,208 @@
+
+.ReactGridWrapper {
+    width: 100%; 
+    overflow-x: auto;
+    margin: 5px 0;
+    overflow-y: hidden; 
+    transition: overflow-y 0.8s ease-out; 
+}
+
+.ReactGrid-M007 {
+    width: 100%; 
+    animation: slideUp 0.8s ease-out; 
+}
+
+table.responsive-table-M007 {
+    width: 100%; 
+    min-width: 600px; 
+    border-collapse: collapse;
+    table-layout: auto; 
+}
+
+table.responsive-table-M007 th,
+table.responsive-table-M007 td {
+    border: 1px solid #ccc;
+    padding: 3px 5px;
+    text-align: left;
+    font-size: 12px;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+
+table.responsive-table-M007 th {
+    background-color: var(--ProjectColor);
+    padding: 10px 5px !important;
+    border: 1px solid #adadad !important;
+    font-size: 13px !important;
+
+    text-align: left !important;
+
+}
+
+/* Zebra striping for rows */
+table.responsive-table-M007 tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* No data message */
+table.responsive-table-M007 .no-data {
+    text-align: center;
+    color: #999;
+    font-style: italic;
+    font-size: 13px;
+    padding: 8px 0px;
+}
+
+
+.pagination-controls {
+    display: flex
+    ;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10px;
+        gap: 10px;
+}
+
+.pagination-button {
+    padding:4px 8px; 
+    background-color:var(--ProjectColor); 
+    color: black; 
+    border: none; 
+    border-radius: 50%;
+        cursor: pointer; 
+    font-size: 13px; 
+    transition: background-color 0.3s ease; 
+    display: flex;
+    align-items: center;
+}
+
+.pagination-button:hover {
+    background-color: #8ac3ff; 
+}
+
+.pagination-button:disabled {
+    background-color: #cccccc; 
+    cursor: not-allowed; 
+}
+
+.pagination-info {
+    font-size: 14px; 
+    color: #333;
+    font-weight: 500; 
+}
+
+.ewyhh_o{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.jjxjx_{
+    justify-content: center !important;
+}
+
+@media (max-width: 768px) {
+    table.responsive-table-M007 {
+        font-size: 14px; 
+    }
+
+    table.responsive-table-M007 th,
+    table.responsive-table-M007 td {
+        padding: 6px; 
+    }
+}
+
+
+.ReactGridWrapper::-webkit-scrollbar {
+    height: 14px; 
+    width: 4px;  
+}
+
+.ReactGridWrapper::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+.ReactGridWrapper::-webkit-scrollbar-thumb {
+    background: #b4b4b4; 
+    border-radius: 10px; 
+}
+
+.ReactGridWrapper::-webkit-scrollbar-thumb:hover {
+    background: #858585; 
+}
+
+.ReactGridWrapper::-webkit-scrollbar-button {
+    display: none; 
+}
+
+.ReactGridWrapper::-webkit-scrollbar-vertical {
+    display: none !important;
+}
+
+
+@keyframes slideUp {
+    0% {
+        transform: translateY(50px); 
+        opacity: 0; 
+    }
+    100% {
+        transform: translateY(0); 
+        opacity: 1;
+    }
+}
+
+.grid-slide-up {
+    animation: slideUp 0.8s ease-out forwards;
+}
+
+.ReactGridWrapper::-webkit-scrollbar {
+    height: 18px; 
+    width: 4px;  
+}
+
+.ReactGridWrapper::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+.ReactGridWrapper::-webkit-scrollbar-thumb {
+    background: #b4b4b4; 
+    border-radius: 10px; 
+}
+
+.ReactGridWrapper::-webkit-scrollbar-thumb:hover {
+    background: #858585;
+}
+
+.ReactGridWrapper::-webkit-scrollbar-vertical {
+    display: none;
+}
+
+.ReactGridWrapper::-webkit-scrollbar-button {
+    display: none;
+}
+
+
+
+table.responsive-table-M007 th {
+    text-align: center; 
+    vertical-align: middle;
+    white-space: nowrap; 
+    padding: 8px; 
+    border: 1px solid #ccc; 
+}
+
+table.responsive-table-M007 th[colspan] {
+    border-bottom: none; 
+}
+
+table.responsive-table-M007 tr:nth-child(2) th {
+    font-size: 12px; 
+    padding: 6px; 
+}
+
+table.responsive-table-M007 td {
+    text-align: left; 
+    vertical-align: middle; 
+    border: 1px solid #ccc; 
+}

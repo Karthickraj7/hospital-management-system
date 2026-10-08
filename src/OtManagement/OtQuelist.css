@@ -1,0 +1,17 @@
+.form-row-inline{
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: nowrap;
+}
+
+.actionv{
+    display: flex;
+    gap:20px;
+}a
+.actionv button{
+    padding:5px;
+    border: 1px solid black;
+    border-radius: 20px;
+    cursor: pointer;
+}

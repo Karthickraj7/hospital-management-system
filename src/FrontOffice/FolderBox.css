@@ -1,0 +1,291 @@
+/* Main container for the folder layout */
+.folder-container {
+    font-family: 'Arial', sans-serif;
+    margin: 5px 15px;
+    text-align: center;
+    /* opacity: 0;
+    animation: fadeIn 1s ease-in-out forwards; */
+  }
+
+  .folder-container h2{
+    font-size: 15px ;
+    
+  }
+  
+  /* Folder box container */
+  .folder-box-container {
+    display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        row-gap: 3px;
+        margin-bottom: 5px;
+        background-color: #effcff;
+        padding:5px 3px;
+        border-radius: 3px;
+        opacity: 0;
+    transform: translateX(-100%); /* Start off the screen */
+    animation: slideIn 0.5s ease-out forwards; /* Animates the folders */
+    animation-delay: 0.1s; /* Delay animation */
+  }
+  
+  /* Slide-in animation for folder box container */
+  @keyframes slideIn {
+    0% {
+      transform: translateX(-100%); /* Start off-screen */
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0); 
+      opacity: 1;
+    }
+  }
+  
+  .folder-box {
+    padding: 8px;
+    color: black;
+    padding: 3px 2px;
+    background-color: #83cfca;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 2px;
+    font-size: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+    /* flex: 1; */
+    width: 200px;
+    margin: 0 5px;
+    text-align: center;
+    white-space: nowrap;
+    opacity: 0;
+    animation: fadeInBoxes 0.1s ease forwards;
+  }
+  
+  /* Fade-in animation for each folder box */
+
+  @keyframes fadeInBoxes {
+    0% {
+      opacity: 0;
+      transform: translateY(30px); 
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* .folder-box:nth-child(1) {
+    animation-delay: 0.3s; 
+  }
+  .folder-box:nth-child(2) {
+    animation-delay: 0.5s;
+  }
+  .folder-box:nth-child(3) {
+    animation-delay: 0.7s;
+  }
+  .folder-box:nth-child(4) {
+    animation-delay: 0.9s;
+  }
+
+  .folder-box:nth-child(5) {
+    animation-delay: 1s;
+  }
+  .folder-box:nth-child(6) {
+    animation-delay: 1.2s;
+  }
+  .folder-box:nth-child(7) {
+    animation-delay: 1.3s;
+  }
+  .folder-box:nth-child(8) {
+    animation-delay: 1.4s;
+  }
+  .folder-box:nth-child(9) {
+    animation-delay: 1.6s;
+  }
+  
+  .folder-box:nth-child(10) {
+    animation-delay: 1.7s;
+  }
+
+  .folder-box:nth-child(11) {
+    animation-delay: 1.7s;
+  }
+  .folder-box:nth-child(12) {
+    animation-delay: 1.8s;
+  }
+  .folder-box:nth-child(13) {
+    animation-delay: 1.8s;
+  }
+  .folder-box:nth-child(14) {
+    animation-delay: 1.9s;
+  }
+  .folder-box:nth-child(15) {
+    animation-delay: 1.9s;
+  }
+  .folder-box:nth-child(16) {
+    animation-delay: 2s;
+  }
+  .folder-box:nth-child(17) {
+    animation-delay: 2s;
+  }
+  .folder-box:nth-child(18) {
+    animation-delay: 2.1s;
+  }
+  .folder-box:nth-child(19) {
+    animation-delay: 2.1s;
+  }
+  .folder-box:nth-child(20) {
+    animation-delay: 2.2s;
+  }
+
+  .folder-box:nth-child(21) {
+    animation-delay: 2.2s;
+  }
+  .folder-box:nth-child(22) {
+    animation-delay: 2.3s;
+  }
+  .folder-box:nth-child(23) {
+    animation-delay: 2.3s;
+  }
+  .folder-box:nth-child(24) {
+    animation-delay: 2.4s;
+  }
+
+  .folder-box:nth-child(25) {
+    animation-delay: 2.4s;
+  }
+
+  .folder-box:nth-child(26) {
+    animation-delay: 2.5s;
+  } */
+
+
+
+  
+  /* Hover effect for the folder box */
+  .folder-box:hover {
+    background-color: #7be0db;
+    color: rgb(255, 255, 255);
+    /* font-size: 13.5px; */
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+
+  }
+  
+  /* Styling for the folder content area */
+  .folder-content {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    animation: fadeInContent 2s ease-out forwards;
+    animation-delay: 2s;
+  }
+  
+  /* Fade-in animation for folder content */
+  @keyframes fadeInContent {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  /* Folder content heading */
+  .folder-content h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+  
+  /* Folder content paragraph */
+  .folder-content p {
+    font-size: 18px;
+    color: #555;
+  }
+  
+  /* Fade-in effect for the entire folder-container */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+
+
+
+  .folder-box-container {
+    transition: all 0.3s ease;
+  }
+  
+  .animate-show {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .animate-hide {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  
+ 
+
+  .back-button {
+
+    padding: 1px 2px;
+    color: rgb(1, 1, 1);
+    display: flex;
+    border: none;
+    align-items: center;
+    border-radius: 5px;
+    height: 25px;
+    border: 1px solid black !important;
+    font-size: 13px !important;
+    cursor: pointer;
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+  @media (max-width: 1000px) {
+    
+
+    .folder-box-container {
+        display: flex;
+        justify-content: center;
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

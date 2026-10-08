@@ -1,0 +1,133 @@
+.staff-personal-record-checklist-print {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .checklist-header {
+    text-align: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #000;
+    padding-bottom: 10px;
+  }
+  
+  .checklist-header h2 {
+    margin: 0;
+    font-size: 18px;
+  }
+  
+  .checklist-header p {
+    margin: 5px 0;
+    font-size: 12px;
+  }
+  
+  .checklist-header h3 {
+    margin: 10px 0 0;
+    font-size: 16px;
+    text-transform: uppercase;
+  }
+  
+  .personal-details-section {
+    margin-bottom: 20px;
+  }
+  
+  .detail-row {
+    display: flex;
+    margin-bottom: 10px;
+  }
+  
+  .detail-field {
+    flex: 1;
+    margin-bottom: 5px;
+    display: flex;
+    gap: 5px;
+  }
+  
+  .detail-field label {
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px !important;
+    margin-bottom: 5px;
+  }
+  
+  .detail-field input {
+    border: none;
+    border-bottom: 1px dotted #000;
+width: 300px;
+    padding: 5px;
+    font-size: 15px;
+  }
+  
+  .checklist-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 55px;
+  }
+  
+  .checklist-section {
+    border: 1px solid #000;
+    padding: 10px;
+  }
+  
+  .checklist-section h4 {
+    margin: 0 0 10px;
+    font-size: 14px;
+    border-bottom: 1px solid #000;
+    padding-bottom: 5px;
+  }
+  
+  .checklist-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  
+  .checklist-item input {
+    margin-right: 10px;
+  }
+  
+  .checklist-item span {
+    font-size: 12.3px;
+  }
+  
+  .original-certificates-textarea {
+    width: 100%;
+    height: 150px;
+    border: 1px solid #000;
+    resize: vertical;
+  }
+  
+  .signature-section {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .signature-field {
+    width: 45%;
+    height: 50px;
+    border-top: 1px solid #000;
+    text-align: center;
+    padding-top: 5px;
+  }
+  
+  .print-button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+
+  @media print {
+    .signature-field{
+        font-size: 14px !important;
+    }
+  }

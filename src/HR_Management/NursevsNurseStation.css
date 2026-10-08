@@ -1,0 +1,254 @@
+/* Main Container Styles */
+.nurse-station-container {
+    width: 100%;
+    /* max-width: 1200px; */
+    margin: 0 auto;
+    padding: 10px 0px;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  /* Header Styles */
+  .nurse-assignment-header {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 10px 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .nurse-assignment-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 10px;
+  }
+  
+  /* Date Selection Container */
+  .nurse-date-selection {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  
+  .nurse-date-field {
+    flex: 1;
+  }
+  
+  .nurse-date-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #4a5568;
+  }
+  
+  .nurse-date-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #cbd5e0;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  /* Main Layout Container - 30/70 Split */
+  .nurse-assignment-layout {
+    display: flex;
+    /* flex-wrap: wrap; */
+    gap: 24px;
+  }
+  
+  /* Left Side - Date & Shift Selection (30%) */
+  .nurse-shifts-panel {
+    width: calc(30% - 12px);
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 16px;
+    border: 1px solid lightgray;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .nurse-shifts-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 16px;
+  }
+  
+  .nurse-date-shift-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #edf2f7;
+  }
+  
+  .nurse-date-display {
+    width: 50%;
+    font-size: 14px;
+    font-weight: 500;
+    color: #4a5568;
+  }
+  
+  .nurse-shift-selection {
+    width: 50%;
+  }
+  
+  .nurse-shift-select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #cbd5e0;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #f8f9fa;
+  }
+  
+  /* Right Side - Nurse Station Grid (70%) */
+  .nurse-stations-panel {
+    width:60%;
+  }
+  
+  .nurse-stations-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 16px;
+  }
+  
+  .nurse-stations-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+    gap: 20px;
+    padding: 15px;
+  }
+  
+  /* Nurse Station Card */
+  .nurse-station-card {
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid darkgray
+  }
+  
+  .nurse-station-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .nurse-station-content {
+    /* padding: 16px; */
+  }
+  
+  .nurse-station-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+  .nurse-station-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #2d3748;
+  }
+  
+  .nurse-station-checkbox {
+    cursor: pointer;
+  }
+  
+  .nurse-station-info {
+    font-size: 12px;
+    color: #718096;
+    margin-top: 5px;
+    line-height: 1.4;
+  }
+  
+  .nurse-station-divider {
+    height: 1px;
+    background-color: lightgray;
+    margin: 5px 0;
+  }
+  
+  .nurse-list-title {
+    margin-top: 10px;
+  font-size: 1.2em;
+  }
+  
+  .nurse-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 nurses per row */
+    gap: 5px;
+    margin-top: 10px;
+  }
+  
+  .nurse-list-item {
+    display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  }
+  
+  .nurse-photo {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid lightgray;
+  }
+
+  .nurse-name {
+    font-size: 12px;
+  font-weight: bold;
+  }
+  
+  .nurse-id {
+    font-size: 0.8em;
+    color: #555;
+  }
+  
+  /* Footer Button Area */
+  .nurse-assignment-footer {
+    margin-top: 32px;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .nurse-assign-button {
+    background-color: #4299e1;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .nurse-assign-button:hover {
+    background-color: #3182ce;
+  }
+  
+  .nurse-assign-button:disabled {
+    background-color: #cbd5e0;
+    cursor: not-allowed;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 1024px) {
+    .nurse-stations-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .nurse-assignment-layout {
+      flex-direction: column;
+    }
+    
+    .nurse-shifts-panel,
+    .nurse-stations-panel {
+      width: 100%;
+    }
+    
+    .nurse-stations-grid {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }

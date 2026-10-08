@@ -1,0 +1,793 @@
+.new-patient-registration-form {
+    padding: 10px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: flex-start;
+  
+  
+  }
+  
+  .new-custom-header {
+    background-color: var(--ProjectColor);
+    color: var(--labelcolor);
+    padding: 7px;
+    border-radius: 5px;
+    width: 100% !important;
+    height: 40px;
+    box-sizing: border-box;
+  }
+  
+  .new-custom-header h3 {
+    height: fit-content;
+  }
+  
+  .new-custom-form-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 10px;
+    /* position: relative; */
+    padding: 10px;
+    /* width: auto !important; */
+  }
+  
+  .new-custom-label-title {
+    flex: 2;
+    font-weight: bold;
+    margin-right: 0px;
+    text-align: start;
+    font-size: 14px;
+    width: 250px;
+    color: var(--labelcolor);
+  
+  }
+  
+  .new-custom-label-title12 {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    font-weight: bold;
+    margin-right: 0px;
+    text-align: start;
+    font-size: 14px;
+    width: 50%;
+    color: var(--labelcolor);
+  
+  }
+  
+  .incre-inpt-with18 {
+    width: 28% !important;
+    gap: 5px;
+  }
+  
+  .incre-inpt-with18 input {
+    width: 250px !important;
+  }
+  
+  /* .incre-inpt-with18  select{
+      width: 180px ;
+    } */
+  .new-custom-form-row {
+    width: 23%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+  }
+  
+  .new-navigation {
+    display: flex;
+    padding: 5px;
+    background-color: var(--ProjectColor);
+    border-radius: 5px;
+    height: 30px;
+  
+  }
+  
+  .new-navigation h2 {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+    padding: 0px 10px;
+    font-size: 16px;
+  }
+  
+  .new-navigation h2 button {
+    outline: none;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  
+  }
+  
+  .new-navigation h2 button:hover {
+    background-color: var(--ProjectColorhover);
+    color: var(--projectwhite);
+  }
+  
+  
+  .new-custom-select-title {
+    width: 50%;
+    outline: none;
+    border: none;
+  }
+  
+  .new-custom-select-doctor-name {
+    outline: none;
+    border: none;
+    width: 50%;
+  }
+  
+  .new-custom-form-row input {
+    flex: 2;
+    border: none;
+    border-bottom: 0px solid #333;
+    outline: none;
+    padding: 5px;
+    width: 108px;
+    font-size: 13px;
+  }
+  
+  
+  
+  .new-patient-info-container,
+  .new-patient-contact-container,
+  .new-appointment-details-container,
+  .new-doctor-info-container {
+    border-bottom: 1px solid var(--ProjectColor);
+    display: flex;
+  
+    /* flex: 2; */
+  }
+  
+  .new-button-container {
+    text-align: center;
+    padding-top: 35px;
+    padding-bottom: 10px;
+    justify-content: center;
+    display: flex;
+    gap: 30px;
+  }
+  
+  .btncon_add {
+    padding: 8px 20px;
+    border-radius: 30px;
+    background-color: var(--ProjectColor);
+    border: 1px solid var(--ProjectColor);
+    cursor: pointer;
+  }
+  
+  .btncon_add:hover {
+    background-color: var(--ProjectColorhover);
+    color: var(--projectwhite);
+    cursor: pointer;
+  }
+  
+  .new-kit {
+    display: none;
+  }
+  
+  .new-tog {
+    color: var(--labelcolor);
+    border: none;
+    outline: none;
+    font-size: 25px !important;
+    background-color: transparent;
+  }
+  
+  textarea {
+    outline: 0px;
+    border: 0px;
+    /* margin-left: 10px; */
+    box-shadow: 1px 1px 5px 5px rgb(212, 229, 229);
+    background-color: transparent;
+  }
+  
+  .area_pasthistory {
+    width: 47.5%;
+    height: 40px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    resize: vertical;
+  }
+  
+  .width_pasthist {
+    width: 45% !important;
+  }
+  
+  .width_procedure {
+    width: 50%;
+  
+  }
+  
+  .width-pytot {
+    width: 49% !important;
+  }
+  
+  .showPreview {
+  
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .sideopen_showPreview {
+    position: fixed;
+    top: 0;
+    left: 250px;
+    width: calc(100% - 250px);
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .showPreview_1,
+  .sideopen_showPreview_1 {
+    background-color: #fff;
+    width: 70%;
+    height: 80%;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: auto;
+    /* text-align: center; */
+    position: relative;
+    /* padding-top: 18px; */
+  }
+  
+  .vital_select {
+    width: 51%;
+    border: none;
+    outline: none;
+  }
+  
+  
+  
+  #vital_Twidth {
+    width: 80px;
+    font-size: 14px;
+    padding: 10px;
+  }
+  
+  #vital_HTwidth {
+    width: 150px;
+    font-size: 12px;
+  }
+  
+  #vital_HRwidth {
+    width: 90px;
+    font-size: 12px;
+  }
+  
+  .paymnt-with {
+    width: 2550px !important;
+  }
+  
+  .protxt-area {
+    width: 320px;
+    height: 70px;
+    margin-right: 30px;
+  }
+  
+  .proc-thera {
+  
+    width: 100%;
+  
+  }
+  
+  
+  
+  .patnt-fnt-sze label {
+    font-size: 15px;
+  }
+  
+  .patnt-fnt-clr {
+    color: var(--labelcolor);
+  }
+  
+  .pro-actn-edit {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+    color: var(--labelcolor);
+  }
+  
+  .new-navigation select {
+    border: none;
+    outline: none;
+    background-color: var(--ProjectColor);
+  }
+  
+  .data-blk-hih {
+    color: var(--labelcolor);
+    font-size: 15px;
+  
+  }
+  
+  .Lab_dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .Lab_button {
+    background-color: var(--ProjectColor);
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .Lab_dropdown_content {
+    display: none;
+    position: absolute;
+    background-color: var(--ProjectColor);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 5px;
+  }
+  
+  .Lab_dropdown_content button {
+  
+    color: var(--labelcolor);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .Lab_dropdown_content button:hover {
+    background-color: var(--ProjectColorhover);
+  
+    color: var(--projectwhite)
+  }
+  
+  .Lab_dropdown:hover .Lab_dropdown_content {
+    display: block;
+  }
+  
+  /* .Lab_dropdown:hover .Lab_button {
+      background-color: white;
+      color: black;
+    } */
+  
+  .new-pro-dct {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    gap: 5px;
+    color: var(--labelcolor);
+  
+    font-weight: bold;
+    margin-left: 10px;
+    margin: 5px;
+  
+  
+  
+  }
+  
+  .new-pro-dct button {
+    border: none;
+    outline: none;
+    color: var(--labelcolor);
+    cursor: pointer;
+  
+  
+  }
+  
+  .prs-ad-sub-btn {
+    color: var(--labelcolor);
+    background-color: var(--ProjectColor);
+  }
+  
+  .prs-ad-sub-btn:hover {
+    color: var(--projectwhite);
+    background-color: var(--ProjectColorhover);
+  }
+  
+  .modal_edit_pro2 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal_edit_1_pro2 {
+    position: fixed;
+    top: 0;
+    left: 100;
+    width: calc(100% - 250px);
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content-edit_pro2 {
+    background: rgb(255, 255, 255);
+    width: 75%;
+    height: 75vh;
+    /* margin-top: 20px; */
+    position: relative;
+    top: 5px;
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
+    /* Add vertical scrollbar if content overflows vertically */
+    max-height: 90vh;
+    /* Limit the maximum height to 90% of the viewport height */
+    margin: 0 auto;
+    /* Center the modal horizontally */
+  }
+  
+  .modal-content-edit-1_pro2 {
+    background: rgb(255, 255, 255);
+    width: 98%;
+    height: 75vh;
+    /* margin-top: 20px; */
+    position: relative;
+    top: 5px;
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
+    max-height: 90vh;
+    margin: 0 auto;
+    overflow-x: hidden;
+  }
+  
+  .int-sech-one {
+  
+    display: flex;
+    /* top: 30px; */
+  
+    /* row-gap: 80px; */
+  
+  
+  }
+  
+  
+  
+  .inst-counlr-with {
+    width: 50%;
+    height: 50px;
+    padding: 5px;
+  }
+  
+  .table_div_seperate {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .table_div_seperate span {
+  
+    width: 50%;
+  
+  
+  }
+  
+  .table_div_seperate span p {
+    display: flex;
+    align-items: flex-start;
+    width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    word-wrap: break-word;
+    text-align: start;
+    padding: 5px;
+    word-spacing: 3px;
+    line-height: 15px;
+  
+  }
+  
+  
+  
+  
+  
+  .table_div_seperate span:first-child {
+    border-right: 1px solid grey;
+    border-radius: 0px;
+  }
+  
+  @media (max-width: 1024px) {
+    .new-patient-registration-form {
+      padding: 5px;
+    }
+  
+  
+    .new-custom-header {
+      width: 96% !important;
+    }
+  
+    .area_pasthistory {
+      width: 65%;
+      height: 40px;
+      border: 1px solid #ccc;
+      padding: 5px;
+      resize: vertical;
+    }
+  
+    .new-navigation {
+      display: flex;
+      padding: 5px;
+      background-color: var(--ProjectColor);
+      border-radius: 5px;
+      height: 30px;
+  
+    }
+  
+    /* .new-kit{
+      display: block;
+    } */
+    .area {
+      width: 77%;
+    }
+  
+    .new-patient-info-container,
+    .new-patient-contact-container,
+    .new-appointment-details-container,
+    .new-doctor-info-container {
+      display: flex;
+      flex: 2;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-bottom: 0px !important;
+    }
+  
+    .new-custom-label-title {
+      flex: none;
+      width: 175px;
+    }
+  
+    .new-custom-form-row {
+      font-size: 12px;
+      border-bottom: 1px solid var(--ProjectColor);
+      width: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+  
+    }
+  
+    .new-custom-select-title,
+    .new-custom-select-doctor-name {
+      width: 100%;
+      outline: none;
+      border: none;
+  
+    }
+  
+    #tt {
+      position: relative;
+    }
+  
+  
+  
+    .tog {
+      background-color: var(--ProjectColor);
+      border: transparent;
+      border-radius: 8px;
+    }
+  
+    .pasthist {
+      width: 290px !important;
+    }
+  
+    .width_pasthist {
+      width: 75% !important;
+    }
+  
+    .width_procedure {
+      width: 75% !important;
+  
+    }
+  
+    .vital_select {
+      width: 160px;
+      border: none;
+      outline: none;
+    }
+  
+  
+    .incre-inpt-with18 {
+      width: 70% !important;
+    }
+  
+    .jidj90 {
+  
+      width: 47%;
+    }
+  
+    .inst-counlr-with {
+      width: 70%;
+    }
+  
+    .vtal-slct-re {
+      width: 250px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .new-patient-registration-form {
+      padding: 5px;
+    }
+  
+  
+    .new-custom-header {
+      width: 96% !important;
+    }
+  
+    .area_pasthistory {
+      width: 65%;
+      height: 40px;
+      border: 1px solid #ccc;
+      padding: 5px;
+      resize: vertical;
+    }
+  
+    .new-kit {
+      display: block;
+    }
+  
+    .new-tog {
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+  
+    .new-patient-info-container,
+    .new-patient-contact-container,
+    .new-appointment-details-container,
+    .new-doctor-info-container {
+      display: flex;
+      flex: 0 !important;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      border-bottom: 0px !important;
+    }
+  
+    .new-custom-label-title {
+      flex: none;
+      width: 130px;
+    }
+  
+  
+  
+    .new-navigation {
+      display: none;
+  
+    }
+  
+    .new-navigation-toggle {
+      /* display: flex; */
+      padding: 10px;
+      /* padding-top: 15px; */
+      background-color: var(--ProjectColor);
+      border-radius: 5px;
+      margin-top: 5px;
+      height: auto;
+    }
+  
+    .new-navigation-toggle h2 {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 6px;
+      padding: 0px 10px;
+      font-size: 16px;
+    }
+  
+    .new-navigation-toggle h2 button {
+      outline: none;
+      background-color: transparent;
+      color: var(--labelcolor);
+      border: none;
+  
+    }
+  
+    .new-navigation-toggle h2 button:hover {
+      color: var(--projectwhite);
+  
+    }
+  
+    .new-custom-form-row {
+      font-size: 12px;
+      border-bottom: 1px solid var(--ProjectColor);
+      width: 290px;
+  
+      /* display: flex; */
+      /* align-items: center; */
+      /* justify-content: center; */
+    }
+  
+    .new-custom-select-title,
+    .new-custom-select-doctor-name {
+      width: 100%;
+      outline: none;
+      border: none;
+      /* padding: 5px; */
+    }
+  
+    .pasthist {
+      width: 210px !important;
+    }
+  
+    .width_pasthist {
+      width: 90% !important;
+    }
+  
+  
+    .incre-inpt-with18 {
+      width: 80% !important;
+    }
+  
+  
+  
+  }
+  
+  @media (max-width: 425px) {
+    .pasthist {
+      width: 170px !important;
+    }
+  
+    .width_pasthist {
+      width: 90% !important;
+    }
+  
+    .label_procedure {
+      width: 130px !important;
+    }
+  
+    .width_procedure {
+      width: 90% !important;
+  
+    }
+  
+    .incre-inpt-with18 {
+      width: 90% !important;
+    }
+  
+    .vital_select {
+      width: 170px;
+      border: none;
+      outline: none;
+    }
+  
+  
+    .jidj90 {
+  
+      width: 78%;
+    }
+  
+  }

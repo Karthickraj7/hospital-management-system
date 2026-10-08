@@ -1,0 +1,145 @@
+.transfer-referral-form-1 {
+    font-family: Arial, sans-serif;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .form-header-1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .hospital-name-1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .hospital-address-1 {
+    font-size: 14px;
+    margin: 5px 0;
+  }
+  
+  .form-title-1 {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0;
+    text-decoration: underline;
+  }
+  
+  .form-section-132, .form-section-2 {
+    border: 1px solid #000;
+    margin-bottom: 20px;
+  }
+  
+  .row-1 {
+    display: flex;
+    border-bottom: 1px solid #000;
+    min-height: 30px;
+  }
+  
+  .row-1:last-child {
+    border-bottom: none;
+  }
+  
+  .field-group-123 {
+    padding: 8px;
+    flex-grow: 1;
+    position: relative;
+  }
+  
+  .age-sex-1, .mrn-1, .mlc-1 {
+    border-left: 1px solid #000;
+    width: 30%;
+  }
+  
+  .patient-details-123, .consultant-1, .emergency-1 {
+    width: 60%;
+  }
+  
+  .label-1 {
+    font-weight: bold;
+    font-size: 14px;
+  }
+  
+  .transport-text-1 {
+    font-size: 14px;
+    margin: 0;
+    line-height: 1.4;
+  }
+  
+  .date-time-1 {
+    display: flex;
+    justify-content: flex-end;
+
+    right: 10px;
+    top: 8px;
+  }
+  
+  .date-label-1 {
+    margin-right: 100px;
+  }
+  
+  .vitals-row-1, .examination-row-1 {
+    display: flex;
+    width: 100%;
+  }
+  
+  .vital-box-1, .exam-box-1 {
+    border-right: 1px solid #000;
+    padding: 5px;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+  }
+  
+  .vital-box-1:last-child, .exam-box-1:last-child {
+    border-right: none;
+  }
+  
+  .unit-1 {
+    font-size: 12px;
+    margin-left: 5px;
+  }
+  
+
+  .field-group-123{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .field-group-123 label{
+    display: flex;
+    justify-content: space-between;
+    width: 250px;
+  }
+
+  .field-group-123 input{
+
+    width: 100%;
+    padding:5px;
+    border: none;
+    border-bottom: 1px dotted black;
+  }
+
+  .field-group-1234 input{
+    padding:5px;
+    border: none;
+    border-bottom: 1px dotted black;
+  }
+  
+
+  @media print {
+    .transfer-referral-form-1 {
+      padding: 0;
+      box-shadow: none;
+    }
+    
+    /* .form-section-132 {
+      page-break-after: always;
+    } */
+  }

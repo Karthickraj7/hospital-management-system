@@ -1,0 +1,217 @@
+.actionv{
+    display: flex;
+    gap:20px;
+}a
+.actionv button{
+    padding:5px;
+    border: 1px solid black;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.patientcontain1{
+
+    /* background-color:#c794dffd; */
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: space-evenly;
+    padding-top: 20px;
+    padding: 10px;
+    margin-top: 20px;
+   
+}
+.opcon1{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.action_color_block{
+    /* background-color: aqua; */
+    display: flex;
+    width: 80%;
+    height: 7%;
+
+}
+.action_color_block span{
+    float: left;
+    display: flex;
+    margin-left: 3%;
+    padding: 5px 5px;
+    font-size: 12px;
+    color: black;
+    font-weight: bold;
+    background: #6225e6;
+    box-shadow: 6px 6px 0 black;
+    transform: skewX(-15deg);
+    border: none;
+    cursor: pointer;
+    
+}
+
+
+
+/* ------------------------------------ */
+.custom-popup-098 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+   
+  .popup-container-prem {
+    background: var(--projectwhite);
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    box-shadow: var(--boxShadow);
+  }
+   
+  .popup-content-prem {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+   
+  .popup-field-prem {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+   
+   
+  .popup-field-prem label{
+    display: flex;
+    justify-content: flex-start;
+  }
+   
+  .popup-select-prem,
+  .popup-textarea-prem {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--opacityColor);
+    border-radius: 5px;
+    font-size: var(--fontsize);
+  }
+   
+  .popup-select-prem{
+    padding: 1px;
+   
+   
+  }
+   
+  .popup-actions-prem {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .efuiefh_jn8{
+    display: flex;
+    justify-content: space-around;
+    gap: 50px;
+    align-items: center;
+  }
+   
+
+  .openModal1 {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 65%;
+    height: auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+  }
+  
+  .overlay1 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+
+/* ----------------opd reception styles here-------------------- */
+ .Matrix_90{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+ }
+
+ .Matrix_90 label{
+  width: 96px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: start;
+ }
+
+ .Matrix_90 input{
+  width: 150px;
+  background-color: transparent;
+  border: 0px;
+  outline: 0px;
+  height: 25px;
+  border: 1px solid var(--ProjectColor);
+  padding: 0px 5px;
+  border-radius: 5px;
+  font-size: 12px;
+ }
+
+ .Matrix_90 select{
+  width: 150px;
+  border: 0px;
+  outline: 0px;
+  height: 25px;
+  font-size: 11px !important;
+ display: flex;
+ padding: 0px 5px;
+ border-radius: 5px;
+ cursor: pointer;
+  background-color: var(--selectbackgroundcolor);
+ 
+ }
+
+ .Inception-number-input{
+  width: 80px !important;
+  font-weight: bold;
+  height: 35px !important;
+  font-size: 23px !important; 
+  text-align: center;
+  background-color: rgb(237, 237, 237) !important;
+ }
+
+.dsfewuf_n{
+  background-color: #4169E1 !important;
+  color: white;
+
+}
+
+
+  @media screen and (max-width: 768px) {
+    .efuiefh_jn8{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+    }
+  }

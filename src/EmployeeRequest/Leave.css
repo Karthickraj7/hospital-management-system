@@ -1,0 +1,773 @@
+.leaveform {
+    width: 98%;
+    display: flex;
+    padding: 10px;
+    padding-top: 15px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.leavecon {
+    width: 50%;
+    height: 35px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+}
+
+.leavecon1 {
+    width: 50%;
+    height: 35px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+}
+
+.leaveform_11 {
+    display: flex;
+    width: 350px;
+    justify-content: flex-start;
+    border-bottom: 1px solid var(--ProjectColor);
+}
+
+.leaveform_1 {
+    display: flex;
+    width: 410px;
+    justify-content: flex-start;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--ProjectColor);
+}
+
+.leaveform_11 textarea {
+    width: 210px;
+    padding: 5px;
+    height: 40px;
+    margin-bottom: 28px
+}
+
+.leaveform_1 textarea {
+    width: 210px;
+    padding: 5px;
+    height: 40px;
+    margin-bottom: 28px
+}
+
+.formsubmit button {
+    width: 90px;
+    height: 30px;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--ProjectColor);
+    cursor: pointer;
+}
+
+.formsubmit button:hover {
+    background-color: var(--ProjectColorhover);
+    color: var(--projectwhite);
+}
+
+
+
+.paymt-fr-mnth-slp {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.employee-details {
+    margin-top: 20px;
+
+}
+
+.flx-the-payslp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    padding: 10px;
+
+}
+
+.employee-details label {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    flex-wrap: wrap;
+    margin-bottom: 5px;
+    padding: 10px;
+    width: 255px;
+    font-size: 15px;
+    font-weight: bold;
+
+}
+
+.newwPopupforreason1 {
+    width: 500px;
+    height: auto;
+}
+
+.employee-details input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border-color: var(--labelcolor);
+
+}
+
+.grid12 {
+    overflow: auto;
+    width: 98%;
+    display: block;
+    margin-left: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Add more styles as needed */
+.newwProfiles1122 {
+    height: 70%;
+    width: 85%;
+}
+
+.editcont {
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.regster_btn_contsai {
+    gap: 20px;
+}
+
+.newwPopupforreason {
+    width: 90%;
+    height: 80%;
+    padding: 20px;
+}
+
+.newwPopupforreason2 {
+    width: 41%;
+    height: 40%;
+    padding: 20px;
+}
+
+.view_status {
+    width: 130px;
+    padding: 5px;
+    color: var(--labelcolor);
+    border: none;
+    background-color: aliceblue;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* Responsive Table Styles */
+.responsive-table909 {
+    width: 90%;
+    margin-top: 20px;
+    /* margin: 10px; */
+    border-collapse: collapse;
+    /* padding-left: 50px; */
+}
+
+.responsive-table909 th {
+    font-weight: bold;
+    padding: 5px;
+}
+
+.responsive-table909 th,
+.responsive-table909 td {
+    padding: 10px;
+    text-align: start;
+    border: 1px solid #ddd;
+    font-size: 15px;
+}
+
+/* Add these styles in your existing CSS or create a new stylesheet */
+
+.signature-section909 {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.net-slycss {
+    justify-content: center;
+    width: 50%;
+
+}
+
+.signature909 {
+    width: 25%;
+    /* Adjust the width as needed */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: start;
+}
+
+.signature909 p {
+    /* margin-bottom: 10px; */
+    font-weight: bold;
+}
+
+/* Add more styles as needed */
+.hide-print-button {
+    display: none !important;
+}
+
+.wsdfwe6 h3 {
+    display: flex;
+    justify-content: flex-start;
+    padding: 20px 0px 20px 0px;
+}
+
+.foradvanceview {
+    height: 50%;
+}
+
+@media print {
+    .hide-print-button {
+        display: none !important;
+    }
+}
+
+
+@media screen and (max-width:650px) {
+    .leaveform {
+        width: 100%;
+        padding: 10px 0px;
+    }
+
+    .leaveform_1 {
+        display: flex;
+        width: 380px;
+        justify-content: flex-start;
+        border-bottom: 1px solid var(--ProjectColor);
+    }
+
+    .leaveform_11 {
+        display: flex;
+        width: 350px;
+        justify-content: flex-start;
+        border-bottom: 1px solid var(--ProjectColor);
+    }
+
+    .newwPopupforreason {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+    }
+
+    .newwProfiles1122 {
+        display: flex;
+        flex-direction: column;
+        height: 70%;
+        width: 95%;
+    }
+
+    .editcont {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .employee-details label {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        text-align: start;
+        flex-wrap: wrap;
+        margin-bottom: 5px;
+        padding: 10px;
+        width: 155px;
+        font-size: 13px;
+        font-weight: bold;
+
+    }
+
+    .responsive-table909 {
+        overflow-x: auto;
+        margin-top: 20px;
+
+
+        border-collapse: collapse;
+    }
+
+    .responsive-table909 th,
+    .responsive-table909 td {
+        font-size: 13px;
+    }
+
+    .paymt-fr-mnth-slp h1 {
+        font-size: x-large;
+    }
+
+    .paymt-fr-mnth-slp h3 {
+        font-size: medium;
+    }
+
+    .paymt-fr-mnth-slp {
+        padding: 10px;
+        margin-top: 10px;
+    }
+
+    .net-slycss {
+        justify-content: center;
+        width: 100%;
+
+    }
+
+    .signature909 {
+        width: 70%;
+    }
+
+
+    .signature-section909 {
+        width: 90%;
+        display: flex;
+        gap: 10px;
+        font-size: 13px;
+        font-weight: bold;
+        /* justify-content: space-between; */
+    }
+}
+
+@media screen and (max-width:950px) {
+
+    .editcont {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+}
+
+@media screen and (max-width:1095px) {
+
+    .editcont {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+}
+
+
+
+
+
+
+
+
+.leaveform {
+    width: 98%;
+    display: flex;
+    padding: 10px;
+    padding-top: 15px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.leavecon {
+    width: 50%;
+    height: 35px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+}
+
+.leaveform_1 {
+    display: flex;
+    width: 350px;
+    justify-content: flex-start;
+    border-bottom: 1px solid var(--ProjectColor);
+}
+
+.leaveform_1 textarea {
+    width: 210px;
+    padding: 5px;
+    height: 40px;
+    margin-bottom: 28px
+}
+
+.formsubmit button {
+    width: 90px;
+    height: 30px;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--ProjectColor);
+    cursor: pointer;
+}
+
+.formsubmit button:hover {
+    background-color: var(--ProjectColorhover);
+    color: var(--projectwhite);
+}
+
+
+
+.paymt-fr-mnth-slp {
+    /* margin-top: 20px; */
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    font-size: 15px;
+}
+
+.employee-details {
+    margin-top: 20px;
+
+}
+
+.flx-the-payslp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* gap: 10px; */
+    /* padding: 10px; */
+
+}
+
+.employee-details label {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    flex-wrap: wrap;
+    margin-bottom: 5px;
+    padding: 10px;
+    width: 160px;
+    font-size: 15px;
+    font-weight: bold;
+
+}
+
+.employee-details input {
+    width: 45%;
+    height: 25px;
+    padding: 8px;
+    /* margin-bottom: 10px; */
+    box-sizing: border-box;
+    border-radius: 5px;
+    border-color: var(--labelcolor);
+
+}
+
+/* Add more styles as needed */
+
+
+/* Responsive Table Styles */
+.responsive-table909 {
+    width: 100%;
+    margin-top: 20px;
+    /* margin: 10px; */
+    border-collapse: collapse;
+    /* padding-left: 50px; */
+
+}
+
+.responsive-table909 th {
+    /* font-weight: bold; */
+    padding: 5px;
+}
+
+.responsive-table909 th,
+.responsive-table909 td {
+    padding: 5px;
+    text-align: start;
+    border: 1px solid #212121;
+    font-size: 11px;
+    font-family: 'Arial', sans-serif;
+    height: 20px;
+    /* font-weight: bold; */
+}
+
+/* Add these styles in your existing CSS or create a new stylesheet */
+
+.signature-section909 {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.net-slycss {
+    justify-content: center;
+    width: 50%;
+
+}
+
+.signature909 {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #212121;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: start;
+    gap: 5px;
+}
+
+.signature909 p {
+    /* margin-bottom: 10px; */
+    /* font-weight: bold; */
+    font-size: 12px;
+}
+
+.logo-pay-slp img {
+
+    height: 90px;
+    object-fit: contain;
+}
+
+.jon-flx-the-twoi {
+    width: 100%;
+    display: flex;
+    margin-top: 20px;
+    align-items: center;
+    text-align: center;
+    /* justify-content: space-between; */
+    gap: 0px;
+    border: 1px solid #212121;
+    border-bottom: none;
+    font-family: 'Arial', sans-serif;
+
+}
+
+.jon-flx-the-twoi tr {
+    display: flex;
+    /* gap: 20px; */
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    height: 37px;
+    width: 100%;
+    /* border-bottom: 1px solid #212121; */
+
+}
+
+.jon-flx-the-twoi td {
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: start;
+    /* font-weight: bold; */
+    font-size: 11px;
+    padding: 5px !important;
+    width: 140px;
+    height: 20px;
+    border-bottom: 1px solid #212121;
+
+}
+
+.jon-flx-the-twoi input {
+    border: none;
+    width: 130px;
+    /* padding: 2px; */
+    font-size: 11px;
+    /* height: 15px; */
+    /* padding: 5px; */
+    outline: none;
+
+}
+
+
+.disclaimer23 {
+    margin-top: 20px;
+    /* Adjust spacing as needed */
+    font-style: italic;
+    font-size: 12px;
+    /* Adjust font size as needed */
+    color: #666;
+    /* Adjust color as needed */
+}
+
+
+@media print {
+    body {
+        font-size: 8px;
+        /* Adjust the font size as needed */
+    }
+
+    .print-button3 {
+        display: none;
+    }
+
+
+    @page :first {
+        /* margin-top: 5cm; */
+
+    }
+
+    @page :first {
+        /* margin-bottom: 6cm; */
+        margin-top: -2cm;
+
+    }
+
+    @page :right {
+        margin-right: 2.5cm;
+    }
+
+    .jon-flx-the-twoi tr {
+        /* border-bottom: 1px solid black !important; */
+        display: flex !important;
+
+        /* width: 100% !important; */
+    }
+
+    .jon-flx-the-twoi td {
+        width: 185px !important;
+    }
+
+    .jon-flx-the-twoi input {
+        padding-bottom: 5px !important;
+        font-size: 10px;
+    }
+}
+
+
+
+@media screen and (max-width:800px) {
+    .jon-flx-the-twoi {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+
+@media screen and (max-width:650px) {
+    .leaveform {
+        width: 100%;
+        padding: 10px 0px;
+    }
+
+    .leaveform_1 {
+        display: flex;
+        width: 300px;
+        justify-content: flex-start;
+        border-bottom: 1px solid var(--ProjectColor);
+    }
+
+    .employee-details label {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        text-align: start;
+        flex-wrap: wrap;
+        margin-bottom: 5px;
+        padding: 10px;
+        width: 135px;
+        font-size: 13px;
+        /* font-weight: bold; */
+
+    }
+
+    .responsive-table909 {
+        overflow-x: auto;
+        margin-top: 20px;
+
+
+        border-collapse: collapse;
+    }
+
+    .responsive-table909 th,
+    .responsive-table909 td {
+        font-size: 13px;
+    }
+
+    .paymt-fr-mnth-slp h1 {
+        font-size: x-large;
+    }
+
+    .paymt-fr-mnth-slp h3 {
+        font-size: medium;
+    }
+
+    .paymt-fr-mnth-slp {
+        padding: 10px;
+        margin-top: 10px;
+
+
+    }
+
+    .net-slycss {
+        justify-content: center;
+        width: 100%;
+
+    }
+
+    .signature909 {
+        width: 70%;
+    }
+
+
+    .signature-section909 {
+        width: 90%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+
+        gap: 10px;
+        font-size: 13px;
+        /* font-weight: bold; */
+        /* justify-content: space-between; */
+    }
+
+
+
+}
+
+
+@media screen and (max-width:450px) {
+    .newwPopupforreason {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+    }
+
+    .leaveform_1 {
+        display: flex;
+        width: 200px !important;
+        justify-content: flex-start;
+        border-bottom: 1px solid var(--ProjectColor);
+    }
+
+    .kshdy1 {
+        width: 230px !important;
+    }
+
+    .wei32j {
+        width: 47% !important;
+    }
+
+
+}

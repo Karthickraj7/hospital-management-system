@@ -1,0 +1,140 @@
+
+.Ji-hoJun-seo {
+    background-color: #f9fafb;
+    min-height: 100vh;
+    padding: 1.5rem;
+    font-family: "Inter", Arial, sans-serif;
+    color: #1f2937;
+}
+
+
+.Jun-seoDo-yun {
+    margin: 0 auto;
+    background: #ffffff;
+    border: 1px solid #9ca3af;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    font-size: 0.875rem;
+    width: 210mm;
+    min-height: 297mm;
+    height: auto;
+    overflow: visible;
+    box-sizing: border-box;
+}
+
+.Hyun-woo {
+    background-color: #00aeef;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.25rem 0.75rem;
+    width: fit-content;
+    margin-bottom: 10px;
+}
+
+.Ji-hun-sec {
+    width: 100%;
+    min-height: 800px;           
+    padding: 12px;
+    font-size: 0.875rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    resize: none;
+    margin-top: 0.5rem;
+    background: white;
+    box-sizing: border-box;
+    overflow-y: auto;            
+}
+
+.Ji-hunSeung-min {
+    width: 100%;
+    margin-top: 30px;
+    border: none;
+    border-bottom: 1px solid #9ca3af;
+    outline: none;
+    font-size: 0.875rem;
+    padding: 8px 4px;
+    background: transparent;
+}
+
+/* 
+
+
+@media print {
+    @page {
+        size: A4 portrait;
+        margin: 8mm 12mm 12mm 12mm;   
+    }
+
+    body * {
+        visibility: hidden !important;
+    }
+
+    .Jun-seoDo-yun,
+    .Jun-seoDo-yun * {
+        visibility: visible !important;
+    }
+
+    .Jun-seoDo-yun {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        margin: 0 !important;
+        padding: 15mm 18mm !important;  
+        border: none !important;
+        box-shadow: none !important;
+        background: white !important;
+
+        height: 277mm !important;      
+        min-height: 277mm !important;
+        max-height: 277mm !important;
+        overflow: hidden !important;   
+        box-sizing: border-box;
+    }
+
+    .Hyun-woo {
+        background-color: #00aeef !important;
+        color: white !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        margin-bottom: 10mm !important;
+    }
+
+    .Ji-hun-sec {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color: black !important;
+        background: white !important;
+        border: 1px solid #000 !important;
+        padding: 10px !important;
+
+        height: 210mm !important;       
+        min-height: 210mm !important;
+        max-height: 210mm !important;
+        overflow: hidden !important;   
+        font-size: 11pt !important;
+        line-height: 1.5 !important;
+    }
+
+    .Ji-hunSeung-min {
+        border: none !important;
+        border-bottom: 1px solid black !important;
+        background: transparent !important;
+        color: black !important;
+        margin-top: 15mm !important;
+        font-size: 12pt !important;
+    }
+
+    
+    .button-container,
+    [class*="ReactGrid"] {
+        display: none !important;
+    }
+
+    ::placeholder {
+        color: transparent !important;
+    }
+} */

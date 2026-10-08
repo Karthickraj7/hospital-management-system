@@ -1,0 +1,244 @@
+.hr-dashboard {
+    padding: 15px;
+    background-color: #f5f5f5;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+.dashboard-header {
+    background-color: #5b5fc7;
+    color: white;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 100%;
+}
+
+.dashboard-header h1 {
+    margin: 0;
+    font-size: clamp(20px, 4vw, 24px);
+}
+
+/* Grid Layout */
+.dashboard-griddsd {
+    display: grid;
+    gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    padding: 10px;
+}
+
+.wdwed_wdi98 {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: auto;
+    min-height: 270px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.eddhyw_ucc3 {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+/* Metric Cards */
+.metric-card {
+    flex: 1;
+    min-width: 140px;
+    max-width: 200px;
+    background-color: white;
+    padding: 15px;
+    height: auto;
+    min-height: 130px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);    width: 100%;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+    border-radius: 3px;
+}
+
+.recharts-legend-wrapper{
+    left: 215px !important;
+    top: 55px !important;
+    font-size: 14px !important;
+}
+
+.evfjke_c2{ 
+    right: 35px !important;
+}
+.metric-card h2 {
+    margin: 0;
+    font-size: clamp(20px, 3vw, 25px);
+    color: #333;
+}
+
+.metric-card p {
+    margin: 10px 0 0;
+    color: #666;
+    font-size: clamp(12px, 2vw, 13px);
+}
+
+/* Gender Distribution */
+.gender-card {
+    background-color: white;
+    padding: 15px;
+    min-height: 270px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);    width: 100%;
+}
+
+.female {
+    color: #ff69b4 !important;
+}
+
+.male {
+    color: #4169e1 !important;
+}
+
+
+
+.gender-stats {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    /* flex-wrap: wrap; */
+    gap: 10px;
+    width: 100%;
+}
+
+.gender-item {
+    text-align: center;
+    flex: 1;
+    min-width: 140px;
+}
+
+.gender-iconss p {
+    font-weight: bold;
+
+    font-size: clamp(15px, 2vw, 17px);
+    margin-bottom: 10px;
+}
+
+.gender-iconssedd {
+    height: clamp(80px, 15vw, 130px) !important;
+    width: clamp(80px, 15vw, 130px) !important;
+}
+
+/* Department & Charts Cards */
+.department-card,
+.salary-card,
+.salary-chart-card,
+.department-chart-card,
+.travel-chart-card,
+.ratings-chart-card {
+    background-color: white;
+    padding: 15px;
+    min-height: 270px;
+    border-radius: 3px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);    width: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.department-chart-card h3,
+.salary-chart-card h3,
+.travel-chart-card h3,
+.ratings-chart-card h3 {
+    font-size: clamp(12px, 2vw, 13px);
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.department-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-width: 230px;
+}
+
+.department-list li {
+    padding: 6px;
+    margin: 5px 0;
+    background-color: #e3f2fd;
+    border-radius: 4px;
+    color: #333;
+    text-align: center;
+    font-size: clamp(11px, 1.5vw, 12px);
+}
+
+/* Chart Responsiveness */
+.department-chart-card,
+.salary-chart-card,
+.travel-chart-card,
+.ratings-chart-card {
+    overflow: hidden;
+}
+
+
+
+/* Media Queries */
+@media screen and (max-width: 1200px) {
+    .dashboard-griddsd {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .hr-dashboard {
+        padding: 10px;
+    }
+
+    .eddhyw_ucc3 {
+        flex-direction: column;
+    }
+
+    .metric-card {
+        width: 100%;
+        max-width: none;
+    }
+
+    .gender-stats {
+        flex-direction: column;
+    }
+
+    .gender-item {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    /* .dashboard-griddsd {
+        grid-template-columns: 1fr;
+    } */
+
+    .department-chart-card, .salary-chart-card, .travel-chart-card, .ratings-chart-card {
+        overflow: auto;
+    }
+
+    .metric-card {
+        min-height: 100px;
+    }
+
+    .gender-stats {
+        flex-direction: row;
+    }
+}

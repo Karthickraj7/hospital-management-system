@@ -1,0 +1,345 @@
+.personal_information {
+    box-shadow: 0 2px 12px rgba(32, 32, 32, .3);
+    width: 45%;
+    right: 10%;
+
+
+}
+
+.h_head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--ProjectColor);
+    margin-bottom: 15px;
+    margin-top: 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    padding: 5px;
+    width: 100%;
+}
+
+.h_head h3 {
+    color: black !important;
+    font-size: 16px;
+}
+
+.test_information {
+    box-shadow: 0 2px 12px rgba(32, 32, 32, .3);
+    width: 45%;
+
+}
+
+.mastercontainer_for_patient {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    justify-content: space-between;
+}
+
+.samplecapture_component {
+    display: flex;
+    place-items: center;
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+}
+
+.patientdetails_lab {
+    display: flex;
+    width: auto;
+    text-align: center;
+    justify-content: space-between;
+}
+
+.patientdetails12 {
+    display: flex;
+    width: 90%;
+    /* align-items: center; */
+    justify-content: space-between;
+    /* margin-bottom: 50px; */
+}
+
+.patientdata {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 340px;
+    gap: 1rem;
+}
+
+.phelobotomist_head {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 600;
+    gap: 3px;
+    width: auto;
+    /* width: px; */
+}
+
+.logo_profile {
+    font-size: 25px;
+
+}
+
+
+.Capture_Status_select {
+    width: 130px;
+    height: 30px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.samplecapture_table_for_phelobotomist {
+    width: 100%;
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Capture_Status_select1 {
+    width: 154px;
+    height: 20px;
+    border-radius: 5px;
+    text-align: center;
+    outline: none;
+    border: 1px solid var(--ProjectColor);
+}
+
+.table_for_plebotomist_sample {
+    width: 90%;
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+    /* border: 2px solid var(--ProjectColor); */
+
+    /* overflow: hidden; */
+}
+
+.table_for_plebotomist_sample th {
+    background-color: var(--ProjectColor);
+    /* width: auto; */
+    text-align: center;
+    height: 25px;
+    padding: 5px;
+    /* border-radius: 10px; */
+    border: 1px solid var(--projectwhite);
+}
+
+.table_for_plebotomist_sample .trends {
+    font-size: 23px;
+    color: red;
+    cursor: pointer;
+}
+
+.table_for_plebotomist_sample td {
+    text-align: center;
+    height: 25px !important;
+    /* padding: 3.5px; */
+    padding: 1.5px;
+    border: 1px solid rgb(218, 214, 214);
+}
+
+.remarktable {
+    width: 100%;
+    text-align: center;
+}
+
+.remarktable th {
+    width: 50%;
+    text-align: center;
+}
+
+.remarktable tr {
+    width: 50%;
+    text-align: center;
+    /* display: flex; */
+    /* gap: 2px; */
+    /* display: grid; */
+    /* place-items: center; */
+}
+
+.remarktable td p {
+    display: flex;
+    align-items: flex-start;
+    width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    word-wrap: break-word;
+    text-align: start;
+    padding: 5px;
+    word-spacing: 3px;
+    line-height: 15px;
+}
+
+/* .table_for_plebotomist_sample tr:nth-child(even){
+    background-color: rgb(206, 206, 196);
+} */
+.table_textarea {
+    width: 100%;
+    height: 26px;
+    border: none;
+    box-shadow: none;
+    outline: none;
+}
+
+.antibioticnames {
+    margin-top: 15px;
+    display: grid;
+   
+    gap: 10px;
+    /* Adjust gap between items as needed */
+}
+
+.antibioticnames_list {
+    display: flex;
+    align-items: center;
+}
+
+.antibioticnames_list input[type="checkbox"] {
+    margin-right: 10px;
+    height: 20px;
+    width: 20px;
+}
+
+.antibioticnames_list label {
+    font-weight: 600;
+}
+
+
+@media (max-width: 1024px) {
+
+    .patientdetails_lab {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .patientdata {
+        width: 20rem;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .Capture_Status_select {
+        width: 120px;
+        height: 30px;
+        border-radius: 8px;
+        margin: 5px;
+        cursor: pointer;
+    }
+
+    .patientdetails_lab {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .patientdata {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin-bottom: 10px;
+    }
+
+    .patientdata span,
+    .patientdata label {
+        margin-right: 10px;
+    }
+
+    .phelobotomist_head {
+        display: flex;
+        align-items: center;
+        white-space: nowrap;
+    }
+
+    .phelobotomist_head span {
+        margin-right: 5px;
+    }
+
+    .samplecapture_table_for_phelobotomist {
+        width: 100%;
+        /* display: block; */
+
+    }
+}
+
+@media (max-width: 750px) {
+    .samplecapture_table_for_phelobotomist {
+        width: 100%;
+        /* display: block; */
+        /* overflow-x: auto;
+        margin: 10px; */
+    }
+
+    .table_for_plebotomist_sample {
+        overflow: auto;
+        display: block;
+    }
+}
+
+@media (max-width: 550px) {
+    .samplecapture_table_for_phelobotomist {
+        width: 100%;
+        /* display: block; */
+        /* overflow-x: auto;
+        margin: 10px; */
+    }
+
+    .table_for_plebotomist_sample {
+        overflow: auto;
+        display: block;
+    }
+}
+
+
+
+
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.custom-table th,
+.custom-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.custom-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+.grid_foot {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.grid_foot button {
+    padding: 5px 10px;
+    margin: 0 10px;
+    border: 1px solid #007bff;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+.grid_foot button:disabled {
+    background-color: #d6d6d6;
+    cursor: not-allowed;
+}
+
+.IP_norecords {
+    text-align: center;
+    padding: 20px;
+    color: #888;
+    font-size: 18px;
+}

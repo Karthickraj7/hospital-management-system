@@ -1,0 +1,1569 @@
+@media screen {
+  .page_a4 {
+    width: 794px;
+    height: fit-content;
+    margin: 20px auto;
+    padding: 30px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+  }
+
+  .letter_head {
+    margin-bottom: 5px;
+  }
+
+  .header_row_one {
+    width: 650px;
+    height: 60px;
+    justify-content: center;
+    margin-left: 13px;
+  }
+
+  .header_row_two {
+    width: 650px !important;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 13px;
+    padding-bottom: 5px;
+    border-bottom: 3px solid black;
+  }
+
+  .header_logo {
+    width: 60px;
+    height: 60px;
+  }
+
+  .header_word h2 {
+    font-size: 20px !important;
+    padding: 10px;
+  }
+
+  .header_word h3 {
+    font-size: 14px !important;
+  }
+
+  .letter_footer {
+    width: 650px;
+    margin-left: 13px;
+    border-top: 3px solid black;
+    margin-top: 5px;
+    padding-top: 10px;
+    position: absolute;
+    bottom: -720px;
+    display: none;
+  }
+
+  .footer_word {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+  }
+
+  .main_table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+
+  .a4-table thead {
+    display: block;
+  }
+
+  .main_head {
+    width: 650px;
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 10px;
+    margin-left: 13px;
+  }
+
+  .main_header {
+    position: relative;
+  }
+
+  .provision {
+    width: 650px;
+    margin-left: 13px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .watermark {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    margin: auto;
+    /* z-index: 1; */
+    opacity: 0.1;
+    top: 300px;
+    left: 80px;
+  }
+
+  .one_line_tr {
+    width: 90%;
+    height: 45px;
+  }
+
+  .barcodes {
+    display: flex;
+  }
+
+  .one_line_td {
+    width: 350px !important;
+    display: inline-block;
+    /* padding-left: 100px; */
+    /* margin-right: 100px; */
+  }
+
+  .bar_code_1 {
+    width: 170px;
+    height: 40px;
+  }
+
+  .line_one {
+    width: 100% !important;
+    display: flex;
+  }
+
+  .two_line_tr {
+    width: 100%;
+    height: 20px;
+    display: flex;
+  }
+
+  .div_box {
+    display: flex;
+    gap: 5px;
+    height: 20px;
+  }
+
+  .two_line_td {
+    width: 65%;
+    display: flex;
+  }
+
+  .two_line_td_right {
+    width: fit-content;
+  }
+
+  .header_lable {
+    font-size: 12px !important;
+    width: 120px;
+  }
+
+  .two_line_td_right .header_lable {
+    width: 120px;
+  }
+
+  .two_line_td_right .header_span {
+    width: 130px;
+    text-align: start;
+  }
+
+  .header_span {
+    font-size: 12px !important;
+    padding-top: 3px;
+  }
+
+  .main_body {
+    width: 650px;
+    position: relative;
+    /* min-height: 700px !important; */
+  }
+
+  .main_body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--watermark) center center no-repeat;
+    background-size: 500px;
+    opacity: 0.1;
+    pointer-events: none;
+  }
+
+  .department_row {
+    width: 650px;
+    height: 30px;
+    padding: 5px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 13px;
+  }
+
+  /* .test_header {
+        width: 650px;
+        height: 30px;
+        padding: 4px;
+        margin-top: 0;
+        border: 1px solid black;
+        border-radius: 5px !important;
+        margin-left: 13px;
+        font-size: 14px;
+        text-align: left;
+    } */
+  .test_header {
+    width: 650px;
+    height: 30px;
+    font-weight: bold;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 14px;
+    background: #ebe0e0;
+    margin-left: 13px;
+  }
+
+  .test_header th {
+    padding: 4px 8px;
+    padding-left: 0;
+    text-align: start;
+    border: 1px solid black;
+    /* optional borders */
+  }
+
+  .test_name {
+    width: 180px !important;
+  }
+
+  .result {
+    width: 100px !important;
+  }
+
+  .unit {
+    width: 80px !important;
+  }
+
+  .reference {
+    width: 130px !important;
+  }
+
+  .method {
+    width: 160px !important;
+  }
+
+  .range {
+    width: 250px !important;
+  }
+
+  .package_name {
+    width: 650px;
+    padding-top: 10px;
+    margin-left: 13px;
+  }
+
+  .package_name_td {
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: underline;
+    padding-left: 3px;
+  }
+
+  .report_div {
+    width: 650px;
+    margin-left: 13px;
+    text-align: start;
+    font-size: 14px;
+    padding: 4px;
+  }
+
+  .test_name_div {
+    width: 180px !important;
+  }
+
+  .test_name_td {
+    width: 180px;
+  }
+
+  .result_td {
+    width: 100px;
+  }
+
+  .unit_td {
+    width: 80px;
+  }
+
+  .reference_td {
+    width: 130px;
+  }
+
+  .method_td {
+    width: 160px;
+  }
+
+  .guidelines {
+    width: 650px !important;
+    text-align: start;
+    /* padding: 5px;
+    padding-left: 13px; */
+  }
+
+  .guide {
+    width: 650px !important;
+    margin-left: 13px;
+    margin-top: 10px;
+  }
+
+  .guidelines_header {
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: start;
+    font-size: 14px;
+  }
+
+  .main_footer {
+    width: 650px;
+    height: 250px;
+  }
+
+  .main_foot_div {
+    width: 650px;
+    height: 100px;
+    margin-left: 13px;
+  }
+
+  .foot_inner {
+    width: 650px;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+    margin-bottom: 20px;
+  }
+
+  .foot_left {
+    width: 200px;
+    text-align: start;
+  }
+
+  .foot_img {
+    width: 80px;
+    height: 80px;
+    display: none;
+  }
+
+  .foot_checked {
+    font-size: 16px;
+    text-align: start;
+  }
+
+  .foot_mid {
+    width: 200px;
+    text-align: start;
+  }
+
+  .foot_verify {
+    font-size: 16px;
+    text-align: start;
+  }
+
+  .foot_right {
+    width: 200px;
+    display: block;
+    text-align: start;
+  }
+
+  .foot_sign {
+    width: 150px;
+    height: 50px;
+  }
+
+  .foot_doc {
+    font-size: 16px;
+    text-align: start;
+  }
+
+  .report_end {
+    width: 650px;
+    margin-left: 13px;
+    text-align: center !important;
+  }
+
+  .provision_report_end {
+    width: 650px;
+    margin-left: 13px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  .microBio {
+    width: 650px;
+    height: 30px;
+    font-weight: bold;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 16px;
+    background: #ebe0e0;
+    margin-left: 13px;
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .micro_Bio {
+    padding: 3px;
+  }
+
+  .culture_div {
+    width: 650px;
+    margin-left: 13px;
+  }
+
+  .culture_comment {
+    width: 650px;
+    margin-left: 13px;
+    margin-top: 10px;
+    align-items: flex-start;
+    font-size: 14px !important;
+    font-family: "calibri" !important;
+  }
+
+  .culture_row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 5px;
+  }
+
+  .culture_lable {
+    width: 200px;
+    height: 20px;
+  }
+
+  .culture_p {
+    width: fit-content;
+    text-align: start;
+  }
+
+  /* .culture_table,
+  .culture_table_div,
+  .culture_thead,
+  .culture_body {
+    width: 650px !important;
+  }
+
+  .culture_table {
+    margin-top: 10px;
+  }
+
+  .culture_thead {
+    width: 650px;
+    border: 1px solid black;
+
+  }
+
+  .culture_th {
+    font-size: 14px !important;
+    width: 110px !important;
+    padding: 4px;
+    text-align: start;
+    background-color: #ebe0e0;
+    padding-left: 3px;
+  }
+
+  .organisam_td {
+    width: 650px;
+    height: 30px;
+    text-align: start;
+    border: 1px solid black;
+  }
+
+  .organisam_name {
+    font-size: 14px !important;
+    font-style: italic;
+    font-family: 'Times New Roman', serif;
+  }
+
+  .antibiotic_div {
+    width: 650px;
+
+  }
+
+  .antibiotic_td {
+    width: 110px !important;
+    height: 30px;
+    text-align: start;
+    border: 1px solid black;
+    padding-left: 3px;
+  }
+
+  .culture_input {
+    width: 80px !important;
+  } */
+
+  /* Container */
+  .culture_table_div {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 20px;
+    font-family: Arial, sans-serif;
+  }
+
+  .culture_table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    max-width: 650px;
+    border: 1px solid black;
+  }
+
+  .culture_head {
+    border: 1px solid black;
+  }
+
+  .culture_head th {
+    text-align: left;
+    padding: 5px;
+    font-weight: 600;
+    font-size: 14px;
+    min-width: 120px;
+  }
+
+  .culture_th {
+    border-right: 1px solid black !important;
+  }
+
+  /* Organism row */
+  .organisam_td {
+    height: 30px;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: "Times New Roman", serif;
+    text-align: start;
+    padding-left: 3px;
+  }
+
+  /* Organism name in non-edit mode */
+  .organisam_name {
+    display: block;
+    font-family: "Times New Roman", serif;
+  }
+
+  /* Table body */
+  .culture_body tr {
+    border-bottom: 1px solid black;
+  }
+
+  /* Antibiotic row */
+  .antibiotic_div {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
+  .antibiotic_td {
+    font-size: 13px;
+    border-right: 1px solid black;
+    text-align: left;
+    padding: 5px 8px;
+  }
+
+  .anti {
+    width: 130px !important;
+    min-width: 130px;
+  }
+
+  .values {
+    width: 100px !important;
+    min-width: 100px;
+  }
+
+  /* Last column should not have border-right */
+  .antibiotic_td:last-child {
+    border-right: none;
+    background-color: white;
+    width: 100%;
+  }
+
+  .culture_th:last-child {
+    border-right: none !important;
+  }
+
+  /* Inputs and selects */
+  .culture_input {
+    width: 100%;
+    padding: 5px 6px;
+    font-size: 13px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  /* Buttons */
+  /* .delete-button{
+    background-color: #ff4d4f;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.2s ease;
+  } */
+
+  /* .delete-button:hover,
+  button:hover {
+    background-color: #d9363e;
+  } */
+
+  /* Colony input inside organism row */
+  .organisam_td input {
+    width: 80px;
+    padding: 5px;
+    font-size: 13px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  /* Responsive: stack cells on small screens */
+
+  .histopath_report {
+    width: 650px !important;
+    margin-left: 9px;
+    position: relative;
+  }
+
+  .histopath_report p {
+    font-size: 14px !important;
+    margin: 0px !important;
+  }
+
+  .histopath_report th {
+    text-align: start;
+    padding: 3px !important;
+    font-size: 14px !important;
+  }
+
+  .histopath_report td {
+    text-align: start;
+    padding: 3px !important;
+    font-size: 12px !important;
+  }
+
+  .foot_checked_histo {
+    margin-top: 50px;
+    margin-bottom: 10px;
+  }
+
+  .foot_checked_histo,
+  .foot_verify_histo,
+  .foot_doc_histo {
+    font-size: 14px;
+    text-align: start;
+  }
+
+  .edit_btn {
+    position: relative;
+    right: 0;
+    cursor: pointer;
+  }
+
+  .semen_head {
+    height: 20px;
+    width: 650px;
+    margin-left: 13px;
+    margin-bottom: 5px;
+    padding: 0px !important;
+  }
+
+  .semen_td {
+    font-size: 14px !important;
+    font-weight: bold;
+    text-decoration: underline !important;
+    padding-left: 3px;
+  }
+
+  /* .semen_row{
+    height: 30px !important;
+    margin-left: 13px;
+  }
+  .semen_head{
+    margin-bottom: 5px;
+    padding-top: 0px !important;
+  }
+  .semen_title{
+    margin-bottom: 5px;
+  } */
+
+  .semen_title {
+    width: 300px !important;
+  }
+
+  .fluid_head {
+    width: 650px;
+    margin-left: 13px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .hbs_comments {
+    width: 650px;
+    margin-left: 13px;
+  }
+
+  .hbs_comments p {
+    font-size: 12px;
+  }
+
+  .hbs_comments {
+    text-align: start;
+  }
+
+  .hbs_table {
+    width: 650px;
+  }
+
+  .hbs_th {
+    border: 1px solid black !important;
+    font-size: 12px;
+    padding: 5px;
+  }
+
+  .hbs_td {
+    border: 1px solid black;
+    font-size: 12px;
+    padding: 5px;
+  }
+
+  .hbs_notes {
+    display: flex;
+    margin-bottom: 5px;
+    gap: 5px;
+    width: 600px;
+    margin-left: 40px;
+  }
+
+  .elisa_test {
+    min-width: 140px;
+  }
+
+  .inter_div {
+    width: 650px !important;
+    margin-left: 13px;
+  }
+  .inter_td {
+    width: 650px !important;
+    text-align: start;
+  }
+  .serology_potti {
+    border: 1px solid black;
+    text-align: start;
+    padding: 5px;
+  }
+}
+
+/* 
+@media (max-width: 768px) {
+  .antibiotic_div {
+    flex-direction: column;
+  }
+
+  .antibiotic_td {
+    min-width: auto;
+  }
+} */
+
+@media print {
+  /* @page {
+    size: A4;
+  } */
+  @page {
+    size: A4;
+    margin-top: 50mm;
+
+    @top-center {
+      content: "Page " counter(page) " of " counter(pages);
+      font-size: 14px;
+      color: black;
+      padding-top: 20mm;
+      font-weight: bold;
+    }
+  }
+
+  html,
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .head {
+    position: absolute;
+    top: -150px;
+  }
+
+  .letter_head {
+    margin-bottom: 5px;
+  }
+
+  .header_row_one {
+    width: 650px !important;
+    height: 60px;
+    display: flex;
+    justify-content: center !important;
+    margin-left: 13px;
+  }
+
+  .header_row_two {
+    width: 650px !important;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 13px;
+    padding-bottom: 5px;
+    border-bottom: 3px solid black;
+  }
+
+  .header_logo {
+    width: 60px;
+    height: 60px;
+  }
+
+  .header_word {
+    text-align: center;
+  }
+
+  .header_word h2 {
+    font-size: 20px !important;
+  }
+
+  .header_word h3 {
+    font-size: 14px !important;
+  }
+
+  .letter_footer {
+    width: 650px;
+    margin-left: 13px;
+    border-top: 3px solid black;
+    margin-top: 5px;
+    padding-top: 10px;
+    position: absolute;
+    bottom: -750px;
+  }
+
+  .footer_word {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+  }
+
+  .footer_word h3 {
+    font-size: 14px !important;
+  }
+
+  .page_a4 {
+    width: 794px;
+    margin: 0 auto;
+    padding: 30px;
+    /* background: white; */
+    page-break-after: always;
+    padding-top: 155px;
+    padding-bottom: 90px;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+
+  tr,
+  td,
+  th {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .main_table {
+    width: 100%;
+    border-collapse: collapse !important;
+    table-layout: fixed !important;
+  }
+
+  .main_table {
+    page-break-before: always !important;
+    /* Your existing main_table styles... */
+  }
+
+  .main_table tbody {
+    display: table-row-group !important;
+    /* max-height: calc(100vh - 350px) !important; */
+    /* leave room for header + footer */
+    overflow: visible !important;
+  }
+
+  /* ✅ Force footer to repeat every page */
+  .main_header {
+    display: table-header-group !important;
+  }
+
+  .main_footer {
+    display: table-footer-group !important;
+  }
+
+  .main_header {
+    position: relative !important;
+  }
+
+  .watermark {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    margin: auto;
+    /* z-index: 1; */
+    opacity: 0.1;
+    top: 200px;
+    left: 80px;
+  }
+
+  .provision {
+    width: 650px;
+    margin-left: 13px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .main_head {
+    position: relative;
+    width: 650px;
+    border: 1px solid black;
+    padding: 10px;
+    padding-bottom: 20px;
+    border-radius: 10px;
+    margin-left: 13px;
+  }
+
+  .one_line_tr {
+    width: 90%;
+    height: 35px !important;
+  }
+
+  .barcodes {
+    display: flex;
+    position: absolute;
+    top: 3px;
+  }
+
+  .one_line_td {
+    width: 350px !important;
+    display: inline-block;
+  }
+
+  .bar_code_1 {
+    width: 170px;
+    height: 40px;
+  }
+
+  .line_one {
+    width: 100% !important;
+    display: flex;
+  }
+
+  .two_line_tr {
+    width: 100%;
+    height: 20px;
+    display: flex;
+  }
+
+  .div_box {
+    display: flex;
+    gap: 10px;
+    height: 20px;
+    width: fit-content;
+  }
+
+  .two_line_td {
+    width: 65%;
+    display: flex;
+  }
+
+  .two_line_td_right {
+    width: fit-content;
+  }
+
+  .header_lable {
+    font-size: 12px !important;
+    width: 120px;
+  }
+
+  .two_line_td_right .header_lable {
+    width: 120px;
+  }
+
+  .two_line_td .header_span {
+    width: fit-content !important;
+    text-align: start;
+    white-space: nowrap;
+    word-break: keep-all;
+  }
+
+  .two_line_td_right .header_span {
+    width: 130px;
+    text-align: start;
+  }
+
+  .header_span {
+    font-size: 12px !important;
+    padding-top: 3px;
+  }
+
+  .main_body {
+    width: 90%;
+    /* height: fit-content; */
+    position: relative;
+    /* max-height: 500px !important; */
+  }
+
+  .main_body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--watermark) center center no-repeat;
+    background-size: 500px;
+    opacity: 0.1;
+    pointer-events: none;
+    -webkit-print-color-adjust: exact !important;
+    /* Chrome/Safari */
+    print-color-adjust: exact !important;
+    /* Firefox/Edge */
+  }
+
+  .department_row {
+    /* display: none; */
+    width: 650px;
+    /* height: 30px; */
+    /* padding: 5px; */
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 13px;
+  }
+
+  /* .test_header {
+        width: 650px;
+        height: 30px;
+        padding: 4px;
+        margin-top: 0;
+        border: 1px solid black;
+        border-radius: 5px !important;
+        margin-left: 13px;
+        font-size: 14px;
+        text-align: left;
+    } */
+  .test_header {
+    width: 650px;
+    height: 30px;
+    font-weight: bold;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 14px;
+    background: #ebe0e0;
+    margin-left: 13px;
+    margin-top: 3px;
+  }
+
+  .test_header th {
+    padding: 4px 8px;
+    text-align: start;
+    border: 1px solid black;
+    /* optional borders */
+  }
+
+  .test_name {
+    width: 180px !important;
+  }
+
+  .result {
+    width: 100px !important;
+  }
+
+  .unit {
+    width: 80px !important;
+  }
+
+  .reference {
+    width: 130px !important;
+  }
+
+  .method {
+    width: 160px !important;
+  }
+
+  .package_name {
+    width: 650px;
+    height: 25px;
+    padding-bottom: 2px;
+    margin-left: 13px;
+  }
+
+  .package_name_td {
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: underline;
+    padding-left: 3px;
+  }
+
+  .specimen_name_td {
+    font-size: 14px;
+  }
+
+  .report_div {
+    width: 650px;
+    height: 50px;
+    margin-left: 13px;
+    text-align: start;
+    font-size: 10px;
+    /* margin-top: 3px; */
+    display: table;
+  }
+
+  .serology_report_div {
+    width: fit-content;
+    height: 20px;
+  }
+
+  .test_name_td,
+  .result_td,
+  .unit_td,
+  .reference_td,
+  .method_td {
+    vertical-align: top;
+    padding: 4px;
+    height: 100%;
+  }
+
+  .test_name_div {
+    width: 185px !important;
+    text-align: start;
+  }
+
+  .test_name_td {
+    width: 185px;
+    text-align: start;
+    /* line-break: anywhere; */
+  }
+
+  .result_td {
+    width: 100px;
+    text-align: start;
+  }
+
+  .unit_td {
+    width: 80px;
+    text-align: start;
+  }
+
+  .reference_td {
+    width: 130px;
+    text-align: start;
+  }
+
+  .method_td {
+    width: 160px;
+    text-align: start;
+  }
+
+  .guide {
+    width: 650px !important;
+    margin-left: 13px;
+    /* margin-top: 10px; */
+  }
+
+  .guidelines {
+    text-align: start;
+    /* padding: 5px;
+    margin-left: 13px; */
+  }
+
+  .guidelines_header {
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: start;
+    font-size: 14px;
+  }
+
+  .main_footer {
+    width: 650px;
+    /* height: 250px; */
+    /* page-break-after: always; */
+  }
+
+  .main_foot_div {
+    width: 650px;
+    height: 60px;
+    margin-left: 13px;
+  }
+
+  .foot_inner {
+    width: 650px;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    /* margin-top: 50px; */
+    /* margin-bottom: 50px; */
+  }
+
+  .foot_left {
+    width: 200px;
+    text-align: start;
+  }
+
+  .foot_img {
+    width: 80px;
+    height: 80px;
+    display: none;
+  }
+
+  .foot_checked {
+    font-size: 12px;
+    text-align: start;
+  }
+
+  .foot_mid {
+    width: 200px;
+    text-align: start;
+  }
+
+  .foot_verify {
+    font-size: 12px;
+    text-align: start;
+  }
+
+  .foot_right {
+    width: 200px;
+    display: block;
+    text-align: start;
+  }
+
+  .foot_sign {
+    display: flex;
+    height: 40px;
+  }
+
+  .foot_doc {
+    font-size: 12px;
+    text-align: start;
+  }
+
+  .report_end {
+    width: 650px;
+    margin-left: 13px;
+    text-align: center !important;
+    font-size: 14px !important;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+
+  .provision_report_end {
+    width: 650px;
+    margin-left: 13px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  .microBio {
+    width: 650px;
+    height: 30px;
+    font-weight: bold;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 16px !important;
+    background: #ebe0e0;
+    margin-left: 13px;
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .micro_Bio {
+    padding: 3px;
+  }
+
+  .culture_div {
+    width: 650px;
+    margin-left: 13px;
+  }
+
+  .culture_comment {
+    width: 650px;
+    margin-left: 13px;
+    /* margin-top: 10px; */
+    align-items: flex-start;
+    font-size: 14px !important;
+    font-family: "calibri" !important;
+  }
+
+  .culture_row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 5px;
+  }
+
+  .culture_lable {
+    width: 200px;
+    height: 20px;
+  }
+
+  .culture_p {
+    width: fit-content;
+    text-align: start;
+  }
+
+  .culture_table_div {
+    width: 100%;
+    overflow-x: auto;
+    /* margin-top: 20px; */
+    font-family: Arial, sans-serif;
+  }
+
+  .culture_table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed !important;
+    max-width: 650px;
+    border: 1px solid black;
+  }
+
+  .culture_head {
+    border: 1px solid black;
+  }
+
+  .culture_head th {
+    text-align: left;
+    padding: 5px;
+    font-weight: 600;
+    font-size: 14px;
+    min-width: 120px;
+  }
+
+  .culture_th {
+    border-right: 1px solid black !important;
+  }
+
+  /* Organism row */
+  .organisam_td {
+    height: 30px;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: "Times New Roman", serif;
+    text-align: start;
+    padding-left: 3px;
+  }
+
+  /* Organism name in non-edit mode */
+  .organisam_name {
+    display: block;
+    font-family: "Times New Roman", serif;
+  }
+
+  /* Table body */
+  .culture_body tr {
+    width: 100%;
+    border-bottom: 1px solid black;
+  }
+
+  /* Antibiotic row */
+  .antibiotic_div {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
+  .antibiotic_td {
+    font-size: 13px;
+    border-right: 1px solid black;
+    text-align: left;
+    /* padding: 5px 8px; */
+    line-break: anywhere;
+  }
+
+  .anti {
+    width: 130px !important;
+    min-width: 130px;
+  }
+
+  .values {
+    width: 100px !important;
+    min-width: 105px;
+  }
+
+  /* Last column should not have border-right */
+  .antibiotic_td:last-child {
+    /* border-right: none; */
+    /* background-color: white; */
+    width: 100%;
+  }
+
+  .culture_th:last-child {
+    border-right: none !important;
+  }
+
+  /* Inputs and selects */
+  .culture_input {
+    width: 100%;
+    padding: 5px 6px;
+    font-size: 13px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  /* Buttons */
+  .delete-button {
+    background-color: #ff4d4f;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.2s ease;
+  }
+
+  .delete-button:hover:hover {
+    background-color: #d9363e;
+  }
+
+  /* Colony input inside organism row */
+  .organisam_td input {
+    width: 80px;
+    padding: 5px;
+    font-size: 13px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .histopathology_table .main_header {
+    display: table-row-group !important;
+    /* act like normal rows, no repeat */
+  }
+
+  .histopathology_table .main_footer {
+    display: table-row-group !important;
+    /* footer won’t repeat */
+  }
+
+  .histopath_report {
+    width: 650px !important;
+    margin-left: 9px;
+  }
+
+  .histopath_report p {
+    font-size: 14px !important;
+    margin: 0px !important;
+  }
+
+  .histopath_report th {
+    text-align: start;
+    padding: 3px !important;
+    font-size: 14px !important;
+  }
+
+  .histopath_report td {
+    text-align: start;
+    padding: 3px !important;
+    font-size: 12px !important;
+  }
+
+  .foot_checked_histo {
+    margin-top: 40px;
+    margin-bottom: 10px;
+  }
+
+  .foot_checked_histo,
+  .foot_verify_histo,
+  .foot_doc_histo {
+    font-size: 14px;
+    text-align: start;
+  }
+
+  .semen_row {
+    height: 30px !important;
+    margin-left: 13px;
+  }
+
+  .semen_head {
+    height: 20px;
+    width: 650px;
+    margin-left: 13px;
+    margin-bottom: 15px;
+    padding: 0px !important;
+  }
+
+  .semen_td {
+    font-size: 14px !important;
+    font-weight: bold;
+    text-decoration: underline !important;
+    padding-left: 3px;
+  }
+
+  .semen_title {
+    width: 225px !important;
+  }
+
+  .fluid_head {
+    width: 650px;
+    margin-left: 13px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .hbs_comments {
+    width: 650px;
+    margin-left: 13px;
+  }
+
+  .hbs_comments p {
+    font-size: 12px;
+  }
+
+  .hbs_comments {
+    text-align: start;
+  }
+
+  .hbs_table {
+    width: 650px;
+  }
+
+  .hbs_th {
+    border: 1px solid black !important;
+    font-size: 12px;
+    padding: 5px;
+  }
+
+  .hbs_td {
+    border: 1px solid black;
+    font-size: 12px;
+    padding: 5px;
+  }
+
+  .hbs_notes {
+    display: flex;
+    margin-bottom: 5px;
+    gap: 8px;
+    width: 600px;
+    margin-left: 40px;
+  }
+
+  .elisa_test {
+    min-width: 140px;
+  }
+
+  .inter_div {
+    width: 650px !important;
+    margin-left: 13px;
+  }
+  .inter_td {
+    width: 650px !important;
+    text-align: start;
+  }
+
+  .serology_potti {
+    border: 1px solid black;
+    text-align: start;
+    padding: 5px;
+  }
+
+  .serology_potti {
+    border: 1px solid black;
+    text-align: start;
+    padding: 5px;
+  }
+}

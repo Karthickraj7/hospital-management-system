@@ -1,0 +1,294 @@
+.excelfile-container {
+    width: 100%;
+    padding: 10px;
+    overflow: hidden; /* Prevent container from adding unnecessary scrollbars */
+  }
+  
+  .excelfile-title {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .excelfile-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .excelfile-dropdown {
+    padding: 5px;
+    font-size: 14px;
+  }
+  
+  /* Wrapper for the table with Excel-like scrollbars */
+  .excelfile-table-wrapper {
+    position: relative;
+    width: 100%;
+    max-height: 400px; /* Fixed height to trigger vertical scrolling */
+    overflow-x: scroll; /* Always show horizontal scrollbar */
+    overflow-y: scroll; /* Always show vertical scrollbar */
+    border: 1px solid #ddd; /* Visual boundary like Excel */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on mobile */
+    background-color: #fff; /* Ensure background is white */
+    padding-right: 10px; /* Offset vertical scrollbar from edge */
+    box-sizing: border-box; /* Ensure padding doesn’t affect width */
+  }
+  
+  /* Table styling */
+  .excelfile-table {
+    width: 100%;
+    min-width: 1200px; /* Ensure table is wide enough for horizontal scrolling */
+    border-collapse: collapse;
+    table-layout: auto;
+  }
+  
+  /* General styling for table cells */
+  .excelfile-table th,
+  .excelfile-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+    box-sizing: border-box;
+  }
+  
+  /* Input styling */
+  .excelfile-input {
+    width: 100%;
+    border: none;
+    outline: none;
+    text-align: center;
+    box-sizing: border-box;
+  }
+  
+  /* Double-line border styling for the table */
+  .excelfile-table {
+    border: 3px double black;
+  }
+  
+  .excelfile-table th {
+    border-bottom: 3px double black;
+    border-right: 1px double black;
+    padding: 8px;
+    background-color: #f2f2f2;
+    text-align: left;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+  
+  .excelfile-table td {
+    border-bottom: 2px double black;
+    border-right: 1px double black;
+    padding: 8px;
+  }
+  
+  .excelfile-table tr:last-child td {
+    border-bottom: 3px double black;
+  }
+  
+  .excelfile-table td:first-child,
+  .excelfile-table th:first-child {
+    border-left: 3px double black;
+  }
+  
+  .excelfile-table td:last-child,
+  .excelfile-table th:last-child {
+    border-right: 3px double black;
+  }
+  
+  /* Footer styling */
+  .excelfile-table tfoot td {
+    border-top: 3px double black;
+    padding: 8px;
+    text-align: right;
+    position: sticky;
+    bottom: 0;
+    background-color: #f0f0f0;
+    z-index: 1;
+  }
+  
+  /* Button styling */
+  .add-row-btn {
+    border: none;
+    background: none;
+    font-size: 16px;
+    cursor: pointer;
+    color: green;
+  }
+  
+  .add-row-btn svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .add-row-btn:hover {
+    color: darkgreen;
+  }
+  
+  .remove-row-btn {
+    border: none;
+    background: none;
+    font-size: 16px;
+    cursor: pointer;
+    color: red;
+  }
+  
+  .remove-row-btn svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .remove-row-btn:hover {
+    color: darkred;
+  }
+  
+  /* Column-specific minimum widths */
+  .excelfile-table th:nth-child(1),
+  .excelfile-table td:nth-child(1) { min-width: 40px; }
+  .excelfile-table th:nth-child(2),
+  .excelfile-table td:nth-child(2) { min-width: 150px; word-wrap: break-word; }
+  .excelfile-table th:nth-child(3),
+  .excelfile-table td:nth-child(3) { min-width: 80px; }
+  .excelfile-table th:nth-child(4),
+  .excelfile-table td:nth-child(4) { min-width: 80px; }
+  .excelfile-table th:nth-child(5),
+  .excelfile-table td:nth-child(5) { min-width: 100px; }
+  .excelfile-table th:nth-child(6),
+  .excelfile-table td:nth-child(6) { min-width: 80px; }
+  .excelfile-table th:nth-child(7),
+  .excelfile-table td:nth-child(7) { min-width: 80px; }
+  .excelfile-table th:nth-child(8),
+  .excelfile-table td:nth-child(8) { min-width: 80px; }
+  .excelfile-table th:nth-child(9),
+  .excelfile-table td:nth-child(9) { min-width: 80px; }
+  .excelfile-table th:nth-child(10),
+  .excelfile-table td:nth-child(10) { min-width: 80px; }
+  .excelfile-table th:nth-child(11),
+  .excelfile-table td:nth-child(11) { min-width: 100px; }
+  .excelfile-table th:nth-child(12),
+  .excelfile-table td:nth-child(12) { min-width: 80px; }
+  .excelfile-table th:nth-child(13),
+  .excelfile-table td:nth-child(13) { min-width: 70px; word-wrap: break-word; }
+  .excelfile-table th:nth-child(14),
+  .excelfile-table td:nth-child(14) { min-width: 100px; }
+  .excelfile-table th:nth-child(15),
+  .excelfile-table td:nth-child(15) { min-width: 80px; }
+  .excelfile-table th:nth-child(16),
+  .excelfile-table td:nth-child(16) { min-width: 80px; }
+  .excelfile-table th:nth-child(17),
+  .excelfile-table td:nth-child(17) { min-width: 100px; }
+  .excelfile-table th:nth-child(18),
+  .excelfile-table td:nth-child(18) { min-width: 40px; }
+  
+  /* Ensure inputs inside cells match the column width */
+  .excelfile-table td input {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  /* Media Query for Desktop (min-width: 1025px) */
+  @media screen and (min-width: 1025px) {
+    .excelfile-container {
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+  
+    .excelfile-table-wrapper {
+      overflow-x: scroll;
+      overflow-y: scroll;
+      padding-right: 10px;
+    }
+  
+    .excelfile-table th,
+    .excelfile-table td {
+      font-size: 14px;
+      padding: 10px;
+    }
+  
+    .excelfile-input {
+      font-size: 14px;
+    }
+  }
+  
+  /* Media Query for Laptop (min-width: 769px and max-width: 1024px) */
+  @media screen and (min-width: 769px) and (max-width: 1024px) {
+    .excelfile-table-wrapper {
+      overflow-x: scroll;
+      overflow-y: scroll;
+      padding-right: 10px;
+    }
+  
+    .excelfile-table th,
+    .excelfile-table td {
+      font-size: 12px;
+      padding: 6px;
+    }
+  
+    .excelfile-input {
+      font-size: 12px;
+    }
+  }
+  
+  /* Media Query for Mobile Phones (max-width: 768px) */
+  @media screen and (max-width: 768px) {
+    .excelfile-table-wrapper {
+      overflow-x: scroll;
+      overflow-y: scroll;
+      max-height: 300px;
+      padding-right: 8px;
+    }
+  
+    .excelfile-table {
+      min-width: 1000px;
+    }
+  
+    .excelfile-table th,
+    .excelfile-table td {
+      font-size: 10px;
+      padding: 4px;
+      min-width: 60px;
+    }
+  
+    .excelfile-table th:nth-child(2),
+    .excelfile-table td:nth-child(2) {
+      min-width: 100px;
+    }
+  
+    .excelfile-input {
+      font-size: 10px;
+      padding: 2px;
+    }
+  
+    .add-row-btn svg,
+    .remove-row-btn svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  
+  /* Custom scrollbar styling */
+  .excelfile-table-wrapper::-webkit-scrollbar {
+    width: 20px; /* Increased width for vertical scrollbar */
+    height: 12px; /* Horizontal scrollbar height remains unchanged */
+  }
+  
+  .excelfile-table-wrapper::-webkit-scrollbar-thumb {
+    background-color: var(--ProjectColor); /* Scrollbar thumb color */
+    border-radius: 10px; /* Rounded edges for wider scrollbar */
+  }
+  
+  .excelfile-table-wrapper::-webkit-scrollbar-thumb:hover {
+    background-color: var(--ProjectColorhover); /* Darker on hover */
+  }
+  
+  .excelfile-table-wrapper::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Scrollbar track color */
+  }
+  
+  /* Firefox scrollbar styling */
+  .excelfile-table-wrapper {
+    scrollbar-width: thick; /* Increase scrollbar width in Firefox */
+    scrollbar-color: var(--ProjectColor) #f1f1f1; /* Thumb and track colors */
+  }

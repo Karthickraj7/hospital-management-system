@@ -1,0 +1,102 @@
+@media print {
+
+
+
+   .pageBreak {
+    page-break-before: always !important; /* Ensure that page breaks are handled */
+  }
+
+
+  .barcode-label-barHash {
+    page-break-inside: avoid;
+    background-color:transparent !important;
+
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+
+
+    
+
+      padding:5px !important;
+    
+      }
+
+
+ 
+}
+
+
+.ewdwed_olp1 {
+  display:flex;
+  gap:2px;
+    font-size:12px !important;
+}
+
+.ewdwed_olp1 p{
+  display:flex;
+  font-size:12px !important;
+}
+
+ .barcode-screen-main-wrapper-newcp {
+    max-width: 210mm;
+    margin: 20px auto;
+    padding: 20px;
+    background: #f5f5f5;
+  }
+  
+  .barcode-print-container-newcp {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(9, auto);
+    gap: 10px;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+  
+  .barcode-print-item-newcp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    border: 1px solid #e0e0e0;
+    padding: 8px;
+    min-height: 70px;
+    background: white;
+    border-radius: 4px;
+    transition: box-shadow 0.2s;
+  }
+  
+  .barcode-print-item-newcp:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+  
+  .barcode-print-patient-info-newcp {
+    margin: 3px 0;
+    font-size: 11px;
+    color: #333;
+    font-weight: 500;
+  }
+  
+  .barcode-print-patient-info-newcp p {
+    margin: 0;
+    padding: 0;
+  }
+  
+
+  
+  .barcode-print-id-info-newcp {
+    margin: 3px 0;
+    font-size: 10px;
+    color: #666;
+    font-weight: 500;
+  }
+  
+  .barcode-print-id-info-newcp p {
+    margin: 0;
+    padding: 0;
+  }

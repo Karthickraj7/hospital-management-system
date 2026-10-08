@@ -1,0 +1,47 @@
+/* A4 preview styling */
+.a4-preview {
+    display: black;
+    justify-content: center;
+    padding: 20px;
+    background: rgb(224, 221, 221);
+    /* grey background to simulate outside of page */
+    text-align: start;
+}
+
+.a4-page {
+    background: white;
+    width: 794px;
+    height: fit-content;
+    padding: 70px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    /* overflow: hidden; */
+    /* position: relative; */
+    margin: auto;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+
+
+/* Force content inside A4 size only on screen */
+@media screen {
+    .a4-page {
+        border: 1px solid #ddd;
+    }
+}
+
+/* Ensure print still uses real A4 size */
+@media print {
+    .a4-preview {
+        background: none !important;
+        padding: 0 !important;
+    }
+
+    .a4-page {
+        box-shadow: none !important;
+        border: none !important;
+        width: auto !important;
+        min-height: auto !important;
+        padding: 0 !important;
+    }
+}

@@ -1,0 +1,410 @@
+/* Main Container */
+.MugeshNurseWorkbench_MainContiner {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #F0F4F3;
+}
+
+.MugeshNurseWorkbenchPatientInfo {
+    width: 100%;
+    padding: 20px 30px;
+    background: #a5a3ace8;
+    color: #fff;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: transform 0.3s ease;
+    justify-content: center;
+}
+
+.MugeshNurseWorkbenchPatientInfo:hover {
+    transform: translateY(-5px);
+}
+
+.MugeshDctrInfoUpHead {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.MugeshRegisFormcon {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 20%;
+    justify-content: center;
+}
+
+.MugeshDctrInfoUpHead22 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.MugeshRegisFormcon img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #A8C9C6;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.MugeshRegisFormcon img:hover {
+    transform: scale(1.05);
+}
+
+.MugeshRegisFormcon label {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #F5F8F7;
+    margin-top: 5px;
+}
+
+.MugeshRegisFormcon1 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    width: 80%;
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.MugeshRegisForm1 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: rgb(35 33 33 / 46%);
+    padding: 8px 12px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    /* Subtle border for definition */
+}
+
+.MugeshRegisForm1:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+    /* Slightly lighter on hover */
+    transform: translateY(-2px);
+    /* Subtle lift on hover */
+}
+
+.MugeshRegisForm1 label {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #F5F8F7;
+    white-space: nowrap;
+    width: 110px;
+}
+
+.MugeshRegisForm1 span {
+    font-size: 0.95rem;
+    color: #DCE8E6;
+    font-weight: 400;
+    flex: 1;
+}
+
+/* Allergy Button and Modal */
+.MugeshJhidusch90 button {
+    padding: 6px 12px;
+    background-color: red;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.MugeshJhidusch90 button:hover {
+    background-color: #5E8D89;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+/* Flagging Tooltip */
+.MugeshJjxss07 h4 {
+    border-radius: 5px;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+}
+
+/* Main Container with Sidebar and Content */
+.MugeshNurseWorkbenchMainContiner {
+    width: 100%;
+    display: flex;
+    gap: 15px;
+    flex-grow: 1;
+}
+
+.MugeshNurseWorkbenchSidebar {
+    width: 18%;
+    background: #a5a3ace8;
+    padding: 20px;
+    color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    transition: all 0.3s ease;
+}
+
+.MugeshNurseWorkbenchSidebar:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.MugeshNurseWorkbenchSidebarHeader h3 {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #F5F8F7;
+    background-color: rgb(35 33 33 / 46%);
+    padding: 10px 15px;
+    border-radius: 8px;
+    text-align: center;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+.MugeshNurseWorkbenchSidebarHeader h3::before {
+    content: "🏥";
+    font-size: 40px;
+}
+
+.MugeshNurseWorkbenchSidebarMenu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.MugeshNurseWorkbenchSidebarMenu button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 12px 15px;
+    background-color: rgb(35 33 33 / 46%); 
+    color: #F5F8F7;
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .MugeshNurseWorkbenchSidebarMenu button::before {
+    content: "➔";
+    font-size: 1rem;
+    color: #F5F8F7;
+    transition: transform 0.3s ease;
+  }
+  
+  .MugeshNurseWorkbenchSidebarMenu button:hover,
+  .MugeshNurseWorkbenchActive {
+    background-color: rgba(255, 255, 255, 0.2); 
+    transform: translateX(3px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); 
+  }
+  
+  .MugeshNurseWorkbenchSidebarMenu button:hover::before,
+  .MugeshNurseWorkbenchActive::before {
+    transform: translateX(5px);
+  }
+
+.MugeshNurseWorkbenchDropdown {
+    position: relative;
+}
+
+.MugeshNurseWorkbenchDropdownBtn {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: rgb(35 33 33 / 46%); 
+    color: #F5F8F7;
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+  }
+
+  .MugeshNurseWorkbenchDropdownBtn::after {
+    content: "▼";
+    font-size: 0.9rem;
+    color: #F5F8F7;
+    transition: transform 0.3s ease;
+  }
+  
+  .MugeshNurseWorkbenchDropdownBtn:hover {
+    background-color: rgba(1, 0, 0, 0.2);
+    transform: translateX(3px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); 
+  }
+  
+  .MugeshNurseWorkbenchDropdownBtn:hover::after {
+    transform: rotate(180deg); 
+  }
+
+.MugeshNurseWorkbenchDropdownBtn:hover {
+    background-color: rgba(22, 21, 21, 0.2);
+    transform: translateX(3px);
+}
+
+.MugeshNurseWorkbenchDropdownContent {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: rgb(20, 19, 19); 
+    width: 100%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    z-index: 1;
+    padding: 10px 0;
+    margin-top: 5px;
+  }
+
+.MugeshNurseWorkbenchDropdown:hover .MugeshNurseWorkbenchDropdownContent {
+    display: block;
+}
+
+.MugeshNurseWorkbenchDropdownContent button {
+    width: 100%;
+    padding: 10px 20px;
+    background-color: rgba(14, 11, 11, 0.1);
+    color: #F5F8F7;
+    border: none;
+    cursor: pointer;
+    font-size: 0.95rem;
+    text-align: left;
+    transition: all 0.3s ease;
+  }
+
+.MugeshNurseWorkbenchDropdownContent button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateX(3px);
+}
+
+.MugeshNurseWorkbenchMainContent {
+    width: 60%;
+    padding: 25px;
+    background-color: #F5F8F7;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Right Sidebar - 30% Width */
+.MugeshNurseWorkbenchRightSidebar {
+    width: 20%;
+    background: #a5a3ace8;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive Design */
+@media (max-width: 800px) {
+    .MugeshNurseWorkbenchMainContiner {
+        flex-direction: column;
+    }
+
+    .MugeshNurseWorkbenchSidebar,
+    .MugeshNurseWorkbenchMainContent,
+    .MugeshNurseWorkbenchRightSidebar {
+        width: 100%;
+    }
+
+    .MugeshNurseWorkbenchSidebar {
+        padding: 20px;
+    }
+
+    .MugeshNurseWorkbenchMainContent {
+        padding: 20px;
+    }
+
+    .MugeshNurseWorkbenchRightSidebar {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 668px) {
+    .MugeshRegisFormcon1 {
+        grid-template-columns: 1fr;
+        /* Stack items in a single column */
+        gap: 10px;
+    }
+
+    .MugeshRegisForm1 {
+        min-width: 100%;
+    }
+
+    .MugeshRegisForm1 label {
+        width: auto;
+    }
+
+    .MugeshNurseWorkbenchSidebarMenu button,
+    .MugeshNurseWorkbenchDropdownBtn {
+        padding: 10px 12px;
+        font-size: 0.95rem;
+    }
+
+    .MugeshDctrInfoUpHead {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .MugeshRegisFormcon img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .MugeshNurseWorkbenchPatientInfo {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .MugeshNurseWorkbenchSidebarMenu button,
+    .MugeshNurseWorkbenchDropdownBtn {
+        padding: 8px 10px;
+        font-size: 0.9rem;
+    }
+
+    .MugeshRegisForm1 label,
+    .MugeshRegisForm1 span {
+        font-size: 0.9rem;
+    }
+
+    .MugeshRegisFormcon img {
+        width: 50px;
+        height: 50px;
+    }
+}

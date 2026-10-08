@@ -1,0 +1,353 @@
+/* QueListBoard.css */
+.queue-container-1 {
+  min-height: 100vh;
+  background-color: #f3f4f6;
+  padding: 2vh;
+  width: 100%;
+}
+
+.queue-card-2 {
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  padding: 2vh;
+  height: 96vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header-container-3 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2vh;
+  height: 10%;
+}
+
+.main-title-4 {
+  font-size: min(5vw, 4rem);
+  font-weight: bold;
+  color: #1f2937;
+}
+
+.page-counter-5 {
+  font-size: min(3vw, 2.25rem);
+  color: #4b5563;
+}
+
+.table-wrapper-6 {
+  height: 85%;
+  position: relative;
+}
+
+.queue-table-7 {
+  width: 100%;
+  height: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+}
+
+.header-row-8 {
+  background-color: #f9fafb;
+  height: 12%;
+}
+
+.table-header-9 {
+  padding: 1vh 1vw;
+  text-align: left;
+  font-size: min(2vw, 1.5rem);
+  font-weight: 500;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.table-body-10 {
+  background-color: white;
+}
+
+.table-row-11 {
+  transition: background-color 0.2s;
+  border-bottom: 1px solid #e5e7eb;
+  height: 8.8%;  /* 100% / 10 rows = 10% - some spacing */
+}
+
+.table-row-11:hover {
+  background-color: #f9fafb;
+}
+
+.table-cell-12 {
+  padding: 1vh 1vw;
+  font-size: min(1.8vw, 1.4rem);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.status-badge-13 {
+  padding: 0.5vh 1vw;
+  font-size: min(1.8vw, 1.4rem);
+  font-weight: 600;
+  border-radius: 9999px;
+  display: inline-block;
+  width: 90%;
+  text-align: center;
+}
+/* Table header cells */
+.table-header-9 {
+  padding: 1vh 1vw;
+  text-align: left;
+  font-size: min(2vw, 1.5rem);
+  font-weight: 500;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;  /* Prevent wrapping */
+  overflow: visible;    /* Allow text to show completely */
+}
+.queue-table-7 th {
+  background-color: hsl(221, 83%, 53%);
+  color: white;
+  font-weight: bold;
+  
+}
+
+.queue-table-7 td {
+margin-left: 3px;
+}
+/* Column widths with min-width */
+.queue-table-7 th:nth-child(1),
+.queue-table-7 td:nth-child(1) {
+  width: 5.8%;
+  min-width: 70px;  /* Ensure enough width for the content */
+}
+
+.queue-table-7 th:nth-child(2),
+.queue-table-7 td:nth-child(2) {
+  width: 12%;
+  min-width: 90px;
+}
+
+.queue-table-7 th:nth-child(3),
+.queue-table-7 td:nth-child(3) {
+  width: 12%;
+  min-width: 120px;
+}
+
+.queue-table-7 th:nth-child(4),
+.queue-table-7 td:nth-child(4) {
+  width: 13%;
+  min-width: 120px;
+}
+
+.queue-table-7 th:nth-child(5),
+.queue-table-7 td:nth-child(5) {
+  width: 12%;
+  min-width: 100px;
+}
+
+.queue-table-7 th:nth-child(6),
+.queue-table-7 td:nth-child(6) {
+  width: 11%;
+  min-width: 70px;
+}
+
+.queue-table-7 th:nth-child(7),
+.queue-table-7 td:nth-child(7) {
+  width: 9%;
+  min-width: 150px;
+}
+
+.queue-table-7 th:nth-child(8),
+.queue-table-7 td:nth-child(8) {
+  width: 14%;
+  min-width: 120px;
+}
+
+.queue-table-7 th:nth-child(9),
+.queue-table-7 td:nth-child(9) {
+  width: 14%;
+  min-width: 120px;
+}
+
+
+
+/* Status colors */
+.status-waiting {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.status-progress {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.status-completed {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+/* Special text styles */
+.emergency-text {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.counter-text {
+  color: #2563eb;
+  font-weight: 600;
+}
+
+
+.page-transition {
+  animation: fadeOutIn 0.5s ease-in-out;
+}
+
+@keyframes fadeOutIn {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
+
+/* Small screens */
+@media screen and (max-width: 768px) {
+  .main-title-4 {
+    font-size: min(6vw, 2rem);
+  }
+  
+  .page-counter-5 {
+    font-size: min(4vw, 1.5rem);
+  }
+  
+  .table-header-9 {
+    font-size: min(2.5vw, 1rem);
+    padding: 0.5vh 0.5vw;
+  }
+  
+  .table-cell-12
+  {
+    font-size: min(2.2vw, 0.9rem);
+    padding: 0.5vh 0.5vw;
+  }
+  .status-badge-13 {
+    padding: 0.5vh 0.5vw;
+  }
+}
+
+
+@media screen and (min-width: 2300px) {
+  .main-title-4 {
+    font-size: min(4vw, 6rem);
+  }
+  
+  .page-counter-5 {
+    font-size: min(3vw, 4rem);
+  }
+  
+  .table-header-9 {
+    font-size: min(2vw, 3rem);
+    padding: 2vh 1.5vw;
+  }
+  
+  .table-cell-12 {
+    font-size: min(1.8vw, 2.8rem);
+    padding: 2vh 1.5vw;
+  }
+
+  .status-badge-13 {
+    font-size: min(1.8vw, 2.5rem);
+    padding: 0.8vh 0.5vw;
+  }
+}
+
+@media screen and (max-width: 1500px) {
+
+.queue-table-7 th:nth-child(1),
+.queue-table-7 td:nth-child(1) {
+  width: 5.8%;
+  min-width: 70px;  /* Ensure enough width for the content */
+}
+
+.queue-table-7 th:nth-child(2),
+.queue-table-7 td:nth-child(2) {
+  width: 12%;
+  min-width: 90px;
+}
+
+.queue-table-7 th:nth-child(3),
+.queue-table-7 td:nth-child(3) {
+  width: 12%;
+  min-width: 120px;
+}
+
+.queue-table-7 th:nth-child(4),
+.queue-table-7 td:nth-child(4) {
+  width: 13%;
+  min-width: 120px;
+}
+
+.queue-table-7 th:nth-child(5),
+.queue-table-7 td:nth-child(5) {
+  width: 12%;
+  min-width: 100px;
+}
+
+.queue-table-7 th:nth-child(6),
+.queue-table-7 td:nth-child(6) {
+  width: 11%;
+  min-width: 70px;
+}
+
+.queue-table-7 th:nth-child(7),
+.queue-table-7 td:nth-child(7) {
+  width: 9%;
+  min-width: 150px;
+}
+
+.queue-table-7 th:nth-child(8),
+.queue-table-7 td:nth-child(8) {
+  width: 14%;
+  min-width: 120px;
+}
+
+.queue-table-7 th:nth-child(9),
+.queue-table-7 td:nth-child(9) {
+  width: 14%;
+  min-width: 120px;
+}
+
+.table-header-9 {
+  font-size: min(1.2vw, 3rem);
+  padding: 2vh 1.5vw;
+}
+
+.table-cell-12 {
+  font-size: min(1.5vw, 1.4rem);
+  padding: 1.5vh 1vw;
+}
+
+.status-badge-13 {
+  padding: 0.5vh 1vw;
+  font-size: min(1.1vw, 1.0rem);
+  font-weight: 600;
+  border-radius: 9999px;
+  display: inline-block;
+  width: 90%;
+  text-align: center;
+}
+
+
+}

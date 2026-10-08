@@ -1,0 +1,240 @@
+.header_section765_00 {          
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+  }
+  
+  .logo_container543_09 {
+    width: 130px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .hospital_details876_900 {
+    max-width: 100%;
+    height: auto;
+    text-align: center;
+  }
+  
+  .hospital_details876 {
+    flex-grow: 1;
+    text-align: center;
+    padding: 0 10px;
+  }
+
+  .hospital_address654_p0 {
+    font-size: 12px;
+    margin: 5px 0;
+  }
+
+  
+  .hospital_name432_p0 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #5a2828;
+    margin: 0 0 5px;
+  }
+
+  .hospital_contact321_0p, 
+  .hospital_email987_p0, 
+  .hospital_website564_p0 {
+    font-size: 12px;
+    margin: 2px 0;
+  }
+  
+
+
+  .photo_box879_0p {
+    width: 140px;
+    height: 140px;
+    border: 1px solid #000;
+    background-color: #fff;
+  }
+
+  .report_title_container543_p0 {
+    text-align: center;
+    margin-bottom: 5px;
+  }
+  
+
+  .report_title765_p0 {
+    display: inline-block;
+    background-color: #5a2828;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 5px 20px;
+    margin: 0;
+  }
+
+
+  .application-form-container1 {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .print-application-form1 {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .print-header1 {
+    text-align: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #005a8c;
+    padding-bottom: 10px;
+  }
+  
+  .print-header1 h2 {
+    color: #005a8c;
+    margin: 0;
+  }
+  
+  .print-header1 h3 {
+    color: #005a8c;
+    margin: 5px 0 0;
+    font-weight: normal;
+  }
+  
+  .print-personal-details1 {
+    margin-top: 20px;
+  }
+  
+  .print-name1, 
+  .print-address1 {
+    margin-bottom: 15px;
+  }
+  
+  .print-name1 strong,
+  .print-address1 strong {
+    color: #005a8c;
+    margin-right: 5px;
+  }
+
+
+  .form-group-op09{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 5px;
+    gap: 10px;
+  }
+
+  .form-group-op09 label{
+width: 150px;
+display: flex;
+font-size: 15px !important;
+justify-content: space-between;
+align-items: center;
+text-align: start;
+  }
+
+  .form-group-op09 input{
+    width: 200px;
+    border: none;
+    border-bottom: 1px dotted black;
+    padding:4px 5px;
+    font-size: 15px !important;
+
+  }
+
+.form-section-po90{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.form-group-op09 textarea{
+    width: 200px;
+    height: 40px;
+    padding: 1px 3px;
+}
+
+
+.form-group-op09 select{
+    width: 200px;
+}
+
+
+.wsdwqd_ajxi8 input{
+    padding: 2px;
+    width: 100%;
+}
+
+.edcwcc{
+    border: none!important;
+
+}
+
+
+.signature-line222 {
+    margin-top: 30px;
+    border-top: 1px solid #000;
+    text-align: start;
+    display: flex;
+
+}
+
+.wsdwqd_ajxi8 input[type="radio"] { 
+    padding: 2px;
+    width: 30px !important; 
+}
+
+.wsdwqd_ajxi8 input[type="checkbox"] { 
+    padding: 2px;
+    width: 30px !important; 
+}
+
+.wsdwqd_ajxi8 td,.wsdwqd_ajxi8 td{
+    font-size: 14px !important;
+}
+
+.form-section-op8y6 h3{
+    margin-top: 5px;
+  }
+
+.declaration-textdddc p{
+font-size: 13px;
+}
+
+.radio-group-p098{
+    display: flex;
+    gap: 50px;
+
+}
+
+.refewrfew_ewp label{
+    width: 80px;
+}
+
+  @media print {
+  .form-section-header-888{
+    font-size: 17px;
+  }
+
+  .form-section-op8y6 h3{
+    font-size: 17px;
+    margin-top: 5px;
+  }
+
+  .wdwsd_txtarea textarea{
+
+    box-shadow: none;
+    border: 1px solid grey;
+  }
+
+
+  
+.declaration-textdddc p{
+    font-size: 15px;
+    }
+
+
+
+  }

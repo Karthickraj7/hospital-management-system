@@ -1,0 +1,98 @@
+/* .new-patient-registration-form {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  padding: 20px;
+  font-family: "Inter", sans-serif;
+  color: #333;
+}
+
+.new-navigationwww {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 10px;
+}
+
+.new-navigationwww button {
+  background: #f9fafb;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  justify-content: center;
+}
+
+.new-navigationwww button:hover {
+  background: #e5e7eb;
+  color: #333;
+ 
+}
+
+.new-navigationwww button.active {
+  background: #116a70;
+  color: #333;
+  border-color: #116a70;
+  font-weight: 600;
+}
+
+.form-section {
+  margin-top: 20px;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.placeholder-text {
+  text-align: center;
+  font-size: 1rem;
+  color: #6b7280;
+  padding: 20px;
+  border: 1px dashed #d1d5db;
+  border-radius: 8px;
+  background: #f9fafb;
+}
+
+.react-grid-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.react-grid-actions button {
+  background-color: #f3f4f6;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.react-grid-actions button:hover {
+  background-color: #e5e7eb;
+}
+
+.mt-4 {
+  margin-top: 1.5rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+} 
+
+
+
+
+
+
+ */

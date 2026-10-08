@@ -1,0 +1,98 @@
+.payslip-viewer-container {
+    position: relative;
+    width: 78px;
+    height: 85px;
+    overflow: hidden;
+  }
+  
+  .payslip-viewer {
+    border: none;
+    width: 100%;
+    height: auto;
+    transition: opacity 0.3s ease, background-color 0.3s ease;
+  }
+  
+  .download-button {
+    /* position: relative; */
+    /* top: 10px; */
+    position: absolute;
+    /* bottom: 100px;
+    left: 35px; */
+    left: 50%;
+    bottom: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+   
+}
+  
+  .payslip-viewer-container:hover .download-button {
+    opacity: 1;
+   
+  }
+  
+  .payslip-viewer-container.hovered .download-button {
+    opacity: 1;
+   
+  }
+  
+  .payslip-viewer-container:hover .payslip-viewer {
+    opacity: 0.3;
+    background-color: transparent;
+    pointer-events: none;
+  }
+  
+  .RegisFormcon_payviewwer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.RegisForm_1_payviewwer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.RegisForm_1_payviewwer label{
+   
+    display: flex;
+    gap: 5px;
+    justify-content: space-between;
+    font-size: 13px;
+    padding: 10px;
+    color: var(--labelcolor);
+    font-weight: bold;
+    align-items: center;
+    text-align: center;
+    width: 130px;
+}
+
+
+.head_payviw_sxd3{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+}
+
+.erferf{
+  width: 100%;
+}
+
+@media print {
+.sdjkujed67{
+  display: block !important;
+}
+}
+
+@media screen and (max-width:450px){
+    .RegisFormcon_payviewwer{
+        flex-direction: column;
+    }
+}

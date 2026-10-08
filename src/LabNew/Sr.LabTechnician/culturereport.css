@@ -1,0 +1,448 @@
+.wwadsdsd {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    max-width: 800px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 20px;
+  }
+
+  .iodjdjdjd {
+    position: relative;
+  }
+
+  /* Report container */
+  .report-container {
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+  }
+
+  /* Report heading */
+  .report-heading {
+    font-size: 24px;
+    font-weight: bold;
+    color: #1e3a8a; /* Dark blue */
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  /* Details section */
+  .details-section {
+    margin-bottom: 20px;
+    display: grid;
+    gap: 15px; /* Space between rows */
+  }
+
+  .details-section p {
+    display: flex;
+    align-items: flex-start; /* Align items at the top */
+    font-size: 14px;
+    color: #333;
+    margin: 0;
+  }
+
+  .details-section strong {
+    font-weight: 600;
+    color: #000;
+    width: 150px; /* Fixed width for labels to ensure alignment */
+    flex-shrink: 0; /* Prevent label from shrinking */
+  }
+
+  /* Container for the field (text or editable input) */
+  .details-section .field-container {
+    flex: 1; /* Take remaining space */
+    display: flex;
+    align-items: flex-start;
+  }
+
+  /* Editable fields styling */
+  .details-section textarea,
+  .details-section input,
+  .details-section select,
+  .antibiotic-table select,
+  .antibiotic-table input {
+    width: 100%;
+    max-width: 563px; /* For textareas and inputs in details section */
+    padding: 5px 10px;
+    border: 2px solid #4b6cb7; /* Blue border for edit mode */
+    border-radius: 6px;
+    font-size: 14px;
+    background: #f0f7ff; /* Light blue background for edit mode */
+    color: #333;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    box-sizing: border-box;
+    margin-bottom: 5px;
+  }
+
+  /* Specific adjustments for table inputs/selects */
+  .antibiotic-table select,
+  .antibiotic-table input {
+    max-width: 150px; /* Smaller width for table inputs */
+    margin: 0 auto; /* Center within table cell */
+    display: block;
+    margin-bottom: 0; /* No extra margin in table cells */
+  }
+
+  /* Hover and focus effects */
+  .details-section textarea:hover,
+  .details-section input:hover,
+  .details-section select:hover,
+  .antibiotic-table select:hover,
+  .antibiotic-table input:hover {
+    border-color: #182848; /* Darker blue on hover */
+  }
+
+  .details-section textarea:focus,
+  .details-section input:focus,
+  .details-section select:focus,
+  .antibiotic-table select:focus,
+  .antibiotic-table input:focus {
+    border-color: #182848; /* Darker blue on focus */
+    box-shadow: 0 0 5px rgba(75, 108, 183, 0.3); /* Subtle glow */
+    outline: none;
+  }
+
+  /* Textarea specific styling */
+  .details-section textarea {
+    min-height: 60px;
+    resize: vertical;
+  }
+
+  /* Organism section */
+  .organism-section {
+    margin-bottom: 20px;
+  }
+
+  .organism-section h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+  }
+
+  .organism-section p {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+
+  /* Colony count edit styling */
+  .organism-section .colony-count-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Gap between input and button */
+    margin-bottom: 15px; /* Space above the table */
+  }
+
+  .organism-section input {
+    width: 64px; /* Smaller width for colony count input */
+    padding: 5px 10px;
+    border: 2px solid #4b6cb7; /* Match edit mode border */
+    border-radius: 6px;
+    font-size: 14px;
+    background: #f0f7ff; /* Match edit mode background */
+    color: #333;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+
+  .organism-section input:hover {
+    border-color: #182848; /* Darker blue on hover */
+  }
+
+  .organism-section .colony-count-container input:focus {
+    border-color: #182848; /* Darker blue on focus */
+    box-shadow: 0 0 5px rgba(75, 108, 183, 0.3); /* Subtle glow */
+    outline: none;
+  }
+
+  .organism-section .colony-count-container button {
+    padding: 5px 10px;
+    background: #ef4444; /* Red for delete */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .organism-section .colony-count-container button:hover {
+    background: #dc2626; /* Darker red on hover */
+  }
+
+
+
+  /* Table styling */
+  .antibiotic-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+    font-size: 14px;
+  }
+
+  .antibiotic-table th,
+  .antibiotic-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+  }
+
+  .antibiotic-table th {
+    background: #e6f0ff; /* Light blue */
+    font-weight: 600;
+    color: #333;
+  }
+
+  .antibiotic-table tr:nth-child(even) {
+    background: #f9f9f9;
+  }
+
+  .antibiotic-table .delete-button {
+    padding: 5px 10px;
+    background: #ef4444; /* Red for delete */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .antibiotic-table .delete-button:hover {
+    background: #dc2626; /* Darker red on hover */
+  }
+
+  /* Add Antibiotic Section */
+  .add-antibiotic-section {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #f9f9f9; /* Light gray background to distinguish section */
+    border: 1px solid #ddd;
+    border-radius: 6px;
+  }
+
+  .add-antibiotic-section h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1e3a8a; /* Match report heading color */
+    margin-bottom: 15px;
+  }
+
+  /* Container for input fields */
+  .add-antibiotic-section .input-row {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping if needed */
+    gap: 15px; /* Gap between fields */
+    margin-bottom: 15px; /* Space below the row */
+  }
+
+  .add-antibiotic-section .input-container {
+    flex: 1; /* Allow fields to grow equally */
+    min-width: 200px; /* Ensure fields don't get too small */
+  }
+
+  .add-antibiotic-section input,
+  .add-antibiotic-section select {
+    width: 100%;
+    padding: 5px 10px;
+    border: 2px solid #4b6cb7; /* Match edit mode border */
+    border-radius: 6px;
+    font-size: 14px;
+    background: #f0f7ff; /* Match edit mode background */
+    color: #333;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+
+  .add-antibiotic-section input:hover,
+  .add-antibiotic-section select:hover {
+    border-color: #182848; /* Darker blue on hover */
+  }
+
+  .add-antibiotic-section input:focus,
+  .add-antibiotic-section select:focus {
+    border-color: #182848; /* Darker blue on focus */
+    box-shadow: 0 0 5px rgba(75, 108, 183, 0.3); /* Subtle glow */
+    outline: none;
+  }
+
+  .add-antibiotic-section .button-container {
+    margin-top: 10px; /* Space above the button */
+  }
+
+
+
+  .add-antibiotic-section button:hover {
+    background: #2563eb; /* Darker blue on hover */
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+  
+.histo_report_1111 {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  row-gap: 10px; /* Space between items */
+  width: 100%;
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 20px;
+}
+.histo_report {
+  /* background-color: #f9f9f9; */
+  font-family: Arial, sans-serif;
+}
+
+.report-item {
+  display: flex;
+  align-items: baseline; /* Align items vertically */
+  gap: 20px; /* Fixed gap between label and value */
+}
+
+.histo_report h1 {
+  font-size: 24px;
+  color: black;
+}
+
+.histo_report p {
+  font-size: 16px;
+  color: black;
+  margin: 5px 0;
+  text-align: left
+}
+
+.histo_report strong {
+  color: #000;
+}
+
+.histo_report table {
+  width: 100% !important;
+  margin: 10px 0 !important;
+}
+
+/* .histo_report td {
+  padding: 10px !important;
+  border: 1px solid black;
+} */
+
+.histo_report u {
+  text-decoration: underline;
+}
+
+
+
+
+
+
+
+
+
+.histo_report .professors-section {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  width: 100%;
+  max-width: 800px;
+  gap: 244px;
+}
+
+.histo_report .professor {
+  flex: 1;
+  text-align: left;
+}
+
+.histo_report .professor-text {
+  margin: 5px 0;
+  position: relative;
+}
+
+.histo_report .professor-text strong {
+  font-size: 16px;
+  color: #000;
+}
+
+.histo_report .professor-text::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+}
+
+
+
+
+.trend-chart-container {
+  min-width: 600px !important;
+  min-height: 500px !important;
+  padding: 20px !important;
+  overflow: visible !important;
+}
+
+.chart-wrapper {
+  width: 100%;
+  height: 350px;
+  margin: 20px 0;
+  padding: 10px;
+  background: #fafafa;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+
+
+
+.newwProfiles.trend-chart-container {
+  max-width: 90vw !important;
+  max-height: 90vh !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+
+.microantibiotictable{
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.microantibiotictable th,
+.microantibiotictable td {
+  border: 1px solid #ccc;
+  padding: 6px 10px;
+  text-align: left;
+}
+.microantibiotictable input{
+    width: 100%;
+    max-width: 563px; /* For textareas and inputs in details section */
+    padding: 5px 10px;
+    border: 2px solid #4b6cb7; /* Blue border for edit mode */
+    border-radius: 6px;
+    font-size: 14px;
+    background: #f0f7ff; /* Light blue background for edit mode */
+    color: #333;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    box-sizing: border-box;
+    margin-bottom: 5px;
+}
+.microantibiotictable input:hover {
+    border-color: #182848; /* Darker blue on hover */
+  }
+.microantibiotictable input:focus {
+    border-color: #182848; /* Darker blue on hover */
+  }

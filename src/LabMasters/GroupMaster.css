@@ -1,0 +1,153 @@
+.group-registration-form {
+    padding: 10px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: flex-start;
+}
+.group-hed{
+    margin: 12px;
+}
+.group-table-group{
+    background-color: #ff8c00;
+    height: 35px;
+    border-radius:  10px;
+}
+.subgroup-sub{
+    font-size: 13px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    display: flex;
+}
+.table-container-group {
+    overflow-x: auto;
+}
+
+.responsive-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.responsive-table th, .responsive-table td {
+    text-align: left;
+    padding: 8px;
+}
+
+.responsive-table th {
+    background-color: #ff8c00;
+    font-size: 12px;
+}
+
+.group-header {
+    background-color: hsl(33, 100%, 50%);
+    color: black;
+ 
+    border-radius: 5px;
+    width: 100% !important;
+    height: 40px;
+}
+
+.group-form-row {
+    display: flex;
+    flex-direction: column;
+ width: 22%;
+
+    position: relative;
+    padding: 12px;
+}
+.group-select-group{
+     height: 30px;
+    outline: none;
+    width: 100%;
+}
+
+.group-label-title {
+    flex: 2;
+    font-weight: bold;
+    margin-right: 0px;
+    text-align: start;
+    font-size: 13px;
+    width: 50%;
+    color: #ff8c00;
+}
+.group-info-container{
+    display: flex;
+   width: 100%;
+}
+
+.group-input {
+
+width: 100%;
+    outline: none;
+    padding: 5px;
+    
+    font-size: 13px;
+}
+
+
+
+.group-button-container {
+    text-align: center;
+   
+    justify-content: center;
+    display: flex;
+    
+}
+
+.group-button {
+    padding: 8px 20px;
+    border-radius: 30px;
+    background-color: hsl(33, 100%, 50%);
+    border: 1px solid hsl(33, 100%, 50%);
+}
+
+.group-button:hover {
+    background-color: hsl(14, 100%, 58%);
+    cursor: pointer;
+}
+
+::placeholder {
+    color: rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 970px) {
+   
+        .responsive-table {
+            overflow-x: auto;
+        }
+    .group-registration-form {
+        padding: 5px;
+    }
+    .group-header {
+        width: 96% !important;
+    }
+    .group-form-row {
+        font-size: 10px;
+        border-bottom: 1px solid hsl(33, 100%, 50%);
+        width: 90% !important;
+    }
+    .group-label-title {
+        font-size: 12px;
+    }
+    .group-select,
+    .group-input {
+        width: 50%;
+        outline: none;
+        border: none;
+        padding: 5px;
+    }
+    .group-info-container{
+        display: flex;
+        flex-direction: column;
+    }
+    .group-button-container {
+        overflow-y: auto;
+        max-height: 200px;
+        align-items: left;
+        display: flex;
+        flex-direction: row;
+    }
+}

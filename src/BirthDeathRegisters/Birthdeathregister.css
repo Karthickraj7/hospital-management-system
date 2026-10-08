@@ -1,0 +1,40 @@
+.RegisterTypecon{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.RegisterType{
+    width: auto;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: rgba(168, 167, 167, 0.479);
+    gap: 10px;
+}
+
+
+.registertypeval{
+    width: 160px;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.registertypeval input{
+    width: 20px;
+    display: grid;
+    place-items: center;
+}
+.registertypeval label{
+    width: calc(100% - 30px);
+    color: grey;
+    text-align:start;
+}

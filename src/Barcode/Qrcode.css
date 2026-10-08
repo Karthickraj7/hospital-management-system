@@ -1,0 +1,140 @@
+.qr_all_container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 25px;
+}
+.main_container_for_feedback{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+    row-gap: 10px;
+    column-gap: 10px;
+    padding: 0px 10px;
+    box-sizing: border-box;
+    /* overflow-x: hidden; */
+}
+.feedbackdetatils{
+    width:100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+    row-gap: 10px;
+    column-gap: 15px;
+    padding: 0px 20px;
+    box-sizing: border-box;
+}
+.summalable04940{
+    display: flex;
+    flex-direction: column;
+}
+.feedbackdetatils label{
+    width: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.feedbackdetatils input{
+    width: 180px;
+    background-color: transparent;
+    border: 0px;
+    outline: 0px;
+    height: 30px;
+    border: 1px solid var(--ProjectColor);
+    padding: 0px 5px;
+    border-radius: 5px;
+    font-size: 11px;
+}
+
+.summalable04940 textarea {
+    width: 23rem;
+    height: 25vh;
+    margin: 5px;
+}
+
+.rating-stars {
+    display: flex;
+    gap: 10px;
+    padding: 5px;
+  }
+  
+  .star {
+    font-size: 30px;
+    cursor: pointer;
+    color: #d3d3d3; /* Gray color for unselected stars */
+    transition: color 0.3s ease;
+  }
+  .stars span{
+    font-size: 20px;
+  }
+  
+  .star.selected {
+    color: gold; /* Gold color for selected stars */
+  }
+
+  .feedback_container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start; 
+    margin-top: 50px;
+    width: 100%;
+    
+}
+  
+  .feedbacks {
+    border: 1px solid #ddd;
+    padding: 10px;  
+    border-radius: 5px;
+    /* width: 100%; */
+    /* width: 500px; */
+    text-align: left; 
+    /* height: 150px; */
+  }
+  
+  .stars {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+  }
+  
+  
+  .star.active {
+    color: #f4c150; /* Color for active stars (e.g., gold) */
+  }
+
+
+  
+
+
+/* For screens with width 425px or less */
+@media (max-width: 425px) {
+    .feedbackdetatils {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+    }
+    .feedbackdetatils label {
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .summalable04940 textarea {
+        width: 13rem;
+        height: 10vh;
+        margin: 5px;
+    }
+    
+    
+  }
+  

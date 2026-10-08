@@ -1,0 +1,453 @@
+
+  
+  .job_list_container {
+    display: flex;
+    flex-wrap: wrap;
+   justify-content: space-around;
+   align-items: center;
+   text-align: center;
+  gap: 10px;
+    padding: 5px;
+    
+    /* justify-content: space-between; */
+  }
+  
+  .job_card {
+    width: 380px; 
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
+    background-color:rgb(253, 253, 246);
+    box-shadow: 0 0px 10px rgba(0, 0, 1, 1);
+  }
+  
+
+  
+  .job_details1234 {
+    margin-top: 10px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* align-items: start; */
+    text-align: start;
+  }
+  
+.job_detailscon{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: start;
+  gap: 5px;
+  padding: 5px;
+}
+
+
+.job_detailscon label{
+  width: 120px;
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--fontsize);
+  font-weight: bold;
+  padding: 5px;
+}
+
+.job_detailscon p{
+  width: 250px;
+  font-size: var(--fontsize);
+  padding: 5px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+  
+
+}
+
+.job_detailscon button{
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+width: 135px;
+padding: 3px 0px;
+outline: none;
+background-color: #c7e2ff;
+border: none;
+border-radius: 5px;
+font-size: 10.5px;
+cursor: pointer;
+}
+
+
+.job_detailscon textarea{
+  width:60%;
+  font-size: var(--fontsize);
+  height: 40px;
+  padding: 5px;
+}
+
+.job_detailscon_edit{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: center;
+} 
+.recruiting_button_hrt{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.recruiting_button_hrt button{
+  display: flex !important;
+  gap: 5px;
+  justify-content: center !important;
+  align-items: center;
+  text-align: center;
+  background-color: #28a745;
+  color: white;
+  margin: 10px;
+  border: none;
+  outline: none;
+  padding: 3px 0px;
+  width: 150px !important;
+  border-radius: 5px;
+  font-size: 11px;
+}
+
+
+.ResumeContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: space-evenly;
+}
+
+.ResumeCard {
+  width: 300px;
+  border: 1px solid var(--ProjectColor);
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.ResumeCard > div {
+  margin-bottom: 10px;
+}
+
+.ResumeCard_ints_lbl{
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  align-items: center;
+  text-align: center;
+
+}
+
+.uyewft67e{
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: start;
+  cursor: pointer;
+  background-color: rgb(235, 235, 235);
+  padding-bottom: 10px;
+}
+
+.ResumeCard_ints_lbl input {
+  width: 150px;
+  padding: 5px;
+  border: 1px solid var(--ProjectColor);
+  border-radius: 5px;
+  outline: none;
+  /* border: 1px solid #ccc; */
+  /* border-radius: 3px; */
+  /* box-sizing: border-box; */
+}
+
+.ResumeCard_ints_lbl label {
+  width: 120px;
+  font-size: var(--fontsize);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: start;
+  font-weight: bold;
+
+}
+
+@keyframes zoomInOut {
+  0% {
+    transform: scale(1); /* Normal size */
+  }
+  50% {
+    transform: scale(1.1); /* Zoomed in by 20% */
+  }
+  100% {
+    transform: scale(1); /* Back to normal size */
+  }
+}
+
+.uyewft67e label {
+  color: blue;
+  width: 60px;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  animation: zoomInOut 2.5s infinite alternate; /* Alternate between zoom in and out every 4 seconds */
+}
+
+.uyewft67e label:hover{
+  color: black;
+}
+
+
+
+.resume-preview899 {
+  width: 100px;
+  height: 130px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: rgb(253, 253, 246);
+  box-shadow: 0 0px 8px rgba(0, 0, 1, 1);
+  cursor: pointer;
+  color: rgb(219, 219, 77);
+  margin: 5px 0px;
+  margin-top: 10px;
+  object-fit: fill;
+  display: flex;
+  overflow-y: hidden; /* Hide the vertical scrollbar */
+  overflow-x: hidden; /* Hide the horizontal scrollbar if any */
+  
+  /* WebKit-specific properties to hide scrollbar */
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For Internet Explorer 10+ */
+}
+
+.resume-preview899::-webkit-scrollbar {
+  display: none !important; /* Hide scrollbar for WebKit browsers (Chrome, Safari, etc.) */
+}
+
+
+
+
+
+
+.resume-iframe {
+  width: 100%;
+  height: 80vh;
+  border: none;
+}
+
+.status-icon22T{
+  font-size: 25px !important;
+  width: 115px !important;
+  color: green !important;
+  background-color: #dbfddb;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.status-icon22W{
+  font-size: 25px !important;
+  color: red !important;
+  background-color: #ffdddd;
+  border-radius: 5px;
+  width: 115px !important;
+  cursor: pointer;
+}
+
+.wedwediwe6u{
+  display: flex;
+  width: 115px;
+  justify-content: center;
+  gap: 5px;
+  align-items: center;
+  text-align: center;
+
+}
+
+.wedwediwe6u button{
+  width: 60px;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 11.3px;
+  cursor: pointer;
+}
+
+.dsfddnccmo9876 button{
+width: 30px !important;
+  font-size: 11px;
+  justify-content: flex-start !important;
+  border: none;
+  border-radius: 5px;
+  padding: 2px 0px;
+  cursor: pointer;
+
+}
+
+
+.card_interview_container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.card_interview_hed {
+  width: 400px; 
+  margin: 30px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgb(69, 82, 255);
+
+}
+
+
+
+.card-body {
+  padding: 15px;
+}
+
+.card_title_interec {
+  display: flex;
+  font-size: 18px;
+  width: 98%;
+  padding: 0px 5px;
+  justify-content: space-between;
+  margin-bottom: 15px;
+
+}
+
+.card_title_interec span{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  font-size: 20px;
+  color: var(--ProjectColor) !important;
+  background-color: #c7e2ff;
+  padding: 3px 5px;
+}
+.interviw_12 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+
+}
+
+.interviw_12 label{
+  width: 160px;
+  font-size: var(--fontsize);
+  font-weight: bold;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.interviw_12 input{
+width: 100px;
+outline: none;
+padding: 5px;
+border: 1px solid var(--ProjectColor);
+border-radius: 5px;
+}
+
+.interviw_12 p{
+  width: 104px;
+  background-color: var(--selectbackgroundcolor);
+  padding: 4px 4px 8px 2px;
+  border-radius: 5px;
+  cursor: pointer;
+  height: 20px;
+}
+
+.interviw_12 select{
+
+  width: 110px;
+}
+
+.radio_interve{
+  display: flex;
+  width: 50px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+
+.peding_selcd_86{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 5px;
+  border-radius: 5px;
+
+ 
+}
+
+.sxcdjuye54wdp{
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+
+
+
+@media (max-width: 425px) {
+  .job_card {
+    width: 260px !important; 
+  
+  }
+
+  .job_detailscon label {
+  width: 170px;
+}
+
+.uihgweu0{
+
+  width: 110px !important;
+}
+
+.job_detailscon button{
+  width: 86px !important;
+  padding: 0px 8px;
+  font-size: 12px;
+  cursor: pointer;
+
+}
+
+
+.job_detailscon button.view-applications-btn .button-text {
+  display: none;
+}
+
+.job_detailscon button.view-applications-btn::after {
+  content: ' View';
+}
+
+.ResumeCard{
+
+  width: 250px;
+}
+
+.card_interview_hed {
+  width: 280px;
+}
+
+.interviw_12 label{
+  width: 120px;
+  text-align: start;
+}
+  
+}
+

@@ -1,0 +1,71 @@
+
+
+/*---------IP_DischargeStatus-----------*/
+/* 
+.table-container {
+    overflow-x: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background: white;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  thead {
+    background-color: VAR(--ProjectColor);
+    color: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+  }
+  
+  th, td {
+    padding: 16px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  td {
+    color: #374151;
+  }
+  
+  tr:hover {
+    background-color: #f3f4f6; 
+  } */
+  
+  .font-semibold {
+    font-weight: 600;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    th, td {
+      padding: 12px;
+      font-size: 14px;
+    }
+  }
+  
+
+/*-------------------xxxxxxxxxxxxxxxxxxxxxx------------------------*/
+
+
+/*---------IP_DischargeStatus_DischargeClearance-----------*/
+
+
+
+.checkbox-container {
+
+  display: flex;
+  justify-content: space-between; /* Yes on left, No on right */
+  align-items: center;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Adds space between checkbox and label */
+}
+
+/*--------------xxxxxxxxxxxxxxxxx-----------------------------*/
+
+

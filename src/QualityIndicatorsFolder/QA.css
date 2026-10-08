@@ -1,0 +1,234 @@
+.qa-btvenki {
+  background-color: #14b8a6; /* Blue */
+  color: #fff;
+}
+
+.front-officevenki {
+  background-color: #14b8a6; /* Blue */
+  color: #fff;
+}
+
+.nursevenki {
+  background-color: #14b8a6; /* Purple */
+  color: #fff;
+}
+
+.doctorvenki {
+  background-color: #14b8a6; /* Green */
+  color: #fff;
+}
+
+.labvenki {
+  background-color: #14b8a6; /* Yellow */
+  color: #212529; /* Dark text for contrast */
+}
+
+.pharmacyvenki {
+  background-color: #14b8a6; /* Red */
+  color: #fff;
+}
+
+.opdvenki {
+  background-color: #14b8a6; /* Teal */
+  color: #fff;
+}
+
+.ipvenki {
+  background-color: #14b8a6; /* Indigo */
+  color: #fff;
+}
+
+.inventoryvenki {
+  background-color: #14b8a6; /* Orange */
+  color: #fff;
+}
+
+.radiologyvenki {
+  background-color: #14b8a6; /* Aqua Green */
+  color: #fff;
+}
+
+.medical-errorvenki {
+  background-color: #14b8a6; /* Pink */
+  color: #fff;
+}
+
+.Main_container_appvenki {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f0f4f7;
+}
+
+
+/* table */
+
+.qa-indicator-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+ 
+}
+
+.qa-indicator-table th, .qa-indicator-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.qa-indicator-table th {
+  background-color:#cce6e3;
+  font-weight: bold;
+}
+
+.qa-indicator-table tr:nth-child(even) {
+  background-color:#cce6e3;
+}
+
+.qa-indicator-table tr:hover {
+  background-color:  #cce6e3;
+}
+
+.qa-indicator-table td {
+  vertical-align: middle;
+}
+
+.qa-indicator-table .checkbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+/* Checked state styles */
+.custom-checkboxvenki:checked + .checkbox-label {
+  background-color: green;
+  border-color: green;
+}
+
+/* Unchecked state styles */
+.custom-checkboxvenki:not(:checked) + .checkbox-label {
+  background-color: red;
+  border-color: red;
+}
+
+
+
+/* Custom checkbox */
+.custom-checkboxvenki {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  cursor: pointer;
+  appearance: none;  /* Hide the default checkbox appearance */
+  border: 2px solid #ccc;
+  border-radius: 3px;
+  outline: none;
+  background-color: #fff;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Checked state styles */
+.custom-checkboxvenki:checked {
+  background-color: green;  /* Change the background color to green when checked */
+  border-color: green;
+}
+
+/* Unchecked state styles */
+.custom-checkboxvenki:not(:checked) {
+  background-color: red;  /* Change the background color to red when unchecked */
+  border-color: red;
+}
+
+/* Disabled checkbox */
+.custom-checkboxvenki:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+
+.Main_container_BtnQA {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* height: 40px; */
+  gap: 10px;
+  margin: 8px;
+}
+ 
+.Main_container_BtnQA button {
+  width: 60px;
+  height: 22px;
+  font-size: 12px;
+  border-radius: 50px;
+  background-color: #29bec9;
+  color: WHITE;
+  text-align: center;
+  border: 0px;
+  outline: 0px;
+  cursor: pointer;
+}
+ 
+.Main_container_BtnQA button:hover {
+background-color: rgb(45, 172, 192);
+color: black;
+}
+
+.Main_container_BtnQa {
+  display: none; 
+}
+
+.new-navigationwww {
+  /* background-color: #c5e4e1; */
+  padding: 10px 20px;
+border-radius: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+.new-navigationwww h2 {
+  margin: 0;
+  font-size: 10px;
+  display: flex
+  
+;
+font-weight: bolder;
+  flex-wrap: wrap;
+  justify-content: center;
+  row-gap: 7px;
+
+}
+
+.new-navigationwww button {
+  font-weight: bolder;
+  background: none;
+  border: none;
+  margin: 0 2px;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 5px 7px;
+  transition: border-bottom 0.3s ease;
+  border-radius: 13px;
+  color: #333;
+  width: 150px;
+  background-color: rgb(67 214 198);
+  border-bottom: 2px solid transparent;
+} 
+.new-navigationwww button:hover {
+  color:rgb(255, 255, 255);
+}
+
+.new-navigationwww button.active {
+  border-bottom: 2px solid #007bff;
+  font-weight: bold;
+  background-color: #ffffff;
+  /* color: #007bff; */
+}
+
+.new-navigationwww button.active:hover {
+
+  color: black;
+}

@@ -1,0 +1,185 @@
+
+.RegisForm_text{
+    /* width: 412px ;  */
+    /* width: 295px; */
+    /* height:auto; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+   
+    
+}    
+
+.RegisForm_text label{
+    width: 120px;
+    display: flex;
+    font-size: var(--fontsize);
+    font-weight: bold;
+    justify-content: space-between;
+    text-align: start;
+    align-items: center;
+    gap: 10px;
+    color: var(--labelcolor);
+}
+
+.RegisForm_text textarea {
+    width: 480px;
+    border: 1px solid #ccc;
+    outline: 0px;
+    display: flex;
+    padding: 0px 5px;
+    border-radius: 5px;
+    height: 60px;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+.loader_001 {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+  }
+  
+  .loader_register_roomshow_002 {
+    background-color: #fff;
+    padding: 100px;
+    border-radius: 10px;
+  }
+  
+  .smartcard_003 {
+    width: 8.3cm;
+    height: 5.3cm;
+    background-color: #f1f1f1;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding:2px 3px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* margin-left: 0.2cm; */
+  }
+  
+  .smartcard_header_004 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 0.8cm;
+    /* background-color: aqua; */
+  }
+  
+  .college_name_005 {
+    font-size: 12px !important;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .barcode_006 {
+    height: 25px;
+    width: 120px;
+  }
+  
+  .smartcard_body_007 {
+    display: flex;
+    margin-top: 10px;
+    gap: 15px;
+    height: 5.3cm;
+  }
+  
+  .patient_image_008 {
+    width: 3.3cm;
+    height: 90px;
+    object-fit: cover;
+    border: none !important;
+    position: relative;
+    left:0.3cm;
+  }
+  
+  .patient_details_009 {
+    width: 5cm;
+    font-size: 12px;
+    color: #333;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+  
+
+  .patient_details_009 p, .patient_details_009 span{
+   display: flex;
+   flex-wrap: wrap;
+   height: auto;
+   font-weight: bold;
+   justify-content: flex-start;
+   text-align: start;
+
+  }
+
+  .dregrdgh_hgf {
+    height: 1.1cm !important;
+  }
+  /* Print Style */
+  @media print {
+    .loader_001 {
+      all: unset;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    .loader_register_roomshow_002 {
+      all: unset;
+    }
+  
+    .smartcard_003 {
+      box-shadow: none;
+      /* border: 1px solid #000; */
+    }
+
+      .patient_details_009 p, .patient_details_009 span{
+      display: flex;
+      flex-wrap: wrap;
+      height: auto;
+      font-weight: bold !important;
+      justify-content: flex-start;
+      text-align: start;
+
+      }
+
+       .patient_details_009 {
+    font-size: 12px !important;
+    color: #333;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+  }
+  
+
+
+
+
+
+
+
+
+
+
+

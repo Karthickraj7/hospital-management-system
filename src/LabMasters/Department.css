@@ -1,0 +1,522 @@
+
+
+.BodyofExpensesMaster{
+    margin: 30px;
+    gap:40px;
+    display: flex;
+    text-align: center;
+}
+
+.FirstpartOFExpensesMaster{
+    width: 50%;
+  
+}
+
+.First_Input_1{
+    width:auto !important;
+    display: flex;
+}
+
+.P_input_1{
+    justify-content: center !important;
+}
+
+.Lable_style_1{
+    color:var(--labelcolor);
+    white-space: nowrap;
+}
+.Addnamebtn_pt1{
+  color:var(--labelcolor);
+    height: 24px;
+    width: 25px;
+    border: none;
+    margin-left: 10px;
+    cursor: pointer;
+    outline: none;
+}
+
+.Addnamebtn_pt2{
+  color:var(--labelcolor);
+  padding: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 1.2px;
+}
+
+.Cash_invoice_firstpart{
+  padding-top: 20px;
+  padding-bottom: 20px;
+  height: auto;
+  /* border-bottom:1px solidvar(--ProjectColor); */
+
+}
+
+ 
+
+  .Cash_QuickStock_container_form { 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .Cash_QuickStock_container_div {
+    width:20%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+   
+  }
+
+  .Cash_QuickStock_container_div_2{
+
+    width:20%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+  }
+
+  .Cash_containerlabel{
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 15px;
+    color:var(--labelcolor);
+    white-space: nowrap;
+  }
+
+  .cashInventory {
+    width: 70%;
+    padding: 0px 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    height: 28px;
+    font-size: 12px;
+    
+  }
+
+  .Cash_QuickStock_container_div_3{
+
+    width:30%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+  }
+
+  .cashInventor_2{
+
+    width: 23%;
+    padding: 0px 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    height: 28px;
+    font-size: 12px;
+
+  }
+
+  .cashInventor_3{
+
+    width: 43%;
+    padding: 0px 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    height: 28px;
+    font-size: 12px;
+
+  }
+
+  .Save_btn{
+    background-color:var(--ProjectColor);
+    color:var(--labelcolor);
+    padding: 8px 15px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  .cashInventory_txt{
+    width: 70%;
+    height: 70px;
+    padding: 0px 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 12px;
+    
+  }
+  .inp_1 {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-basis: calc(33.33% - 15px);
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--ProjectColor);
+    /* width: 380px; */
+  }
+  
+  .inp_1 input {
+  
+    outline: none;
+    border: none;
+    background-color: transparent;
+    padding: 10px 5px;
+    color: var(--labelcolor);
+  }
+  
+  .inp_1 input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    display: none;
+  }
+  
+  .inp_1 input::placeholder {
+    color: rgb(151, 150, 150);
+  }
+  
+  .inp_1 label {
+    color: var(--labelcolor);
+    width: 100px;
+  }
+  
+  /* Label animation for input focus */
+  .inp_1 input:focus+label,
+  .inp_1 input:not(:placeholder-shown)+label {
+    top: -12px;
+    font-size: 12px;
+    color: #333;
+  }
+  
+  /* Search button styles */
+  .btn_1 {
+    border: none;
+    background-color: var(--ProjectColor);
+    color: var(--labelcolor);
+    cursor: pointer;
+    width: 100px;
+    border-radius: 25px;
+    height: 35px;
+  }
+  .btn_1 :hover{
+    background-color: var(--ProjectColorhover);
+    color: var(--projectwhite) !important;
+  }
+  
+  .cell_btn {
+    font-size: 12px !important;
+    color: var(--labelcolor) !important;
+  }
+  
+  /* Data grid styles */
+  .data_grid {
+    border: none;
+    width: 100%;
+    overflow-x: auto;
+  
+  }
+  
+
+  .cashforwidth1{
+    width: 25%;
+  }
+
+  .cashforwidth2{
+    width: 45%;
+  }
+
+  .Serchbtn_cash{
+    color:var(--labelcolor);
+    cursor: pointer;
+  }
+
+  .Spanletter{
+    color:var(--labelcolor);
+    
+  }
+  /* -------------------------------------------------------------- */
+.petty_overall{
+  width: 95%;
+ 
+}
+  .ShiftClosing_over{
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .ShiftClosing_Container{
+    padding: 20px 0px;
+    width: 98%;
+    gap: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+  }
+  .ShiftClosing_header{
+    width: 100%;
+    height: 40px;
+    background-color:var(--ProjectColor);
+    color: var(--labelcolor);
+    border-radius: 5px;
+  }
+  .ShiftClosing_header h3{
+    margin-left: 10px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .ShiftClosing_Invoice_container{
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .ShiftClosing_Invoice{
+    width: 100%;
+    height: 30px;
+  }
+  .ShiftClosing_Invoice div{
+    width: 250px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+  .ShiftClosing_Invoice_span{
+   padding: 0px 10px 0px 0px  ;
+    width: fit-content ;
+    border-bottom: 2px solid var(--ProjectColor);
+  }
+  .ShiftClosing_Invoice_span span:first-child{
+    font-size: 18px;
+    margin-bottom: 5px;
+    color:var(--labelcolor);
+  }
+  .ShiftClosing_Invoice_span span:last-child{
+    color: grey;
+  }
+  .ShiftClosing_Con{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+  }
+  .ShiftClosing_Con_row{
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-between;
+
+  }
+  .ShiftClosing_Con_column{
+    width: 45%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .ShiftClosing_Con_column label{
+    width: 150px;
+    color:var(--labelcolor);
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+    font-weight: bold;
+  }
+  .ShiftClosing_Con_column select{
+    width: calc(100% - 160px);
+    height: 30px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 0px 5px;
+  }
+  .ShiftClosing_Con_column input{
+    width: calc(100% - 170px);
+    height: 25px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 0px 5px;
+  }
+  .Issue_input{
+    width: calc(100% - 135px);
+    display: flex;
+    gap: 10px;
+  }
+  .Issue_input input:first-child{
+    width: 20%;
+  }
+  .Issue_input_111{
+    width: 70% !important;
+  }
+  .ShiftClosing_Con_column textarea{
+    width: calc(100% - 165px);
+    height: 35px;
+    border-radius: 5px;
+    padding: 0px 5px;
+  }
+  .Shift_button{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .Shift_button button{
+    width: 120px;
+    height: 30px;
+    border-radius: 10px;
+    border: 0px;
+    outline: 0px;
+    padding: 0px 10px;
+    background-color:var(--ProjectColor);
+  }
+
+  /* .Selected-table-container{
+    width: 100%;
+    /* min-width: 300px; */
+    /* overflow-y: scroll;
+    overflow: scroll;
+    display: flex;
+    justify-content: center; */
+    
+  /* } */ 
+
+
+  /* Common Styles for both textareas */
+.uidelineeee, .uidelineee {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: -3px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  row-gap: 10px;
+}
+
+.uidelineeee label, .uidelineee label {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+/* Header Textarea - Single Line Appearance */
+
+
+/* Points Textarea - Multi-line Paragraph */
+.uidelineee textarea {
+  width: 646px;
+  height: 142px;
+  margin-bottom: 28px;
+  outline: 0px;
+  border: 0px;
+  /* margin-left: 10px; */
+  box-shadow: 1px 1px 5px 5px rgb(212, 229, 229);
+  background-color: transparent;
+
+  max-height: 800px; /* Limiting maximum height */
+}
+
+
+  
+  @media screen and (min-width:500px)and (max-width:950px) {
+    .ShiftClosing_Con{
+      gap: 25px;
+    }
+    .ShiftClosing_Con_row{
+      height: auto;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .ShiftClosing_Con_column{
+      width: 400px;
+    }
+    .ShiftClosing_Con_column textarea{
+      width: 230px;
+    }
+    .inp_1,.inp_1 input::placeholder,.MuiDataGrid-cell,.MuiDataGrid-columnHeader{
+        font-size: 12px;
+      }
+    .BodyofExpensesMaster{
+      margin: 0px;
+      flex-direction: column;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+    }
+    .FirstpartOFExpensesMaster{
+      width: 100%;
+    }
+    .FirstpartOFExpensesMaster h2{
+      font-size: 15px;
+    }
+    /* .Selected-table-container{
+      width: 100%;
+      min-width: 300px;
+      overflow-y: scroll;
+      overflow: scroll;
+      
+    } */
+    /* .selected-medicine-table2 {
+      font-size: 14px;
+    } */
+  }
+  @media screen and (max-width:500px) {
+
+    .ShiftClosing_over{
+      width: 95%;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .ShiftClosing_Con{
+      width: 100%;
+      gap: 25px;
+    }
+    .ShiftClosing_Con_row{
+      width: 100%;
+      height: auto;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .ShiftClosing_Con_column{
+      width: 90%;
+      min-width: 300px;
+    }
+    .ShiftClosing_Con_column textarea{
+      width: 125px;
+      height: 25px;
+    }
+    .BodyofExpensesMaster{
+      margin: 0px;
+      flex-direction: column;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+    }
+    .FirstpartOFExpensesMaster{
+      width: 100%;
+    }
+    .FirstpartOFExpensesMaster h2{
+      font-size: 17px;
+    }
+    /* .Selected-table-container{
+      width: 90%;
+      min-width: 300px;
+      
+    } */
+    /* .selected-medicine-table2 {
+      font-size: 14px;
+    } */
+  }
+

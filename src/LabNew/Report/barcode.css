@@ -1,0 +1,220 @@
+/* .barcode_container_print_data_new {
+    width: 4CM;
+    height: 2.4CM;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    border-radius: 10px;
+    box-shadow: 1px 0px 10px 0.5px;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 600;
+    box-sizing: border-box; 
+} */
+
+
+.barcode_container_print_data_new {
+
+    width: 10cm;
+    height: 3.5cm;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    box-shadow: 1px 0px 10px 0.5px;
+    align-items: center;
+    font-size: 11px;
+    padding: 10px;
+    font-weight: 600;
+    box-sizing: border-box;
+    margin: 2px;
+    overflow: hidden;
+}
+
+.parent_barcode_div_new {
+    width: 240px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+}
+
+.div_grand_parent {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.barcode_patient_new {
+    display: flex;
+}
+
+.barcode_dept {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+
+.report_table_for_micro{
+    border-collapse: collapse;
+    width: 100%;
+
+}
+
+
+.comments_for_microscopy{
+    padding: 0px 5px;
+    height: 100%;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: grey;
+    gap: 5px;
+    position: relative;
+    top: 10px;
+    margin-bottom: 25px;
+}
+.comments_for_microscopy textarea{
+    width: 75%;
+    height: 60px;
+}
+.comments_for_microscopy label{
+    width: 120px;
+    display: flex;
+    font-size: var(--fontsize);
+    font-weight: bold;
+    justify-content: space-between;
+    text-align: start;
+    align-items: center;
+    gap: 10px;
+    color: var(--labelcolor);
+}
+
+.report_table_for_micro td{
+    padding: 2px;
+}
+
+.hehdfh_jhd {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.jcfujd_p9{
+    width: 70%;
+    text-align: center;
+}
+
+.fchdj_lfe{
+    width: 30%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+
+   .jcfujd_p9 p, .fchdj_lfe p{
+      
+          font-weight: bold !important;
+    }
+
+    .fedfefvv p{
+       
+        font-weight: bold !important;
+        
+    }
+
+    .adden_width_barcde_new32n{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        text-align: center;
+    }
+@media print {
+   
+
+    .parent_barcode_div_new {
+        margin: 0;
+        display: flex;
+        align-items: flex-start; /* Adjust alignment to start at the top */
+        justify-content: center;
+        flex-direction: column;
+        flex-wrap: wrap;
+        height: auto;
+        width: auto;
+        gap: 0.2cm; /* Adjust gap between stickers */
+        padding: 0.2cm;
+      }
+    
+      .barcode_container_print_data_new {
+        width: 4cm; /* Fixed width for each sticker */
+        height: 2.5cm; /* Fixed height for each sticker */
+        padding: 0.2cm; /* Add padding for spacing between stickers */
+        display: flex;
+        flex-direction: column;
+        /* border: 1px solid black;  */
+        box-shadow: none;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 10px; /* Adjust font size as needed */
+        margin: 0;
+        page-break-inside: avoid; /* Prevent breaking stickers across pages */
+      }
+    
+      .barcode_patient_new {
+        text-align: center;
+        margin-bottom: 5px; /* Adjust spacing between patient info and barcode */
+      }
+    
+      .barcode_image_content_new {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-grow: 1;
+      }
+    
+      .Register_btn_con {
+        display: none; 
+      }
+    
+    
+
+    .Rhugt_report {
+        display: none;
+    }
+
+    .jcfujd_p9{
+        text-align: start !important;
+        margin-left: 4px !important;
+    }
+
+    .jcfujd_p9 p, .fchdj_lfe p{
+        font-size: 8px !important;
+          font-weight: bold !important;
+          position: relative;
+          top: 5px !important;
+    }
+
+    .fedfefvv p{
+        font-size: 7.5px !important;
+        font-weight: bold !important;
+        position: relative;
+        bottom: 8px !important;
+    }
+
+    .adden_width_barcde_new32n svg{
+
+    height: 58px !important;
+
+    }
+}

@@ -1,0 +1,173 @@
+.concernxyz1234 {
+    display: flex;
+    justify-content: center;
+
+}
+
+
+
+.Employeeconcern10926 {
+    width: 80%;
+    /* Adjust the width as needed */
+    border-collapse: collapse;
+    margin: 20px 0;
+    border: none;
+    padding: 15px;
+}
+
+.Employeeconcern10926 th,
+.Employeeconcern10926 td {
+    padding: 8px 16px;
+    border-bottom: none;
+}
+
+.Employeeconcern10926 th {
+    text-align: start;
+    white-space: nowrap;
+}
+
+.Employeeconcern10926 .colon {
+    text-align: center;
+    width: 3px;
+    display: flex;
+
+}
+
+.concern_text_and_labels {
+    font-weight: bold;
+    padding: 5px;
+    font-size: 11px;
+}
+
+.ddcddsxdd {
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 12px;
+    width: 100%;
+}
+
+.weerftgvadsajok {
+    width: 162px !important;
+    border: none !important;
+    outline: 0px !important;
+
+}
+
+.css-13cymwt-control {
+    background-color: var(--selectbackgroundcolor)!important;
+    border: none !important;
+    outline: none !important;
+  }
+  
+ 
+  .css-1xc3v61-indicatorContainer{
+    color: black !important;
+  }
+
+
+  .mkkfloor90 {
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+
+
+
+
+@media print {
+    .concernxyz1234 {
+        display: block;
+        padding: 0;
+        margin: 0;
+        padding: 10px;
+        
+    }
+
+    .Employeeconcern10926 tr {
+        margin-bottom: 10px;
+    }
+
+    .Employeeconcern10926 th,
+    .Employeeconcern10926 td {
+        padding: 5px 8px;
+        font-size: 12px;
+    }
+
+    .Employeeconcern10926 tbody tr {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    /* Adjust margin-right to control spacing */
+    .Employeeconcern10926 .colon {
+
+        margin-bottom: 2px;
+    }
+
+    .concern_text_and_labels {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        font-weight: bold;
+        padding: 5px;
+        row-gap: 10px;
+        font-size: 10px;
+        margin-bottom: 10px;
+    }
+
+    .Emplodjcyec7 tbody tr {
+        display: flex;
+        justify-content: space-around;
+        gap: 20px;
+        align-items: center;
+        text-align: start;
+        font-size: 12px;
+        width: 100%;
+    }
+
+    .Emplodjcyec7 tbody tr th {
+        width: 80px;
+        display: flex;
+        justify-content: space-between;
+        text-align: start;
+        font-size: 14px;
+        margin-bottom: 27px;
+    }
+
+    .ldldooii tr th {
+
+        width: 280px;
+
+    }
+
+    .ldldooii tr td {
+        text-align: start;
+        width: 500px !important;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+    }
+
+    .Employeeconcern10926 .colon {
+        text-align: start;
+        width: 3px;
+
+
+    }
+
+    .concern_text_and_labels p {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        font-weight: bold;
+        padding: 5px;
+        row-gap: 20px;
+        gap: 20px;
+        font-size: 12px;
+    }
+
+
+}

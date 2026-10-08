@@ -1,0 +1,28 @@
+@media print {
+
+
+
+   .pageBreak {
+    page-break-before: always !important; /* Ensure that page breaks are handled */
+  }
+
+
+  .barcode-label-barHash {
+    page-break-inside: avoid;
+    background-color:transparent !important;
+
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+
+
+    
+
+      padding:5px !important;
+    
+      }
+
+
+ 
+}
