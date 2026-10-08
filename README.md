@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,3 +69,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+=======
+# hospital-management-system
+Hospital Information Management System (HIMS) with a Django REST backend and React frontend. It covers patient registration, OP/IP care, lab, radiology/PACS, pharmacy, inventory, OT, billing, insurance, HR, finance and reports.
+>>>>>>> f061018a12a8ef3536be13fafe8acf4a021c6659
